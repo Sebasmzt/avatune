@@ -7,7 +7,7 @@ import earsStandard from './svg/ears/standard.svg?raw'
 
 import eyebrowsAngry from './svg/eyebrows/angry.svg?raw'
 import eyebrowsSmall from './svg/eyebrows/small.svg?raw'
-import eyebrowsStandard from './svg/eyebrows/standard.svg'
+import eyebrowsStandard from './svg/eyebrows/standard.svg?raw'
 
 import eyesBoring from './svg/eyes/boring.svg?raw'
 import eyesDots from './svg/eyes/dots.svg?raw'
