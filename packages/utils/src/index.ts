@@ -230,7 +230,7 @@ function selectIdentifier<T extends AvatarItem>(
 /**
  * Select color with priority: explicit > connected > predictor > palette
  */
-function selectColorValue<T extends AvatarItem>(
+export function selectColorValue<T extends AvatarItem>(
   category: AvatarPartCategory,
   config: AvatarConfig,
   predictions: Predictions | undefined,
@@ -273,6 +273,7 @@ export function selectItems<T extends AvatarItem>(
   selected: Partial<Record<AvatarPartCategory, T>>
   identifiers: Partial<Record<AvatarPartCategory, string>>
   colors: Partial<Record<AvatarPartCategory, string>>
+  style: Theme['style']
   seed?: string | number
 } {
   const random =
@@ -282,7 +283,24 @@ export function selectItems<T extends AvatarItem>(
   const identifiers: Partial<Record<AvatarPartCategory, string>> = {}
   const colors: Partial<Record<AvatarPartCategory, string>> = {}
 
-  const allCategories = Object.keys(theme.colorPalettes) as AvatarPartCategory[]
+  // Select background color
+  const backgroundColor = selectWithPriority(
+    // Priority 1: Explicit from config
+    () => config.backgroundColor,
+    // Priority 2: Random from palette
+    () => selectColor(theme.colorPalettes.background, random),
+  )
+
+  // Create style object with selected background color
+  const style: Theme['style'] = {
+    ...theme.style,
+    backgroundColor,
+  }
+
+  const allCategories = Object.keys(theme.colorPalettes).filter(
+    (key) => key !== 'background',
+  ) as AvatarPartCategory[]
+
   for (const category of allCategories) {
     // Select item (shape/asset)
     const identifier = selectIdentifier(
@@ -316,5 +334,5 @@ export function selectItems<T extends AvatarItem>(
     }
   }
 
-  return { selected, identifiers, colors, seed: config.seed }
+  return { selected, identifiers, colors, style, seed: config.seed }
 }

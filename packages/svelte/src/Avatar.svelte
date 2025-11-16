@@ -36,7 +36,7 @@ const sortedItems = $derived(
 const scaleFactor = $derived(size / theme.style.size)
 
 const finalStyle = $derived(
-  [themeStyleToStyleProp(theme.style, 'string'), style]
+  [themeStyleToStyleProp(result.style, 'string'), style]
     .filter(Boolean)
     .join('; '),
 )

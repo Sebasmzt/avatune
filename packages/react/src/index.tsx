@@ -38,6 +38,7 @@ export function Avatar<T extends ReactTheme = ReactTheme>({
     () => restConfig as AvatarConfig,
     [
       restConfig.seed,
+      restConfig.backgroundColor,
       restConfig.body,
       restConfig.bodyColor,
       restConfig.ears,
@@ -82,7 +83,7 @@ export function Avatar<T extends ReactTheme = ReactTheme>({
       viewBox={`0 0 ${size} ${size}`}
       className={className}
       style={{
-        ...(themeStyleToStyleProp(theme.style) as CSSProperties),
+        ...(themeStyleToStyleProp(result.style) as CSSProperties),
         ...style,
       }}
     >

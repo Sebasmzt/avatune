@@ -57,7 +57,7 @@ export function avatar<T extends VanillaTheme = VanillaTheme>({
     }
   }
 
-  const finalStyle = themeStyleToStyleProp(theme.style, 'string')
+  const finalStyle = themeStyleToStyleProp(result.style, 'string')
 
   const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}" style="${finalStyle}" viewBox="0 0 ${size} ${size}">
   ${svgParts.join('\n  ')}

@@ -32,3 +32,12 @@ export enum AccentColors {
   EyeWhite = '#FFFFFF',
   Black = '#000000',
 }
+
+export enum BackgroundColors {
+  MeadowGreen = '#a7c957',
+  SkyBlue = '#90d5ff',
+  CoralPink = '#ffb3c1',
+  LavenderPurple = '#c8b6ff',
+  PeachOrange = '#ffbe98',
+  MintGreen = '#b8e0d2',
+}

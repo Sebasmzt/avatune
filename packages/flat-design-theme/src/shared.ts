@@ -1,10 +1,16 @@
 import type { BaseAvatarItem, Theme } from '@avatune/types'
 import { offsetFrom, percentage } from '@avatune/utils'
-import { AccentColors, ClothingColors, HairColors, SkinTones } from './colors'
+import {
+  AccentColors,
+  BackgroundColors,
+  ClothingColors,
+  HairColors,
+  SkinTones,
+} from './colors'
 
 const getHeadPosition = (size: number) => ({
   x: size * percentage('32%'),
-  y: size * percentage('30%'),
+  y: size * percentage('24%'),
 })
 
 const fromHead = offsetFrom(getHeadPosition)
@@ -12,8 +18,7 @@ const fromHead = offsetFrom(getHeadPosition)
 export default {
   style: {
     size: 200,
-    backgroundColor: '#a7c957',
-    borderRadius: 0,
+    borderRadius: '100%',
   },
   connectedColors: {
     ears: 'head',
@@ -38,6 +43,14 @@ export default {
     },
   },
   colorPalettes: {
+    background: [
+      BackgroundColors.MeadowGreen,
+      BackgroundColors.SkyBlue,
+      BackgroundColors.CoralPink,
+      BackgroundColors.LavenderPurple,
+      BackgroundColors.PeachOrange,
+      BackgroundColors.MintGreen,
+    ],
     hair: [
       HairColors.JetBlack,
       HairColors.DeepBrown,

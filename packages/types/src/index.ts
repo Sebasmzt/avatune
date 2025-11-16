@@ -143,6 +143,7 @@ export interface ThemePredictorMappings {
  * Defines available colors that can be randomly selected when using seed
  */
 export interface ThemeColorPalettes {
+  background: ColorOptions
   hair: ColorOptions
   head: ColorOptions
   body: ColorOptions
@@ -235,6 +236,7 @@ export type TypedAvatarConfig<T extends Theme> = {
   head?: ExtractIdentifiers<T['head']>
   mouth?: ExtractIdentifiers<T['mouth']>
   noses?: ExtractIdentifiers<T['noses']>
+  backgroundColor?: string
   bodyColor?: string
   earsColor?: string
   eyebrowsColor?: string
@@ -252,5 +254,6 @@ export type TypedAvatarConfig<T extends Theme> = {
  */
 export type AvatarConfig<A extends AvatarItem = AvatarItem, T = Theme<A>> = {
   seed?: string | number
+  backgroundColor?: string
 } & Partial<{ [K in keyof T]: string }> &
   Partial<{ [K in keyof T as `${K & string}Color`]: string }>

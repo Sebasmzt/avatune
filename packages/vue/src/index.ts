@@ -106,6 +106,10 @@ export const Avatar = defineComponent({
       type: String,
       default: undefined,
     },
+    backgroundColor: {
+      type: String,
+      default: undefined,
+    },
     size: {
       type: Number,
       default: undefined,
@@ -153,7 +157,7 @@ export const Avatar = defineComponent({
     )
 
     const finalStyle = computed(() => ({
-      ...(themeStyleToStyleProp(props.theme.style) as CSSProperties),
+      ...(themeStyleToStyleProp(result.value.style) as CSSProperties),
       ...(props.style || {}),
     }))
 
