@@ -51,7 +51,7 @@ export function avatar<T extends VanillaTheme = VanillaTheme>({
       const transform = `transform="translate(${transformX}, ${transformY}) scale(${scaleFactor})"`
       const attributes = [transform, style].filter(Boolean).join(' ')
 
-      const transformed = `<g ${attributes}>${vanillaItem.code}</g>`
+      const transformed = `<g ${attributes}>${vanillaItem.code({ color: color ?? 'currentColor' })}</g>`
       svgParts.push(transformed)
     }
   }

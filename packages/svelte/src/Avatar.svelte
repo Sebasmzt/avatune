@@ -63,9 +63,8 @@ const finalStyle = $derived(
       {@const ItemComponent = item.Component}
       <g
         transform="translate({transformX}, {transformY}) scale({scaleFactor})"
-        style="color: {color}"
       >
-        <ItemComponent />
+        <ItemComponent color={color} />
       </g>
     {/if}
   {/each}

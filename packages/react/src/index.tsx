@@ -107,9 +107,8 @@ export function Avatar<T extends ReactTheme = ReactTheme>({
           <g
             key={category}
             transform={`translate(${position.x}, ${position.y}) scale(${scaleFactor})`}
-            style={{ color }}
           >
-            <Component />
+            <Component color={color} />
           </g>
         )
       })}

@@ -4,6 +4,39 @@ import { callbackify } from 'node:util'
 import { compileTemplate } from '@vue/compiler-sfc'
 import { optimize as optimizeSvg } from 'svgo'
 
+const applyReplacements = (svg, replacements = {}) => {
+  let result = svg
+
+  // Sort keys by length (longest first) to ensure more specific patterns are replaced first
+  // This prevents "currentColor" from being replaced before "color-mix(in srgb, currentColor 80%, white)"
+  const sortedKeys = Object.keys(replacements).sort((a, b) => b.length - a.length)
+
+  for (const key of sortedKeys) {
+    let value = replacements[key]
+
+    // For Vue, we need to convert attribute values to v-bind syntax
+    // Replace fill="value" with :fill="expression"
+    // Extract the expression from {expression} format
+    if (value.startsWith('{') && value.endsWith('}')) {
+      const expression = value.slice(1, -1) // Remove { and }
+      // Find and replace fill="key" with :fill="expression"
+      const attrPattern = new RegExp(
+        `(fill|stroke)="(${key.replace(/[()]/g, '\\$&')})"`,
+        'g'
+      )
+      result = result.replace(attrPattern, `:$1="${expression}"`)
+    } else {
+      // Fallback to simple string replacement if not in {expr} format
+      result = result.replace(
+        new RegExp(key.replace(/[()]/g, '\\$&'), 'g'),
+        value,
+      )
+    }
+  }
+
+  return result
+}
+
 const transformSvg = callbackify(async (contents, options = {}, state = {}) => {
   let svg = String(contents)
   const resourcePath = state.filePath || state.filename || ''
@@ -18,6 +51,11 @@ const transformSvg = callbackify(async (contents, options = {}, state = {}) => {
       // ignore svgo errors (loader should not crash build by default)
       // but preserve original svg
     }
+  }
+
+  // Apply color attribute replacements if provided
+  if (options.replaceAttrValues) {
+    svg = applyReplacements(svg, options.replaceAttrValues)
   }
 
   // Prevent compileTemplate from removing style tags
@@ -35,8 +73,24 @@ const transformSvg = callbackify(async (contents, options = {}, state = {}) => {
 
   // result.code contains imports + render function + export const
   // Ensure it exports a Vue component as default and named export `raw`
-  const out = `${result.code}
-const __component = { name: 'SvgIcon', render };
+  const imports = options.imports || ''
+  const out = `${imports}
+
+${result.code}
+const __component = {
+  name: 'SvgIcon',
+  props: {
+    color: {
+      type: String,
+      default: 'currentColor'
+    }
+  },
+  setup(props) {
+    // Make colord available in template context
+    return { colord };
+  },
+  render
+};
 export default __component;
 export const raw = ${JSON.stringify(svg)};
 `

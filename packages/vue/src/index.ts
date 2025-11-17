@@ -194,9 +194,8 @@ export const Avatar = defineComponent({
             {
               key: category,
               transform: `translate(${transformX}, ${transformY}) scale(${scaleFactor.value})`,
-              style: { color },
             },
-            [h(Component)],
+            [h(Component, { color })],
           )
         }),
       )

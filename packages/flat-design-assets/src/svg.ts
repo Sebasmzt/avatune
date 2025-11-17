@@ -1,3 +1,5 @@
+// The ?raw imports are now transformed by our custom loader at build time
+// Each import is a function that accepts { color: string } and returns the transformed SVG
 import bodyShirt from './svg/body/shirt.svg?raw'
 import bodySweater from './svg/body/sweater.svg?raw'
 import bodyTshort from './svg/body/tshirt.svg?raw'

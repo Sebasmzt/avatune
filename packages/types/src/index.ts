@@ -33,7 +33,7 @@ export interface BaseAvatarItem {
  */
 export interface VanillaAvatarItem extends BaseAvatarItem {
   /** Raw SVG code as a string */
-  code: string
+  code: (props: { color: string }) => string
 }
 
 /**

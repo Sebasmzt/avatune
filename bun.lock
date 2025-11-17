@@ -118,6 +118,9 @@
     "packages/flat-design-assets": {
       "name": "@avatune/flat-design-assets",
       "version": "0.0.0",
+      "dependencies": {
+        "colord": "^2.9.3",
+      },
       "devDependencies": {
         "@avatune/rsbuild-plugin-svg-to-svelte": "workspace:*",
         "@avatune/rsbuild-plugin-svg-to-vue": "workspace:*",
@@ -151,6 +154,7 @@
       "version": "0.0.0",
       "dependencies": {
         "@avatune/flat-design-assets": "workspace:*",
+        "@avatune/theme-builder": "workspace:*",
         "@avatune/types": "workspace:*",
         "@avatune/utils": "workspace:*",
       },
@@ -1009,6 +1013,8 @@
     "color-convert": ["color-convert@2.0.1", "", { "dependencies": { "color-name": "~1.1.4" } }, "sha512-RRECPsj7iu/xb5oKYcsFHSppFNnsj/52OVTRKb4zP5onXwVF3zVmmToNcOfGC+CRDpfK/U584fMg38ZHCaElKQ=="],
 
     "color-name": ["color-name@1.1.4", "", {}, "sha512-dOy+3AuW3a2wNbZHIuMZpTcgjGuLU/uBL/ubcZF9OXbDo8ff4O8yVp5Bf0efS8uEoYo5q4Fx7dY9OgQGXgAsQA=="],
+
+    "colord": ["colord@2.9.3", "", {}, "sha512-jeC1axXpnb0/2nn/Y1LPuLdgXBLH7aDcHu4KEKfqw3CUhX7ZpfBSlPKyqXE6btIgEzfWtrX3/tyBCaCvXvMkOw=="],
 
     "combined-stream": ["combined-stream@1.0.8", "", { "dependencies": { "delayed-stream": "~1.0.0" } }, "sha512-FQN4MRfuJeHf7cBbBMJFXhKSDq+2kAArBlmRBvcvFE5BB1HZKXtSFASDhdlz9zOYwxh8lDdnvmMOe/+5cdoEdg=="],
 

@@ -14,6 +14,8 @@ export type PluginOptions = {
   mixedImport?: boolean
   exclude?: Rspack.RuleSetCondition
   debug?: boolean
+  imports?: string
+  replaceAttrValues?: Record<string, string>
 }
 
 const SVG_REGEX = /\.svg$/
@@ -125,6 +127,8 @@ export const pluginSvgToVue = (options: PluginOptions = {}): RsbuildPlugin => ({
           .options({
             svgo: merged.svgo,
             svgoConfig: merged.svgoConfig,
+            imports: options.imports,
+            replaceAttrValues: options.replaceAttrValues,
           })
           .end()
       } catch (e) {
@@ -193,6 +197,8 @@ export const pluginSvgToVue = (options: PluginOptions = {}): RsbuildPlugin => ({
             .options({
               svgo: merged.svgo,
               svgoConfig: merged.svgoConfig,
+              imports: options.imports,
+              replaceAttrValues: options.replaceAttrValues,
             })
             .end()
         } catch (e) {

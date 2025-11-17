@@ -4,6 +4,24 @@ import { callbackify } from 'node:util'
 import { compile } from 'svelte/compiler'
 import { optimize as optimizeSvg } from 'svgo'
 
+const applyReplacements = (svg, replacements = {}) => {
+  let result = svg
+
+  // Sort keys by length (longest first) to ensure more specific patterns are replaced first
+  // This prevents "currentColor" from being replaced before "color-mix(in srgb, currentColor 80%, white)"
+  const sortedKeys = Object.keys(replacements).sort((a, b) => b.length - a.length)
+
+  for (const key of sortedKeys) {
+    const value = replacements[key]
+    result = result.replace(
+      new RegExp(key.replace(/[()]/g, '\\$&'), 'g'),
+      value,
+    )
+  }
+
+  return result
+}
+
 const transformSvg = callbackify(async (contents, options = {}, state = {}) => {
   let svg = String(contents)
   const resourcePath = state.filePath || state.filename || ''
@@ -21,6 +39,11 @@ const transformSvg = callbackify(async (contents, options = {}, state = {}) => {
     }
   }
 
+  // Apply color attribute replacements if provided
+  if (options.replaceAttrValues) {
+    svg = applyReplacements(svg, options.replaceAttrValues)
+  }
+
   // Clean the SVG markup for Svelte component
   const cleanSvg = svg
     .replace(/^<\?xml.*?\?>/, '') // Remove XML declaration
@@ -28,9 +51,12 @@ const transformSvg = callbackify(async (contents, options = {}, state = {}) => {
     .trim()
 
   // Generate Svelte component source
+  const imports = options.imports || ''
   const svelteSource = `<script>
+  ${imports}
   export let className = '';
   export let style = '';
+  export let color = 'currentColor';
 </script>
 
 ${cleanSvg.replace(/class="([^"]*)"/, 'class="{className || \'$1\'}"').replace(/style="([^"]*)"/, 'style="{style || \'$1\'}"')}
