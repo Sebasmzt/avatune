@@ -1,13 +1,19 @@
-import type { SvelteTheme, TypedAvatarConfig } from '@avatune/types'
+import type {
+  AvatarConfig,
+  SvelteAvatarItem,
+  SvelteTheme,
+} from '@avatune/types'
 import AvatarComponent from './Avatar.svelte'
 
-export type AvatarProps<T extends SvelteTheme = SvelteTheme> =
-  TypedAvatarConfig<T> & {
-    theme: SvelteTheme
-    size?: number
-    class?: string
-    style?: string
-  }
+export type AvatarProps<T extends SvelteTheme = SvelteTheme> = AvatarConfig<
+  SvelteAvatarItem,
+  T
+> & {
+  theme: SvelteTheme
+  size?: number
+  class?: string
+  style?: string
+}
 
 /**
  * Avatar component for Svelte.
@@ -17,4 +23,4 @@ export type AvatarProps<T extends SvelteTheme = SvelteTheme> =
  *
  * For type-safe props with autocomplete, use React or Vue.
  */
-export const Avatar = AvatarComponent
+export const Avatar = AvatarComponent as typeof AvatarComponent

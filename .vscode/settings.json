@@ -12,5 +12,6 @@
   },
   "[typescriptreact]": {
     "editor.defaultFormatter": "biomejs.biome"
-  }
+  },
+  "svelte.enable-ts-plugin": true
 }

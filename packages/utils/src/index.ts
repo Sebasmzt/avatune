@@ -44,11 +44,11 @@ function pickRandom<T>(items: T[], random: () => number): T | undefined {
 /**
  * Select an item from a collection based on identifier
  */
-export function selectItem<T extends AvatarItem>(
-  collection: AvatarItemCollection<T>,
+export function selectItem<I extends AvatarItem>(
+  collection: AvatarItemCollection<I>,
   identifier?: string,
   random?: () => number,
-): { key: string; item: T } | null {
+): { key: string; item: I } | null {
   if (identifier && collection[identifier]) {
     return { key: identifier, item: collection[identifier] }
   }
@@ -105,7 +105,7 @@ export function percentage(value: string) {
 }
 
 export function themeStyleToStyleProp(
-  style: Theme['style'],
+  style: Theme<AvatarItem>['style'],
   output: 'object' | 'string' = 'object',
 ) {
   const backgroundColor = style.backgroundColor
@@ -154,10 +154,10 @@ function selectWithPriority<T>(
 /**
  * Get predictor result identifiers for a category
  */
-function getPredictorIdentifiers<T extends AvatarItem>(
+function getPredictorIdentifiers<I extends AvatarItem, T extends Theme<I>>(
   category: AvatarPartCategory,
   predictions: Predictions,
-  theme: Theme<T>,
+  theme: T,
 ): string[] | undefined {
   if (category !== 'hair' || !theme.predictorMappings?.hair) {
     return undefined
@@ -172,10 +172,10 @@ function getPredictorIdentifiers<T extends AvatarItem>(
 /**
  * Get predictor result colors for a category
  */
-function getPredictorColors<T extends AvatarItem>(
+function getPredictorColors<I extends AvatarItem, T extends Theme<I>>(
   category: AvatarPartCategory,
   predictions: Predictions,
-  theme: Theme<T>,
+  theme: T,
 ): string[] | undefined {
   const { predictorMappings } = theme
   if (!predictorMappings) return undefined
@@ -200,11 +200,11 @@ function getPredictorColors<T extends AvatarItem>(
 /**
  * Select identifier with priority: explicit > predictor > random
  */
-function selectIdentifier<T extends AvatarItem>(
+function selectIdentifier<I extends AvatarItem, T extends Theme<I>>(
   category: AvatarPartCategory,
-  config: AvatarConfig,
+  config: AvatarConfig<I, T>,
   predictions: Predictions | undefined,
-  theme: Theme<T>,
+  theme: T,
   random: () => number,
 ): string | undefined {
   return selectWithPriority(
@@ -230,11 +230,11 @@ function selectIdentifier<T extends AvatarItem>(
 /**
  * Select color with priority: explicit > connected > predictor > palette
  */
-export function selectColorValue<T extends AvatarItem>(
+export function selectColorValue<I extends AvatarItem, T extends Theme<I>>(
   category: AvatarPartCategory,
-  config: AvatarConfig,
+  config: AvatarConfig<I, T>,
   predictions: Predictions | undefined,
-  theme: Theme<T>,
+  theme: T,
   random: () => number,
   selectedColors: Partial<Record<AvatarPartCategory, string>>,
 ): string | undefined {
@@ -265,21 +265,21 @@ export function selectColorValue<T extends AvatarItem>(
  * Select items and colors for avatar generation
  * Supports explicit config, ML predictors, and random fallbacks
  */
-export function selectItems<T extends AvatarItem>(
-  config: AvatarConfig,
-  theme: Theme<T>,
+export function selectItems<I extends AvatarItem, T extends Theme<I>>(
+  config: AvatarConfig<I, T>,
+  theme: T,
   predictions?: Predictions,
 ): {
-  selected: Partial<Record<AvatarPartCategory, T>>
+  selected: Partial<Record<AvatarPartCategory, I>>
   identifiers: Partial<Record<AvatarPartCategory, string>>
   colors: Partial<Record<AvatarPartCategory, string>>
-  style: Theme['style']
+  style: T['style']
   seed?: string | number
 } {
   const random =
     config.seed !== undefined ? seededRandom(config.seed) : Math.random
 
-  const selected: Partial<Record<AvatarPartCategory, T>> = {}
+  const selected: Partial<Record<AvatarPartCategory, I>> = {}
   const identifiers: Partial<Record<AvatarPartCategory, string>> = {}
   const colors: Partial<Record<AvatarPartCategory, string>> = {}
 
@@ -292,7 +292,7 @@ export function selectItems<T extends AvatarItem>(
   )
 
   // Create style object with selected background color
-  const style: Theme['style'] = {
+  const style: T['style'] = {
     ...theme.style,
     backgroundColor,
   }

@@ -2,25 +2,27 @@ import type {
   AvatarConfig,
   AvatarPartCategory,
   Predictions,
+  ReactAvatarItem,
   ReactTheme,
-  TypedAvatarConfig,
 } from '@avatune/types'
 import { selectItems, themeStyleToStyleProp } from '@avatune/utils'
 import { type CSSProperties, useMemo } from 'react'
 
-export type AvatarProps<T extends ReactTheme = ReactTheme> =
-  TypedAvatarConfig<T> & {
-    /** Theme to use for rendering */
-    theme: T
-    /** Size of the avatar (default: 400) */
-    size?: number
-    /** Optional className for the SVG container */
-    className?: string
-    /** Optional style for the SVG container */
-    style?: CSSProperties
-    /** Optional ML predictor results for avatar generation */
-    predictions?: Predictions
-  }
+export type AvatarProps<T extends ReactTheme = ReactTheme> = AvatarConfig<
+  ReactAvatarItem,
+  T
+> & {
+  /** Theme to use for rendering */
+  theme: T
+  /** Size of the avatar (default: 400) */
+  size?: number
+  /** Optional className for the SVG container */
+  className?: string
+  /** Optional style for the SVG container */
+  style?: CSSProperties
+  /** Optional ML predictor results for avatar generation */
+  predictions?: Predictions
+}
 
 /**
  * React component for rendering avatars
@@ -35,7 +37,7 @@ export function Avatar<T extends ReactTheme = ReactTheme>({
 }: AvatarProps<T>) {
   // biome-ignore lint/correctness/useExhaustiveDependencies: granular tracking needed
   const config = useMemo(
-    () => restConfig as AvatarConfig,
+    () => restConfig as AvatarConfig<ReactAvatarItem, T>,
     [
       restConfig.seed,
       restConfig.backgroundColor,

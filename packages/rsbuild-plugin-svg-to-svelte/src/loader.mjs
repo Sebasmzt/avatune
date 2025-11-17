@@ -15,7 +15,7 @@ const transformSvg = callbackify(async (contents, options = {}, state = {}) => {
         path: resourcePath,
       })
       if (res?.data) svg = res.data
-    } catch (e) {
+    } catch (_e) {
       // ignore svgo errors (loader should not crash build by default)
       // but preserve original svg
     }

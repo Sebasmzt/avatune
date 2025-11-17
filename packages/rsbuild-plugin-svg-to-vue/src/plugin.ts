@@ -23,8 +23,9 @@ const getDefaultSvgoConfig = (): SvgoConfig => ({
     {
       name: 'preset-default',
       params: { overrides: { removeViewBox: false } },
-    } as any,
-    'prefixIds' as any,
+      fn: () => {},
+    },
+    'prefixIds',
   ],
 })
 

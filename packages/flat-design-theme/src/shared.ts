@@ -1,5 +1,6 @@
-import type { BaseAvatarItem, Theme } from '@avatune/types'
-import { offsetFrom, percentage } from '@avatune/utils'
+import { createTheme, fromHead } from '@avatune/theme-builder'
+import type { BaseAvatarItem } from '@avatune/types'
+import { percentage } from '@avatune/utils'
 import {
   AccentColors,
   BackgroundColors,
@@ -13,208 +14,178 @@ const getHeadPosition = (size: number) => ({
   y: size * percentage('24%'),
 })
 
-const fromHead = offsetFrom(getHeadPosition)
+const fromHeadOffset = fromHead(getHeadPosition)
 
-export default {
-  style: {
+export default createTheme<BaseAvatarItem>()
+  .withStyle({
     size: 200,
     borderRadius: '100%',
-  },
-  connectedColors: {
-    ears: 'head',
-    eyebrows: 'hair',
-  },
-  predictorMappings: {
-    hair: {
-      short: ['short'],
-      medium: ['medium', 'cupCurly'],
-      long: ['long', 'bobRounded', 'bobStraight'],
-    },
-    hairColor: {
-      black: [HairColors.JetBlack, HairColors.DeepBrown],
-      brown: [HairColors.ChestnutBrown, HairColors.DeepBrown],
-      blond: [HairColors.GoldenBlond],
-      gray: [HairColors.DeepBrown],
-    },
-    skinTone: {
-      dark: [SkinTones.Dark],
-      medium: [SkinTones.Medium],
-      light: [SkinTones.Light, SkinTones.VeryLight],
-    },
-  },
-  colorPalettes: {
-    background: [
-      BackgroundColors.MeadowGreen,
-      BackgroundColors.SkyBlue,
-      BackgroundColors.CoralPink,
-      BackgroundColors.LavenderPurple,
-      BackgroundColors.PeachOrange,
-      BackgroundColors.MintGreen,
-    ],
-    hair: [
-      HairColors.JetBlack,
-      HairColors.DeepBrown,
-      HairColors.ChestnutBrown,
-      HairColors.ForestGreen,
-      HairColors.DarkNavy,
-      HairColors.GoldenBlond,
-    ],
-    head: [
-      SkinTones.Dark,
-      SkinTones.Medium,
-      SkinTones.Light,
-      SkinTones.VeryLight,
-    ],
-    body: [
-      ClothingColors.BrightPink,
-      ClothingColors.DeepMaroon,
-      ClothingColors.WarmBrown,
-      ClothingColors.GoldenYellow,
-    ],
-    ears: [SkinTones.Light, SkinTones.VeryLight],
-    eyebrows: [
-      HairColors.ChestnutBrown,
-      HairColors.DeepBrown,
-      HairColors.JetBlack,
-    ],
-    eyes: [AccentColors.EyeWhite, AccentColors.Black],
-    mouth: [AccentColors.LipPink, AccentColors.BlushPink],
-    noses: [AccentColors.LipPink, AccentColors.BlushPink],
-  },
-  body: {
-    shirt: {
-      position: fromHead(-percentage('0%'), percentage('40.7%')),
-      layer: 10,
-    },
-    sweater: {
-      position: fromHead(-percentage('0%'), percentage('40.7%')),
-      layer: 10,
-    },
-    tshirt: {
-      position: fromHead(percentage('4.7%'), percentage('40.7%')),
-      layer: 10,
-    },
-    turtleneck: {
-      position: fromHead(-percentage('0%'), percentage('40%')),
-      layer: 10,
-    },
-  },
-  ears: {
-    standard: {
-      position: fromHead(-percentage('1.8%'), percentage('20%')),
-      layer: 100,
-    },
-  },
-  eyebrows: {
-    angry: {
-      position: fromHead(percentage('6%'), percentage('17%')),
-      layer: 30,
-    },
-    small: {
-      position: fromHead(percentage('9%'), percentage('17%')),
-      layer: 30,
-    },
-    standard: {
-      position: fromHead(percentage('7%'), percentage('17%')),
-      layer: 30,
-    },
-  },
-  eyes: {
-    boring: {
-      position: fromHead(percentage('8.5%'), percentage('21%')),
-      layer: 20,
-    },
-    dots: {
-      position: fromHead(percentage('11%'), percentage('21%')),
-      layer: 20,
-    },
-    openCircle: {
-      position: fromHead(percentage('8.5%'), percentage('21%')),
-      layer: 20,
-    },
-    openRounded: {
-      position: fromHead(percentage('10%'), percentage('21%')),
-      layer: 20,
-    },
-  },
-  hair: {
-    bobRounded: {
-      position: fromHead(percentage('0%'), -percentage('3%')),
-      layer: 5,
-    },
-    bobStraight: {
-      position: fromHead(percentage('0%'), -percentage('0%')),
-      layer: 5,
-    },
-    cupCurly: {
-      position: fromHead(-percentage('8.1%'), -percentage('8%')),
-      layer: 5,
-    },
-    short: {
-      position: fromHead(-percentage('1%'), -percentage('1%')),
-      layer: 5,
-    },
-    long: {
-      position: fromHead(-percentage('17%'), -percentage('3%')),
-      layer: 5,
-    },
-    medium: {
-      position: fromHead(-percentage('0.4%'), -percentage('2%')),
-      layer: 5,
-    },
-  },
-  head: {
-    oval: {
-      position: fromHead(percentage('0%'), percentage('0%')),
-      layer: 1,
-    },
-  },
-  mouth: {
-    bigSmile: {
-      position: fromHead(percentage('10%'), percentage('32%')),
-      layer: 25,
-    },
-    flat: {
-      position: fromHead(percentage('10%'), percentage('34%')),
-      layer: 25,
-    },
-    frown: {
-      position: fromHead(percentage('11%'), percentage('33%')),
-      layer: 25,
-    },
-    halfOpen: {
-      position: fromHead(percentage('9%'), percentage('33%')),
-      layer: 25,
-    },
-    laugh: {
-      position: fromHead(percentage('9.8%'), percentage('33%')),
-      layer: 25,
-    },
-    smile: {
-      position: fromHead(percentage('7%'), percentage('30%')),
-      layer: 25,
-    },
-    nervous: {
-      position: fromHead(percentage('9.5%'), percentage('32%')),
-      layer: 25,
-    },
-  },
-  noses: {
-    big: {
-      position: fromHead(percentage('15.5%'), percentage('25%')),
-      layer: 15,
-    },
-    curve: {
-      position: fromHead(percentage('16.5%'), percentage('28%')),
-      layer: 15,
-    },
-    dots: {
-      position: fromHead(percentage('16%'), percentage('28%')),
-      layer: 15,
-    },
-    halfOval: {
-      position: fromHead(percentage('16%'), percentage('28%')),
-      layer: 15,
-    },
-  },
-} satisfies Theme<BaseAvatarItem>
+  })
+  .connectColors('head', ['ears'])
+  .connectColors('hair', ['eyebrows'])
+  .mapPrediction('hair', 'short', ['short'])
+  .mapPrediction('hair', 'medium', ['medium', 'cupCurly'])
+  .mapPrediction('hair', 'long', ['long', 'bobRounded', 'bobStraight'])
+  .mapPrediction('hairColor', 'black', [
+    HairColors.JetBlack,
+    HairColors.DeepBrown,
+  ])
+  .mapPrediction('hairColor', 'brown', [
+    HairColors.ChestnutBrown,
+    HairColors.DeepBrown,
+  ])
+  .mapPrediction('hairColor', 'blond', [HairColors.GoldenBlond])
+  .mapPrediction('hairColor', 'gray', [HairColors.DeepBrown])
+  .mapPrediction('skinTone', 'dark', [SkinTones.Dark])
+  .mapPrediction('skinTone', 'medium', [SkinTones.Medium])
+  .mapPrediction('skinTone', 'light', [SkinTones.Light, SkinTones.VeryLight])
+  .addColor('background', BackgroundColors.MeadowGreen)
+  .addColor('background', BackgroundColors.SkyBlue)
+  .addColor('background', BackgroundColors.CoralPink)
+  .addColor('background', BackgroundColors.LavenderPurple)
+  .addColor('background', BackgroundColors.PeachOrange)
+  .addColor('background', BackgroundColors.MintGreen)
+  .addColor('hair', HairColors.JetBlack)
+  .addColor('hair', HairColors.DeepBrown)
+  .addColor('hair', HairColors.ChestnutBrown)
+  .addColor('hair', HairColors.ForestGreen)
+  .addColor('hair', HairColors.DarkNavy)
+  .addColor('hair', HairColors.GoldenBlond)
+  .addColor('head', SkinTones.Dark)
+  .addColor('head', SkinTones.Medium)
+  .addColor('head', SkinTones.Light)
+  .addColor('head', SkinTones.VeryLight)
+  .addColor('body', ClothingColors.BrightPink)
+  .addColor('body', ClothingColors.DeepMaroon)
+  .addColor('body', ClothingColors.WarmBrown)
+  .addColor('body', ClothingColors.GoldenYellow)
+  .addColor('ears', SkinTones.Light)
+  .addColor('ears', SkinTones.VeryLight)
+  .addColor('eyebrows', HairColors.ChestnutBrown)
+  .addColor('eyebrows', HairColors.DeepBrown)
+  .addColor('eyebrows', HairColors.JetBlack)
+  .addColor('eyes', AccentColors.EyeWhite)
+  .addColor('eyes', AccentColors.Black)
+  .addColor('mouth', AccentColors.LipPink)
+  .addColor('mouth', AccentColors.BlushPink)
+  .addColor('noses', AccentColors.LipPink)
+  .addColor('noses', AccentColors.BlushPink)
+  .addItem('body', 'shirt', {
+    position: fromHeadOffset(-percentage('0%'), percentage('40.7%')),
+    layer: 10,
+  })
+  .addItem('body', 'sweater', {
+    position: fromHeadOffset(-percentage('0%'), percentage('40.7%')),
+    layer: 10,
+  })
+  .addItem('body', 'tshirt', {
+    position: fromHeadOffset(percentage('4.7%'), percentage('40.7%')),
+    layer: 10,
+  })
+  .addItem('body', 'turtleneck', {
+    position: fromHeadOffset(-percentage('0%'), percentage('40%')),
+  })
+  .addItem('ears', 'standard', {
+    position: fromHeadOffset(-percentage('1.8%'), percentage('20%')),
+    layer: 100,
+  })
+  .addItem('eyebrows', 'angry', {
+    position: fromHeadOffset(percentage('6%'), percentage('17%')),
+    layer: 30,
+  })
+  .addItem('eyebrows', 'small', {
+    position: fromHeadOffset(percentage('9%'), percentage('17%')),
+    layer: 30,
+  })
+  .addItem('eyebrows', 'standard', {
+    position: fromHeadOffset(percentage('7%'), percentage('17%')),
+    layer: 30,
+  })
+  .addItem('eyes', 'boring', {
+    position: fromHeadOffset(percentage('8.5%'), percentage('21%')),
+    layer: 20,
+  })
+  .addItem('eyes', 'dots', {
+    position: fromHeadOffset(percentage('11%'), percentage('21%')),
+    layer: 20,
+  })
+  .addItem('eyes', 'openCircle', {
+    position: fromHeadOffset(percentage('8.5%'), percentage('21%')),
+    layer: 20,
+  })
+  .addItem('eyes', 'openRounded', {
+    position: fromHeadOffset(percentage('10%'), percentage('21%')),
+    layer: 20,
+  })
+  .addItem('hair', 'bobRounded', {
+    position: fromHeadOffset(percentage('0%'), -percentage('3%')),
+    layer: 5,
+  })
+  .addItem('hair', 'bobStraight', {
+    position: fromHeadOffset(percentage('0%'), -percentage('0%')),
+    layer: 5,
+  })
+  .addItem('hair', 'cupCurly', {
+    position: fromHeadOffset(-percentage('8.1%'), -percentage('8%')),
+    layer: 5,
+  })
+  .addItem('hair', 'short', {
+    position: fromHeadOffset(-percentage('1%'), -percentage('1%')),
+    layer: 5,
+  })
+  .addItem('hair', 'long', {
+    position: fromHeadOffset(-percentage('17%'), -percentage('3%')),
+    layer: 5,
+  })
+  .addItem('hair', 'medium', {
+    position: fromHeadOffset(-percentage('0.4%'), -percentage('2%')),
+    layer: 5,
+  })
+  .addItem('head', 'oval', {
+    position: fromHeadOffset(percentage('0%'), percentage('0%')),
+    layer: 1,
+  })
+  .addItem('mouth', 'bigSmile', {
+    position: fromHeadOffset(percentage('10%'), percentage('32%')),
+    layer: 25,
+  })
+  .addItem('mouth', 'flat', {
+    position: fromHeadOffset(percentage('10%'), percentage('34%')),
+    layer: 25,
+  })
+  .addItem('mouth', 'frown', {
+    position: fromHeadOffset(percentage('11%'), percentage('33%')),
+    layer: 25,
+  })
+  .addItem('mouth', 'halfOpen', {
+    position: fromHeadOffset(percentage('9%'), percentage('33%')),
+    layer: 25,
+  })
+  .addItem('mouth', 'laugh', {
+    position: fromHeadOffset(percentage('9.8%'), percentage('33%')),
+    layer: 25,
+  })
+  .addItem('mouth', 'smile', {
+    position: fromHeadOffset(percentage('7%'), percentage('30%')),
+    layer: 25,
+  })
+  .addItem('mouth', 'nervous', {
+    position: fromHeadOffset(percentage('9.5%'), percentage('32%')),
+    layer: 25,
+  })
+  .addItem('noses', 'big', {
+    position: fromHeadOffset(percentage('15.5%'), percentage('25%')),
+    layer: 15,
+  })
+  .addItem('noses', 'curve', {
+    position: fromHeadOffset(percentage('16.5%'), percentage('28%')),
+    layer: 15,
+  })
+  .addItem('noses', 'dots', {
+    position: fromHeadOffset(percentage('16%'), percentage('28%')),
+    layer: 15,
+  })
+  .addItem('noses', 'halfOval', {
+    position: fromHeadOffset(percentage('16%'), percentage('28%')),
+    layer: 15,
+  })

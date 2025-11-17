@@ -36,6 +36,7 @@
   },
   "dependencies": {
     "@avatune/flat-design-assets": "workspace:*",
+    "@avatune/theme-builder": "workspace:*",
     "@avatune/types": "workspace:*",
     "@avatune/utils": "workspace:*"
   },

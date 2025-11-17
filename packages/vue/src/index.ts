@@ -2,7 +2,7 @@ import type {
   AvatarConfig,
   AvatarPartCategory,
   Predictions,
-  TypedAvatarConfig,
+  VueAvatarItem,
   VueTheme,
 } from '@avatune/types'
 import { selectItems, themeStyleToStyleProp } from '@avatune/utils'
@@ -14,19 +14,18 @@ import {
   type PropType,
 } from 'vue'
 
-export type AvatarProps<T extends VueTheme = VueTheme> =
-  TypedAvatarConfig<T> & {
-    /** Theme to use for rendering */
-    theme: T
-    /** Size of the avatar (default: theme size) */
-    size?: number
-    /** Optional className for the SVG container */
-    class?: string
-    /** Optional style for the SVG container */
-    style?: CSSProperties
-    /** Optional ML predictor results for avatar generation */
-    predictions?: Predictions
-  }
+export type AvatarProps<T extends VueTheme> = AvatarConfig<VueAvatarItem, T> & {
+  /** Theme to use for rendering */
+  theme: T
+  /** Size of the avatar (default: theme size) */
+  size?: number
+  /** Optional className for the SVG container */
+  class?: string
+  /** Optional style for the SVG container */
+  style?: CSSProperties
+  /** Optional ML predictor results for avatar generation */
+  predictions?: Predictions
+}
 
 /**
  * Vue component for rendering avatars
@@ -137,7 +136,7 @@ export const Avatar = defineComponent({
         predictions: _predictions,
         ...rest
       } = props as Record<string, unknown>
-      return rest as AvatarConfig
+      return rest as AvatarConfig<VueAvatarItem, VueTheme>
     })
 
     const result = computed(() =>

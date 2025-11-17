@@ -174,7 +174,7 @@ export type ConnectedColors = Partial<
 /**
  * Complete theme defining all avatar parts
  */
-export interface Theme<T extends AvatarItem = AvatarItem> {
+export interface Theme<T extends AvatarItem> {
   style: ThemeStyle
   body: AvatarItemCollection<T>
   ears: AvatarItemCollection<T>
@@ -213,7 +213,7 @@ export type SvelteTheme = Theme<SvelteAvatarItem>
  * Avatar part categories
  */
 export type AvatarPartCategory = Exclude<
-  keyof Theme,
+  keyof Theme<AvatarItem>,
   'style' | 'predictorMappings' | 'colorPalettes' | 'connectedColors'
 >
 
@@ -226,7 +226,7 @@ export type ExtractIdentifiers<T extends AvatarItemCollection> = keyof T
  * Type-safe configuration for a specific theme
  * Provides autocomplete for identifiers
  */
-export type TypedAvatarConfig<T extends Theme> = {
+export type AvatarConfig<I extends AvatarItem, T extends Theme<I>> = {
   seed?: string | number
   body?: ExtractIdentifiers<T['body']>
   ears?: ExtractIdentifiers<T['ears']>
@@ -246,14 +246,3 @@ export type TypedAvatarConfig<T extends Theme> = {
   mouthColor?: string
   nosesColor?: string
 }
-
-/**
- * Configuration for avatar generation
- * - String value = identifier (e.g., { hair: 'long' })
- * - Can include 'seed' for reproducible generation
- */
-export type AvatarConfig<A extends AvatarItem = AvatarItem, T = Theme<A>> = {
-  seed?: string | number
-  backgroundColor?: string
-} & Partial<{ [K in keyof T]: string }> &
-  Partial<{ [K in keyof T as `${K & string}Color`]: string }>

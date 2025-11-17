@@ -30,153 +30,55 @@ import {
   NosesDots,
   NosesHalfOval,
 } from '@avatune/flat-design-assets/svelte'
-import type { SvelteTheme } from '@avatune/types'
+import type { SvelteAvatarItem, SvelteTheme } from '@avatune/types'
 import shared from './shared'
 
-export default {
-  ...shared,
-  body: {
-    ...shared.body,
-    shirt: {
-      ...shared.body.shirt,
-      Component: BodyShirt,
-    },
-    sweater: {
-      ...shared.body.sweater,
-      Component: BodySweater,
-    },
-    tshirt: {
-      ...shared.body.tshirt,
-      Component: BodyTshort,
-    },
-    turtleneck: {
-      ...shared.body.turtleneck,
-      Component: BodyTurtleneck,
-    },
-  },
-  ears: {
-    ...shared.ears,
-    standard: {
-      ...shared.ears.standard,
-      Component: EarsStandard,
-    },
-  },
-  eyebrows: {
-    ...shared.eyebrows,
-    angry: {
-      ...shared.eyebrows.angry,
-      Component: EyebrowsAngry,
-    },
-    small: {
-      ...shared.eyebrows.small,
-      Component: EyebrowsSmall,
-    },
-    standard: {
-      ...shared.eyebrows.standard,
-      Component: EyebrowsStadard,
-    },
-  },
-  eyes: {
-    ...shared.eyes,
-    boring: {
-      ...shared.eyes.boring,
-      Component: EyesBoring,
-    },
-    dots: {
-      ...shared.eyes.dots,
-      Component: EyesDots,
-    },
-    openCircle: {
-      ...shared.eyes.openCircle,
-      Component: EyesOpenCircle,
-    },
-    openRounded: {
-      ...shared.eyes.openRounded,
-      Component: EyesOpenRounded,
-    },
-  },
-  hair: {
-    ...shared.hair,
-    bobRounded: {
-      ...shared.hair.bobRounded,
-      Component: HairBobRounded,
-    },
-    bobStraight: {
-      ...shared.hair.bobStraight,
-      Component: HairBobStraight,
-    },
-    cupCurly: {
-      ...shared.hair.cupCurly,
-      Component: HairCupCurly,
-    },
-    short: {
-      ...shared.hair.short,
-      Component: HairShort,
-    },
-    long: {
-      ...shared.hair.long,
-      Component: HairLong,
-    },
-    medium: {
-      ...shared.hair.medium,
-      Component: HairMedium,
-    },
-  },
-  head: {
-    ...shared.head,
-    oval: {
-      ...shared.head.oval,
-      Component: HeadOval,
-    },
-  },
-  mouth: {
-    ...shared.mouth,
-    bigSmile: {
-      ...shared.mouth.bigSmile,
-      Component: MouthBigSmile,
-    },
-    flat: {
-      ...shared.mouth.flat,
-      Component: MouthFlat,
-    },
-    frown: {
-      ...shared.mouth.frown,
-      Component: MouthFrown,
-    },
-    halfOpen: {
-      ...shared.mouth.halfOpen,
-      Component: MouthHalfOpen,
-    },
-    laugh: {
-      ...shared.mouth.laugh,
-      Component: MouthLaugh,
-    },
-    smile: {
-      ...shared.mouth.smile,
-      Component: MouthSmile,
-    },
-    nervous: {
-      ...shared.mouth.nervous,
-      Component: MouthNervous,
-    },
-  },
-  noses: {
-    ...shared.noses,
-    big: {
-      ...shared.noses.big,
-      Component: NosesBig,
-    },
-    curve: {
-      ...shared.noses.curve,
-      Component: NosesCurve,
-    },
-    dots: {
-      ...shared.noses.dots,
-      Component: NosesDots,
-    },
-    halfOval: {
-      ...shared.noses.halfOval,
-      Component: NosesHalfOval,
-    },
-  },
-} as const satisfies SvelteTheme
+export default shared
+  .toFramework<SvelteAvatarItem>()
+  .withComponents('body', {
+    shirt: { Component: BodyShirt },
+    sweater: { Component: BodySweater },
+    tshirt: { Component: BodyTshort },
+    turtleneck: { Component: BodyTurtleneck },
+  })
+  .withComponents('ears', {
+    standard: { Component: EarsStandard },
+  })
+  .withComponents('eyebrows', {
+    angry: { Component: EyebrowsAngry },
+    small: { Component: EyebrowsSmall },
+    standard: { Component: EyebrowsStadard },
+  })
+  .withComponents('eyes', {
+    boring: { Component: EyesBoring },
+    dots: { Component: EyesDots },
+    openCircle: { Component: EyesOpenCircle },
+    openRounded: { Component: EyesOpenRounded },
+  })
+  .withComponents('hair', {
+    bobRounded: { Component: HairBobRounded },
+    bobStraight: { Component: HairBobStraight },
+    cupCurly: { Component: HairCupCurly },
+    short: { Component: HairShort },
+    long: { Component: HairLong },
+    medium: { Component: HairMedium },
+  })
+  .withComponents('head', {
+    oval: { Component: HeadOval },
+  })
+  .withComponents('mouth', {
+    bigSmile: { Component: MouthBigSmile },
+    flat: { Component: MouthFlat },
+    frown: { Component: MouthFrown },
+    halfOpen: { Component: MouthHalfOpen },
+    laugh: { Component: MouthLaugh },
+    nervous: { Component: MouthNervous },
+    smile: { Component: MouthSmile },
+  })
+  .withComponents('noses', {
+    big: { Component: NosesBig },
+    curve: { Component: NosesCurve },
+    dots: { Component: NosesDots },
+    halfOval: { Component: NosesHalfOval },
+  })
+  .build() satisfies SvelteTheme

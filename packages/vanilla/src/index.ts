@@ -2,18 +2,17 @@ import type {
   AvatarConfig,
   AvatarPartCategory,
   Predictions,
-  TypedAvatarConfig,
   VanillaAvatarItem,
   VanillaTheme,
 } from '@avatune/types'
 import { selectItems, themeStyleToStyleProp } from '@avatune/utils'
 
 interface AvatarArgs<T extends VanillaTheme = VanillaTheme>
-  extends TypedAvatarConfig<T> {
+  extends AvatarConfig<VanillaAvatarItem, T> {
   theme: T
   size?: number
   predictions?: Predictions
-  config?: TypedAvatarConfig<T>
+  config?: AvatarConfig<VanillaAvatarItem, T>
 }
 
 /**
@@ -25,7 +24,7 @@ export function avatar<T extends VanillaTheme = VanillaTheme>({
   predictions,
   ...config
 }: AvatarArgs<T>): string {
-  const avatarConfig = config as AvatarConfig
+  const avatarConfig = config as AvatarConfig<VanillaAvatarItem, T>
 
   const result = selectItems(avatarConfig, theme, predictions)
 

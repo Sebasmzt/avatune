@@ -19,7 +19,8 @@
       ],
       "@avatune/flat-design-assets/vue": [
         "../flat-design-assets/dist/vue/index.d.ts"
-      ]
+      ],
+      "@avatune/theme-builder": ["../theme-builder/dist/index.d.ts"]
     }
   },
   "include": ["src"],

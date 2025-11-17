@@ -1,5 +1,5 @@
 import flatDesignTheme from '@avatune/flat-design-theme/vanilla'
-import type { TypedAvatarConfig } from '@avatune/types'
+import type { AvatarConfig, VanillaAvatarItem } from '@avatune/types'
 import { avatar } from '@avatune/vanilla'
 import type { Meta, StoryObj } from '@storybook/html-vite'
 
@@ -13,7 +13,9 @@ const meta: Meta = {
 export default meta
 
 export const FlatDesign: StoryObj<
-  TypedAvatarConfig<typeof flatDesignTheme> & { size?: number }
+  AvatarConfig<VanillaAvatarItem, typeof flatDesignTheme> & {
+    size?: number
+  }
 > = {
   argTypes: {
     body: {
@@ -85,7 +87,7 @@ export const FlatDesign: StoryObj<
     head: 'oval',
     mouth: 'smile',
     noses: 'curve',
-    size: 200,
+    size: 300,
   },
 }
 
@@ -114,6 +116,6 @@ export const SeededThemeSwitch: StoryObj<{
   args: {
     theme: 'flat',
     seed: 'Type any seed phrase here',
-    size: 200,
+    size: 300,
   },
 }
