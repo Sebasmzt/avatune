@@ -1,6 +1,6 @@
 declare module '*.svg?raw' {
-  const content: string
-  export default content
+  const raw: (props: { color: string }) => string
+  export default raw
 }
 
 declare module '*.svg?react' {

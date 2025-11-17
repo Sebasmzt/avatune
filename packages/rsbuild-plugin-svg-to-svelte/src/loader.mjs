@@ -1,4 +1,3 @@
-// loader.mjs
 import { normalize } from 'node:path'
 import { callbackify } from 'node:util'
 import { compile } from 'svelte/compiler'
@@ -9,7 +8,9 @@ const applyReplacements = (svg, replacements = {}) => {
 
   // Sort keys by length (longest first) to ensure more specific patterns are replaced first
   // This prevents "currentColor" from being replaced before "color-mix(in srgb, currentColor 80%, white)"
-  const sortedKeys = Object.keys(replacements).sort((a, b) => b.length - a.length)
+  const sortedKeys = Object.keys(replacements).sort(
+    (a, b) => b.length - a.length,
+  )
 
   for (const key of sortedKeys) {
     const value = replacements[key]

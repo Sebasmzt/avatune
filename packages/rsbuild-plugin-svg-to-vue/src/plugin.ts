@@ -1,4 +1,3 @@
-// plugin.ts
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 import type { RsbuildPlugin, Rspack } from '@rsbuild/core'
@@ -44,7 +43,7 @@ export const pluginSvgToVue = (options: PluginOptions = {}): RsbuildPlugin => ({
       const maxSize =
         typeof dataUriLimit === 'number' ? dataUriLimit : dataUriLimit.svg
 
-      // --- Safely retrieve existing generator options if present ---
+      // Safely retrieve existing generator options if present
       let generatorOptions: Rspack.GeneratorOptionsByModuleType['asset/resource'] =
         {}
       try {
@@ -84,7 +83,7 @@ export const pluginSvgToVue = (options: PluginOptions = {}): RsbuildPlugin => ({
         generatorOptions = {}
       }
 
-      // --- Force exclude ?vue from builtin rule if it exists (defensive) ---
+      // Force exclude ?vue from builtin rule if it exists (defensive)
       try {
         if (chain.module.rules.has(CHAIN_ID.RULE.SVG)) {
           const builtin = chain.module.rules.get(CHAIN_ID.RULE.SVG)
@@ -104,7 +103,7 @@ export const pluginSvgToVue = (options: PluginOptions = {}): RsbuildPlugin => ({
           )
       }
 
-      // --- Create controlled svg rule set ---
+      // Create controlled svg rule set
       const rule = chain.module.rule(CHAIN_ID.RULE.SVG).test(SVG_REGEX)
 
       const svgoDefaults = { svgo: true, svgoConfig: getDefaultSvgoConfig() }

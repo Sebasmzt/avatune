@@ -1,14 +1,11 @@
-import path from 'node:path'
-import { fileURLToPath } from 'node:url'
 import { pluginSvgToVue } from '@avatune/rsbuild-plugin-svg-to-vue'
 import { pluginReact } from '@rsbuild/plugin-react'
 import { pluginSvelte } from '@rsbuild/plugin-svelte'
 import { pluginSvgr } from '@rsbuild/plugin-svgr'
 import { pluginVue } from '@rsbuild/plugin-vue'
 import { defineConfig } from '@rslib/core'
+import { pluginRawSvg } from '../rsbuild-plugin-raw-svg/dist'
 import { pluginSvgToSvelte } from '../rsbuild-plugin-svg-to-svelte/dist'
-
-const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
 const colordImport = "import { colord } from 'colord';"
 const getReplaceAttrValues = (colorPropName = 'color') => ({
@@ -71,26 +68,9 @@ ${variables.exports};
     pluginVue(),
     pluginSvelte(),
     pluginReact(),
-    {
-      name: 'raw-svg-transform',
-      setup(api) {
-        api.modifyBundlerChain((chain) => {
-          // Add loader for ?raw SVG imports
-          chain.module
-            .rule('svg-raw-transform')
-            .test(/\.svg$/)
-            .resourceQuery(/raw/)
-            .type('javascript/auto')
-            .use('raw-svg-loader')
-            .loader(path.resolve(__dirname, './src/loaders/raw-svg-loader.mjs'))
-            .options({
-              imports: colordImport,
-              replaceAttrValues: getReplaceAttrValues('color'),
-              colorPropName: 'color',
-            })
-            .end()
-        })
-      },
-    },
+    pluginRawSvg({
+      imports: colordImport,
+      replaceAttrValues: getReplaceAttrValues('color'),
+    }),
   ],
 })

@@ -2,10 +2,8 @@ import type {
   AvatarItem,
   AvatarItemCollection,
   AvatarPartCategory,
-  ColorMapping,
   ConnectedColors,
   Position,
-  PredictorMapping,
   ThemeColorPalettes,
   ThemePredictorMappings,
   ThemeStyle,
@@ -320,7 +318,6 @@ export interface ThemeBuilder<
   }
 }
 
-// Pure functional implementation
 const createBuilder = <
   T extends AvatarItem,
   BodyIds extends string = never,
@@ -507,9 +504,6 @@ const createBuilder = <
   }
 }
 
-/**
- * Create a new theme builder
- */
 export const createTheme = <
   T extends AvatarItem = AvatarItem,
 >(): ThemeBuilder<T> =>

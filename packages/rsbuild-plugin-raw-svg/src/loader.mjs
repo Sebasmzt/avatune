@@ -33,15 +33,25 @@ export default function loader(source) {
     .replace(/\{([^}]+)\}/g, (_match, expr) => `\${${expr}}`)
 
   // Extract variable names from replacement values to know what props to destructure
+  // Match all identifiers in expressions and collect unique ones
   const propsToExtract = new Set()
+  const functionNames = new Set()
+
+  // First pass: identify function calls to exclude them from props
   for (const value of Object.values(replacements)) {
-    // Match simple variables like {color} or function calls like {colord(color).lighten(0.2)}
-    // Extract the base variable name (e.g., "color" from both examples)
+    const functionMatches = value.matchAll(/\{([a-zA-Z_$][a-zA-Z0-9_$]*)\s*\(/g)
+    for (const match of functionMatches) {
+      functionNames.add(match[1])
+    }
+  }
+
+  // Second pass: collect all identifiers that aren't function names
+  for (const value of Object.values(replacements)) {
     const matches = value.matchAll(/\{([a-zA-Z_$][a-zA-Z0-9_$]*)/g)
     for (const match of matches) {
       const varName = match[1]
-      // Skip function names like 'colord', only capture property names
-      if (varName !== 'colord') {
+      // Only add to props if it's not a function name
+      if (!functionNames.has(varName)) {
         propsToExtract.add(varName)
       }
     }
