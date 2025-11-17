@@ -62,10 +62,10 @@ See [apps/predictor-storybook/.storybook/vite.config.ts](../../apps/predictor-st
 ## Usage
 
 ```ts
-import { SkinTonePredictor } from '@avatune/skin-tone-predictor'
+import { createSkinTonePredictor } from '@avatune/skin-tone-predictor'
 import * as tf from '@tensorflow/tfjs'
 
-const predictor = new SkinTonePredictor('/models/skin-tone')
+const predictor = createSkinTonePredictor('/models/skin-tone')
 await predictor.loadModel()
 
 // Create image tensor (normalized to [0, 1])
@@ -85,7 +85,7 @@ console.log(result)
 ### Constructor
 
 ```ts
-new SkinTonePredictor(modelDir: string)
+createSkinTonePredictor(modelDir: string)
 ```
 
 **Parameters:**

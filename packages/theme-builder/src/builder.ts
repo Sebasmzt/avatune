@@ -262,62 +262,6 @@ export interface ThemeBuilder<
     NosesIds
   >
 
-  withHairMapping(
-    mapping: PredictorMapping,
-  ): ThemeBuilder<
-    T,
-    BodyIds,
-    EarsIds,
-    EyebrowsIds,
-    EyesIds,
-    HairIds,
-    HeadIds,
-    MouthIds,
-    NosesIds
-  >
-
-  withHairColorMapping(
-    mapping: ColorMapping,
-  ): ThemeBuilder<
-    T,
-    BodyIds,
-    EarsIds,
-    EyebrowsIds,
-    EyesIds,
-    HairIds,
-    HeadIds,
-    MouthIds,
-    NosesIds
-  >
-
-  withSkinToneMapping(
-    mapping: ColorMapping,
-  ): ThemeBuilder<
-    T,
-    BodyIds,
-    EarsIds,
-    EyebrowsIds,
-    EyesIds,
-    HairIds,
-    HeadIds,
-    MouthIds,
-    NosesIds
-  >
-
-  withPredictorMappings(
-    mappings: ThemePredictorMappings,
-  ): ThemeBuilder<
-    T,
-    BodyIds,
-    EarsIds,
-    EyebrowsIds,
-    EyesIds,
-    HairIds,
-    HeadIds,
-    MouthIds,
-    NosesIds
-  >
-
   connectColors(
     source: AvatarPartCategory,
     dependents: AvatarPartCategory[],
@@ -482,39 +426,6 @@ const createBuilder = <
         },
       })
     },
-
-    withHairMapping: (mapping) =>
-      createBuilder({
-        ...state,
-        predictorMappings: {
-          ...state.predictorMappings,
-          hair: mapping,
-        },
-      }),
-
-    withHairColorMapping: (mapping) =>
-      createBuilder({
-        ...state,
-        predictorMappings: {
-          ...state.predictorMappings,
-          hairColor: mapping,
-        },
-      }),
-
-    withSkinToneMapping: (mapping) =>
-      createBuilder({
-        ...state,
-        predictorMappings: {
-          ...state.predictorMappings,
-          skinTone: mapping,
-        },
-      }),
-
-    withPredictorMappings: (mappings) =>
-      createBuilder({
-        ...state,
-        predictorMappings: { ...state.predictorMappings, ...mappings },
-      }),
 
     connectColors: (source, dependents) => {
       if (dependents.length === 0) {

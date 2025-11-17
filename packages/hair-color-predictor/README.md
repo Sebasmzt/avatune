@@ -62,10 +62,10 @@ See [apps/predictor-storybook/.storybook/vite.config.ts](../../apps/predictor-st
 ## Usage
 
 ```ts
-import { HairColorPredictor } from '@avatune/hair-color-predictor'
+import { createHairColorPredictor } from '@avatune/hair-color-predictor'
 import * as tf from '@tensorflow/tfjs'
 
-const predictor = new HairColorPredictor('/models/hair-color')
+const predictor = createHairColorPredictor('/models/hair-color')
 await predictor.loadModel()
 
 // Create image tensor (normalized to [0, 1])
@@ -82,16 +82,16 @@ console.log(result)
 
 ## API
 
-### Constructor
+### Structure
 
 ```ts
-new HairColorPredictor(modelDir: string)
+createHairColorPredictor(modelDir: string)
 ```
 
 **Parameters:**
 - `modelDir` - Path to directory containing model files (relative to public directory)
 
-### Methods
+### Functions
 
 #### `loadModel(): Promise<void>`
 

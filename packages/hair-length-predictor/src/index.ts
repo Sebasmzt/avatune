@@ -1,4 +1,4 @@
 export {
-  HairLengthPredictor,
+  createHairLengthPredictor,
   type HairLengthResult,
 } from './hair-length-predictor'

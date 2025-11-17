@@ -1,6 +1,6 @@
-import { HairColorPredictor } from '@avatune/hair-color-predictor'
-import { HairLengthPredictor } from '@avatune/hair-length-predictor'
-import { SkinTonePredictor } from '@avatune/skin-tone-predictor'
+import { createHairColorPredictor } from '@avatune/hair-color-predictor'
+import { createHairLengthPredictor } from '@avatune/hair-length-predictor'
+import { createSkinTonePredictor } from '@avatune/skin-tone-predictor'
 import type { Predictions } from '@avatune/types'
 import * as tf from '@tensorflow/tfjs'
 import { useEffect, useRef, useState } from 'react'
@@ -18,9 +18,9 @@ export function PredictionFileInput({
 }: PredictionFileInputProps) {
   const initializingRef = useRef(false)
   const predictorsRef = useRef<{
-    hairColor: HairColorPredictor
-    hairLength: HairLengthPredictor
-    skinTone: SkinTonePredictor
+    hairColor: ReturnType<typeof createHairColorPredictor>
+    hairLength: ReturnType<typeof createHairLengthPredictor>
+    skinTone: ReturnType<typeof createSkinTonePredictor>
   } | null>(null)
 
   const [initialized, setInitialized] = useState(false)
@@ -35,16 +35,9 @@ export function PredictionFileInput({
 
       try {
         await tf.ready()
-        const hairColor = new HairColorPredictor('/models/hair_color')
-        const hairLength = new HairLengthPredictor('/models/hair_length')
-        const skinTone = new SkinTonePredictor('/models/skin_tone')
-
-        await Promise.all([
-          hairColor.loadModel(),
-          hairLength.loadModel(),
-          skinTone.loadModel(),
-        ])
-
+        const hairColor = createHairColorPredictor('/models/hair_color')
+        const skinTone = createSkinTonePredictor('/models/skin_tone')
+        const hairLength = createHairLengthPredictor('/models/hair_length')
         predictorsRef.current = { hairColor, hairLength, skinTone }
         setInitialized(true)
       } catch (err) {
