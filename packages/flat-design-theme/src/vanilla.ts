@@ -1,7 +1,7 @@
 import {
   bodyShirt,
   bodySweater,
-  bodyTshort,
+  bodyTshirt,
   bodyTurtleneck,
   earsStandard,
   eyebrowsAngry,
@@ -38,7 +38,7 @@ export default shared
   .withComponents('body', {
     shirt: { code: bodyShirt },
     sweater: { code: bodySweater },
-    tshirt: { code: bodyTshort },
+    tshirt: { code: bodyTshirt },
     turtleneck: { code: bodyTurtleneck },
   })
   .withComponents('ears', {

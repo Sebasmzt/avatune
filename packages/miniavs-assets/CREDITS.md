@@ -1,0 +1,4 @@
+This project uses avatar design assets licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
+
+Original designs by [Webpixels](https://www.figma.com/community/file/923211396597067458/miniavs-free-avatar-creator).
+Modifications were made to adapt them for composable SVG avatars.

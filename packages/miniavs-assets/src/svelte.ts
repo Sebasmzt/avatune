@@ -1,19 +1,24 @@
 // Body
 import BodyGolf from './svg/body/golf.svg?svelte'
 import BodyStandard from './svg/body/standard.svg?svelte'
+
 // Eyes
 import EyesConfident from './svg/eyes/confident.svg?svelte'
 import EyesHappy from './svg/eyes/happy.svg?svelte'
 import EyesStandard from './svg/eyes/standard.svg?svelte'
-// Face Details
+
+// FaceDetails
 import FaceDetailsBlushes from './svg/faceDetails/blushes.svg?svelte'
-// Face Hair
+
+// FaceHair
 import FaceHairFreddy from './svg/faceHair/freddy.svg?svelte'
 import FaceHairHorshoe from './svg/faceHair/horshoe.svg?svelte'
 import FaceHairPencilThin from './svg/faceHair/pencilThin.svg?svelte'
 import FaceHairPencilThinBeard from './svg/faceHair/pencilThinBeard.svg?svelte'
+
 // Glasses
 import GlassesGlasses from './svg/glasses/glasses.svg?svelte'
+
 // Hair
 import HairBaldness from './svg/hair/baldness.svg?svelte'
 import HairClassic1 from './svg/hair/classic1.svg?svelte'
@@ -24,32 +29,39 @@ import HairLong from './svg/hair/long.svg?svelte'
 import HairPonyTail from './svg/hair/ponyTail.svg?svelte'
 import HairSlaughter from './svg/hair/slaughter.svg?svelte'
 import HairStylish from './svg/hair/stylish.svg?svelte'
+
 // Head
 import HeadStandard from './svg/head/standard.svg?svelte'
 import HeadThin from './svg/head/thin.svg?svelte'
 import HeadWide from './svg/head/wide.svg?svelte'
+
 // Mouth
 import MouthStandard from './svg/mouth/standard.svg?svelte'
 import MouthToothless from './svg/mouth/toothless.svg?svelte'
 
 export {
-  // Body
+// Body
   BodyGolf,
   BodyStandard,
-  // Eyes
+
+// Eyes
   EyesConfident,
   EyesHappy,
   EyesStandard,
-  // Face Details
+
+// FaceDetails
   FaceDetailsBlushes,
-  // Face Hair
+
+// FaceHair
   FaceHairFreddy,
   FaceHairHorshoe,
   FaceHairPencilThin,
   FaceHairPencilThinBeard,
-  // Glasses
+
+// Glasses
   GlassesGlasses,
-  // Hair
+
+// Hair
   HairBaldness,
   HairClassic1,
   HairClassic2,
@@ -59,11 +71,13 @@ export {
   HairPonyTail,
   HairSlaughter,
   HairStylish,
-  // Head
+
+// Head
   HeadStandard,
   HeadThin,
   HeadWide,
-  // Mouth
+
+// Mouth
   MouthStandard,
   MouthToothless,
 }

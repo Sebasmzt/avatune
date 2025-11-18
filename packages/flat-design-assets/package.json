@@ -69,5 +69,6 @@
   },
   "dependencies": {
     "colord": "^2.9.3"
-  }
+  },
+  "license": "MIT"
 }

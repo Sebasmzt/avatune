@@ -1,41 +1,49 @@
 // Body
 import BodyBlouse from './svg/body/blouse.svg?vue'
-import BodyFlowerCardigan from './svg/body/flower-cardigan.svg?vue'
-import BodySimpleCardigan from './svg/body/simple-cardigan.svg?vue'
-import BodySimpleOverall from './svg/body/simple-overall.svg?vue'
+import BodyFlowerCardigan from './svg/body/flowerCardigan.svg?vue'
+import BodySimpleCardigan from './svg/body/simpleCardigan.svg?vue'
+import BodySimpleOverall from './svg/body/simpleOverall.svg?vue'
 import BodyStriped from './svg/body/striped.svg?vue'
-import BodySweaterVest from './svg/body/sweater-vest.svg?vue'
-import BodySweaterWavy from './svg/body/sweater-wavy.svg?vue'
-import BodyTeeBasic from './svg/body/tee-basic.svg?vue'
-import BodyTeeButtoned from './svg/body/tee-buttoned.svg?vue'
-import BodyTeePocket from './svg/body/tee-pocket.svg?vue'
-import BodyTeeRound from './svg/body/tee-round.svg?vue'
+import BodySweaterVest from './svg/body/sweaterVest.svg?vue'
+import BodySweaterWavy from './svg/body/sweaterWavy.svg?vue'
+import BodyTeeBasic from './svg/body/teeBasic.svg?vue'
+import BodyTeeButtoned from './svg/body/teeButtoned.svg?vue'
+import BodyTeePocket from './svg/body/teePocket.svg?vue'
+import BodyTeeRound from './svg/body/teeRound.svg?vue'
+
 // Ears
 import EarsStandard from './svg/ears/standard.svg?vue'
+
 // Eyes
 import EyesStandard from './svg/eyes/standard.svg?vue'
-// Face Details
-import FaceDetailsBlushes from './svg/face-details/blushes.svg?vue'
-// Face Hair
-import FaceHairBigBeard from './svg/face-hair/big-beard.svg?vue'
-import FaceHairChevronMustache from './svg/face-hair/chevron-mustache.svg?vue'
-import FaceHairMustache from './svg/face-hair/mustache.svg?vue'
+
+// FaceDetails
+import FaceDetailsBlushes from './svg/faceDetails/blushes.svg?vue'
+
+// FaceHair
+import FaceHairBigBeard from './svg/faceHair/bigBeard.svg?vue'
+import FaceHairChevronMustache from './svg/faceHair/chevronMustache.svg?vue'
+import FaceHairMustache from './svg/faceHair/mustache.svg?vue'
+
 // Forelock
 import ForelockBubble from './svg/forelock/bubble.svg?vue'
 import ForelockCurve from './svg/forelock/curve.svg?vue'
 import ForelockShort from './svg/forelock/short.svg?vue'
 import ForelockSplit from './svg/forelock/split.svg?vue'
 import ForelockStraight from './svg/forelock/straight.svg?vue'
-import ForelockUnderCut from './svg/forelock/under-cut.svg?vue'
+import ForelockUnderCut from './svg/forelock/underCut.svg?vue'
+
 // Glasses
 import GlassesGlass from './svg/glasses/glass.svg?vue'
+
 // Hair
 import HairBraids from './svg/hair/braids.svg?vue'
 import HairHijab from './svg/hair/hijab.svg?vue'
 import HairMedium from './svg/hair/medium.svg?vue'
 import HairPuff from './svg/hair/puff.svg?vue'
-import HairStraightLong from './svg/hair/straight-long.svg?vue'
-import HairStraightMedium from './svg/hair/straight-medium.svg?vue'
+import HairStraightLong from './svg/hair/straightLong.svg?vue'
+import HairStraightMedium from './svg/hair/straightMedium.svg?vue'
+
 // Hats
 import HatsBeanie from './svg/hats/beanie.svg?vue'
 import HatsHat from './svg/hats/hat.svg?vue'
@@ -53,21 +61,7 @@ import NeckStandard from './svg/neck/standard.svg?vue'
 import NosesStandard from './svg/noses/standard.svg?vue'
 
 export {
-  // Glasses
-  GlassesGlass,
-  // Hats
-  HatsBeanie,
-  HatsHat,
-  // Hair
-  HairBraids,
-  HairHijab,
-  HairMedium,
-  HairPuff,
-  HairStraightLong,
-  HairStraightMedium,
-  // Face Details
-  FaceDetailsBlushes,
-  // Body
+// Body
   BodyBlouse,
   BodyFlowerCardigan,
   BodySimpleCardigan,
@@ -79,27 +73,53 @@ export {
   BodyTeeButtoned,
   BodyTeePocket,
   BodyTeeRound,
-  // Ears
+
+// Ears
   EarsStandard,
-  // Eyes
+
+// Eyes
   EyesStandard,
-  // Face Hair
+
+// FaceDetails
+  FaceDetailsBlushes,
+
+// FaceHair
   FaceHairBigBeard,
   FaceHairChevronMustache,
   FaceHairMustache,
-  // Forelock
+
+// Forelock
   ForelockBubble,
   ForelockCurve,
   ForelockShort,
   ForelockSplit,
   ForelockStraight,
   ForelockUnderCut,
-  // Head
+
+// Glasses
+  GlassesGlass,
+
+// Hair
+  HairBraids,
+  HairHijab,
+  HairMedium,
+  HairPuff,
+  HairStraightLong,
+  HairStraightMedium,
+
+// Hats
+  HatsBeanie,
+  HatsHat,
+
+// Head
   HeadStandard,
-  // Mouth
+
+// Mouth
   MouthSmile,
-  // Neck
+
+// Neck
   NeckStandard,
-  // Noses
+
+// Noses
   NosesStandard,
 }

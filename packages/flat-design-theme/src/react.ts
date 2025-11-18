@@ -1,12 +1,12 @@
 import {
   BodyShirt,
   BodySweater,
-  BodyTshort,
+  BodyTshirt,
   BodyTurtleneck,
   EarsStandard,
   EyebrowsAngry,
   EyebrowsSmall,
-  EyebrowsStadard,
+  EyebrowsStandard,
   EyesBoring,
   EyesDots,
   EyesOpenCircle,
@@ -38,7 +38,7 @@ export default shared
   .withComponents('body', {
     shirt: { Component: BodyShirt },
     sweater: { Component: BodySweater },
-    tshirt: { Component: BodyTshort },
+    tshirt: { Component: BodyTshirt },
     turtleneck: { Component: BodyTurtleneck },
   })
   .withComponents('ears', {
@@ -47,7 +47,7 @@ export default shared
   .withComponents('eyebrows', {
     angry: { Component: EyebrowsAngry },
     small: { Component: EyebrowsSmall },
-    standard: { Component: EyebrowsStadard },
+    standard: { Component: EyebrowsStandard },
   })
   .withComponents('eyes', {
     boring: { Component: EyesBoring },
