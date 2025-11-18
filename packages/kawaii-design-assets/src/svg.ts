@@ -1,8 +1,3 @@
-// Glasses
-import glassesGlass from './svg/glasses/glass.svg?raw'
-// Hats
-import hatsBeanie from './svg/hats/beanie.svg?raw'
-import hatsHat from './svg/hats/hat.svg?raw'
 // Body
 import bodyBlouse from './svg/body/blouse.svg?raw'
 import bodyFlowerCardigan from './svg/body/flower-cardigan.svg?raw'
@@ -32,6 +27,8 @@ import forelockShort from './svg/forelock/short.svg?raw'
 import forelockSplit from './svg/forelock/split.svg?raw'
 import forelockStraight from './svg/forelock/straight.svg?raw'
 import forelockUnderCut from './svg/forelock/under-cut.svg?raw'
+// Glasses
+import glassesGlass from './svg/glasses/glass.svg?raw'
 // Hair
 import hairBraids from './svg/hair/braids.svg?raw'
 import hairHijab from './svg/hair/hijab.svg?raw'
@@ -39,6 +36,9 @@ import hairMedium from './svg/hair/medium.svg?raw'
 import hairPuff from './svg/hair/puff.svg?raw'
 import hairStraightLong from './svg/hair/straight-long.svg?raw'
 import hairStraightMedium from './svg/hair/straight-medium.svg?raw'
+// Hats
+import hatsBeanie from './svg/hats/beanie.svg?raw'
+import hatsHat from './svg/hats/hat.svg?raw'
 
 // Head
 import headStandard from './svg/head/standard.svg?raw'

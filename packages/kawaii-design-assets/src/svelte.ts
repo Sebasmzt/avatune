@@ -1,8 +1,3 @@
-// Glasses
-import GlassesGlass from './svg/glasses/glass.svg?svelte'
-// Hats
-import HatsBeanie from './svg/hats/beanie.svg?svelte'
-import HatsHat from './svg/hats/hat.svg?svelte'
 // Body
 import BodyBlouse from './svg/body/blouse.svg?svelte'
 import BodyFlowerCardigan from './svg/body/flower-cardigan.svg?svelte'
@@ -32,6 +27,8 @@ import ForelockShort from './svg/forelock/short.svg?svelte'
 import ForelockSplit from './svg/forelock/split.svg?svelte'
 import ForelockStraight from './svg/forelock/straight.svg?svelte'
 import ForelockUnderCut from './svg/forelock/under-cut.svg?svelte'
+// Glasses
+import GlassesGlass from './svg/glasses/glass.svg?svelte'
 // Hair
 import HairBraids from './svg/hair/braids.svg?svelte'
 import HairHijab from './svg/hair/hijab.svg?svelte'
@@ -39,6 +36,9 @@ import HairMedium from './svg/hair/medium.svg?svelte'
 import HairPuff from './svg/hair/puff.svg?svelte'
 import HairStraightLong from './svg/hair/straight-long.svg?svelte'
 import HairStraightMedium from './svg/hair/straight-medium.svg?svelte'
+// Hats
+import HatsBeanie from './svg/hats/beanie.svg?svelte'
+import HatsHat from './svg/hats/hat.svg?svelte'
 
 // Head
 import HeadStandard from './svg/head/standard.svg?svelte'

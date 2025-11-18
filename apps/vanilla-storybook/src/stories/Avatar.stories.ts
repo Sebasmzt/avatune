@@ -295,39 +295,31 @@ export const KawaiiDesign: StoryObj<
   },
 }
 
-export const FlatDesignSeed: StoryObj<{
-  seed?: string | number
-  size?: number
-}> = {
-  argTypes: {
-    seed: {
-      control: { type: 'text' },
-    },
-    size: {
-      control: { type: 'range', min: 100, max: 800, step: 50 },
-    },
-  },
-  render: ({ seed, size }) => {
-    return avatar({ theme: flatDesignTheme, seed, size })
-  },
-  args: {
-    seed: 'Type any seed phrase here',
-    size: 300,
-  },
-}
+const themes = {
+  'Flat Design': flatDesignTheme,
+  'Mini Avs': miniavsTheme,
+  'Kawaii Design': kawaiiDesignTheme,
+} as const
 
-export const MiniAvsSeed: StoryObj<{
+export const Seed: StoryObj<{
+  theme: keyof typeof themes
   seed?: string | number
   size?: number
 }> = {
   argTypes: {
+    theme: {
+      control: { type: 'select' },
+      options: Object.keys(themes),
+    },
     seed: { control: { type: 'text' } },
     size: { control: { type: 'range', min: 100, max: 800, step: 50 } },
   },
-  render: ({ seed, size }) => {
-    return avatar({ theme: miniavsTheme, seed, size })
+  render: ({ theme: themeName, seed, size }) => {
+    const selectedTheme = themes[themeName]
+    return avatar({ theme: selectedTheme, seed, size })
   },
   args: {
+    theme: 'Flat Design',
     seed: 'Type any seed phrase here',
     size: 300,
   },

@@ -70,7 +70,7 @@ export default createTheme<BaseAvatarItem>()
   .addColor('eyes', SkinTones.Black)
   .addColor('mouth', SkinTones.Black)
   .addColor('noses', SkinTones.Black)
-  .addColor('faceDetails', SkinTones.Black)
+  .addColor('faceDetails', AccentColors.BlushPink)
   .addColor('faceHair', HairColors.EmeraldGreen)
   .addColor('faceHair', HairColors.LavenderPurple)
   .addColor('faceHair', HairColors.ShockingPink)
@@ -81,12 +81,12 @@ export default createTheme<BaseAvatarItem>()
   .addColor('hats', ClothingColors.MajorelleBlue)
   .addColor('hats', ClothingColors.GoldenPollen)
   .addColor('hats', ClothingColors.Ametist)
-  .addColor('faceDetails', AccentColors.BlushPink)
   // Glasses
   .addItem('glasses', 'glass', {
     position: fromHeadOffset(percentage('5.3%'), percentage('29%')),
     layer: 50,
   })
+  .setOptional('glasses')
   // Hats
   .addItem('hats', 'beanie', {
     position: fromHeadOffset(percentage('4%'), percentage('6%')),
@@ -96,6 +96,7 @@ export default createTheme<BaseAvatarItem>()
     position: fromHeadOffset(-percentage('0%'), percentage('6%')),
     layer: 60,
   })
+  .setOptional('hats')
   // Hair
   .addItem('hair', 'braids', {
     position: fromHeadOffset(-percentage('11.5%'), percentage('9%')),
@@ -126,6 +127,7 @@ export default createTheme<BaseAvatarItem>()
     position: fromHeadOffset(percentage('6%'), percentage('37%')),
     layer: 25,
   })
+  .setOptional('faceDetails')
   // Body
   .addItem('body', 'blouse', {
     position: fromHeadOffset(-percentage('4.7%'), percentage('49%')),
@@ -194,6 +196,7 @@ export default createTheme<BaseAvatarItem>()
     position: fromHeadOffset(percentage('12.5%'), percentage('40%')),
     layer: 30,
   })
+  .setOptional('faceHair')
   // Forelock
   .addItem('forelock', 'bubble', {
     position: fromHeadOffset(percentage('4%'), percentage('13%')),

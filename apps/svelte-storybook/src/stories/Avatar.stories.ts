@@ -47,6 +47,10 @@ export const FlatDesign: StoryObj<FlatArgs> = {
     nosesColor: { control: { type: 'color' } },
     size: { control: { type: 'range', min: 100, max: 800, step: 50 } },
   },
+  render: (args) => ({
+    Component: Avatar,
+    props: args,
+  }),
   args: {
     theme: flatTheme,
     body: 'sweater',
@@ -216,60 +220,31 @@ export const KawaiiDesign: StoryObj<KawaiiArgs> = {
   },
 }
 
-export const FlatDesignSeed: StoryObj<AvatarProps<typeof flatTheme>> = {
-  argTypes: {
-    seed: { control: { type: 'text' } },
-    size: { control: { type: 'range', min: 100, max: 800, step: 50 } },
-  },
-  render: (args) => {
-    return {
-      Component: Avatar,
-      props: {
-        theme: flatTheme,
-        seed: args.seed,
-        size: args.size,
-      },
-    }
-  },
-  args: {
-    seed: 'Type any seed phrase here',
-    size: 300,
-  },
-}
+const themes = {
+  'Flat Design': flatTheme,
+  'Mini Avs': miniavsTheme,
+  'Kawaii Design': kawaiiTheme,
+} as const
 
-export const MiniAvsSeed: StoryObj<MiniavsArgs> & {} = {
+export const Seed: StoryObj = {
   argTypes: {
+    theme: {
+      control: { type: 'select' },
+      options: Object.keys(themes),
+    },
     seed: { control: { type: 'text' } },
     size: { control: { type: 'range', min: 100, max: 800, step: 50 } },
   },
   render: (args) => ({
     Component: Avatar,
     props: {
-      theme: miniavsTheme,
+      theme: themes[args.theme as keyof typeof themes],
       seed: args.seed,
       size: args.size,
     },
   }),
   args: {
-    seed: 'Type any seed phrase here',
-    size: 300,
-  },
-}
-
-export const KawaiiSeed: StoryObj<MiniavsArgs> & {} = {
-  argTypes: {
-    seed: { control: { type: 'text' } },
-    size: { control: { type: 'range', min: 100, max: 800, step: 50 } },
-  },
-  render: (args) => ({
-    Component: Avatar,
-    props: {
-      theme: kawaiiTheme,
-      seed: args.seed,
-      size: args.size,
-    },
-  }),
-  args: {
+    theme: 'Flat Design',
     seed: 'Type any seed phrase here',
     size: 300,
   },

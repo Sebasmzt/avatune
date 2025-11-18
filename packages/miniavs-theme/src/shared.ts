@@ -54,6 +54,7 @@ export default createTheme<BaseAvatarItem>()
   .addColor('eyes', AccentColors.EyeBlack)
   .addColor('glasses', AccentColors.AccessoryBlack)
   .addColor('mouth', AccentColors.MouthPink)
+  // Body
   .addItem('body', 'standard', {
     position: fromHeadOffset(percentage('0%'), percentage('0%')),
     layer: 10,
@@ -62,10 +63,13 @@ export default createTheme<BaseAvatarItem>()
     position: fromHeadOffset(percentage('0%'), percentage('0%')),
     layer: 10,
   })
+  // Face Details
   .addItem('faceDetails', 'standard', {
     position: fromHeadOffset(percentage('0%'), percentage('0%')),
     layer: 25,
   })
+  .setOptional('faceDetails')
+  // Eyes
   .addItem('eyes', 'standard', {
     position: fromHeadOffset(percentage('0%'), percentage('0%')),
     layer: 20,
@@ -78,6 +82,7 @@ export default createTheme<BaseAvatarItem>()
     position: fromHeadOffset(percentage('0%'), percentage('0%')),
     layer: 20,
   })
+  // Face Hair
   .addItem('faceHair', 'freddy', {
     position: fromHeadOffset(percentage('0%'), percentage('0%')),
     layer: 30,
@@ -94,10 +99,13 @@ export default createTheme<BaseAvatarItem>()
     position: fromHeadOffset(percentage('0%'), percentage('0%')),
     layer: 30,
   })
+  .setOptional('faceHair')
+  // Glasses
   .addItem('glasses', 'glasses', {
     position: fromHeadOffset(percentage('0%'), percentage('0%')),
     layer: 35,
   })
+  // Hair
   .addItem('hair', 'baldness', {
     position: fromHeadOffset(percentage('0%'), percentage('0%')),
     layer: 5,
@@ -134,6 +142,7 @@ export default createTheme<BaseAvatarItem>()
     position: fromHeadOffset(percentage('0%'), percentage('0%')),
     layer: 5,
   })
+  // Head
   .addItem('head', 'standard', {
     position: fromHeadOffset(percentage('0%'), percentage('0%')),
     layer: 1,
@@ -146,6 +155,7 @@ export default createTheme<BaseAvatarItem>()
     position: fromHeadOffset(percentage('0%'), percentage('0%')),
     layer: 1,
   })
+  // Mouth
   .addItem('mouth', 'standard', {
     position: fromHeadOffset(percentage('0%'), percentage('0%')),
     layer: 15,

@@ -1,10 +1,11 @@
+import { pluginRawSvg } from '@avatune/rsbuild-plugin-raw-svg'
+import { pluginSvgToSvelte } from '@avatune/rsbuild-plugin-svg-to-svelte'
 import { pluginSvgToVue } from '@avatune/rsbuild-plugin-svg-to-vue'
 import { pluginReact } from '@rsbuild/plugin-react'
 import { pluginSvelte } from '@rsbuild/plugin-svelte'
 import { pluginSvgr } from '@rsbuild/plugin-svgr'
 import { pluginVue } from '@rsbuild/plugin-vue'
 import { defineConfig } from '@rslib/core'
-import { pluginSvgToSvelte } from '../rsbuild-plugin-svg-to-svelte/dist'
 
 const colordImport = "import { colord } from 'colord';"
 const getReplaceAttrValues = (colorPropName = 'color') => ({
@@ -58,5 +59,9 @@ ${variables.exports};
     pluginVue(),
     pluginSvelte(),
     pluginReact(),
+    pluginRawSvg({
+      imports: colordImport,
+      replaceAttrValues: getReplaceAttrValues('color'),
+    }),
   ],
 })

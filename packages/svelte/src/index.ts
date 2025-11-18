@@ -9,7 +9,7 @@ export type AvatarProps<T extends SvelteTheme = SvelteTheme> = AvatarConfig<
   SvelteAvatarItem,
   T
 > & {
-  theme: SvelteTheme
+  theme: T
   size?: number
   class?: string
   style?: string
@@ -23,4 +23,4 @@ export type AvatarProps<T extends SvelteTheme = SvelteTheme> = AvatarConfig<
  *
  * For type-safe props with autocomplete, use React or Vue.
  */
-export const Avatar = AvatarComponent as typeof AvatarComponent
+export { AvatarComponent as Avatar }

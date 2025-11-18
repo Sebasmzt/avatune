@@ -1,8 +1,3 @@
-/**
- * Color palettes for the kawaii design theme
- * Each enum defines colors that can be used for specific avatar parts
- */
-
 export enum HairColors {
   Black = '#323232',
   EmeraldGreen = '#5BBA6F',

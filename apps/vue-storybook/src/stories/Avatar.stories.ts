@@ -218,80 +218,44 @@ export const KawaiiDesign: StoryObj<KawaiiArgs> = {
   },
 }
 
-export const FlatDesignSeed: StoryObj<{
+const themes = {
+  'Flat Design': flatTheme,
+  'Mini Avs': miniavsTheme,
+  'Kawaii Design': kawaiiTheme,
+} as const
+
+export const Seed: StoryObj<{
+  theme: keyof typeof themes
   seed?: string | number
   size?: number
 }> = {
   argTypes: {
+    theme: {
+      control: { type: 'select' },
+      options: Object.keys(themes),
+    },
     seed: { control: { type: 'text' } },
     size: { control: { type: 'range', min: 100, max: 800, step: 50 } },
   },
   render: ({
+    theme: themeName,
     seed,
     size = 300,
   }: {
+    theme: keyof typeof themes
     seed?: string | number
     size?: number
   }) => ({
     components: { Avatar },
     setup: () => ({
-      theme: flatTheme,
+      theme: themes[themeName],
       seed,
       size,
     }),
     template: '<Avatar :theme="theme" :seed="seed" :size="size" />',
   }),
   args: {
-    seed: 'Type any seed phrase here',
-    size: 300,
-  },
-}
-
-export const MiniAvsSeed: StoryObj<{
-  seed?: string | number
-  size?: number
-}> = {
-  argTypes: {
-    seed: { control: { type: 'text' } },
-    size: { control: { type: 'range', min: 100, max: 800, step: 50 } },
-  },
-  render: ({
-    seed,
-    size = 300,
-  }: {
-    seed?: string | number
-    size?: number
-  }) => ({
-    components: { Avatar },
-    setup: () => ({ theme: miniavsTheme, seed, size }),
-    template: '<Avatar :theme="theme" :seed="seed" :size="size" />',
-  }),
-  args: {
-    seed: 'Type any seed phrase here',
-    size: 300,
-  },
-}
-
-export const KawaiiSeed: StoryObj<{
-  seed?: string | number
-  size?: number
-}> = {
-  argTypes: {
-    seed: { control: { type: 'text' } },
-    size: { control: { type: 'range', min: 100, max: 800, step: 50 } },
-  },
-  render: ({
-    seed,
-    size = 300,
-  }: {
-    seed?: string | number
-    size?: number
-  }) => ({
-    components: { Avatar },
-    setup: () => ({ theme: kawaiiTheme, seed, size }),
-    template: '<Avatar :theme="theme" :seed="seed" :size="size" />',
-  }),
-  args: {
+    theme: 'Flat Design',
     seed: 'Type any seed phrase here',
     size: 300,
   },

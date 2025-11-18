@@ -70,6 +70,7 @@ export default createTheme<BaseAvatarItem>()
   .addColor('mouth', AccentColors.BlushPink)
   .addColor('noses', AccentColors.LipPink)
   .addColor('noses', AccentColors.BlushPink)
+  // Body
   .addItem('body', 'shirt', {
     position: fromHeadOffset(-percentage('0%'), percentage('49.63%')),
     layer: 10,
@@ -86,10 +87,12 @@ export default createTheme<BaseAvatarItem>()
     position: fromHeadOffset(-percentage('0%'), percentage('48.78%')),
     layer: 10,
   })
+  // Ears
   .addItem('ears', 'standard', {
     position: fromHeadOffset(-percentage('2.20%'), percentage('24.39%')),
     layer: 100,
   })
+  // Eyebrows
   .addItem('eyebrows', 'angry', {
     position: fromHeadOffset(percentage('7.32%'), percentage('20.73%')),
     layer: 30,
@@ -102,6 +105,7 @@ export default createTheme<BaseAvatarItem>()
     position: fromHeadOffset(percentage('8.54%'), percentage('20.73%')),
     layer: 30,
   })
+  // Eyes
   .addItem('eyes', 'boring', {
     position: fromHeadOffset(percentage('10.37%'), percentage('25.61%')),
     layer: 20,
@@ -118,6 +122,7 @@ export default createTheme<BaseAvatarItem>()
     position: fromHeadOffset(percentage('12.20%'), percentage('25.61%')),
     layer: 20,
   })
+  // Hair
   .addItem('hair', 'bobRounded', {
     position: fromHeadOffset(percentage('0%'), -percentage('3.66%')),
     layer: 5,
@@ -142,10 +147,12 @@ export default createTheme<BaseAvatarItem>()
     position: fromHeadOffset(-percentage('0.49%'), -percentage('2.44%')),
     layer: 5,
   })
+  // Head
   .addItem('head', 'oval', {
     position: fromHeadOffset(percentage('0%'), percentage('0%')),
     layer: 1,
   })
+  // Mouth
   .addItem('mouth', 'bigSmile', {
     position: fromHeadOffset(percentage('12.20%'), percentage('39.02%')),
     layer: 25,
@@ -174,6 +181,7 @@ export default createTheme<BaseAvatarItem>()
     position: fromHeadOffset(percentage('11.59%'), percentage('39.02%')),
     layer: 25,
   })
+  // Noses
   .addItem('noses', 'big', {
     position: fromHeadOffset(percentage('18.90%'), percentage('30.49%')),
     layer: 15,

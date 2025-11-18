@@ -1,8 +1,3 @@
-/**
- * Color palettes for the flat design theme
- * Each enum defines colors that can be used for specific avatar parts
- */
-
 export enum HairColors {
   JetBlack = '#000000',
   DeepBrown = '#302C2C',

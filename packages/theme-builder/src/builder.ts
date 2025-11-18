@@ -10,6 +10,18 @@ import type {
 } from '@avatune/types'
 
 /**
+ * Creates a 'none' item
+ */
+const createNoneItem = (): AvatarItem => {
+  return {
+    position: { x: 0, y: 0 },
+    layer: 0,
+    code: () => '',
+    Component: () => null,
+  }
+}
+
+/**
  * Category-to-identifier mapping
  */
 type CategoryIdMap = Record<AvatarPartCategory, string>
@@ -60,6 +72,10 @@ export interface ThemeBuilder<
     item: BaseAvatarItem,
   ): ThemeBuilder<T, UpdateIdMap<IdMap, Category, Id>>
 
+  setOptional<Category extends keyof CategoryIdMap>(
+    category: Category,
+  ): ThemeBuilder<T, UpdateIdMap<IdMap, Category, 'none'>>
+
   addColor(
     category: keyof ThemeColorPalettes,
     color: string,
@@ -106,7 +122,6 @@ const createBuilder = <T extends AvatarItem, IdMap extends CategoryIdMap>(
     item: BaseAvatarItem,
   ): BuilderState<T> => {
     const items = state.items[category] || ({} as AvatarItemCollection<T>)
-    const layer = item.layer ?? 1
 
     return {
       ...state,
@@ -114,11 +129,7 @@ const createBuilder = <T extends AvatarItem, IdMap extends CategoryIdMap>(
         ...state.items,
         [category]: {
           ...items,
-          [identifier]: {
-            position: item.position,
-            layer,
-            color: item.color,
-          },
+          [identifier]: item,
         },
       },
     }
@@ -138,6 +149,11 @@ const createBuilder = <T extends AvatarItem, IdMap extends CategoryIdMap>(
       identifier: string,
       item: BaseAvatarItem,
     ) => createBuilder(addItem(category, identifier, item)),
+
+    setOptional: (category: keyof CategoryIdMap) => {
+      const noneItem = createNoneItem()
+      return createBuilder(addItem(category, 'none', noneItem))
+    },
 
     addColor: (category: keyof ThemeColorPalettes, color: string) => {
       const palette = state.palettes[category]

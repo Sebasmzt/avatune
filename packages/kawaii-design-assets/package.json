@@ -34,6 +34,7 @@
     "check-types": "tsc --noEmit"
   },
   "devDependencies": {
+    "@avatune/rsbuild-plugin-raw-svg": "workspace:*",
     "@avatune/rsbuild-plugin-svg-to-svelte": "workspace:*",
     "@avatune/rsbuild-plugin-svg-to-vue": "workspace:*",
     "@rsbuild/core": "^1.5.17",

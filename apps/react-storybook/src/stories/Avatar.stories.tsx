@@ -205,55 +205,31 @@ export const KawaiiDesign: StoryObj<KawaiiArgs> = {
   },
 }
 
-export const FlatDesignSeed: StoryObj<{
-  seed?: string | number
-  size?: number
-  height?: number
-}> = {
-  argTypes: {
-    seed: { control: { type: 'text' } },
-    size: { control: { type: 'range', min: 100, max: 800, step: 50 } },
-  },
-  render: ({ seed, size = 300 }) => {
-    return <Avatar theme={flatTheme} seed={seed} size={size} />
-  },
-  args: {
-    seed: 'Type any seed phrase here',
-    size: 300,
-  },
-}
+const themes = {
+  'Flat Design': flatTheme,
+  'Mini Avs': miniavsTheme,
+  'Kawaii Design': kawaiiTheme,
+} as const
 
-export const MiniAvsSeed: StoryObj<{
+export const Seed: StoryObj<{
+  theme: keyof typeof themes
   seed?: string | number
   size?: number
-  height?: number
 }> = {
   argTypes: {
+    theme: {
+      control: { type: 'select' },
+      options: Object.keys(themes),
+    },
     seed: { control: { type: 'text' } },
     size: { control: { type: 'range', min: 100, max: 800, step: 50 } },
   },
-  render: ({ seed, size = 300 }) => {
-    return <Avatar theme={miniavsTheme} seed={seed} size={size} />
+  render: ({ theme: themeName, seed, size = 300 }) => {
+    const selectedTheme = themes[themeName]
+    return <Avatar theme={selectedTheme} seed={seed} size={size} />
   },
   args: {
-    seed: 'Type any seed phrase here',
-    size: 300,
-  },
-}
-
-export const KawaiiSeed: StoryObj<{
-  seed?: string | number
-  size?: number
-  height?: number
-}> = {
-  argTypes: {
-    seed: { control: { type: 'text' } },
-    size: { control: { type: 'range', min: 100, max: 800, step: 50 } },
-  },
-  render: ({ seed, size = 300 }) => {
-    return <Avatar theme={kawaiiTheme} seed={seed} size={size} />
-  },
-  args: {
+    theme: 'Flat Design',
     seed: 'Type any seed phrase here',
     size: 300,
   },
