@@ -10,10 +10,22 @@ import type {
 } from '@avatune/types'
 
 /**
+ * Category-to-identifier mapping
+ */
+type CategoryIdMap = Record<AvatarPartCategory, string>
+
+/**
+ * Default empty ID map
+ */
+type EmptyIdMap = {
+  [K in keyof CategoryIdMap]: never
+}
+
+/**
  * Internal builder state with compile-time type tracking
  */
 interface BuilderState<T extends AvatarItem> {
-  themeStyle: ThemeStyle
+  style: ThemeStyle
   items: Partial<Record<AvatarPartCategory, AvatarItemCollection<T>>>
   palettes: Partial<ThemeColorPalettes>
   predictorMappings: ThemePredictorMappings
@@ -21,572 +33,80 @@ interface BuilderState<T extends AvatarItem> {
 }
 
 /**
+ * Update ID map helper - adds new ID to specific category
+ */
+type UpdateIdMap<
+  IdMap extends CategoryIdMap,
+  Category extends keyof CategoryIdMap,
+  NewId extends string,
+> = {
+  [K in keyof IdMap]: K extends Category ? IdMap[K] | NewId : IdMap[K]
+}
+
+/**
  * Fluent API builder for creating avatar themes with compile-time type tracking
  */
 export interface ThemeBuilder<
   T extends AvatarItem = AvatarItem,
-  GlassesIds extends string = never,
-  HatsIds extends string = never,
-  HairIds extends string = never,
-  FaceDetailsIds extends string = never,
-  BodyIds extends string = never,
-  EarsIds extends string = never,
-  EyebrowsIds extends string = never,
-  EyesIds extends string = never,
-  FaceHairIds extends string = never,
-  ForelockIds extends string = never,
-  HeadIds extends string = never,
-  MouthIds extends string = never,
-  NeckIds extends string = never,
-  NosesIds extends string = never,
+  IdMap extends CategoryIdMap = EmptyIdMap,
 > {
   readonly _state: BuilderState<T>
 
-  withStyle(
-    style: Partial<ThemeStyle>,
-  ): ThemeBuilder<
-    T,
-    GlassesIds,
-    HatsIds,
-    HairIds,
-    FaceDetailsIds,
-    BodyIds,
-    EarsIds,
-    EyebrowsIds,
-    EyesIds,
-    FaceHairIds,
-    ForelockIds,
-    HeadIds,
-    MouthIds,
-    NeckIds,
-    NosesIds
-  >
+  withStyle(style: Partial<ThemeStyle>): ThemeBuilder<T, IdMap>
 
-  addItem<Id extends string>(
-    category: 'glasses',
+  addItem<Category extends keyof CategoryIdMap, Id extends string>(
+    category: Category,
     identifier: Id,
-    config: AvatarItem,
-  ): ThemeBuilder<
-    T,
-    GlassesIds | Id,
-    HatsIds,
-    HairIds,
-    FaceDetailsIds,
-    BodyIds,
-    EarsIds,
-    EyebrowsIds,
-    EyesIds,
-    FaceHairIds,
-    ForelockIds,
-    HeadIds,
-    MouthIds,
-    NeckIds,
-    NosesIds
-  >
-  addItem<Id extends string>(
-    category: 'hats',
-    identifier: Id,
-    config: BaseAvatarItem,
-  ): ThemeBuilder<
-    T,
-    GlassesIds,
-    HatsIds | Id,
-    HairIds,
-    FaceDetailsIds,
-    BodyIds,
-    EarsIds,
-    EyebrowsIds,
-    EyesIds,
-    FaceHairIds,
-    ForelockIds,
-    HeadIds,
-    MouthIds,
-    NeckIds,
-    NosesIds
-  >
-  addItem<Id extends string>(
-    category: 'hair',
-    identifier: Id,
-    config: BaseAvatarItem,
-  ): ThemeBuilder<
-    T,
-    GlassesIds,
-    HatsIds,
-    HairIds | Id,
-    FaceDetailsIds,
-    BodyIds,
-    EarsIds,
-    EyebrowsIds,
-    EyesIds,
-    FaceHairIds,
-    ForelockIds,
-    HeadIds,
-    MouthIds,
-    NeckIds,
-    NosesIds
-  >
-  addItem<Id extends string>(
-    category: 'faceDetails',
-    identifier: Id,
-    config: BaseAvatarItem,
-  ): ThemeBuilder<
-    T,
-    GlassesIds,
-    HatsIds,
-    HairIds,
-    FaceDetailsIds | Id,
-    BodyIds,
-    EarsIds,
-    EyebrowsIds,
-    EyesIds,
-    FaceHairIds,
-    ForelockIds,
-    HeadIds,
-    MouthIds,
-    NeckIds,
-    NosesIds
-  >
-  addItem<Id extends string>(
-    category: 'body',
-    identifier: Id,
-    config: BaseAvatarItem,
-  ): ThemeBuilder<
-    T,
-    GlassesIds,
-    HatsIds,
-    HairIds,
-    FaceDetailsIds,
-    BodyIds | Id,
-    EarsIds,
-    EyebrowsIds,
-    EyesIds,
-    FaceHairIds,
-    ForelockIds,
-    HeadIds,
-    MouthIds,
-    NeckIds,
-    NosesIds
-  >
-  addItem<Id extends string>(
-    category: 'ears',
-    identifier: Id,
-    config: BaseAvatarItem,
-  ): ThemeBuilder<
-    T,
-    GlassesIds,
-    HatsIds,
-    HairIds,
-    FaceDetailsIds,
-    BodyIds,
-    EarsIds | Id,
-    EyebrowsIds,
-    EyesIds,
-    FaceHairIds,
-    ForelockIds,
-    HeadIds,
-    MouthIds,
-    NeckIds,
-    NosesIds
-  >
-  addItem<Id extends string>(
-    category: 'eyebrows',
-    identifier: Id,
-    config: AvatarItem,
-  ): ThemeBuilder<
-    T,
-    GlassesIds,
-    HatsIds,
-    HairIds,
-    FaceDetailsIds,
-    BodyIds,
-    EarsIds,
-    EyebrowsIds | Id,
-    EyesIds,
-    FaceHairIds,
-    ForelockIds,
-    HeadIds,
-    MouthIds,
-    NeckIds,
-    NosesIds
-  >
-  addItem<Id extends string>(
-    category: 'eyes',
-    identifier: Id,
-    config: AvatarItem,
-  ): ThemeBuilder<
-    T,
-    GlassesIds,
-    HatsIds,
-    HairIds,
-    FaceDetailsIds,
-    BodyIds,
-    EarsIds,
-    EyebrowsIds,
-    EyesIds | Id,
-    FaceHairIds,
-    ForelockIds,
-    HeadIds,
-    MouthIds,
-    NeckIds,
-    NosesIds
-  >
-  addItem<Id extends string>(
-    category: 'faceHair',
-    identifier: Id,
-    config: AvatarItem,
-  ): ThemeBuilder<
-    T,
-    GlassesIds,
-    HatsIds,
-    HairIds,
-    FaceDetailsIds,
-    BodyIds,
-    EarsIds,
-    EyebrowsIds,
-    EyesIds,
-    FaceHairIds | Id,
-    ForelockIds,
-    HeadIds,
-    MouthIds,
-    NeckIds,
-    NosesIds
-  >
-  addItem<Id extends string>(
-    category: 'forelock',
-    identifier: Id,
-    config: AvatarItem,
-  ): ThemeBuilder<
-    T,
-    GlassesIds,
-    HatsIds,
-    HairIds,
-    FaceDetailsIds,
-    BodyIds,
-    EarsIds,
-    EyebrowsIds,
-    EyesIds,
-    FaceHairIds,
-    ForelockIds | Id,
-    HeadIds,
-    MouthIds,
-    NeckIds,
-    NosesIds
-  >
-  addItem<Id extends string>(
-    category: 'head',
-    identifier: Id,
-    config: AvatarItem,
-  ): ThemeBuilder<
-    T,
-    GlassesIds,
-    HatsIds,
-    HairIds,
-    FaceDetailsIds,
-    BodyIds,
-    EarsIds,
-    EyebrowsIds,
-    EyesIds,
-    FaceHairIds,
-    ForelockIds,
-    HeadIds | Id,
-    MouthIds,
-    NeckIds,
-    NosesIds
-  >
-  addItem<Id extends string>(
-    category: 'mouth',
-    identifier: Id,
-    config: AvatarItem,
-  ): ThemeBuilder<
-    T,
-    GlassesIds,
-    HatsIds,
-    HairIds,
-    FaceDetailsIds,
-    BodyIds,
-    EarsIds,
-    EyebrowsIds,
-    EyesIds,
-    FaceHairIds,
-    ForelockIds,
-    HeadIds,
-    MouthIds | Id,
-    NeckIds,
-    NosesIds
-  >
-  addItem<Id extends string>(
-    category: 'neck',
-    identifier: Id,
-    config: AvatarItem,
-  ): ThemeBuilder<
-    T,
-    GlassesIds,
-    HatsIds,
-    HairIds,
-    FaceDetailsIds,
-    BodyIds,
-    EarsIds,
-    EyebrowsIds,
-    EyesIds,
-    FaceHairIds,
-    ForelockIds,
-    HeadIds,
-    MouthIds,
-    NeckIds | Id,
-    NosesIds
-  >
-  addItem<Id extends string>(
-    category: 'noses',
-    identifier: Id,
-    config: AvatarItem,
-  ): ThemeBuilder<
-    T,
-    GlassesIds,
-    HatsIds,
-    HairIds,
-    FaceDetailsIds,
-    BodyIds,
-    EarsIds,
-    EyebrowsIds,
-    EyesIds,
-    FaceHairIds,
-    ForelockIds,
-    HeadIds,
-    MouthIds,
-    NeckIds,
-    NosesIds | Id
-  >
+    item: BaseAvatarItem,
+  ): ThemeBuilder<T, UpdateIdMap<IdMap, Category, Id>>
 
   addColor(
     category: keyof ThemeColorPalettes,
     color: string,
-  ): ThemeBuilder<
-    T,
-    GlassesIds,
-    HatsIds,
-    HairIds,
-    FaceDetailsIds,
-    BodyIds,
-    EarsIds,
-    EyebrowsIds,
-    EyesIds,
-    FaceHairIds,
-    ForelockIds,
-    HeadIds,
-    MouthIds,
-    NeckIds,
-    NosesIds
-  >
-
-  withColorPalette(
-    category: keyof ThemeColorPalettes,
-    colors: string | string[],
-  ): ThemeBuilder<
-    T,
-    GlassesIds,
-    HatsIds,
-    HairIds,
-    FaceDetailsIds,
-    BodyIds,
-    EarsIds,
-    EyebrowsIds,
-    EyesIds,
-    FaceHairIds,
-    ForelockIds,
-    HeadIds,
-    MouthIds,
-    NeckIds,
-    NosesIds
-  >
+  ): ThemeBuilder<T, IdMap>
 
   withColorPalettes(
     palettes: Partial<ThemeColorPalettes>,
-  ): ThemeBuilder<
-    T,
-    GlassesIds,
-    HatsIds,
-    HairIds,
-    FaceDetailsIds,
-    BodyIds,
-    EarsIds,
-    EyebrowsIds,
-    EyesIds,
-    FaceHairIds,
-    ForelockIds,
-    HeadIds,
-    MouthIds,
-    NeckIds,
-    NosesIds
-  >
+  ): ThemeBuilder<T, IdMap>
 
-  mapPrediction(
-    predictor: 'hair',
+  mapPrediction<P extends keyof ThemePredictorMappings>(
+    predictor: P,
     predictorValue: string,
-    identifiers: string[],
-  ): ThemeBuilder<
-    T,
-    GlassesIds,
-    HatsIds,
-    HairIds,
-    FaceDetailsIds,
-    BodyIds,
-    EarsIds,
-    EyebrowsIds,
-    EyesIds,
-    FaceHairIds,
-    ForelockIds,
-    HeadIds,
-    MouthIds,
-    NeckIds,
-    NosesIds
-  >
-  mapPrediction(
-    predictor: 'hairColor' | 'skinTone',
-    predictorValue: string,
-    colors: string[],
-  ): ThemeBuilder<
-    T,
-    GlassesIds,
-    HatsIds,
-    HairIds,
-    FaceDetailsIds,
-    BodyIds,
-    EarsIds,
-    EyebrowsIds,
-    EyesIds,
-    FaceHairIds,
-    ForelockIds,
-    HeadIds,
-    MouthIds,
-    NeckIds,
-    NosesIds
-  >
+    values: string[],
+  ): ThemeBuilder<T, IdMap>
 
   connectColors(
     source: AvatarPartCategory,
     dependents: AvatarPartCategory[],
-  ): ThemeBuilder<
-    T,
-    GlassesIds,
-    HatsIds,
-    HairIds,
-    FaceDetailsIds,
-    BodyIds,
-    EarsIds,
-    EyebrowsIds,
-    EyesIds,
-    FaceHairIds,
-    ForelockIds,
-    HeadIds,
-    MouthIds,
-    NeckIds,
-    NosesIds
-  >
+  ): ThemeBuilder<T, IdMap>
 
-  toFramework<NewT extends AvatarItem>(): ThemeBuilder<
-    NewT,
-    GlassesIds,
-    HatsIds,
-    HairIds,
-    FaceDetailsIds,
-    BodyIds,
-    EarsIds,
-    EyebrowsIds,
-    EyesIds,
-    FaceHairIds,
-    ForelockIds,
-    HeadIds,
-    MouthIds,
-    NeckIds,
-    NosesIds
-  >
+  toFramework<NewT extends AvatarItem>(): ThemeBuilder<NewT, IdMap>
 
   withComponents(
     category: AvatarPartCategory,
     components: Record<string, Partial<T>>,
-  ): ThemeBuilder<
-    T,
-    GlassesIds,
-    HatsIds,
-    HairIds,
-    FaceDetailsIds,
-    BodyIds,
-    EarsIds,
-    EyebrowsIds,
-    EyesIds,
-    FaceHairIds,
-    ForelockIds,
-    HeadIds,
-    MouthIds,
-    NeckIds,
-    NosesIds
-  >
+  ): ThemeBuilder<T, IdMap>
 
   build(): {
     style: ThemeStyle
-    glasses: Record<GlassesIds, T>
-    hats: Record<HatsIds, T>
-    hair: Record<HairIds, T>
-    faceDetails: Record<FaceDetailsIds, T>
-    body: Record<BodyIds, T>
-    ears: Record<EarsIds, T>
-    eyebrows: Record<EyebrowsIds, T>
-    eyes: Record<EyesIds, T>
-    faceHair: Record<FaceHairIds, T>
-    forelock: Record<ForelockIds, T>
-    head: Record<HeadIds, T>
-    mouth: Record<MouthIds, T>
-    neck: Record<NeckIds, T>
-    noses: Record<NosesIds, T>
     colorPalettes: ThemeColorPalettes
     predictorMappings: ThemePredictorMappings
     connectedColors: ConnectedColors
+  } & {
+    [K in keyof IdMap]: Record<IdMap[K] & string, T>
   }
 }
 
-// Pure functional implementation
-const createBuilder = <
-  T extends AvatarItem,
-  GlassesIds extends string = never,
-  HatsIds extends string = never,
-  HairIds extends string = never,
-  FaceDetailsIds extends string = never,
-  BodyIds extends string = never,
-  EarsIds extends string = never,
-  EyebrowsIds extends string = never,
-  EyesIds extends string = never,
-  FaceHairIds extends string = never,
-  ForelockIds extends string = never,
-  HeadIds extends string = never,
-  MouthIds extends string = never,
-  NeckIds extends string = never,
-  NosesIds extends string = never,
->(
+const createBuilder = <T extends AvatarItem, IdMap extends CategoryIdMap>(
   state: BuilderState<T>,
-): ThemeBuilder<
-  T,
-  GlassesIds,
-  HatsIds,
-  HairIds,
-  FaceDetailsIds,
-  BodyIds,
-  EarsIds,
-  EyebrowsIds,
-  EyesIds,
-  FaceHairIds,
-  ForelockIds,
-  HeadIds,
-  MouthIds,
-  NeckIds,
-  NosesIds
-> => {
+): ThemeBuilder<T, IdMap> => {
   const addItem = (
     category: AvatarPartCategory,
     identifier: string,
-    config: AvatarItem,
+    item: BaseAvatarItem,
   ): BuilderState<T> => {
     const items = state.items[category] || ({} as AvatarItemCollection<T>)
-    const layer = config.layer ?? 1
+    const layer = item.layer ?? 1
 
     return {
       ...state,
@@ -595,10 +115,10 @@ const createBuilder = <
         [category]: {
           ...items,
           [identifier]: {
-            position: config.position,
+            position: item.position,
             layer,
-            color: config.color,
-          } as T,
+            color: item.color,
+          },
         },
       },
     }
@@ -607,16 +127,19 @@ const createBuilder = <
   return {
     _state: state,
 
-    withStyle: (style) =>
+    withStyle: (style: Partial<ThemeStyle>) =>
       createBuilder({
         ...state,
-        themeStyle: { ...state.themeStyle, ...style },
+        style: { ...state.style, ...style },
       }),
 
-    addItem: (category, identifier, config) =>
-      createBuilder(addItem(category, identifier, config)),
+    addItem: (
+      category: keyof CategoryIdMap,
+      identifier: string,
+      item: BaseAvatarItem,
+    ) => createBuilder(addItem(category, identifier, item)),
 
-    addColor: (category, color) => {
+    addColor: (category: keyof ThemeColorPalettes, color: string) => {
       const palette = state.palettes[category]
       const newPalette = Array.isArray(palette)
         ? [...palette, color]
@@ -633,35 +156,35 @@ const createBuilder = <
       })
     },
 
-    withColorPalette: (category, colors) =>
-      createBuilder({
-        ...state,
-        palettes: {
-          ...state.palettes,
-          [category]: colors,
-        },
-      }),
-
-    withColorPalettes: (palettes) =>
+    withColorPalettes: (palettes: Partial<ThemeColorPalettes>) =>
       createBuilder({
         ...state,
         palettes: { ...state.palettes, ...palettes },
       }),
 
-    mapPrediction: (predictor, predictorValue, values) => {
+    mapPrediction: (
+      predictor: string,
+      predictorValue: string,
+      values: string[],
+    ) => {
       return createBuilder({
         ...state,
         predictorMappings: {
           ...state.predictorMappings,
           [predictor]: {
-            ...state.predictorMappings[predictor],
+            ...(state.predictorMappings[
+              predictor as keyof ThemePredictorMappings
+            ] as Record<string, string[]>),
             [predictorValue]: values,
           },
         },
       })
     },
 
-    connectColors: (source, dependents) => {
+    connectColors: (
+      source: AvatarPartCategory,
+      dependents: AvatarPartCategory[],
+    ) => {
       if (dependents.length === 0) {
         return createBuilder(state)
       }
@@ -683,7 +206,10 @@ const createBuilder = <
 
     toFramework: () => createBuilder(state) as never,
 
-    withComponents: (category, components) => {
+    withComponents: (
+      category: AvatarPartCategory,
+      components: Record<string, Partial<T>>,
+    ) => {
       const categoryItems = state.items[category]
       if (!categoryItems) {
         throw new Error(
@@ -723,38 +249,40 @@ const createBuilder = <
     },
 
     build: () => {
+      const categoryEntries = (
+        Object.keys(state.items) as AvatarPartCategory[]
+      ).map((category) => [
+        category,
+        (state.items[category] || {}) as Record<
+          IdMap[typeof category] & string,
+          T
+        >,
+      ])
+
       return {
-        style: state.themeStyle,
-        glasses: state.items.glasses as Record<GlassesIds, T>,
-        hats: state.items.hats as Record<HatsIds, T>,
-        hair: state.items.hair as Record<HairIds, T>,
-        faceDetails: state.items.faceDetails as Record<FaceDetailsIds, T>,
-        body: state.items.body as Record<BodyIds, T>,
-        ears: state.items.ears as Record<EarsIds, T>,
-        eyebrows: state.items.eyebrows as Record<EyebrowsIds, T>,
-        eyes: state.items.eyes as Record<EyesIds, T>,
-        faceHair: state.items.faceHair as Record<FaceHairIds, T>,
-        forelock: state.items.forelock as Record<ForelockIds, T>,
-        head: state.items.head as Record<HeadIds, T>,
-        mouth: state.items.mouth as Record<MouthIds, T>,
-        neck: state.items.neck as Record<NeckIds, T>,
-        noses: state.items.noses as Record<NosesIds, T>,
+        style: state.style,
         colorPalettes: state.palettes as ThemeColorPalettes,
         predictorMappings: state.predictorMappings,
         connectedColors: state.connectedColors,
+        ...Object.fromEntries(categoryEntries),
+      } as {
+        style: ThemeStyle
+        colorPalettes: ThemeColorPalettes
+        predictorMappings: ThemePredictorMappings
+        connectedColors: ConnectedColors
+      } & {
+        [K in keyof IdMap]: Record<IdMap[K] & string, T>
       }
     },
   }
 }
 
-/**
- * Create a new theme builder
- */
-export const createTheme = <
-  T extends AvatarItem = AvatarItem,
->(): ThemeBuilder<T> =>
-  createBuilder<T>({
-    themeStyle: { size: 200 },
+export const createTheme = <T extends AvatarItem = AvatarItem>(): ThemeBuilder<
+  T,
+  EmptyIdMap
+> =>
+  createBuilder<T, EmptyIdMap>({
+    style: { size: 200 },
     items: {},
     palettes: {},
     predictorMappings: {},
