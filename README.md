@@ -1,135 +1,112 @@
-# Turborepo starter
+# Avatune
 
-This Turborepo starter is maintained by the Turborepo core team.
+**Production-ready avatar system with AI-powered generation and framework-native components.**
 
-## Using this example
+Generate beautiful, customizable avatars with machine learning prediction or manual configuration. Works seamlessly with React, Vue, Svelte, and Vanilla JavaScript.
 
-Run the following command:
+## Features
 
-```sh
-npx create-turbo@latest
+- **AI-Powered Generation** - Train and use TensorFlow.js models for intelligent avatar attribute prediction (hair color, skin tone, hair length)
+- **Framework Native** - First-class support for React, Vue, Svelte, and Vanilla JS with framework-specific components
+- **Theme System** - Multiple professionally designed themes with full customization support
+- **Type Safe** - Built with TypeScript for complete type safety across all packages
+- **Production Ready** - Optimized builds with Rspack, tree-shakeable, and performant
+
+## Quick Start
+
+```bash
+# Install a theme and renderer for your framework
+npm install @avatune/kawaii-design-theme @avatune/react
 ```
 
-## What's inside?
+```tsx
+import { Avatar } from '@avatune/react'
+import theme from '@avatune/kawaii-design-theme/react'
 
-This Turborepo includes the following packages/apps:
-
-### Apps and Packages
-
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `@avatune/ui`: a stub React component library shared by both `web` and `docs` applications
-- `@avatune/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `@avatune/typescript-config`: `tsconfig.json`s used throughout the monorepo
-
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
-
-### Utilities
-
-This Turborepo has some additional tools already setup for you:
-
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
-
-### Build
-
-To build all apps and packages, run the following command:
-
-```
-cd my-turborepo
-
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo build
-
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo build
-yarn dlx turbo build
-pnpm exec turbo build
+function App() {
+  return <Avatar theme={theme} seed="unique-identifier" size={300} />
+}
 ```
 
-You can build a specific package by using a [filter](https://turborepo.com/docs/crafting-your-repository/running-tasks#using-filters):
+## Available Themes
 
-```
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo build --filter=docs
+All themes support React, Vue, Svelte, and Vanilla JavaScript.
 
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo build --filter=docs
-yarn exec turbo build --filter=docs
-pnpm exec turbo build --filter=docs
-```
+- [`@avatune/kawaii-design-theme`](./packages/kawaii-design-theme) - Cute, friendly avatar designs
+- [`@avatune/miniavs-theme`](./packages/miniavs-theme) - Minimalist avatar system
+- [`@avatune/flat-design-theme`](./packages/flat-design-theme) - Modern flat design avatars
 
-### Develop
+## Framework Renderers
 
-To develop all apps and packages, run the following command:
+- [`@avatune/react`](./packages/react) - React components
+- [`@avatune/vue`](./packages/vue) - Vue 3 components
+- [`@avatune/svelte`](./packages/svelte) - Svelte 5 components
+- [`@avatune/vanilla`](./packages/vanilla) - Framework-agnostic JavaScript
 
-```
-cd my-turborepo
+## Predictors
 
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo dev
+Train custom TensorFlow.js models or use pre-trained predictors:
 
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo dev
-yarn exec turbo dev
-pnpm exec turbo dev
-```
+- [`@avatune/hair-color-predictor`](./packages/hair-color-predictor) - Predict hair color from images
+- [`@avatune/skin-tone-predictor`](./packages/skin-tone-predictor) - Predict skin tone from images
+- [`@avatune/hair-length-predictor`](./packages/hair-length-predictor) - Predict hair length from images
 
-You can develop a specific package by using a [filter](https://turborepo.com/docs/crafting-your-repository/running-tasks#using-filters):
+Models are trained in Python and exported to TensorFlow.js for browser inference.
 
-```
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo dev --filter=web
+## Live Demo
 
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo dev --filter=web
-yarn exec turbo dev --filter=web
-pnpm exec turbo dev --filter=web
+Explore all themes and frameworks in the unified Storybook:
+
+```bash
+bun run build && bun storybook
 ```
 
-### Remote Caching
+This launches a single Storybook instance showcasing all themes across React, Vue, Svelte, and Vanilla implementations.
 
-> [!TIP]
-> Vercel Remote Cache is free for all plans. Get started today at [vercel.com](https://vercel.com/signup?/signup?utm_source=remote-cache-sdk&utm_campaign=free_remote_cache).
+## Development
 
-Turborepo can use a technique known as [Remote Caching](https://turborepo.com/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
+Built with a modern monorepo setup:
 
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup?utm_source=turborepo-examples), then enter the following commands:
+- **Turborepo** - Intelligent build system with caching
+- **Bun** - Fast package manager and runtime
+- **Rspack** - Lightning-fast bundler for production builds
+- **Biome** - Fast linting and formatting
 
-```
-cd my-turborepo
+```bash
+# Install dependencies
+bun install
 
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo login
+# Build all packages
+bun run build
 
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo login
-yarn exec turbo login
-pnpm exec turbo login
-```
-
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
-
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
-
-```
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo link
-
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo link
-yarn exec turbo link
-pnpm exec turbo link
+# Run all storybooks
+bun storybook
 ```
 
-## Useful Links
+## Creating Custom Themes
 
-Learn more about the power of Turborepo:
+Use the theme builder to create your own themes:
 
-- [Tasks](https://turborepo.com/docs/crafting-your-repository/running-tasks)
-- [Caching](https://turborepo.com/docs/crafting-your-repository/caching)
-- [Remote Caching](https://turborepo.com/docs/core-concepts/remote-caching)
-- [Filtering](https://turborepo.com/docs/crafting-your-repository/running-tasks#using-filters)
-- [Configuration Options](https://turborepo.com/docs/reference/configuration)
-- [CLI Usage](https://turborepo.com/docs/reference/command-line-reference)
+```typescript
+import { createTheme } from '@avatune/theme-builder'
+import type { ReactAvatarItem } from '@avatune/types'
+
+const myTheme = createTheme()
+  .withStyle({ size: 500, borderRadius: '100%' })
+  .addColors('hair', ['#000000', '#8B4513'])
+  .addColors('body', ['#FF0000', '#00FF00'])
+  .toFramework<ReactAvatarItem>()
+  .withComponents('hair', {
+    short: { Component: ShortHair },
+    long: { Component: LongHair },
+  })
+  .build()
+```
+
+## License
+
+See [LICENSE.md](LICENSE.md) for license information.
+
+## Credits
+
+Design assets are sourced from community creators. See individual theme packages for license and attribution.

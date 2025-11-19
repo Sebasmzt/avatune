@@ -96,12 +96,20 @@ You can override specific avatar parts:
 
 This theme uses assets from the [`@avatune/kawaii-design-assets`](../packages/kawaii-design-assets) package.
 
-## Credits & License
+## License
+
+This theme package is licensed under MIT (see [LICENSE.md](../../LICENSE.md)).
+
+The design assets used in this theme have their own license and attribution:
 
 This project uses avatar design assets licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
 
 Original designs by [Yan Liu](https://www.figma.com/community/file/973666076795769237).
 Modifications were made to adapt them for composable SVG avatars.
+
+For full details, see:
+- [CREDITS.md](../packages/kawaii-design-assets/CREDITS.md) - Asset attribution
+- Asset package license in [`@avatune/kawaii-design-assets`](../packages/kawaii-design-assets)
 
 ## Related Packages
 

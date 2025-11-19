@@ -125,4 +125,4 @@ Predicts skin tone from an image tensor.
 
 ## License
 
-See monorepo root for license information.
+See [LICENSE.md](LICENSE.md) for license information.

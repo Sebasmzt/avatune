@@ -26,5 +26,6 @@
     "@types/node": "^22.18.12",
     "typescript": "^5.9.3",
     "@avatune/typescript-config": "workspace:*"
-  }
+  },
+  "license": "MIT"
 }

@@ -34,5 +34,6 @@
   "peerDependencies": {
     "@rsbuild/core": ">=1.0.0",
     "svelte": ">=5.0.0"
-  }
+  },
+  "license": "MIT"
 }

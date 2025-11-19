@@ -96,7 +96,11 @@ You can override specific avatar parts:
 
 This theme uses assets from the [`@avatune/flat-design-assets`](../packages/flat-design-assets) package.
 
+## License
 
+This theme package is licensed under MIT (see [LICENSE.md](../../LICENSE.md)).
+
+The design assets used in this theme are separately licensed. See the asset package for details.
 
 ## Related Packages
 

@@ -7,9 +7,7 @@
     "lint": "biome lint --write",
     "format": "biome format --write",
     "check-types": "turbo run check-types",
-    "storybook": "turbo run storybook --filter=@avatune/predictor-storybook --filter=@avatune/react-storybook --filter=@avatune/vue-storybook --filter=@avatune/svelte-storybook --filter=@avatune/vanilla-storybook --filter=@avatune/storybook-root",
-    "generate:stories": "bun ./scripts/generate-stories.ts",
-    "generate:theme-readme": "bun ./scripts/generate-assets-theme-readme.ts"
+    "storybook": "turbo run storybook --filter=@avatune/predictor-storybook --filter=@avatune/react-storybook --filter=@avatune/vue-storybook --filter=@avatune/svelte-storybook --filter=@avatune/vanilla-storybook --filter=@avatune/storybook-root"
   },
   "devDependencies": {
     "@biomejs/biome": "^2.2.3",

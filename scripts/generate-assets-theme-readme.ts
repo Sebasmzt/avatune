@@ -217,7 +217,11 @@ You can override specific avatar parts:
 
 This theme uses assets from the [\`@avatune/${assetsPackageName}\`](../packages/${assetsPackageName}) package.
 
-${hasCredits ? `## Credits & License\n\n${creditsContent}` : ''}
+## License
+
+This theme package is licensed under MIT (see [LICENSE.md](../../LICENSE.md)).
+
+${hasCredits ? `The design assets used in this theme have their own license and attribution:\n\n${creditsContent}\n\nFor full details, see:\n- [CREDITS.md](../packages/${assetsPackageName}/CREDITS.md) - Asset attribution\n- Asset package license in [\`@avatune/${assetsPackageName}\`](../packages/${assetsPackageName})` : 'The design assets used in this theme are separately licensed. See the asset package for details.'}
 
 ## Related Packages
 
