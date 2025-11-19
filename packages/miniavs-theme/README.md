@@ -1,11 +1,11 @@
-# @avatune/flat-design-theme
+# @avatune/miniavs-theme
 
-Avatar theme for Avatune using flat design design assets.
+Avatar theme for Avatune using miniavs design assets.
 
 ## Installation
 
 ```bash
-npm install @avatune/flat-design-theme
+npm install @avatune/miniavs-theme
 ```
 
 ## Usage
@@ -16,7 +16,7 @@ This theme is available for multiple frameworks: React, Vue, Svelte, and Vanilla
 
 ```tsx
 import { Avatar } from '@avatune/react'
-import theme from '@avatune/flat-design-theme/react'
+import theme from '@avatune/miniavs-theme/react'
 
 function App() {
   return (
@@ -34,7 +34,7 @@ function App() {
 ```vue
 <script setup lang="ts">
 import { Avatar } from '@avatune/vue'
-import theme from '@avatune/flat-design-theme/vue'
+import theme from '@avatune/miniavs-theme/vue'
 </script>
 
 <template>
@@ -51,7 +51,7 @@ import theme from '@avatune/flat-design-theme/vue'
 ```svelte
 <script lang="ts">
   import { Avatar } from '@avatune/svelte'
-  import theme from '@avatune/flat-design-theme/svelte'
+  import theme from '@avatune/miniavs-theme/svelte'
 </script>
 
 <Avatar
@@ -65,7 +65,7 @@ import theme from '@avatune/flat-design-theme/vue'
 
 ```typescript
 import { avatar } from '@avatune/vanilla'
-import theme from '@avatune/flat-design-theme/vanilla'
+import theme from '@avatune/miniavs-theme/vanilla'
 
 const container = document.getElementById('avatar-container')
 const svg = avatar({
@@ -85,22 +85,27 @@ You can override specific avatar parts:
 <Avatar
   theme={theme}
   size={300}
-  hair="bobRounded"          // Choose specific hair style
+  hair="baldness"          // Choose specific hair style
   hairColor="#FF5733"    // Custom hair color
-  body="shirt"     // Choose specific clothing
+  body="standard"     // Choose specific clothing
   bodyColor="#3498DB"    // Custom clothing color
 />
 ```
 
 ## Design Assets
 
-This theme uses assets from the [`@avatune/flat-design-assets`](../packages/flat-design-assets) package.
+This theme uses assets from the [`@avatune/miniavs-assets`](../packages/miniavs-assets) package.
 
+## Credits & License
 
+This project uses avatar design assets licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
+
+Original designs by [Webpixels](https://www.figma.com/community/file/923211396597067458/miniavs-free-avatar-creator).
+Modifications were made to adapt them for composable SVG avatars.
 
 ## Related Packages
 
-- [`@avatune/flat-design-assets`](../packages/flat-design-assets) - SVG assets used by this theme
+- [`@avatune/miniavs-assets`](../packages/miniavs-assets) - SVG assets used by this theme
 - [`@avatune/react`](../packages/react) - React avatar renderer
 - [`@avatune/vue`](../packages/vue) - Vue avatar renderer
 - [`@avatune/svelte`](../packages/svelte) - Svelte avatar renderer
