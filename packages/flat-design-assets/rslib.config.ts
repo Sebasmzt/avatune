@@ -24,7 +24,9 @@ export default defineConfig({
       dts: true,
     },
   ],
-
+  output: {
+    minify: true,
+  },
   source: {
     entry: {
       react: './src/react.ts',
@@ -67,6 +69,7 @@ ${variables.exports};
     pluginSvelte(),
     pluginReact(),
     pluginRawSvg({
+      svgo: true,
       imports: colordImport,
       replaceAttrValues: getReplaceAttrValues('color'),
     }),

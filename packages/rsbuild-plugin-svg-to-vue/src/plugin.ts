@@ -19,16 +19,16 @@ export type PluginOptions = {
 
 const SVG_REGEX = /\.svg$/
 
-const getDefaultSvgoConfig = (): SvgoConfig => ({
-  plugins: [
-    {
-      name: 'preset-default',
-      params: { overrides: { removeViewBox: false } },
-      fn: () => {},
-    },
-    'prefixIds',
-  ],
-})
+const getDefaultSvgoConfig = (): SvgoConfig =>
+  ({
+    plugins: [
+      {
+        name: 'preset-default',
+        params: { overrides: {} },
+      },
+      'prefixIds',
+    ],
+  }) as SvgoConfig
 
 export const PLUGIN_NAME = 'avatune:svg-to-vue'
 

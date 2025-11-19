@@ -40,28 +40,23 @@ import mouthStandard from './svg/mouth/standard.svg?raw'
 import mouthToothless from './svg/mouth/toothless.svg?raw'
 
 export {
-// Body
+  // Body
   bodyGolf,
   bodyStandard,
-
-// Eyes
+  // Eyes
   eyesConfident,
   eyesHappy,
   eyesStandard,
-
-// FaceDetails
+  // FaceDetails
   faceDetailsBlushes,
-
-// FaceHair
+  // FaceHair
   faceHairFreddy,
   faceHairHorshoe,
   faceHairPencilThin,
   faceHairPencilThinBeard,
-
-// Glasses
+  // Glasses
   glassesGlasses,
-
-// Hair
+  // Hair
   hairBaldness,
   hairClassic1,
   hairClassic2,
@@ -71,13 +66,11 @@ export {
   hairPonyTail,
   hairSlaughter,
   hairStylish,
-
-// Head
+  // Head
   headStandard,
   headThin,
   headWide,
-
-// Mouth
+  // Mouth
   mouthStandard,
   mouthToothless,
 }

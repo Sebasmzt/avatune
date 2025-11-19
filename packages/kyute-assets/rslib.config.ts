@@ -8,7 +8,7 @@ import { pluginVue } from '@rsbuild/plugin-vue'
 import { defineConfig } from '@rslib/core'
 
 const colordImport = "import { colord } from 'colord';"
-const getReplaceAttrValues = (colorPropName = 'color') => ({})
+const getReplaceAttrValues = (_colorPropName = 'color') => ({})
 
 export default defineConfig({
   lib: [
@@ -18,7 +18,9 @@ export default defineConfig({
       dts: true,
     },
   ],
-
+  output: {
+    minify: true,
+  },
   source: {
     entry: {
       react: './src/react.ts',
@@ -57,6 +59,7 @@ ${variables.exports};
     pluginSvelte(),
     pluginReact(),
     pluginRawSvg({
+      svgo: true,
       imports: colordImport,
       replaceAttrValues: getReplaceAttrValues('color'),
     }),

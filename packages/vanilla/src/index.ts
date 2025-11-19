@@ -7,7 +7,7 @@ import type {
 } from '@avatune/types'
 import { selectItems, themeStyleToStyleProp } from '@avatune/utils'
 
-interface AvatarArgs<T extends VanillaTheme = VanillaTheme>
+export interface AvatarArgs<T extends VanillaTheme = VanillaTheme>
   extends AvatarConfig<VanillaAvatarItem, T> {
   theme: T
   size?: number

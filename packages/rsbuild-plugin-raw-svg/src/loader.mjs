@@ -1,3 +1,5 @@
+import { optimize as optimizeSvg } from 'svgo'
+
 /**
  * Loader for raw SVG files that transforms placeholders at build time
  * Converts {expression} syntax to ${expression} for template literal evaluation
@@ -8,6 +10,31 @@ export default function loader(source) {
 
   const options = this.getOptions ? this.getOptions() : {}
 
+  let result = source
+
+  // Apply SVGO optimization if enabled (default: true)
+  if (options.svgo !== false) {
+    try {
+      const svgoConfig = options.svgoConfig || {
+        plugins: [
+          {
+            name: 'preset-default',
+            params: {
+              overrides: {},
+            },
+          },
+        ],
+      }
+      const res = optimizeSvg(result, {
+        ...svgoConfig,
+        path: this.resourcePath || '',
+      })
+      if (res?.data) result = res.data
+    } catch (_e) {
+      // Ignore SVGO errors - preserve original SVG
+    }
+  }
+
   // Get the placeholder mappings
   const replacements = options.replaceAttrValues || {}
 
@@ -15,8 +42,6 @@ export default function loader(source) {
   const sortedKeys = Object.keys(replacements).sort(
     (a, b) => b.length - a.length,
   )
-
-  let result = source
 
   for (const key of sortedKeys) {
     const value = replacements[key]

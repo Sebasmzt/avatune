@@ -61,7 +61,7 @@ import NeckStandard from './svg/neck/standard.svg?svelte'
 import NosesStandard from './svg/noses/standard.svg?svelte'
 
 export {
-// Body
+  // Body
   BodyBlouse,
   BodyFlowerCardigan,
   BodySimpleCardigan,
@@ -73,53 +73,41 @@ export {
   BodyTeeButtoned,
   BodyTeePocket,
   BodyTeeRound,
-
-// Ears
+  // Ears
   EarsStandard,
-
-// Eyes
+  // Eyes
   EyesStandard,
-
-// FaceDetails
+  // FaceDetails
   FaceDetailsBlushes,
-
-// FaceHair
+  // FaceHair
   FaceHairBigBeard,
   FaceHairChevronMustache,
   FaceHairMustache,
-
-// Forelock
+  // Forelock
   ForelockBubble,
   ForelockCurve,
   ForelockShort,
   ForelockSplit,
   ForelockStraight,
   ForelockUnderCut,
-
-// Glasses
+  // Glasses
   GlassesGlass,
-
-// Hair
+  // Hair
   HairBraids,
   HairHijab,
   HairMedium,
   HairPuff,
   HairStraightLong,
   HairStraightMedium,
-
-// Hats
+  // Hats
   HatsBeanie,
   HatsHat,
-
-// Head
+  // Head
   HeadStandard,
-
-// Mouth
+  // Mouth
   MouthSmile,
-
-// Neck
+  // Neck
   NeckStandard,
-
-// Noses
+  // Noses
   NosesStandard,
 }

@@ -14,7 +14,7 @@ const applyReplacements = (svg, replacements = {}) => {
   )
 
   for (const key of sortedKeys) {
-    let value = replacements[key]
+    const value = replacements[key]
 
     // For Vue, we need to convert attribute values to v-bind syntax
     // Replace fill="value" with :fill="expression"
@@ -42,10 +42,22 @@ const applyReplacements = (svg, replacements = {}) => {
 const transformSvg = callbackify(async (contents, options = {}, state = {}) => {
   let svg = String(contents)
   const resourcePath = state.filePath || state.filename || ''
+
+  // Apply SVGO optimization FIRST
   if (options.svgo !== false) {
     try {
+      const svgoConfig = options.svgoConfig || {
+        plugins: [
+          {
+            name: 'preset-default',
+            params: {
+              overrides: {},
+            },
+          },
+        ],
+      }
       const res = optimizeSvg(svg, {
-        ...(options.svgoConfig || {}),
+        ...svgoConfig,
         path: resourcePath,
       })
       if (res?.data) svg = res.data
@@ -55,7 +67,7 @@ const transformSvg = callbackify(async (contents, options = {}, state = {}) => {
     }
   }
 
-  // Apply color attribute replacements if provided
+  // Apply color attribute replacements AFTER SVGO
   if (options.replaceAttrValues) {
     svg = applyReplacements(svg, options.replaceAttrValues)
   }

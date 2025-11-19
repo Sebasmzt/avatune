@@ -39,4 +39,3 @@ declare module '*.svg?vue' {
   const component: DefineComponent<SvgComponentProps>
   export default component
 }
-

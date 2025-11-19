@@ -45,38 +45,32 @@ import NosesDots from './svg/noses/dots.svg?react'
 import NosesHalfOval from './svg/noses/halfOval.svg?react'
 
 export {
-// Body
+  // Body
   BodyShirt,
   BodySweater,
   BodyTshirt,
   BodyTurtleneck,
-
-// Ears
+  // Ears
   EarsStandard,
-
-// Eyebrows
+  // Eyebrows
   EyebrowsAngry,
   EyebrowsSmall,
   EyebrowsStandard,
-
-// Eyes
+  // Eyes
   EyesBoring,
   EyesDots,
   EyesOpenCircle,
   EyesOpenRounded,
-
-// Hair
+  // Hair
   HairBobRounded,
   HairBobStraight,
   HairCupCurly,
   HairLong,
   HairMedium,
   HairShort,
-
-// Head
+  // Head
   HeadOval,
-
-// Mouth
+  // Mouth
   MouthBigSmile,
   MouthFlat,
   MouthFrown,
@@ -84,8 +78,7 @@ export {
   MouthLaugh,
   MouthNervous,
   MouthSmile,
-
-// Noses
+  // Noses
   NosesBig,
   NosesCurve,
   NosesDots,

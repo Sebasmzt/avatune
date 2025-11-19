@@ -40,28 +40,23 @@ import MouthStandard from './svg/mouth/standard.svg?svelte'
 import MouthToothless from './svg/mouth/toothless.svg?svelte'
 
 export {
-// Body
+  // Body
   BodyGolf,
   BodyStandard,
-
-// Eyes
+  // Eyes
   EyesConfident,
   EyesHappy,
   EyesStandard,
-
-// FaceDetails
+  // FaceDetails
   FaceDetailsBlushes,
-
-// FaceHair
+  // FaceHair
   FaceHairFreddy,
   FaceHairHorshoe,
   FaceHairPencilThin,
   FaceHairPencilThinBeard,
-
-// Glasses
+  // Glasses
   GlassesGlasses,
-
-// Hair
+  // Hair
   HairBaldness,
   HairClassic1,
   HairClassic2,
@@ -71,13 +66,11 @@ export {
   HairPonyTail,
   HairSlaughter,
   HairStylish,
-
-// Head
+  // Head
   HeadStandard,
   HeadThin,
   HeadWide,
-
-// Mouth
+  // Mouth
   MouthStandard,
   MouthToothless,
 }
