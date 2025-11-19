@@ -39,37 +39,47 @@ export default createTheme<BaseAvatarItem>()
   .mapPrediction('skinTone', 'dark', [SkinTones.Dark])
   .mapPrediction('skinTone', 'medium', [SkinTones.Medium])
   .mapPrediction('skinTone', 'light', [SkinTones.Light, SkinTones.VeryLight])
-  .addColor('background', BackgroundColors.MeadowGreen)
-  .addColor('background', BackgroundColors.SkyBlue)
-  .addColor('background', BackgroundColors.CoralPink)
-  .addColor('background', BackgroundColors.LavenderPurple)
-  .addColor('background', BackgroundColors.PeachOrange)
-  .addColor('background', BackgroundColors.MintGreen)
-  .addColor('hair', HairColors.JetBlack)
-  .addColor('hair', HairColors.DeepBrown)
-  .addColor('hair', HairColors.ChestnutBrown)
-  .addColor('hair', HairColors.ForestGreen)
-  .addColor('hair', HairColors.DarkNavy)
-  .addColor('hair', HairColors.GoldenBlond)
-  .addColor('head', SkinTones.Dark)
-  .addColor('head', SkinTones.Medium)
-  .addColor('head', SkinTones.Light)
-  .addColor('head', SkinTones.VeryLight)
-  .addColor('body', ClothingColors.BrightPink)
-  .addColor('body', ClothingColors.DeepMaroon)
-  .addColor('body', ClothingColors.WarmBrown)
-  .addColor('body', ClothingColors.GoldenYellow)
-  .addColor('ears', SkinTones.Light)
-  .addColor('ears', SkinTones.VeryLight)
-  .addColor('eyebrows', HairColors.ChestnutBrown)
-  .addColor('eyebrows', HairColors.DeepBrown)
-  .addColor('eyebrows', HairColors.JetBlack)
-  .addColor('eyes', AccentColors.EyeWhite)
-  .addColor('eyes', AccentColors.Black)
-  .addColor('mouth', AccentColors.LipPink)
-  .addColor('mouth', AccentColors.BlushPink)
-  .addColor('noses', AccentColors.LipPink)
-  .addColor('noses', AccentColors.BlushPink)
+  .addColors('background', [
+    BackgroundColors.MeadowGreen,
+    BackgroundColors.SkyBlue,
+    BackgroundColors.CoralPink,
+    BackgroundColors.LavenderPurple,
+    BackgroundColors.PeachOrange,
+    BackgroundColors.MintGreen,
+  ])
+  .addColors('hair', [
+    HairColors.JetBlack,
+    HairColors.DeepBrown,
+    HairColors.ChestnutBrown,
+    HairColors.ForestGreen,
+    HairColors.DarkNavy,
+    HairColors.GoldenBlond,
+  ])
+  .addColors('head', [
+    SkinTones.Dark,
+    SkinTones.Medium,
+    SkinTones.Light,
+    SkinTones.VeryLight,
+  ])
+  .addColors('body', [
+    ClothingColors.BrightPink,
+    ClothingColors.DeepMaroon,
+    ClothingColors.WarmBrown,
+    ClothingColors.GoldenYellow,
+  ])
+  .addColors('ears', [SkinTones.Light, SkinTones.VeryLight])
+  .addColors('eyebrows', [
+    HairColors.ChestnutBrown,
+    HairColors.DeepBrown,
+    HairColors.JetBlack,
+  ])
+  .addColors('eyes', [AccentColors.Black, AccentColors.EyeWhite])
+  .addColors('mouth', [AccentColors.LipPink, AccentColors.BlushPink])
+  .addColors('noses', [
+    AccentColors.LipPink,
+    AccentColors.BlushPink,
+    AccentColors.LipPink,
+  ])
   // Body
   .addItem('body', 'shirt', {
     position: fromHeadOffset(-percentage('0%'), percentage('49.63%')),

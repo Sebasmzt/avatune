@@ -32,28 +32,26 @@ export default createTheme<BaseAvatarItem>()
   .mapPrediction('skinTone', 'dark', [SkinTones.Dark])
   .mapPrediction('skinTone', 'medium', [SkinTones.Yellow])
   .mapPrediction('skinTone', 'light', [SkinTones.White])
-  .addColor('background', BackgroundColors.Purple)
-  .addColor('background', BackgroundColors.LightBlue)
-  .addColor('background', BackgroundColors.Grey)
-  .addColor('background', BackgroundColors.Rose)
-  .addColor('background', BackgroundColors.Red)
-  .addColor('background', BackgroundColors.Purpose)
-  .addColor('hair', HairColors.Black)
-  .addColor('hair', HairColors.Red)
-  .addColor('hair', HairColors.Brown)
-  .addColor('head', SkinTones.Dark)
-  .addColor('head', SkinTones.Yellow)
-  .addColor('head', SkinTones.White)
-  .addColor('body', ClothingColors.Orange)
-  .addColor('body', ClothingColors.Pink)
-  .addColor('body', ClothingColors.Blue)
-  .addColor('faceHair', HairColors.Black)
-  .addColor('faceHair', HairColors.Brown)
-  .addColor('faceHair', HairColors.Red)
-  .addColor('faceDetails', AccentColors.BlushPink)
-  .addColor('eyes', AccentColors.EyeBlack)
-  .addColor('glasses', AccentColors.AccessoryBlack)
-  .addColor('mouth', AccentColors.MouthPink)
+  .addColors('background', [
+    BackgroundColors.Purple,
+    BackgroundColors.LightBlue,
+    BackgroundColors.Grey,
+    BackgroundColors.Rose,
+    BackgroundColors.Red,
+    BackgroundColors.Purpose,
+  ])
+  .addColors('hair', [HairColors.Black, HairColors.Red, HairColors.Brown])
+  .addColors('head', [SkinTones.Dark])
+  .addColors('body', [
+    ClothingColors.Orange,
+    ClothingColors.Pink,
+    ClothingColors.Blue,
+  ])
+  .addColors('faceHair', [HairColors.Black, HairColors.Brown, HairColors.Red])
+  .addColors('faceDetails', [AccentColors.BlushPink])
+  .addColors('eyes', [AccentColors.EyeBlack])
+  .addColors('glasses', [AccentColors.AccessoryBlack])
+  .addColors('mouth', [AccentColors.MouthPink])
   // Body
   .addItem('body', 'standard', {
     position: fromHeadOffset(percentage('0%'), percentage('0%')),
