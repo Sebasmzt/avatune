@@ -8,12 +8,16 @@ export default defineConfig({
       dts: true,
     },
   ],
+  output: {
+    minify: true,
+  },
   source: {
     entry: {
       react: './src/react.ts',
       svelte: './src/svelte.ts',
       vue: './src/vue.ts',
       vanilla: './src/vanilla.ts',
+      'react-native': './src/react-native.ts',
     },
   },
 })
