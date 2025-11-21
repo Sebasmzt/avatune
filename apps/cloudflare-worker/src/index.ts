@@ -59,8 +59,81 @@ function parseAvatarConfig(
   return config
 }
 
+interface Env {
+  RATE_LIMIT: KVNamespace
+}
+
+const RATE_LIMITS = {
+  PER_HOUR: 100,
+  PER_DAY: 1000,
+} as const
+
+async function checkRateLimit(
+  kv: KVNamespace,
+  clientId: string,
+): Promise<{ allowed: boolean; reason?: string }> {
+  const now = Date.now()
+  const hourKey = `hour:${clientId}:${Math.floor(now / (60 * 60 * 1000))}`
+  const dayKey = `day:${clientId}:${Math.floor(now / (24 * 60 * 60 * 1000))}`
+
+  const [hourCount, dayCount] = await Promise.all([
+    kv.get(hourKey),
+    kv.get(dayKey),
+  ])
+
+  const hourRequests = Number.parseInt(hourCount || '0', 10)
+  const dayRequests = Number.parseInt(dayCount || '0', 10)
+
+  if (hourRequests >= RATE_LIMITS.PER_HOUR) {
+    return {
+      allowed: false,
+      reason: `Hourly limit exceeded (${RATE_LIMITS.PER_HOUR} requests/hour)`,
+    }
+  }
+
+  if (dayRequests >= RATE_LIMITS.PER_DAY) {
+    return {
+      allowed: false,
+      reason: `Daily limit exceeded (${RATE_LIMITS.PER_DAY} requests/day)`,
+    }
+  }
+
+  await Promise.all([
+    kv.put(hourKey, String(hourRequests + 1), { expirationTtl: 3600 }),
+    kv.put(dayKey, String(dayRequests + 1), { expirationTtl: 86400 }),
+  ])
+
+  return { allowed: true }
+}
+
+function getClientId(request: Request): string {
+  const ip = request.headers.get('CF-Connecting-IP')
+  const userAgent = request.headers.get('User-Agent') || ''
+  return `${ip}:${userAgent.slice(0, 50)}`
+}
+
 export default {
-  async fetch(request: Request): Promise<Response> {
+  async fetch(request: Request, env: Env): Promise<Response> {
+    const clientId = getClientId(request)
+    const rateLimitResult = await checkRateLimit(env.RATE_LIMIT, clientId)
+
+    if (!rateLimitResult.allowed) {
+      return new Response(
+        JSON.stringify({
+          error: 'Rate limit exceeded',
+          message: rateLimitResult.reason,
+        }),
+        {
+          status: 429,
+          headers: {
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*',
+            'Retry-After': '3600',
+          },
+        },
+      )
+    }
+
     const url = new URL(request.url)
 
     if (url.pathname === '/') {

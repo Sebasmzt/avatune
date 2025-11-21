@@ -1,6 +1,14 @@
 interface Env {
-  // Add bindings here when needed
-  [key: string]: unknown
+  RATE_LIMIT: KVNamespace
+}
+
+interface KVNamespace {
+  get(key: string): Promise<string | null>
+  put(
+    key: string,
+    value: string,
+    options?: { expirationTtl?: number },
+  ): Promise<void>
 }
 
 interface ExecutionContext {
