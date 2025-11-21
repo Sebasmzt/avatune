@@ -103,6 +103,7 @@ export default createTheme<BaseAvatarItem>()
     position: fromHeadOffset(percentage('0%'), percentage('0%')),
     layer: 35,
   })
+  .setOptional('glasses')
   // Hair
   .addItem('hair', 'baldness', {
     position: fromHeadOffset(percentage('0%'), percentage('0%')),

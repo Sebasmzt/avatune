@@ -130,7 +130,7 @@ export default createTheme<BaseAvatarItem>()
     layer: 30,
   })
   .addItem('eyebrows', 'standard', {
-    position: fromHeadOffset(percentage('8.54%'), percentage('20.73%')),
+    position: fromHeadOffset(percentage('9.5%'), percentage('20.73%')),
     layer: 30,
   })
   // Eyes

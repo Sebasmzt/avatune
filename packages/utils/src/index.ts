@@ -35,8 +35,9 @@ export function seededRandom(seed: string | number): () => number {
 /**
  * Pick random element from array using seeded random
  */
-function pickRandom<T>(items: T[], random: () => number): T | undefined {
+function pickRandom<T>(items: T[], random?: () => number): T | undefined {
   if (items.length === 0) return undefined
+  if (!random) return items[0]
   const index = Math.floor(random() * items.length)
   return items[index]
 }
@@ -204,7 +205,7 @@ function selectIdentifier<I extends AvatarItem, T extends Theme<I>>(
   config: AvatarConfig<I, T>,
   predictions: Predictions | undefined,
   theme: T,
-  random: () => number,
+  random?: () => number,
 ): string | undefined {
   return selectWithPriority(
     // Priority 1: Explicit from config
@@ -236,8 +237,8 @@ export function selectColorValue<I extends AvatarItem, T extends Theme<I>>(
   config: AvatarConfig<I, T>,
   predictions: Predictions | undefined,
   theme: T,
-  random: () => number,
-  selectedColors: Partial<Record<AvatarPartCategory, string>>,
+  colors: Partial<Record<AvatarPartCategory, string>>,
+  random?: () => number,
 ): string | undefined {
   return selectWithPriority(
     // Priority 1: Explicit from config
@@ -245,7 +246,7 @@ export function selectColorValue<I extends AvatarItem, T extends Theme<I>>(
     // Priority 2: Connected color
     () => {
       const sourceCategory = theme.connectedColors?.[category]
-      return sourceCategory ? selectedColors[sourceCategory] : undefined
+      return sourceCategory ? colors[sourceCategory] : undefined
     },
     // Priority 3: Predictor-based
     () => {
@@ -277,8 +278,7 @@ export function selectItems<I extends AvatarItem, T extends Theme<I>>(
   style: T['style']
   seed?: string | number
 } {
-  const random =
-    config.seed !== undefined ? seededRandom(config.seed) : Math.random
+  const random = seededRandom(config.seed ?? 'avatune')
 
   const selected: Partial<Record<AvatarPartCategory, I>> = {}
   const identifiers: Partial<Record<AvatarPartCategory, string>> = {}
@@ -326,8 +326,8 @@ export function selectItems<I extends AvatarItem, T extends Theme<I>>(
       config,
       predictions,
       theme,
-      random,
       colors,
+      random,
     )
 
     if (color) {
