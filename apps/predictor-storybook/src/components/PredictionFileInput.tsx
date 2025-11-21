@@ -30,6 +30,7 @@ export function PredictionFileInput({
 
   useEffect(() => {
     const initLibrary = async () => {
+      console.log('initLibrary')
       if (initializingRef.current) return
       initializingRef.current = true
 
@@ -38,6 +39,11 @@ export function PredictionFileInput({
         const hairColor = createHairColorPredictor('/models/hair_color')
         const skinTone = createSkinTonePredictor('/models/skin_tone')
         const hairLength = createHairLengthPredictor('/models/hair_length')
+        await Promise.all([
+          hairColor.loadModel(),
+          skinTone.loadModel(),
+          hairLength.loadModel(),
+        ])
         predictorsRef.current = { hairColor, hairLength, skinTone }
         setInitialized(true)
       } catch (err) {
