@@ -8,6 +8,7 @@
     "start": "react-native start"
   },
   "dependencies": {
+    "@avatune/kyute-theme": "workspace:*",
     "@avatune/nevmstas-theme": "workspace:*",
     "@avatune/yanliu-theme": "workspace:*",
     "@avatune/micah-theme": "workspace:*",

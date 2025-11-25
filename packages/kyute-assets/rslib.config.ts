@@ -8,7 +8,17 @@ import { pluginVue } from '@rsbuild/plugin-vue'
 import { defineConfig } from '@rslib/core'
 
 const colordImport = "import { colord } from 'colord';"
-const getReplaceAttrValues = (_colorPropName = 'color') => ({})
+const getReplaceAttrValues = (colorPropName = 'color') => ({
+  '#9A9A9A': `{${colorPropName}}`,
+  '#334B71': `{${colorPropName}}`,
+  '#537C1E': `{${colorPropName}}`,
+  '#901A3E': `{${colorPropName}}`,
+  '#C8D3E6': `colord({${colorPropName}}).mix('#FFFFFF', 0.62).toHex()`,
+  '#4D8FAB': `{${colorPropName}}`,
+  '#B78276': `{${colorPropName}}`,
+  '#CF7621': `{${colorPropName}}`,
+  '#9C6458': `{${colorPropName}}`,
+})
 
 export default defineConfig({
   lib: [

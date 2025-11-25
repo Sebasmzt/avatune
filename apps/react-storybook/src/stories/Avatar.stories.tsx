@@ -1,10 +1,11 @@
+import kyuteTheme from '@avatune/kyute-theme/react'
 import micahTheme from '@avatune/micah-theme/react'
 import miniavsTheme from '@avatune/miniavs-theme/react'
 import nevmstasTheme from '@avatune/nevmstas-theme/react'
+import yanliuTheme from '@avatune/yanliu-theme/react'
 import type { AvatarProps } from '@avatune/react'
 import { Avatar } from '@avatune/react'
 import type { ReactAvatarItem, Theme } from '@avatune/types'
-import yanliuTheme from '@avatune/yanliu-theme/react'
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
 const meta = {
@@ -21,10 +22,11 @@ type ExtractStoryArgs<T extends Theme<ReactAvatarItem>> = Omit<
   'theme'
 >
 
-type NevmstasArgs = ExtractStoryArgs<typeof nevmstasTheme>
-type YanliuArgs = ExtractStoryArgs<typeof yanliuTheme>
+type KyuteArgs = ExtractStoryArgs<typeof kyuteTheme>
 type MicahArgs = ExtractStoryArgs<typeof micahTheme>
 type MiniavsArgs = ExtractStoryArgs<typeof miniavsTheme>
+type NevmstasArgs = ExtractStoryArgs<typeof nevmstasTheme>
+type YanliuArgs = ExtractStoryArgs<typeof yanliuTheme>
 
 const getArgTypes = <T extends Theme<ReactAvatarItem>>(theme: T) => {
   type Args = ExtractStoryArgs<T>
@@ -33,12 +35,7 @@ const getArgTypes = <T extends Theme<ReactAvatarItem>>(theme: T) => {
   }
 
   for (const [category, items] of Object.entries(theme)) {
-    const excludeCategories = [
-      'style',
-      'predictorMappings',
-      'colorPalettes',
-      'connectedColors',
-    ]
+    const excludeCategories = ['style', 'predictorMappings', 'colorPalettes', 'connectedColors']
     if (excludeCategories.includes(category)) continue
 
     argTypes[`${category}Color`] = { control: { type: 'color' } }
@@ -51,17 +48,9 @@ const getArgTypes = <T extends Theme<ReactAvatarItem>>(theme: T) => {
   return argTypes as StoryObj<Args>['argTypes']
 }
 
-export const Nevmstas: StoryObj<NevmstasArgs> = {
-  argTypes: getArgTypes(nevmstasTheme),
-  render: (args) => <Avatar theme={nevmstasTheme} {...args} />,
-  args: {
-    size: 300,
-  },
-}
-
-export const Yanliu: StoryObj<YanliuArgs> = {
-  argTypes: getArgTypes(yanliuTheme),
-  render: (args) => <Avatar theme={yanliuTheme} {...args} />,
+export const Kyute: StoryObj<KyuteArgs> = {
+  argTypes: getArgTypes(kyuteTheme),
+  render: (args) => <Avatar theme={kyuteTheme} {...args} />,
   args: {
     size: 300,
   },
@@ -83,11 +72,28 @@ export const Miniavs: StoryObj<MiniavsArgs> = {
   },
 }
 
+export const Nevmstas: StoryObj<NevmstasArgs> = {
+  argTypes: getArgTypes(nevmstasTheme),
+  render: (args) => <Avatar theme={nevmstasTheme} {...args} />,
+  args: {
+    size: 300,
+  },
+}
+
+export const Yanliu: StoryObj<YanliuArgs> = {
+  argTypes: getArgTypes(yanliuTheme),
+  render: (args) => <Avatar theme={yanliuTheme} {...args} />,
+  args: {
+    size: 300,
+  },
+}
+
 const themes = {
-  Nevmstas: nevmstasTheme,
-  Yanliu: yanliuTheme,
-  Micah: micahTheme,
-  Miniavs: miniavsTheme,
+  'Kyute': kyuteTheme,
+  'Micah': micahTheme,
+  'Miniavs': miniavsTheme,
+  'Nevmstas': nevmstasTheme,
+  'Yanliu': yanliuTheme,
 } as const
 
 export const Seed: StoryObj<{

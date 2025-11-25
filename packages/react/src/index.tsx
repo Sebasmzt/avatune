@@ -10,7 +10,7 @@ import {
   parseBorderWidth,
   selectItems,
 } from '@avatune/utils'
-import diff from '@blazediff/object'
+import { diff } from '@blazediff/object'
 import { type CSSProperties, memo, useRef } from 'react'
 
 export type AvatarProps<T extends ReactTheme = ReactTheme> = AvatarConfig<
@@ -107,6 +107,7 @@ function AvatarComponent<T extends ReactTheme = ReactTheme>({
           return (
             <g
               key={category}
+              data-testid={`avatar-item-${category}-${item.layer}`}
               transform={`translate(${position.x}, ${position.y}) scale(${scaleFactor})`}
             >
               <Component color={color} />
@@ -137,5 +138,5 @@ function AvatarComponent<T extends ReactTheme = ReactTheme>({
  * Memoized Avatar component for optimal performance
  */
 export const Avatar = memo(AvatarComponent, (prevProps, nextProps) => {
-  return diff.default(prevProps, nextProps).length === 0
+  return diff(prevProps, nextProps).length === 0
 }) as typeof AvatarComponent

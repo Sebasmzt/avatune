@@ -45,7 +45,6 @@ import { HairShort, EyesBoring, MouthSmile } from '@avatune/kyute-assets/vue';
 | Preview | Filename |
 |---------|----------|
 | ![casual](./src/svg/body/casual.svg) | `casual` |
-| ![partyTshirt](./src/svg/body/partyTshirt.svg) | `partyTshirt` |
 | ![shirt](./src/svg/body/shirt.svg) | `shirt` |
 | ![tshirt](./src/svg/body/tshirt.svg) | `tshirt` |
 | ![turtleneck](./src/svg/body/turtleneck.svg) | `turtleneck` |
@@ -82,7 +81,6 @@ import { HairShort, EyesBoring, MouthSmile } from '@avatune/kyute-assets/vue';
 | Preview | Filename |
 |---------|----------|
 | ![blushes](./src/svg/faceDetails/blushes.svg) | `blushes` |
-| ![cheeks](./src/svg/faceDetails/cheeks.svg) | `cheeks` |
 | ![freckles](./src/svg/faceDetails/freckles.svg) | `freckles` |
 
 ### FaceHair
@@ -111,12 +109,10 @@ import { HairShort, EyesBoring, MouthSmile } from '@avatune/kyute-assets/vue';
 | ![curlyMedium](./src/svg/hair/curlyMedium.svg) | `curlyMedium` |
 | ![elvis](./src/svg/hair/elvis.svg) | `elvis` |
 | ![long](./src/svg/hair/long.svg) | `long` |
-| ![longForelock](./src/svg/hair/longForelock.svg) | `longForelock` |
 | ![longThick](./src/svg/hair/longThick.svg) | `longThick` |
 | ![longWavy](./src/svg/hair/longWavy.svg) | `longWavy` |
 | ![ponyTail](./src/svg/hair/ponyTail.svg) | `ponyTail` |
 | ![rapunzel](./src/svg/hair/rapunzel.svg) | `rapunzel` |
-| ![sharpForelock](./src/svg/hair/sharpForelock.svg) | `sharpForelock` |
 | ![short](./src/svg/hair/short.svg) | `short` |
 | ![stylish](./src/svg/hair/stylish.svg) | `stylish` |
 | ![thick](./src/svg/hair/thick.svg) | `thick` |

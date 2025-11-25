@@ -1,6 +1,5 @@
 // Body
 import BodyCasual from './svg/body/casual.svg?react'
-import BodyPartyTshirt from './svg/body/partyTshirt.svg?react'
 import BodyShirt from './svg/body/shirt.svg?react'
 import BodyTshirt from './svg/body/tshirt.svg?react'
 import BodyTurtleneck from './svg/body/turtleneck.svg?react'
@@ -25,7 +24,6 @@ import EyesStandard from './svg/eyes/standard.svg?react'
 
 // FaceDetails
 import FaceDetailsBlushes from './svg/faceDetails/blushes.svg?react'
-import FaceDetailsCheeks from './svg/faceDetails/cheeks.svg?react'
 import FaceDetailsFreckles from './svg/faceDetails/freckles.svg?react'
 
 // FaceHair
@@ -45,12 +43,10 @@ import HairCurly from './svg/hair/curly.svg?react'
 import HairCurlyMedium from './svg/hair/curlyMedium.svg?react'
 import HairElvis from './svg/hair/elvis.svg?react'
 import HairLong from './svg/hair/long.svg?react'
-import HairLongForelock from './svg/hair/longForelock.svg?react'
 import HairLongThick from './svg/hair/longThick.svg?react'
 import HairLongWavy from './svg/hair/longWavy.svg?react'
 import HairPonyTail from './svg/hair/ponyTail.svg?react'
 import HairRapunzel from './svg/hair/rapunzel.svg?react'
-import HairSharpForelock from './svg/hair/sharpForelock.svg?react'
 import HairShort from './svg/hair/short.svg?react'
 import HairStylish from './svg/hair/stylish.svg?react'
 import HairThick from './svg/hair/thick.svg?react'
@@ -72,59 +68,64 @@ import MouthSmirk from './svg/mouth/smirk.svg?react'
 import MouthWideOpen from './svg/mouth/wideOpen.svg?react'
 
 export {
-  // Body
+// Body
   BodyCasual,
-  BodyPartyTshirt,
   BodyShirt,
   BodyTshirt,
   BodyTurtleneck,
-  // Ears
+
+// Ears
   EarsStandard,
-  // Eyebrows
+
+// Eyebrows
   EyebrowsThick1,
   EyebrowsThick2,
   EyebrowsThickSad,
   EyebrowsThin,
   EyebrowsThinCurly,
   EyebrowsThinWide,
-  // Eyes
+
+// Eyes
   EyesBig,
   EyesHuge,
   EyesMedium,
   EyesOval,
   EyesStandard,
-  // FaceDetails
+
+// FaceDetails
   FaceDetailsBlushes,
-  FaceDetailsCheeks,
   FaceDetailsFreckles,
-  // FaceHair
+
+// FaceHair
   FaceHairBeard,
   FaceHairBigBeard,
   FaceHairMustache,
-  // Glasses
+
+// Glasses
   GlassesAviator,
   GlassesHarry,
   GlassesRound,
   GlassesStandard,
-  // Hair
+
+// Hair
   HairBob,
   HairCurly,
   HairCurlyMedium,
   HairElvis,
   HairLong,
-  HairLongForelock,
   HairLongThick,
   HairLongWavy,
   HairPonyTail,
   HairRapunzel,
-  HairSharpForelock,
   HairShort,
   HairStylish,
   HairThick,
   HairTopKnot,
-  // Head
+
+// Head
   HeadStandard,
-  // Mouth
+
+// Mouth
   MouthLips1,
   MouthLips2,
   MouthLipsSmile,
