@@ -1,0 +1,82 @@
+---
+title: "@avatune/vue"
+description: "Vue component for rendering avatars from themes."
+source: "packages/vue/README.md"
+---
+
+import InstallTabs from '../../../../components/docs/install-tabs.astro'
+
+> Source: `packages/vue/README.md`
+
+Vue component for rendering avatars from themes.
+
+## Installation
+
+<InstallTabs packages="@avatune/vue" />
+
+## Usage
+
+```vue
+<script setup>
+import { Avatar } from '@avatune/vue'
+import { nevmstasTheme } from '@avatune/nevmstas-theme/vue'
+</script>
+
+<template>
+  <Avatar
+    :theme="nevmstasTheme"
+    seed="user@example.com"
+    :size="200"
+  />
+</template>
+```
+
+## Props
+
+```ts
+{
+  theme: VueTheme            // Theme to use for rendering (required)
+  seed?: string              // Random seed for avatar generation
+  size?: number              // Avatar size in pixels (default: theme size)
+  class?: string             // CSS class for SVG container
+  style?: CSSProperties      // Inline styles for SVG container
+
+  // Part selection (string identifier)
+  body?: string
+  ears?: string
+  eyebrows?: string
+  eyes?: string
+  hair?: string
+  head?: string
+  mouth?: string
+  noses?: string
+
+  // Part colors (CSS color values)
+  bodyColor?: string
+  earsColor?: string
+  eyebrowsColor?: string
+  eyesColor?: string
+  hairColor?: string
+  headColor?: string
+  mouthColor?: string
+  nosesColor?: string
+}
+```
+
+## Examples
+
+Random avatar with seed:
+```vue
+<Avatar :theme="nevmstasTheme" seed="521411f1-fab6-4ed5-90bf-2863028bcae6" />
+```
+
+Specific parts with custom colors:
+```vue
+<Avatar
+  :theme="nevmstasTheme"
+  hair="long"
+  hair-color="#ff6b6b"
+  eyes="happy"
+  eyes-color="#4ecdc4"
+/>
+```
