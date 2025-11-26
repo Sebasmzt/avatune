@@ -30,7 +30,6 @@ export function PredictionFileInput({
 
   useEffect(() => {
     const initLibrary = async () => {
-      console.log('initLibrary')
       if (initializingRef.current) return
       initializingRef.current = true
 
@@ -106,7 +105,7 @@ export function PredictionFileInput({
       try {
         const [hairColor, skinTone, hairLength] = await Promise.all([
           predictorsRef.current.hairColor.predict(imageTensor),
-          predictorsRef.current.skinTone.predict(imageTensor),
+          predictorsRef.current.skinTone.predictFromImage(canvas),
           predictorsRef.current.hairLength.predict(imageTensor),
         ])
 
