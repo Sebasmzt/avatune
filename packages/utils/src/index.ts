@@ -43,7 +43,14 @@ function pickRandom<T>(items: T[], random?: () => number): T | undefined {
 }
 
 /**
+ * Weight for 'none' option when randomly selecting (66.7% chance)
+ * Non-none options share the remaining 33.3%
+ */
+const NONE_WEIGHT = 2 / 3
+
+/**
  * Select an item from a collection based on identifier
+ * When randomly selecting, 'none' has higher weight (~66.7%)
  */
 export function selectItem<I extends AvatarItem>(
   collection: AvatarItemCollection<I>,
@@ -60,17 +67,38 @@ export function selectItem<I extends AvatarItem>(
     return null
   }
 
-  // Pick random item (or first if no random function)
-  const index = random ? Math.floor(random() * candidates.length) : 0
-  const selected = candidates[index]
-
-  if (!selected) {
-    return null
+  // No random function - return first item
+  if (!random) {
+    const selected = candidates[0]
+    return selected ? { key: selected[0], item: selected[1] } : null
   }
 
-  const [key, item] = selected
+  // Check if 'none' exists in collection
+  const hasNone = 'none' in collection
+  const nonNoneCandidates = candidates.filter(([key]) => key !== 'none')
 
-  return { key, item }
+  // If no 'none' option, use uniform random
+  if (!hasNone || nonNoneCandidates.length === 0) {
+    const index = Math.floor(random() * candidates.length)
+    const selected = candidates[index]
+    return selected ? { key: selected[0], item: selected[1] } : null
+  }
+
+  // Weighted selection: 'none' gets NONE_WEIGHT, rest share (1 - NONE_WEIGHT)
+  const roll = random()
+  const noneItem = collection.none
+
+  if (roll < NONE_WEIGHT && noneItem) {
+    return { key: 'none', item: noneItem }
+  }
+
+  // Select from non-none candidates
+  const index = Math.floor(
+    ((roll - NONE_WEIGHT) / (1 - NONE_WEIGHT)) * nonNoneCandidates.length,
+  )
+  const selected = nonNoneCandidates[index]
+
+  return selected ? { key: selected[0], item: selected[1] } : null
 }
 
 /**
