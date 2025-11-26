@@ -60,6 +60,7 @@
         "@avatune/micah-theme": "workspace:*",
         "@avatune/miniavs-theme": "workspace:*",
         "@avatune/nevmstas-theme": "workspace:*",
+        "@avatune/pacovqzz-theme": "workspace:*",
         "@avatune/types": "workspace:*",
         "@avatune/vanilla": "workspace:*",
         "@avatune/yanliu-theme": "workspace:*",
@@ -906,10 +907,10 @@
     },
   },
   "overrides": {
-    "react": "19.1.0",
-    "react-dom": "19.1.0",
-    "react-native": "0.81.5",
     "ws": "^8.18.0",
+    "react": "19.1.0",
+    "react-native": "0.81.5",
+    "react-dom": "19.1.0",
   },
   "packages": {
     "@adobe/css-tools": ["@adobe/css-tools@4.4.4", "", {}, "sha512-Elp+iwUx5rN5+Y8xLt5/GRoG20WGoDCQ/1Fb+1LiGtvwbDavuSk0jhD/eZdckHAuzcDzccnkv+rEjyWfRx18gg=="],

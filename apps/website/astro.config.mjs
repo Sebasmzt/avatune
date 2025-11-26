@@ -26,7 +26,15 @@ function copyPredictorModels() {
     name: 'copy-predictor-models',
     buildStart() {
       for (const { name, pkg } of predictors) {
-        const srcDir = join(__dirname, '..', '..', 'packages', pkg, 'dist', 'model')
+        const srcDir = join(
+          __dirname,
+          '..',
+          '..',
+          'packages',
+          pkg,
+          'dist',
+          'model',
+        )
         const destDir = join(__dirname, 'public', 'models', name)
 
         if (!existsSync(srcDir)) {
@@ -101,6 +109,7 @@ export default defineConfig({
               slug: 'packages/micah-theme',
             },
             { label: 'Kyute', slug: 'packages/kyute-theme' },
+            { label: 'Pacovqzz', slug: 'packages/pacovqzz-theme' },
           ],
         },
         {

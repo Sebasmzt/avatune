@@ -1,6 +1,7 @@
 import micahTheme from '@avatune/micah-theme/vanilla'
 import miniavsTheme from '@avatune/miniavs-theme/vanilla'
 import nevmstasTheme from '@avatune/nevmstas-theme/vanilla'
+import pacovqzzTheme from '@avatune/pacovqzz-theme/vanilla'
 import type {
   AvatarConfig,
   VanillaAvatarItem,
@@ -14,6 +15,7 @@ const THEMES = {
   nevmstas: nevmstasTheme,
   miniavs: miniavsTheme,
   micah: micahTheme,
+  pacovqzz: pacovqzzTheme,
 } as const
 
 type ThemeName = keyof typeof THEMES
