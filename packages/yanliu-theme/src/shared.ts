@@ -10,15 +10,15 @@ import {
 } from './colors'
 
 const getHeadPosition = (size: number) => ({
-  x: size * percentage('32%'),
-  y: size * percentage('10%'),
+  x: size * percentage('25%'),
+  y: size * percentage('5%'),
 })
 
 const fromHeadOffset = fromHead(getHeadPosition)
 
 export default createTheme<BaseAvatarItem>()
   .withStyle({
-    size: 500,
+    size: 360,
     borderRadius: '100%',
   })
   .connectColors('head', ['ears', 'neck'])
@@ -61,162 +61,162 @@ export default createTheme<BaseAvatarItem>()
   .addColors('hats', [ClothingColors.Black])
   // Glasses
   .addItem('glasses', 'glass', {
-    position: fromHeadOffset(percentage('5.3%'), percentage('29%')),
+    position: fromHeadOffset(percentage('5.89%'), percentage('32.22%')),
     layer: 50,
   })
   .setOptional('glasses')
   // Hats
   .addItem('hats', 'beanie', {
-    position: fromHeadOffset(percentage('4%'), percentage('6%')),
+    position: fromHeadOffset(percentage('4.44%'), percentage('5%')),
     layer: 60,
   })
   .addItem('hats', 'hat', {
-    position: fromHeadOffset(-percentage('0%'), percentage('6%')),
+    position: fromHeadOffset(-percentage('1%'), percentage('4%')),
     layer: 60,
   })
   .setOptional('hats')
   // Hair
   .addItem('hair', 'braids', {
-    position: fromHeadOffset(-percentage('11.5%'), percentage('9%')),
+    position: fromHeadOffset(-percentage('17%'), percentage('10%')),
     layer: 2,
   })
   .addItem('hair', 'hijab', {
-    position: fromHeadOffset(-percentage('4%'), percentage('10%')),
+    position: fromHeadOffset(-percentage('7%'), percentage('10%')),
     layer: 40,
   })
   .addItem('hair', 'medium', {
-    position: fromHeadOffset(-percentage('8%'), percentage('12%')),
+    position: fromHeadOffset(-percentage('12%'), percentage('13.33%')),
     layer: 2,
   })
   .addItem('hair', 'puff', {
-    position: fromHeadOffset(-percentage('7%'), percentage('5%')),
+    position: fromHeadOffset(-percentage('9%'), percentage('5.56%')),
     layer: 2,
   })
   .addItem('hair', 'straightLong', {
-    position: fromHeadOffset(-percentage('2.5%'), percentage('10%')),
+    position: fromHeadOffset(-percentage('4%'), percentage('11.11%')),
     layer: 1,
   })
   .addItem('hair', 'straightMedium', {
-    position: fromHeadOffset(-percentage('6%'), percentage('100%')),
+    position: fromHeadOffset(percentage('1%'), percentage('11.11%')),
     layer: 2,
   })
   // Face Details
   .addItem('faceDetails', 'blushes', {
-    position: fromHeadOffset(percentage('6%'), percentage('37%')),
+    position: fromHeadOffset(percentage('6.67%'), percentage('41.11%')),
     layer: 25,
   })
   .setOptional('faceDetails')
   // Body
   .addItem('body', 'blouse', {
-    position: fromHeadOffset(-percentage('4.7%'), percentage('49%')),
+    position: fromHeadOffset(-percentage('8%'), percentage('65%')),
     layer: 10,
   })
   .addItem('body', 'flowerCardigan', {
-    position: fromHeadOffset(-percentage('4.7%'), percentage('49%')),
+    position: fromHeadOffset(-percentage('8%'), percentage('65%')),
     layer: 10,
   })
   .addItem('body', 'simpleCardigan', {
-    position: fromHeadOffset(-percentage('4.7%'), percentage('49%')),
+    position: fromHeadOffset(-percentage('8%'), percentage('65%')),
     layer: 10,
   })
   .addItem('body', 'simpleOverall', {
-    position: fromHeadOffset(-percentage('4.7%'), percentage('49%')),
+    position: fromHeadOffset(-percentage('8%'), percentage('65%')),
     layer: 10,
   })
   .addItem('body', 'striped', {
-    position: fromHeadOffset(-percentage('4.7%'), percentage('49%')),
+    position: fromHeadOffset(-percentage('8%'), percentage('65%')),
     layer: 10,
   })
   .addItem('body', 'sweaterVest', {
-    position: fromHeadOffset(-percentage('4.7%'), percentage('49%')),
+    position: fromHeadOffset(-percentage('8%'), percentage('65%')),
     layer: 10,
   })
   .addItem('body', 'sweaterWavy', {
-    position: fromHeadOffset(-percentage('4.7%'), percentage('49%')),
+    position: fromHeadOffset(-percentage('8%'), percentage('65%')),
     layer: 10,
   })
   .addItem('body', 'teeBasic', {
-    position: fromHeadOffset(-percentage('4.7%'), percentage('49%')),
+    position: fromHeadOffset(-percentage('8%'), percentage('65%')),
     layer: 10,
   })
   .addItem('body', 'teeButtoned', {
-    position: fromHeadOffset(-percentage('4.7%'), percentage('49%')),
+    position: fromHeadOffset(-percentage('8%'), percentage('65%')),
     layer: 10,
   })
   .addItem('body', 'teePocket', {
-    position: fromHeadOffset(-percentage('4.7%'), percentage('49%')),
+    position: fromHeadOffset(-percentage('8%'), percentage('65%')),
     layer: 10,
   })
   .addItem('body', 'teeRound', {
-    position: fromHeadOffset(-percentage('4.7%'), percentage('49%')),
+    position: fromHeadOffset(-percentage('8%'), percentage('65%')),
     layer: 10,
   })
   // Ears
   .addItem('ears', 'standard', {
-    position: fromHeadOffset(-percentage('0%'), percentage('30%')),
+    position: fromHeadOffset(-percentage('0%'), percentage('35%')),
     layer: 5,
   })
   // Eyes
   .addItem('eyes', 'standard', {
-    position: fromHeadOffset(percentage('10%'), percentage('33%')),
+    position: fromHeadOffset(percentage('12%'), percentage('38%')),
     layer: 20,
   })
   // Face Hair
   .addItem('faceHair', 'bigBeard', {
-    position: fromHeadOffset(percentage('5%'), percentage('36.5%')),
+    position: fromHeadOffset(percentage('5.56%'), percentage('40.56%')),
     layer: 30,
   })
   .addItem('faceHair', 'chevronMustache', {
-    position: fromHeadOffset(percentage('11.5%'), percentage('40.5%')),
+    position: fromHeadOffset(percentage('12.78%'), percentage('45%')),
     layer: 30,
   })
   .addItem('faceHair', 'mustache', {
-    position: fromHeadOffset(percentage('12.5%'), percentage('40.5%')),
+    position: fromHeadOffset(percentage('13.89%'), percentage('45%')),
     layer: 30,
   })
   .setOptional('faceHair')
   // Forelock
   .addItem('forelock', 'bubble', {
-    position: fromHeadOffset(percentage('4%'), percentage('13%')),
+    position: fromHeadOffset(percentage('4.44%'), percentage('14.44%')),
     layer: 40,
   })
   .addItem('forelock', 'curve', {
-    position: fromHeadOffset(percentage('5.5%'), percentage('15%')),
+    position: fromHeadOffset(percentage('6.11%'), percentage('16.67%')),
     layer: 40,
   })
   .addItem('forelock', 'short', {
-    position: fromHeadOffset(percentage('3%'), percentage('11%')),
+    position: fromHeadOffset(percentage('3.33%'), percentage('12.22%')),
     layer: 40,
   })
   .addItem('forelock', 'split', {
-    position: fromHeadOffset(percentage('5%'), percentage('15%')),
+    position: fromHeadOffset(percentage('5.56%'), percentage('16.67%')),
     layer: 40,
   })
   .addItem('forelock', 'straight', {
-    position: fromHeadOffset(percentage('5%'), percentage('13%')),
+    position: fromHeadOffset(percentage('5.56%'), percentage('14.44%')),
     layer: 40,
   })
   .addItem('forelock', 'underCut', {
-    position: fromHeadOffset(percentage('2.8%'), percentage('10%')),
+    position: fromHeadOffset(percentage('3.11%'), percentage('11.11%')),
     layer: 40,
   })
   // Head
   .addItem('head', 'standard', {
-    position: fromHeadOffset(percentage('5%'), percentage('15%')),
+    position: fromHeadOffset(percentage('5.56%'), percentage('16.67%')),
     layer: 10,
   })
   // Mouth
   .addItem('mouth', 'smile', {
-    position: fromHeadOffset(percentage('16.5%'), percentage('44%')),
+    position: fromHeadOffset(percentage('20%'), percentage('52%')),
     layer: 22,
   })
   // Neck
   .addItem('neck', 'standard', {
-    position: fromHeadOffset(percentage('12%'), percentage('35%')),
+    position: fromHeadOffset(percentage('15%'), percentage('38.89%')),
     layer: 8,
   })
   // Noses
   .addItem('noses', 'standard', {
-    position: fromHeadOffset(percentage('17%'), percentage('35.5%')),
+    position: fromHeadOffset(percentage('21%'), percentage('42%')),
     layer: 22,
   })
