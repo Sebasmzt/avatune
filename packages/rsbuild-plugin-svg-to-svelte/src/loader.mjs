@@ -68,6 +68,7 @@ const transformSvg = callbackify(async (contents, options = {}, state = {}) => {
   export let className = '';
   export let style = '';
   export let color = 'currentColor';
+  export let uid = '';
 </script>
 
 ${cleanSvg.replace(/class="([^"]*)"/, 'class="{className || \'$1\'}"').replace(/style="([^"]*)"/, 'style="{style || \'$1\'}"')}

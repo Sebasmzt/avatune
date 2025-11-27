@@ -30,8 +30,11 @@
     "dist"
   ],
   "scripts": {
-    "build": "rslib build",
-    "dev": "rslib build --watch",
+    "build:web": "rslib build",
+    "build:native": "rslib build --config rslib.native.config.ts",
+    "build": "bun build:web && bun build:native",
+    "dev:web": "rslib build --watch",
+    "dev:native": "rslib build --config rslib.native.config.ts --watch",
     "check-types": "tsc --noEmit"
   },
   "devDependencies": {
@@ -53,6 +56,8 @@
   },
   "peerDependencies": {
     "react": ">=18.0.0",
+    "react-native": ">=0.74.0",
+    "react-native-svg": ">=15.0.0",
     "svelte": ">=5.0.0",
     "vue": "^3.5.22"
   },
@@ -64,6 +69,12 @@
       "optional": true
     },
     "vue": {
+      "optional": true
+    },
+    "react-native": {
+      "optional": true
+    },
+    "react-native-svg": {
       "optional": true
     }
   },

@@ -1,7 +1,6 @@
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 import type { RsbuildPlugin } from '@rsbuild/core'
-import deepmerge from 'deepmerge'
 import type { Config as SvgoConfig } from 'svgo'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
@@ -21,7 +20,6 @@ const getDefaultSvgoConfig = () =>
         name: 'preset-default',
         params: { overrides: {} },
       },
-      'prefixIds',
     ],
   }) as SvgoConfig
 
@@ -31,11 +29,22 @@ export const pluginRawSvg = (options: PluginOptions = {}): RsbuildPlugin => ({
   name: PLUGIN_NAME,
   setup(api) {
     api.modifyBundlerChain((chain) => {
-      const svgoDefaults = { svgo: true, svgoConfig: getDefaultSvgoConfig() }
-      const merged = deepmerge(svgoDefaults, {
-        svgo: options.svgo,
-        svgoConfig: options.svgoConfig || {},
-      })
+      // User-provided svgoConfig replaces defaults entirely (no merge)
+      const merged = {
+        svgo: options.svgo ?? true,
+        svgoConfig: options.svgoConfig || getDefaultSvgoConfig(),
+      }
+
+      const replaceAttrValues = options.replaceAttrValues
+        ? Object.entries(options.replaceAttrValues).reduce(
+            (acc, [key, value]) => {
+              acc[key] = value
+              acc[key.toLowerCase()] = value
+              return acc
+            },
+            options.replaceAttrValues,
+          )
+        : undefined
 
       chain.module
         .rule('svg-raw-transform')
@@ -46,7 +55,7 @@ export const pluginRawSvg = (options: PluginOptions = {}): RsbuildPlugin => ({
         .loader(path.resolve(__dirname, './loader.mjs'))
         .options({
           imports: options.imports,
-          replaceAttrValues: options.replaceAttrValues,
+          replaceAttrValues,
           svgo: merged.svgo,
           svgoConfig: merged.svgoConfig,
         })

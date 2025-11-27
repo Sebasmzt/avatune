@@ -1,10 +1,17 @@
 declare module '*.svg?raw' {
-  const content: string
+  import type { AvatarSvgProps } from '@avatune/types'
+  const raw: (props: AvatarSvgProps) => string
   export default content
 }
 
 declare module '*.svg?react' {
   import type { FC, SVGProps } from 'react'
+  const Component: FC<SVGProps<SVGSVGElement>>
+  export default Component
+}
+
+declare module '*.svg?native' {
+  import type { FC, SVGProps } from 'react-native-svg'
   const Component: FC<SVGProps<SVGSVGElement>>
   export default Component
 }

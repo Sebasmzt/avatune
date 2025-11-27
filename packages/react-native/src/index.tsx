@@ -10,9 +10,11 @@ import {
   parseBorderWidth,
   selectItems,
 } from '@avatune/utils'
-import { memo, useRef } from 'react'
+import { memo, useMemo } from 'react'
 import type { ViewStyle } from 'react-native'
 import { ClipPath, Defs, G, Rect, Svg } from 'react-native-svg'
+
+const uid = () => Math.random().toString(36).slice(2, 9)
 
 export type AvatarProps<T extends ReactNativeTheme = ReactNativeTheme> =
   AvatarConfig<ReactNativeAvatarItem, T> & {
@@ -38,7 +40,8 @@ function AvatarComponent<T extends ReactNativeTheme = ReactNativeTheme>({
   const sortedItems = Object.entries(result.selected).sort(
     ([, a], [, b]) => (a?.layer || 0) - (b?.layer || 0),
   )
-  const clipIdRef = useRef<string>(Math.random().toString(36).slice(2, 9))
+  const clipId = useMemo(uid, [])
+  const uidValue = useMemo(uid, [])
 
   const scaleFactor = size / theme.style.size
   const borderRadius = parseBorderRadius(theme.style.borderRadius, size)
@@ -59,7 +62,7 @@ function AvatarComponent<T extends ReactNativeTheme = ReactNativeTheme>({
       }}
     >
       <Defs>
-        <ClipPath id={clipIdRef.current}>
+        <ClipPath id={clipId}>
           <Rect
             x={0}
             y={0}
@@ -85,7 +88,7 @@ function AvatarComponent<T extends ReactNativeTheme = ReactNativeTheme>({
       )}
 
       {/* Avatar content with clipping */}
-      <G clipPath={`url(#${clipIdRef.current})`}>
+      <G clipPath={`url(#${clipId})`}>
         {sortedItems.map(([category, item]) => {
           if (!item) {
             return null
@@ -105,7 +108,7 @@ function AvatarComponent<T extends ReactNativeTheme = ReactNativeTheme>({
               key={category}
               transform={`translate(${position.x}, ${position.y}) scale(${scaleFactor})`}
             >
-              <Component color={color} />
+              <Component color={color} uid={uidValue} />
             </G>
           )
         })}

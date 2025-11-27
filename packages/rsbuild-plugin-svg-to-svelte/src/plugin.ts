@@ -2,7 +2,6 @@
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 import type { RsbuildPlugin, Rspack } from '@rsbuild/core'
-import deepmerge from 'deepmerge'
 import type { Config as SvgoConfig } from 'svgo'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
@@ -27,7 +26,6 @@ const getDefaultSvgoConfig = (): SvgoConfig =>
         name: 'preset-default',
         params: { overrides: {} },
       },
-      'prefixIds',
     ],
   }) as SvgoConfig
 
@@ -109,11 +107,11 @@ export const pluginSvgToSvelte = (
       // --- Create controlled svg rule set ---
       const rule = chain.module.rule(CHAIN_ID.RULE.SVG).test(SVG_REGEX)
 
-      const svgoDefaults = { svgo: true, svgoConfig: getDefaultSvgoConfig() }
-      const merged = deepmerge(svgoDefaults, {
-        svgo: options.svgo,
-        svgoConfig: options.svgoConfig || {},
-      })
+      // User-provided svgoConfig replaces defaults entirely (no merge)
+      const merged = {
+        svgo: options.svgo ?? true,
+        svgoConfig: options.svgoConfig || getDefaultSvgoConfig(),
+      }
 
       const svelteQuery = /(^|\?)svelte($|&)/
 

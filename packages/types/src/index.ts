@@ -30,11 +30,19 @@ export interface BaseAvatarItem {
 }
 
 /**
+ * Props passed to avatar SVG components
+ */
+export interface AvatarSvgProps {
+  color?: string
+  uid?: string
+}
+
+/**
  * Vanilla avatar item with raw SVG code
  */
 export interface VanillaAvatarItem extends BaseAvatarItem {
   /** Raw SVG code as a string */
-  code: (props: { color: string }) => string
+  code: (props: AvatarSvgProps) => string
 }
 
 /**
@@ -42,7 +50,7 @@ export interface VanillaAvatarItem extends BaseAvatarItem {
  */
 export interface ReactAvatarItem extends BaseAvatarItem {
   /** React component to render */
-  Component: ComponentType<SVGProps<SVGSVGElement>>
+  Component: ComponentType<SVGProps<SVGSVGElement> & AvatarSvgProps>
 }
 
 /**
@@ -50,7 +58,7 @@ export interface ReactAvatarItem extends BaseAvatarItem {
  */
 export interface ReactNativeAvatarItem extends BaseAvatarItem {
   /** React Native component to render */
-  Component: ComponentType<SvgProps>
+  Component: ComponentType<SvgProps & AvatarSvgProps>
 }
 
 /**
@@ -59,10 +67,11 @@ export interface ReactNativeAvatarItem extends BaseAvatarItem {
 export interface VueAvatarItem extends BaseAvatarItem {
   /** Vue component to render */
   Component: DefineComponent<
-    VueSVGAttributes & {
-      className?: string
-      style?: string
-    }
+    VueSVGAttributes &
+      AvatarSvgProps & {
+        className?: string
+        style?: string
+      }
   >
 }
 
@@ -72,10 +81,11 @@ export interface VueAvatarItem extends BaseAvatarItem {
 export interface SvelteAvatarItem extends BaseAvatarItem {
   /** Svelte component to render */
   Component: SvelteComponent<
-    SvelteSVGAttributes<SVGSVGElement> & {
-      className?: string
-      style?: string
-    }
+    SvelteSVGAttributes<SVGSVGElement> &
+      AvatarSvgProps & {
+        className?: string
+        style?: string
+      }
   >
 }
 

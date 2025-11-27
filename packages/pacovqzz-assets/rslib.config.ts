@@ -6,23 +6,7 @@ import { pluginSvelte } from '@rsbuild/plugin-svelte'
 import { pluginSvgr } from '@rsbuild/plugin-svgr'
 import { pluginVue } from '@rsbuild/plugin-vue'
 import { defineConfig } from '@rslib/core'
-
-const colordImport = "import { colord } from 'colord';"
-const getReplaceAttrValues = (colorPropName = 'color') => ({
-  '#F5C09B': `{${colorPropName}}`,
-  '#E7B431': `{${colorPropName}}`,
-  '#DAB797': `{${colorPropName}}`,
-  '#3A486B': `{${colorPropName}}`,
-  '#273D32': `{${colorPropName}}`,
-  '#34483E': `{colord(${colorPropName}).desaturate(0.06).lighten(0.04).toHex()}`,
-  '#B77131': `{colord(${colorPropName}).rotate(190).desaturate(0.29).darken(0.14).toHex()}`,
-  '#AEA08B': `{${colorPropName}}`,
-  '#827165': `{colord(${colorPropName}).rotate(-16).desaturate(0.06).darken(0.16).toHex()}`,
-  '#1C2845': `{${colorPropName}}`,
-  '#31333A': `{${colorPropName}}`,
-  '#715B53': `{colord(${colorPropName}).rotate(-14).desaturate(0.37).darken(0.34).toHex()}`,
-  '#483832': `{colord(${colorPropName}).rotate(-14).desaturate(0.34).darken(0.49).toHex()}`,
-})
+import { colordImport, getReplaceAttrValues, svgoConfig } from './rslib.shared'
 
 export default defineConfig({
   lib: [
@@ -46,7 +30,8 @@ export default defineConfig({
   plugins: [
     pluginSvgr({
       svgrOptions: {
-        replaceAttrValues: getReplaceAttrValues('props.color'),
+        svgoConfig,
+        replaceAttrValues: getReplaceAttrValues('props.color', 'props.uid'),
         template: (variables, { tpl }) => {
           return tpl`
 ${variables.imports};
@@ -65,15 +50,22 @@ ${variables.exports};
     }),
     pluginSvgToVue({
       svgo: true,
+      svgoConfig,
+      imports: colordImport,
+      replaceAttrValues: getReplaceAttrValues('color'),
     }),
     pluginSvgToSvelte({
       svgo: true,
+      svgoConfig,
+      imports: colordImport,
+      replaceAttrValues: getReplaceAttrValues('color'),
     }),
     pluginVue(),
     pluginSvelte(),
     pluginReact(),
     pluginRawSvg({
       svgo: true,
+      svgoConfig,
       imports: colordImport,
       replaceAttrValues: getReplaceAttrValues('color'),
     }),

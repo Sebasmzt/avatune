@@ -1,6 +1,7 @@
 import { pluginReact } from '@rsbuild/plugin-react'
 import { pluginSvgr } from '@rsbuild/plugin-svgr'
 import { defineConfig } from '@rslib/core'
+import { svgoConfig } from './rslib.shared'
 
 export default defineConfig({
   lib: [
@@ -23,6 +24,7 @@ export default defineConfig({
     pluginSvgr({
       query: /native/,
       svgrOptions: {
+        svgoConfig,
         native: true,
       },
     }),

@@ -18,6 +18,8 @@ import {
   type PropType,
 } from 'vue'
 
+const genId = () => Math.random().toString(36).slice(2, 9)
+
 export type AvatarProps<T extends VueTheme> = AvatarConfig<VueAvatarItem, T> & {
   /** Theme to use for rendering */
   theme: T
@@ -157,7 +159,8 @@ export const Avatar = defineComponent({
     const scaleFactor = computed(
       () => actualSize.value / props.theme.style.size,
     )
-    const clipId = `avatar-clip-${Math.random().toString(36).slice(2, 9)}`
+    const clipId = genId()
+    const uid = genId()
     const borderRadius = computed(() =>
       parseBorderRadius(props.theme.style.borderRadius, actualSize.value),
     )
@@ -232,7 +235,7 @@ export const Avatar = defineComponent({
                 key: category,
                 transform: `translate(${transformX}, ${transformY}) scale(${scaleFactor.value})`,
               },
-              [h(Component, { color })],
+              [h(Component, { color, uid })],
             )
           }),
         ),

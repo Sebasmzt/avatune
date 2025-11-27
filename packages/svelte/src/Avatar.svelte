@@ -11,6 +11,9 @@ import {
   parseBorderWidth,
   selectItems,
 } from '@avatune/utils'
+import { untrack } from 'svelte'
+
+const genId = () => Math.random().toString(36).slice(2, 9)
 
 type Props = AvatarConfig<SvelteAvatarItem, T> & {
   theme: T
@@ -20,27 +23,30 @@ type Props = AvatarConfig<SvelteAvatarItem, T> & {
   predictions?: Predictions
 }
 
-const {
-  theme,
-  size = theme.style.size,
-  class: className,
-  style,
-  predictions,
-  ...config
-}: Props = $props()
+const props: Props = $props()
 
-const result = $derived(
-  selectItems(config as AvatarConfig<SvelteAvatarItem, T>, theme, predictions),
-)
+const theme = $derived(props.theme)
+const size = $derived(props.size ?? theme.style.size)
+const className = $derived(props.class)
+const style = $derived(props.style)
+const predictions = $derived(props.predictions)
+
+const config = $derived.by(() => {
+  const { theme: _, size: __, class: ___, style: ____, predictions: _____, ...rest } = props
+  return rest as AvatarConfig<SvelteAvatarItem, T>
+})
+
+const result = $derived(selectItems(config, theme, predictions))
 
 const sortedItems = $derived(
-  Object.entries(result.selected).sort(
-    ([, a], [, b]) => (a?.layer || 0) - (b?.layer || 0),
-  ),
+  Object.entries(result.selected)
+    .filter(([, item]) => item != null)
+    .sort(([, a], [, b]) => (a?.layer || 0) - (b?.layer || 0)) as [AvatarPartCategory, SvelteAvatarItem][],
 )
 
 const scaleFactor = $derived(size / theme.style.size)
-const clipId = `avatar-clip-${Math.random().toString(36).slice(2, 9)}`
+const clipId = untrack(genId)
+const uid = untrack(genId)
 const borderRadius = $derived(parseBorderRadius(theme.style.borderRadius, size))
 const backgroundColor = $derived(
   result.style?.backgroundColor || theme.style.backgroundColor,
@@ -87,19 +93,13 @@ const borderWidth = $derived(parseBorderWidth(theme.style.borderWidth))
 
   <!-- Avatar content with clipping -->
   <g clip-path="url(#{clipId})">
-    {#each sortedItems as [category, item]}
-      {#if item}
-        {@const position = typeof item.position === 'function' ? item.position(size) : item.position}
-        {@const transformX = position.x}
-        {@const transformY = position.y}
-        {@const color = result.colors[category as AvatarPartCategory]}
-        {@const ItemComponent = item.Component}
-        <g
-          transform="translate({transformX}, {transformY}) scale({scaleFactor})"
-        >
-          <ItemComponent color={color} />
-        </g>
-      {/if}
+    {#each sortedItems as [category, item] (category)}
+      {@const position = typeof item.position === 'function' ? item.position(size) : item.position}
+      {@const color = result.colors[category]}
+      {@const Component = item.Component}
+      <g transform="translate({position.x}, {position.y}) scale({scaleFactor})">
+        <Component {color} {uid} />
+      </g>
     {/each}
   </g>
 

@@ -41,7 +41,7 @@ export default createTheme<BaseAvatarItem>()
     BackgroundColors.Purpose,
   ])
   .addColors('hair', [HairColors.Black, HairColors.Red, HairColors.Brown])
-  .addColors('head', [SkinTones.Dark])
+  .addColors('head', [SkinTones.Dark, SkinTones.Yellow, SkinTones.White])
   .addColors('body', [
     ClothingColors.Orange,
     ClothingColors.Pink,

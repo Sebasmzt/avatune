@@ -14,24 +14,34 @@ const applyReplacements = (svg, replacements = {}) => {
 
   for (const key of sortedKeys) {
     const value = replacements[key]
+    const escapedKey = key.replace(/[()]/g, '\\$&')
 
     // For Vue, we need to convert attribute values to v-bind syntax
-    // Replace fill="value" with :fill="expression"
     // Extract the expression from {expression} format
     if (value.startsWith('{') && value.endsWith('}')) {
       const expression = value.slice(1, -1) // Remove { and }
-      // Find and replace fill="key" with :fill="expression"
+
+      // Handle fill/stroke attributes
       const attrPattern = new RegExp(
-        `(fill|stroke)="(${key.replace(/[()]/g, '\\$&')})"`,
+        `(fill|stroke)="(${escapedKey})"`,
         'g',
       )
       result = result.replace(attrPattern, `:$1="${expression}"`)
+
+      // Handle id attributes: id="key" -> :id="expression"
+      const idPattern = new RegExp(`id="${escapedKey}"`, 'g')
+      result = result.replace(idPattern, `:id="${expression}"`)
+
+      // Handle url() references: url(#key) -> :attr="\`url(#\${expression})\`"
+      // This needs to replace the whole attribute that contains url(#key)
+      const urlPattern = new RegExp(
+        `(mask|clip-path|fill|stroke)="url\\(#${escapedKey}\\)"`,
+        'g',
+      )
+      result = result.replace(urlPattern, `:$1="\`url(#\${${expression}})\`"`)
     } else {
       // Fallback to simple string replacement if not in {expr} format
-      result = result.replace(
-        new RegExp(key.replace(/[()]/g, '\\$&'), 'g'),
-        value,
-      )
+      result = result.replace(new RegExp(escapedKey, 'g'), value)
     }
   }
 
@@ -96,6 +106,10 @@ const __component = {
     color: {
       type: String,
       default: 'currentColor'
+    },
+    uid: {
+      type: String,
+      default: ''
     }
   },
   setup(props) {

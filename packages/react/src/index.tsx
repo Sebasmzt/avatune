@@ -11,7 +11,9 @@ import {
   selectItems,
 } from '@avatune/utils'
 import { diff } from '@blazediff/object'
-import { type CSSProperties, memo, useRef } from 'react'
+import { type CSSProperties, memo, useMemo } from 'react'
+
+const uid = () => Math.random().toString(36).slice(2, 9)
 
 export type AvatarProps<T extends ReactTheme = ReactTheme> = AvatarConfig<
   ReactAvatarItem,
@@ -42,7 +44,8 @@ function AvatarComponent<T extends ReactTheme = ReactTheme>({
   const sortedItems = Object.entries(result.selected).sort(
     ([, a], [, b]) => (a?.layer || 0) - (b?.layer || 0),
   )
-  const clipIdRef = useRef<string>(Math.random().toString(36).slice(2, 9))
+  const clipId = useMemo(uid, [])
+  const uidValue = useMemo(uid, [])
 
   const scaleFactor = size / theme.style.size
   const borderRadius = parseBorderRadius(theme.style.borderRadius, size)
@@ -63,7 +66,7 @@ function AvatarComponent<T extends ReactTheme = ReactTheme>({
       style={style}
     >
       <defs>
-        <clipPath id={clipIdRef.current}>
+        <clipPath id={clipId}>
           <rect
             x={0}
             y={0}
@@ -89,7 +92,7 @@ function AvatarComponent<T extends ReactTheme = ReactTheme>({
       )}
 
       {/* Avatar content with clipping */}
-      <g clipPath={`url(#${clipIdRef.current})`}>
+      <g clipPath={`url(#${clipId})`}>
         {sortedItems.map(([category, item]) => {
           if (!item) {
             return null
@@ -110,7 +113,7 @@ function AvatarComponent<T extends ReactTheme = ReactTheme>({
               data-testid={`avatar-item-${category}-${item.layer}`}
               transform={`translate(${position.x}, ${position.y}) scale(${scaleFactor})`}
             >
-              <Component color={color} />
+              <Component color={color} uid={uidValue} />
             </g>
           )
         })}

@@ -6,15 +6,7 @@ import { pluginSvelte } from '@rsbuild/plugin-svelte'
 import { pluginSvgr } from '@rsbuild/plugin-svgr'
 import { pluginVue } from '@rsbuild/plugin-vue'
 import { defineConfig } from '@rslib/core'
-
-const colordImport = "import { colord } from 'colord';"
-const getReplaceAttrValues = (colorPropName = 'color') => ({
-  '#F4D150': `{${colorPropName}}`,
-  '#9287FF': `{${colorPropName}}`,
-  '#E0DDFF': `{colord(${colorPropName}).desaturate(0.08).lighten(0.06).toHex()}`,
-  '#AC6651': `{${colorPropName}}`,
-  '#6BD9E9': `{${colorPropName}}`,
-})
+import { colordImport, getReplaceAttrValues, svgoConfig } from './rslib.shared'
 
 export default defineConfig({
   lib: [
@@ -38,7 +30,8 @@ export default defineConfig({
   plugins: [
     pluginSvgr({
       svgrOptions: {
-        replaceAttrValues: getReplaceAttrValues('props.color'),
+        svgoConfig,
+        replaceAttrValues: getReplaceAttrValues('props.color', 'props.uid'),
         template: (variables, { tpl }) => {
           return tpl`
 ${variables.imports};
@@ -57,11 +50,13 @@ ${variables.exports};
     }),
     pluginSvgToVue({
       svgo: true,
+      svgoConfig,
       imports: colordImport,
       replaceAttrValues: getReplaceAttrValues('color'),
     }),
     pluginSvgToSvelte({
       svgo: true,
+      svgoConfig,
       imports: colordImport,
       replaceAttrValues: getReplaceAttrValues('color'),
     }),
@@ -69,6 +64,8 @@ ${variables.exports};
     pluginSvelte(),
     pluginReact(),
     pluginRawSvg({
+      svgo: true,
+      svgoConfig,
       imports: colordImport,
       replaceAttrValues: getReplaceAttrValues('color'),
     }),

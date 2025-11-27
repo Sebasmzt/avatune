@@ -1,5 +1,6 @@
 declare module '*.svg?raw' {
-  const content: string
+  import type { AvatarSvgProps } from '@avatune/types'
+  const raw: (props: AvatarSvgProps) => string
   export default content
 }
 

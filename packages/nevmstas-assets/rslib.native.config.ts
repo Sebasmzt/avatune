@@ -1,19 +1,7 @@
 import { pluginReact } from '@rsbuild/plugin-react'
 import { pluginSvgr } from '@rsbuild/plugin-svgr'
 import { defineConfig } from '@rslib/core'
-
-const colordImport = "import { colord } from 'colord';"
-const getReplaceAttrValues = (colorPropName = 'color') => ({
-  currentColor: `{${colorPropName}}`,
-  '#FCBE93': `{${colorPropName}}`,
-  '#FF7A93': `{${colorPropName}}`,
-  '#FFA882': `{colord(${colorPropName}).darken(0.05).toHex()}`,
-  '#272424': `{colord(${colorPropName}).darken(0.2).toHex()}`,
-  '#A4C856': `{${colorPropName}}`,
-  '#8DA853': `{colord(${colorPropName}).darken(0.05).toHex()}`,
-  '#4F8558': `{colord(${colorPropName}).darken(0.1).toHex()}`,
-  '#F06E82': `{${colorPropName}}`,
-})
+import { colordImport, getReplaceAttrValues, svgoConfig } from './rslib.shared'
 
 export default defineConfig({
   lib: [
@@ -36,8 +24,9 @@ export default defineConfig({
     pluginSvgr({
       query: /native/,
       svgrOptions: {
+        svgoConfig,
         native: true,
-        replaceAttrValues: getReplaceAttrValues('props.color'),
+        replaceAttrValues: getReplaceAttrValues('props.color', 'props.uid'),
         template: (variables, { tpl }) => {
           return tpl`
 ${variables.imports};

@@ -11,6 +11,8 @@ import {
   selectItems,
 } from '@avatune/utils'
 
+const uid = () => Math.random().toString(36).slice(2, 9)
+
 export interface AvatarArgs<T extends VanillaTheme = VanillaTheme>
   extends AvatarConfig<VanillaAvatarItem, T> {
   theme: T
@@ -37,7 +39,8 @@ export function avatar<T extends VanillaTheme = VanillaTheme>({
   )
 
   const scaleFactor = size / theme.style.size
-  const clipId = `avatar-clip-${Math.random().toString(36).slice(2, 9)}`
+  const clipId = uid()
+  const uidValue = uid()
   const borderRadius = parseBorderRadius(theme.style.borderRadius, size)
   const backgroundColor =
     result.style?.backgroundColor || theme.style.backgroundColor
@@ -77,7 +80,7 @@ export function avatar<T extends VanillaTheme = VanillaTheme>({
       const transform = `transform="translate(${transformX}, ${transformY}) scale(${scaleFactor})"`
       const attributes = [transform, style].filter(Boolean).join(' ')
 
-      const transformed = `<g ${attributes}>${vanillaItem.code({ color: color ?? 'currentColor' })}</g>`
+      const transformed = `<g ${attributes}>${vanillaItem.code({ color: color ?? 'currentColor', uid: uidValue })}</g>`
       contentParts.push(transformed)
     }
   }

@@ -10,7 +10,7 @@ import { writeFileSync } from 'node:fs'
  * Example: bun scripts/generate-assets.ts kyute-assets
  */
 
-type Framework = 'react' | 'vue' | 'svelte' | 'svg'
+type Framework = 'react' | 'vue' | 'svelte' | 'svg' | 'react-native'
 
 interface AssetFile {
   category: string
@@ -88,6 +88,31 @@ function generateReactFile(assets: AssetFile[]): string {
 
     const componentName = `${capitalizeFirst(asset.category)}${toPascalCase(asset.name)}`
     imports.push(`import ${componentName} from '${asset.path}?react'`)
+    exports.push(`  ${componentName},`)
+  }
+
+  return `${imports.join('\n')}\n\nexport {\n${exports.join('\n')}\n}\n`
+}
+
+function generateNativeFile(assets: AssetFile[]): string {
+  const imports: string[] = []
+  const exports: string[] = []
+  let currentCategory = ''
+
+  for (const asset of assets) {
+    if (asset.category !== currentCategory) {
+      if (currentCategory !== '') {
+        imports.push('')
+        exports.push('')
+      }
+      const categoryComment = `// ${capitalizeFirst(asset.category)}`
+      imports.push(categoryComment)
+      exports.push(categoryComment)
+      currentCategory = asset.category
+    }
+
+    const componentName = `${capitalizeFirst(asset.category)}${toPascalCase(asset.name)}`
+    imports.push(`import ${componentName} from '${asset.path}?native'`)
     exports.push(`  ${componentName},`)
   }
 
@@ -201,7 +226,7 @@ function main() {
   console.log(`Found ${assets.length} SVG files across ${new Set(assets.map(a => a.category)).size} categories`)
 
   // Generate files for each framework
-  const frameworks: Framework[] = ['react', 'vue', 'svelte', 'svg']
+  const frameworks: Framework[] = ['react', 'vue', 'svelte', 'svg', 'react-native']
 
   for (const framework of frameworks) {
     let content: string
@@ -218,6 +243,9 @@ function main() {
         break
       case 'svg':
         content = generateSvgFile(assets)
+        break
+      case 'react-native':
+        content = generateNativeFile(assets)
         break
     }
 
