@@ -185,12 +185,8 @@ export function discoverThemes(
   const themePackages = readdirSync(join(packagesDir, 'themes')).filter((pkg) =>
     pkg.endsWith('-theme'),
   )
-  const assetsPackages = readdirSync(join(packagesDir, 'assets')).filter(
-    (pkg) => pkg.endsWith('-assets'),
-  )
-  const packages = [...themePackages, ...assetsPackages]
 
-  return packages.map((pkg) => {
+  return themePackages.map((pkg) => {
     const name = pkg.replace('-theme', '')
     const assetsName = `${name}-assets`
     const themeDir = join(packagesDir, 'themes', pkg)

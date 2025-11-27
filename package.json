@@ -12,10 +12,14 @@
     "generate:assets-readme": "bun scripts/generate-assets-readme.ts",
     "generate:theme-readme": "bun scripts/generate-assets-theme-readme.ts",
     "generate:theme-website-docs": "bun scripts/generate-themes-mdx.ts",
-    "generate:readme-and-website-docs": "bun scripts/generate-assets-theme-readme.ts && bun scripts/generate-themes-mdx.ts"
+    "generate:readme-and-website-docs": "bun scripts/generate-assets-theme-readme.ts && bun scripts/generate-themes-mdx.ts",
+    "generate:root-readme": "bun scripts/generate-root-readme.ts",
+    "prepare": "husky"
   },
   "devDependencies": {
     "@biomejs/biome": "^2.2.3",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.2.7",
     "turbo": "^2.5.8",
     "typescript": "5.9.3"
   },
@@ -32,6 +36,11 @@
     "packages/predictors/*",
     "packages/rsbuild-plugins/*"
   ],
+  "lint-staged": {
+    "*.{js,ts,tsx,jsx,json,md,css,html,vue,svelte}": [
+      "biome check --write --no-errors-on-unmatched"
+    ]
+  },
   "resolutions": {
     "react": "19.1.0",
     "react-dom": "19.1.0",

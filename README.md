@@ -16,12 +16,12 @@ Generate beautiful, customizable avatars with machine learning prediction or man
 
 ```bash
 # Install a theme and renderer for your framework
-npm install @avatune/yanliu-theme @avatune/react
+npm install @avatune/fatin-verse-theme @avatune/react
 ```
 
 ```tsx
 import { Avatar } from '@avatune/react'
-import theme from '@avatune/yanliu-theme/react'
+import theme from '@avatune/fatin-verse-theme/react'
 
 function App() {
   return <Avatar theme={theme} seed="unique-identifier" size={300} />
@@ -32,24 +32,36 @@ function App() {
 
 All themes support React, Vue, Svelte, and Vanilla JavaScript.
 
-- [`@avatune/yanliu-theme`](./packages/yanliu-theme) - Cute, friendly avatar designs
-- [`@avatune/miniavs-theme`](./packages/miniavs-theme) - Minimalist avatar system
-- [`@avatune/nevmstas-theme`](./packages/nevmstas-theme) - Modern Nevmstas avatars
+| Theme | Package |
+|-------|---------|
+| Fatin Verse | [`@avatune/fatin-verse-theme`](./packages/themes/fatin-verse-theme) |
+| Kyute | [`@avatune/kyute-theme`](./packages/themes/kyute-theme) |
+| Micah | [`@avatune/micah-theme`](./packages/themes/micah-theme) |
+| Miniavs | [`@avatune/miniavs-theme`](./packages/themes/miniavs-theme) |
+| Nevmstas | [`@avatune/nevmstas-theme`](./packages/themes/nevmstas-theme) |
+| Pacovqzz | [`@avatune/pacovqzz-theme`](./packages/themes/pacovqzz-theme) |
+| Yanliu | [`@avatune/yanliu-theme`](./packages/themes/yanliu-theme) |
 
 ## Framework Renderers
 
-- [`@avatune/react`](./packages/react) - React components
-- [`@avatune/vue`](./packages/vue) - Vue 3 components
-- [`@avatune/svelte`](./packages/svelte) - Svelte 5 components
-- [`@avatune/vanilla`](./packages/vanilla) - Framework-agnostic JavaScript
+| Framework | Package |
+|-----------|---------|
+| React | [`@avatune/react`](./packages/renderers/react) |
+| React Native | [`@avatune/react-native`](./packages/renderers/react-native) |
+| Vue 3 | [`@avatune/vue`](./packages/renderers/vue) |
+| Svelte 5 | [`@avatune/svelte`](./packages/renderers/svelte) |
+| Vanilla JS | [`@avatune/vanilla`](./packages/renderers/vanilla) |
 
 ## Predictors
 
 Train custom TensorFlow.js models or use pre-trained predictors:
 
-- [`@avatune/hair-color-predictor`](./packages/hair-color-predictor) - Predict hair color from images
-- [`@avatune/skin-tone-predictor`](./packages/skin-tone-predictor) - Predict skin tone from images
-- [`@avatune/hair-length-predictor`](./packages/hair-length-predictor) - Predict hair length from images
+| Predictor | Package | Description |
+|-----------|---------|-------------|
+| Face Detector | [`@avatune/face-detector`](./packages/predictors/face-detector) | Detect faces in images |
+| Hair Color Predictor | [`@avatune/hair-color-predictor`](./packages/predictors/hair-color-predictor) | Predict hair color from images |
+| Hair Length Predictor | [`@avatune/hair-length-predictor`](./packages/predictors/hair-length-predictor) | Predict hair length from images |
+| Skin Tone Predictor | [`@avatune/skin-tone-predictor`](./packages/predictors/skin-tone-predictor) | Predict skin tone from images |
 
 Models are trained in Python and exported to TensorFlow.js for browser inference.
 
@@ -88,8 +100,16 @@ bun storybook
 Use the theme builder to create your own themes:
 
 ```typescript
-import { createTheme } from '@avatune/theme-builder'
 import type { ReactAvatarItem } from '@avatune/types'
+import { createTheme, fromHead } from '@avatune/theme-builder'
+import { percentage } from '@avatune/utils'
+
+const getHeadPosition = (size: number) => ({
+  x: size * percentage('8%'),
+  y: size * percentage('3%'),
+})
+
+const fromHeadOffset = fromHead(getHeadPosition)
 
 const myTheme = createTheme()
   .withStyle({ size: 500, borderRadius: '100%' })
