@@ -1,0 +1,142 @@
+# @avatune/fatin-verse-theme
+
+Avatar theme for Avatune using fatin verse design assets.
+
+## Installation
+
+```bash
+npm install @avatune/fatin-verse-theme
+```
+
+## Usage
+
+This theme is available for multiple frameworks: React, React Native, Vue, Svelte, and Vanilla JavaScript.
+
+### React
+
+```tsx
+import { Avatar } from '@avatune/react'
+import theme from '@avatune/fatin-verse-theme/react'
+
+function App() {
+  return (
+    <Avatar
+      theme={theme}
+      size={300}
+      seed="optional-seed-for-random-generation"
+    />
+  )
+}
+```
+
+### React Native
+
+```tsx
+import { Avatar } from '@avatune/react-native'
+import theme from '@avatune/fatin-verse-theme/react-native'
+
+export function ProfileAvatar() {
+  return (
+    <Avatar
+      theme={theme}
+      size={300}
+      seed="optional-seed-for-random-generation"
+    />
+  )
+}
+```
+
+### Vue
+
+```vue
+<script setup lang="ts">
+import { Avatar } from '@avatune/vue'
+import theme from '@avatune/fatin-verse-theme/vue'
+</script>
+
+<template>
+  <Avatar
+    :theme="theme"
+    :size="300"
+    seed="optional-seed-for-random-generation"
+  />
+</template>
+```
+
+### Svelte
+
+```svelte
+<script lang="ts">
+  import { Avatar } from '@avatune/svelte'
+  import theme from '@avatune/fatin-verse-theme/svelte'
+</script>
+
+<Avatar
+  theme={theme}
+  size={300}
+  seed="optional-seed-for-random-generation"
+/>
+```
+
+### Vanilla JavaScript
+
+```typescript
+import { avatar } from '@avatune/vanilla'
+import theme from '@avatune/fatin-verse-theme/vanilla'
+
+const container = document.getElementById('avatar-container')
+const svg = avatar({
+  theme,
+  size: 300,
+  seed: 'optional-seed-for-random-generation',
+})
+
+container?.appendChild(svg)
+```
+
+## Customization
+
+You can override specific avatar parts:
+
+```tsx
+<Avatar
+  theme={theme}
+  size={300}
+  hair="curlyPuff"          // Choose specific hair style
+  hairColor="#FF5733"    // Custom hair color
+  body="hoodie"     // Choose specific clothing
+  bodyColor="#3498DB"    // Custom clothing color
+/>
+```
+
+## Design Assets
+
+This theme uses assets from the [`@avatune/fatin-verse-assets`](../packages/fatin-verse-assets) package.
+
+## License
+
+This theme package is licensed under MIT (see [LICENSE.md](../../LICENSE.md)).
+
+The design assets used in this theme are separately licensed. See the asset package for details.
+
+## Related Packages
+
+- [`@avatune/fatin-verse-assets`](../packages/fatin-verse-assets) - SVG assets used by this theme
+- [`@avatune/react`](../packages/react) - React avatar renderer
+- [`@avatune/react-native`](../packages/react-native) - React Native avatar renderer
+- [`@avatune/vue`](../packages/vue) - Vue avatar renderer
+- [`@avatune/svelte`](../packages/svelte) - Svelte avatar renderer
+- [`@avatune/vanilla`](../packages/vanilla) - Vanilla JavaScript avatar renderer
+
+## Development
+
+```bash
+# Build the theme
+bun run build
+
+# Build in watch mode
+bun run dev
+
+# Type checking
+bun run check-types
+```
