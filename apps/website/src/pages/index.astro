@@ -26,11 +26,11 @@ const primaryDocsLink = '/welcome'
 
       <FrameworkShowcaseSection />
 
-      <section class="mx-auto max-w-6xl px-2">
+      <section class="mx-auto max-w-6xl">
         <PredictionPipeline client:only />
       </section>
 
-      <section class="mx-auto max-w-5xl text-center">
+      <section class="mx-auto max-w-6xl text-center">
         <div class="space-y-5">
           <p class="text-sm font-semibold uppercase tracking-[0.3em] text-pink-200">Docs preview</p>
           <h2 class="text-3xl font-semibold text-white">Ready to explore the full knowledge base?</h2>
@@ -41,15 +41,15 @@ const primaryDocsLink = '/welcome'
         <div class="mt-10 flex flex-wrap items-center justify-center gap-4">
           <a
             href={primaryDocsLink}
-            class="inline-flex items-center justify-center rounded-full bg-white px-6 py-3 text-base font-semibold text-slate-950 transition hover:bg-pink-100"
+            class="inline-flex items-center justify-center rounded-full bg-white px-6 py-3 text-base font-semibold text-slate-950 transition hover:bg-pink-100 no-underline"
           >
-            Open documentation
+            Open Documentation
           </a>
           <a
             href="/why-avatune"
-            class="inline-flex items-center justify-center rounded-full border border-white/30 px-6 py-3 text-base font-semibold text-white transition hover:border-white"
+            class="inline-flex items-center justify-center rounded-full border border-white/30 px-6 py-3 text-base font-semibold text-white transition hover:border-white no-underline"
           >
-            Learn why Avatune
+            Learn Why Avatune
           </a>
         </div>
       </section>
@@ -61,4 +61,3 @@ const primaryDocsLink = '/welcome'
 
   </body>
 </html>
-

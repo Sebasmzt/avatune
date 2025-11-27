@@ -91,7 +91,7 @@ onDestroy(() => {
 })
 </script>
 
-<section class="space-y-4 sm:space-y-8 rounded-3xl border border-white/10 bg-slate-950/80 p-6 text-center shadow-xl shadow-pink-500/5 sm:p-12">
+<section class="space-y-4 sm:space-y-8 rounded-3xl border border-white/10 bg-slate-950/80 text-center shadow-xl shadow-pink-500/5 sm:p-12">
   <p class="text-xs font-semibold uppercase tracking-[0.35em] text-pink-200/80">Prediction Flow</p>
   <h3 class="text-3xl font-semibold text-white sm:text-4xl">Photo in, avatar out.</h3>
   <p class="mx-auto hidden max-w-3xl text-base text-slate-300 sm:block">
@@ -191,6 +191,3 @@ onDestroy(() => {
     animation: fadeIn 0.6s ease-out;
   }
 </style>
-
-
-

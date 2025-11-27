@@ -50,7 +50,7 @@ $: selectedSeed = selectedFramework?.id ?? 'avatune'
       class={`flex items-center cursor-pointer gap-2 rounded-lg px-4 py-2 text-sm font-medium transition-all ${
         selectedFrameworkId === framework.id
           ? 'bg-pink-500/20 text-pink-200 shadow-lg shadow-pink-500/10'
-          : 'text-slate-400 hover:bg-white/5 hover:text-white'
+          : 'bg-transparent text-slate-400 hover:bg-white/5 hover:text-white'
       }`}
       onclick={() => selectFramework(framework.id)}
     >
@@ -108,5 +108,3 @@ $: selectedSeed = selectedFramework?.id ?? 'avatune'
     background: transparent !important;
   }
 </style>
-
-
