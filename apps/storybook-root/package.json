@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "storybook": "node scripts/wait-for-ports.mjs && storybook dev -p 6010",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "check-types": "tsc --noEmit"
   },
   "devDependencies": {
     "@avatune/typescript-config": "workspace:*",

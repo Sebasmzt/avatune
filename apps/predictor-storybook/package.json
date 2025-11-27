@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "storybook": "storybook dev -p 6005 --no-open",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "check-types": "tsc --noEmit"
   },
   "dependencies": {
     "@avatune/hair-color-predictor": "workspace:*",

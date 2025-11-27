@@ -3,6 +3,10 @@
 # Run lint-staged for format and lint checks
 bunx lint-staged
 
+# Type checking
+echo "Running type checks..."
+bun run check-types
+
 # Check if generation scripts produce any changes
 echo "Checking if generated files are up to date..."
 
