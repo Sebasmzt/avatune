@@ -4,9 +4,9 @@ import micahTheme from '@avatune/micah-theme/vanilla'
 import miniavsTheme from '@avatune/miniavs-theme/vanilla'
 import nevmstasTheme from '@avatune/nevmstas-theme/vanilla'
 import pacovqzzTheme from '@avatune/pacovqzz-theme/vanilla'
-import yanliuTheme from '@avatune/yanliu-theme/vanilla'
 import type { Theme, VanillaAvatarItem } from '@avatune/types'
 import { type AvatarArgs, avatar } from '@avatune/vanilla'
+import yanliuTheme from '@avatune/yanliu-theme/vanilla'
 import type { Meta, StoryObj } from '@storybook/html-vite'
 
 const meta = {
@@ -31,7 +31,12 @@ const getArgTypes = <T extends Theme<VanillaAvatarItem>>(theme: T) => {
   }
 
   for (const [category, items] of Object.entries(theme)) {
-    const excludeCategories = ['style', 'predictorMappings', 'colorPalettes', 'connectedColors']
+    const excludeCategories = [
+      'style',
+      'predictorMappings',
+      'colorPalettes',
+      'connectedColors',
+    ]
     if (excludeCategories.includes(category)) continue
 
     argTypes[`${category}Color`] = { control: { type: 'color' } }
@@ -116,12 +121,12 @@ export const Yanliu: StoryObj<YanliuArgs> = {
 
 const themes = {
   'Fatin Verse': fatinverseTheme,
-  'Kyute': kyuteTheme,
-  'Micah': micahTheme,
-  'Miniavs': miniavsTheme,
-  'Nevmstas': nevmstasTheme,
-  'Pacovqzz': pacovqzzTheme,
-  'Yanliu': yanliuTheme,
+  Kyute: kyuteTheme,
+  Micah: micahTheme,
+  Miniavs: miniavsTheme,
+  Nevmstas: nevmstasTheme,
+  Pacovqzz: pacovqzzTheme,
+  Yanliu: yanliuTheme,
 } as const
 
 export const Seed: StoryObj<{

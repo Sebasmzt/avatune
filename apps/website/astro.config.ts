@@ -13,6 +13,7 @@ export default defineConfig({
   },
   integrations: [
     starlight({
+      customCss: ['./src/styles/global.css'],
       title: 'Avatune Docs',
       social: [
         {

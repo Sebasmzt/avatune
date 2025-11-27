@@ -1,3 +1,5 @@
+import fatinVerseTheme from '@avatune/fatin-verse-theme/vanilla'
+import kyuteTheme from '@avatune/kyute-theme/vanilla'
 import micahTheme from '@avatune/micah-theme/vanilla'
 import miniavsTheme from '@avatune/miniavs-theme/vanilla'
 import nevmstasTheme from '@avatune/nevmstas-theme/vanilla'
@@ -15,6 +17,8 @@ const THEMES = {
   nevmstas: nevmstasTheme,
   miniavs: miniavsTheme,
   micah: micahTheme,
+  kyute: kyuteTheme,
+  'fatin-verse': fatinVerseTheme,
   pacovqzz: pacovqzzTheme,
 } as const
 

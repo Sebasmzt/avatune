@@ -4,8 +4,28 @@ description: "REST API for generating avatar SVGs on-demand via Cloudflare Worke
 ---
 
 import { Aside } from '@astrojs/starlight/components';
+import InstallTabs from '../../../components/docs/install-tabs.astro'
+import ApiClientDemo from '../../../components/client/api-client-demo.svelte'
 
 The Avatune API provides a REST endpoint for generating avatar SVGs on-demand, deployed on Cloudflare Workers at [https://api.avatune.dev](https://api.avatune.dev).
+
+## Live Demo
+
+Try the API right here:
+
+<ApiClientDemo client:visible />
+
+```typescript
+import { createClient } from '@avatune/api-client'
+
+const client = createClient()
+
+const svg = await client.getAvatar({
+  theme: 'yanliu',
+  seed: 'user-123',
+  size: 200,
+})
+```
 
 ## Live API Endpoint
 
@@ -33,20 +53,13 @@ The API returns an SVG image that can be used directly in `<img>` tags or embedd
 <img src="https://api.avatune.dev/?theme=yanliu&seed=user123" alt="Avatar" />
 ```
 
-### Live Examples
-
-- [Nevmstas theme with short hair](https://api.avatune.dev/?theme=nevmstas&hair=short)
-- [Yanliu theme with seed](https://api.avatune.dev/?theme=yanliu&seed=123)
-- [Miniavs theme custom size](https://api.avatune.dev/?theme=miniavs&size=300)
-- [Micah theme with custom colors](https://api.avatune.dev/?theme=micah&hair=dannyPhantom&hairColor=%23FF5733)
-
 ## Parameters
 
 ### Required Parameters
 
 | Parameter | Description | Example |
 |-----------|-------------|---------|
-| `theme` | Theme name | `yanliu`, `nevmstas`, `miniavs`, `micah`, `kyute` |
+| `theme` | Theme name | `yanliu`, `nevmstas`, `miniavs`, `micah`, `kyute`, `fatin-verse`, `pacovqzz` |
 
 ### Optional Parameters
 
@@ -55,76 +68,6 @@ The API returns an SVG image that can be used directly in `<img>` tags or embedd
 | `size` | Avatar size in pixels | Theme default |
 | `seed` | Random seed for generation | Random |
 | `backgroundColor` | Background color (hex) | Theme default |
-
-### Theme-Specific Parameters
-
-You can override any avatar part using theme-specific parameters:
-
-#### Yanliu Theme
-```bash
-https://api.avatune.dev/?theme=yanliu&hair=braids&body=blouse&hairColor=%23FF5733
-```
-
-Available parameters:
-- `hair` - Hair style (e.g., `braids`, `hijab`, `puff`)
-- `hairColor` - Hair color (hex)
-- `body` - Clothing style (e.g., `blouse`, `teeBasic`)
-- `bodyColor` - Clothing color (hex)
-- `forelock` - Forelock style
-- `glasses` - Glasses style
-- And more...
-
-#### Nevmstas Theme
-```bash
-https://api.avatune.dev/?theme=nevmstas&hair=short&eyes=boring
-```
-
-Available parameters:
-- `hair` - Hair style (e.g., `short`, `long`, `bobRounded`)
-- `hairColor` - Hair color (hex)
-- `body` - Clothing style (e.g., `shirt`, `sweater`)
-- `eyes` - Eye style (e.g., `boring`, `dots`)
-- And more...
-
-#### Miniavs Theme
-```bash
-https://api.avatune.dev/?theme=miniavs&hair=elvis&body=golf
-```
-
-Available parameters:
-- `hair` - Hair style (e.g., `elvis`, `curly`, `baldness`)
-- `hairColor` - Hair color (hex)
-- `body` - Clothing style (e.g., `golf`, `standard`)
-- `eyes` - Eye style (e.g., `happy`, `confident`)
-- And more...
-
-#### Micah Theme
-```bash
-https://api.avatune.dev/?theme=micah&hair=dannyPhantom&body=collaredShirt
-```
-
-Available parameters:
-- `hair` - Hair style (e.g., `dannyPhantom`, `pixie`, `full`)
-- `hairColor` - Hair color (hex)
-- `body` - Clothing style (e.g., `collaredShirt`, `crewShirt`)
-- `nose` - Nose style (e.g., `curve`, `round`)
-- And more...
-
-#### Kyute Theme
-```bash
-https://api.avatune.dev/?theme=kyute&hair=bob&body=casual
-```
-
-Available parameters:
-- `hair` - Hair style (e.g., `bob`, `curly`, `elvis`)
-- `hairColor` - Hair color (hex)
-- `body` - Clothing style (e.g., `casual`, `shirt`)
-- `glasses` - Glasses style (e.g., `round`, `aviator`)
-- And more...
-
-<Aside type="note">
-  For a complete list of available assets for each theme, see the individual [theme documentation](../packages/yanliu-theme).
-</Aside>
 
 ## Rate Limiting
 
@@ -180,7 +123,7 @@ Access-Control-Allow-Origin: *
 
 ```json
 {
-  "error": "Invalid theme. Available themes: yanliu, nevmstas, miniavs, micah, kyute"
+  "error": "Invalid theme. Available themes: yanliu, nevmstas, miniavs, micah, kyute, fatin-verse, pacovqzz"
 }
 ```
 
@@ -196,6 +139,101 @@ Access-Control-Allow-Origin: *
 ```
 
 **Status Code**: `429 Too Many Requests`
+
+## TypeScript API Client
+
+For type-safe API access, use the official `@avatune/api-client` package:
+
+<InstallTabs packages="@avatune/api-client" />
+
+### Basic Usage
+
+```typescript
+import { createClient } from '@avatune/api-client'
+
+const client = createClient()
+
+// Get avatar SVG with full type safety
+const svg = await client.getAvatar({
+  theme: 'yanliu',
+  seed: 'user-123',
+  hair: 'braids',      // TypeScript autocompletes available options
+  hairColor: '#8B4513',
+  body: 'sweaterVest',
+})
+
+// Get URL for <img> src (no network request)
+const url = client.getAvatarUrl({
+  theme: 'nevmstas',
+  seed: 'user-456',
+  size: 300,
+})
+```
+
+### Type-Safe Theme Parameters
+
+Each theme has its own typed interface with autocomplete for available parts:
+
+```typescript
+import { createClient, type YanliuParams, type NevmstasParams } from '@avatune/api-client'
+
+const client = createClient()
+
+// Yanliu theme with typed parameters
+const yanliuAvatar = await client.getAvatar({
+  theme: 'yanliu',
+  hair: 'braids',     // 'braids' | 'hijab' | 'medium' | 'puff' | ...
+  body: 'blouse',     // 'blouse' | 'sweaterVest' | 'teeBasic' | ...
+  glasses: 'glass',   // optional
+})
+
+// Nevmstas theme with different options
+const nevmstasAvatar = await client.getAvatar({
+  theme: 'nevmstas',
+  hair: 'short',      // 'short' | 'long' | 'mohawk' | 'pixie' | ...
+  eyes: 'boring',     // 'boring' | 'dots' | 'round' | ...
+})
+```
+
+### Error Handling
+
+```typescript
+import { createClient, AvatuneApiError } from '@avatune/api-client'
+
+const client = createClient()
+
+try {
+  const svg = await client.getAvatar({ theme: 'yanliu', seed: 'test' })
+} catch (error) {
+  if (error instanceof AvatuneApiError) {
+    if (error.isRateLimited) {
+      console.log(`Rate limited. Retry after ${error.retryAfter} seconds`)
+    } else {
+      console.log(`API error: ${error.data.error}`)
+    }
+  }
+}
+```
+
+### Custom Base URL
+
+For self-hosted instances:
+
+```typescript
+const client = createClient({
+  baseUrl: 'https://your-api.example.com',
+  timeout: 5000,
+})
+```
+
+### Available Themes
+
+```typescript
+import { AvatuneClient } from '@avatune/api-client'
+
+console.log(AvatuneClient.themes)
+// ['yanliu', 'nevmstas', 'miniavs', 'micah', 'kyute', 'fatin-verse', 'pacovqzz']
+```
 
 ## Integration Examples
 
@@ -319,4 +357,3 @@ const url = `https://api.avatune.dev/?${params}`;
 For issues or questions about the API:
 - [GitHub Issues](https://github.com/avatune/avatune/issues)
 - [Documentation](https://avatune.dev)
-

@@ -10,13 +10,15 @@
     "check-types": "tsc --noEmit"
   },
   "dependencies": {
-    "@avatune/nevmstas-theme": "workspace:*",
-    "@avatune/yanliu-theme": "workspace:*",
+    "@avatune/fatin-verse-theme": "workspace:*",
+    "@avatune/kyute-theme": "workspace:*",
     "@avatune/micah-theme": "workspace:*",
     "@avatune/miniavs-theme": "workspace:*",
+    "@avatune/nevmstas-theme": "workspace:*",
     "@avatune/pacovqzz-theme": "workspace:*",
     "@avatune/types": "workspace:*",
-    "@avatune/vanilla": "workspace:*"
+    "@avatune/vanilla": "workspace:*",
+    "@avatune/yanliu-theme": "workspace:*"
   },
   "devDependencies": {
     "typescript": "^5.9.3",
