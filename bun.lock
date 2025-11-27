@@ -243,20 +243,7 @@
         "shiki": "^3.15.0",
       },
     },
-    "packages/face-detector": {
-      "name": "@avatune/face-detector",
-      "version": "0.0.0",
-      "dependencies": {
-        "@mediapipe/tasks-vision": "^0.10.18",
-      },
-      "devDependencies": {
-        "@avatune/typescript-config": "workspace:*",
-        "@rslib/core": "^0.16.0",
-        "@types/node": "^22.18.11",
-        "typescript": "^5.9.3",
-      },
-    },
-    "packages/fatin-verse-assets": {
+    "packages/assets/fatin-verse-assets": {
       "name": "@avatune/fatin-verse-assets",
       "version": "0.0.0",
       "dependencies": {
@@ -294,81 +281,7 @@
         "vue",
       ],
     },
-    "packages/fatin-verse-theme": {
-      "name": "@avatune/fatin-verse-theme",
-      "version": "0.0.0",
-      "dependencies": {
-        "@avatune/fatin-verse-assets": "workspace:*",
-        "@avatune/theme-builder": "workspace:*",
-        "@avatune/types": "workspace:*",
-        "@avatune/utils": "workspace:*",
-      },
-      "devDependencies": {
-        "@avatune/typescript-config": "workspace:*",
-        "@rslib/core": "^0.16.1",
-        "@types/node": "^22.18.12",
-        "@types/react": "^19.0.8",
-        "react": ">=18.0.0",
-        "svelte": "^5.0.0",
-        "typescript": "^5.9.3",
-        "vue": "^3.5.22",
-      },
-      "peerDependencies": {
-        "react": ">=18.0.0",
-        "svelte": ">=5.0.0",
-        "vue": "^3.5.22",
-      },
-      "optionalPeers": [
-        "react",
-        "svelte",
-        "vue",
-      ],
-    },
-    "packages/hair-color-predictor": {
-      "name": "@avatune/hair-color-predictor",
-      "version": "0.0.0",
-      "dependencies": {
-        "@avatune/face-detector": "workspace:*",
-        "@avatune/types": "workspace:*",
-      },
-      "devDependencies": {
-        "@avatune/rsbuild-plugin-copy-tfjs-model": "workspace:*",
-        "@rslib/core": "^0.16.0",
-        "@tensorflow/tfjs": "^4.22.0",
-        "@tensorflow/tfjs-backend-wasm": "^4.22.0",
-        "@tensorflow/tfjs-backend-webgl": "^4.22.0",
-        "@types/node": "^22.18.11",
-        "typescript": "^5.9.3",
-      },
-      "peerDependencies": {
-        "@tensorflow/tfjs": "^4.22.0",
-        "@tensorflow/tfjs-backend-wasm": "^4.22.0",
-        "@tensorflow/tfjs-backend-webgl": "^4.22.0",
-      },
-    },
-    "packages/hair-length-predictor": {
-      "name": "@avatune/hair-length-predictor",
-      "version": "0.0.0",
-      "dependencies": {
-        "@avatune/face-detector": "workspace:*",
-        "@avatune/types": "workspace:*",
-      },
-      "devDependencies": {
-        "@avatune/rsbuild-plugin-copy-tfjs-model": "workspace:*",
-        "@rslib/core": "^0.16.0",
-        "@tensorflow/tfjs": "^4.22.0",
-        "@tensorflow/tfjs-backend-wasm": "^4.22.0",
-        "@tensorflow/tfjs-backend-webgl": "^4.22.0",
-        "@types/node": "^22.18.11",
-        "typescript": "^5.9.3",
-      },
-      "peerDependencies": {
-        "@tensorflow/tfjs": "^4.22.0",
-        "@tensorflow/tfjs-backend-wasm": "^4.22.0",
-        "@tensorflow/tfjs-backend-webgl": "^4.22.0",
-      },
-    },
-    "packages/kyute-assets": {
+    "packages/assets/kyute-assets": {
       "name": "@avatune/kyute-assets",
       "version": "0.0.0",
       "dependencies": {
@@ -406,37 +319,7 @@
         "vue",
       ],
     },
-    "packages/kyute-theme": {
-      "name": "@avatune/kyute-theme",
-      "version": "0.0.0",
-      "dependencies": {
-        "@avatune/kyute-assets": "workspace:*",
-        "@avatune/theme-builder": "workspace:*",
-        "@avatune/types": "workspace:*",
-        "@avatune/utils": "workspace:*",
-      },
-      "devDependencies": {
-        "@avatune/typescript-config": "workspace:*",
-        "@rslib/core": "^0.16.1",
-        "@types/node": "^22.18.12",
-        "@types/react": "^19.0.8",
-        "react": ">=18.0.0",
-        "svelte": "^5.0.0",
-        "typescript": "^5.9.3",
-        "vue": "^3.5.22",
-      },
-      "peerDependencies": {
-        "react": ">=18.0.0",
-        "svelte": ">=5.0.0",
-        "vue": "^3.5.22",
-      },
-      "optionalPeers": [
-        "react",
-        "svelte",
-        "vue",
-      ],
-    },
-    "packages/micah-assets": {
+    "packages/assets/micah-assets": {
       "name": "@avatune/micah-assets",
       "version": "0.0.0",
       "dependencies": {
@@ -474,37 +357,7 @@
         "vue",
       ],
     },
-    "packages/micah-theme": {
-      "name": "@avatune/micah-theme",
-      "version": "0.0.0",
-      "dependencies": {
-        "@avatune/micah-assets": "workspace:*",
-        "@avatune/theme-builder": "workspace:*",
-        "@avatune/types": "workspace:*",
-        "@avatune/utils": "workspace:*",
-      },
-      "devDependencies": {
-        "@avatune/typescript-config": "workspace:*",
-        "@rslib/core": "^0.16.1",
-        "@types/node": "^22.18.12",
-        "@types/react": "^19.0.8",
-        "react": ">=18.0.0",
-        "svelte": "^5.0.0",
-        "typescript": "^5.9.3",
-        "vue": "^3.5.22",
-      },
-      "peerDependencies": {
-        "react": ">=18.0.0",
-        "svelte": ">=5.0.0",
-        "vue": "^3.5.22",
-      },
-      "optionalPeers": [
-        "react",
-        "svelte",
-        "vue",
-      ],
-    },
-    "packages/miniavs-assets": {
+    "packages/assets/miniavs-assets": {
       "name": "@avatune/miniavs-assets",
       "version": "0.0.0",
       "dependencies": {
@@ -542,22 +395,7 @@
         "vue",
       ],
     },
-    "packages/miniavs-theme": {
-      "name": "@avatune/miniavs-theme",
-      "version": "0.0.0",
-      "dependencies": {
-        "@avatune/miniavs-assets": "workspace:*",
-        "@avatune/theme-builder": "workspace:*",
-        "@avatune/types": "workspace:*",
-        "@avatune/utils": "workspace:*",
-      },
-      "devDependencies": {
-        "@avatune/typescript-config": "workspace:*",
-        "@rslib/core": "^0.16.1",
-        "typescript": "^5.9.3",
-      },
-    },
-    "packages/nevmstas-assets": {
+    "packages/assets/nevmstas-assets": {
       "name": "@avatune/nevmstas-assets",
       "version": "0.0.0",
       "dependencies": {
@@ -595,40 +433,7 @@
         "vue",
       ],
     },
-    "packages/nevmstas-theme": {
-      "name": "@avatune/nevmstas-theme",
-      "version": "0.0.0",
-      "dependencies": {
-        "@avatune/nevmstas-assets": "workspace:*",
-        "@avatune/theme-builder": "workspace:*",
-        "@avatune/types": "workspace:*",
-        "@avatune/utils": "workspace:*",
-      },
-      "devDependencies": {
-        "@avatune/typescript-config": "workspace:*",
-        "@rslib/core": "^0.16.1",
-        "@types/node": "^22.18.12",
-        "@types/react": "^19.0.8",
-        "react": ">=18.0.0",
-        "react-native": "^0.81.5",
-        "svelte": "^5.0.0",
-        "typescript": "^5.9.3",
-        "vue": "^3.5.22",
-      },
-      "peerDependencies": {
-        "react": ">=18.0.0",
-        "react-native": "*",
-        "svelte": ">=5.0.0",
-        "vue": "^3.5.22",
-      },
-      "optionalPeers": [
-        "react",
-        "react-native",
-        "svelte",
-        "vue",
-      ],
-    },
-    "packages/pacovqzz-assets": {
+    "packages/assets/pacovqzz-assets": {
       "name": "@avatune/pacovqzz-assets",
       "version": "0.0.0",
       "dependencies": {
@@ -666,263 +471,7 @@
         "vue",
       ],
     },
-    "packages/pacovqzz-theme": {
-      "name": "@avatune/pacovqzz-theme",
-      "version": "0.0.0",
-      "dependencies": {
-        "@avatune/pacovqzz-assets": "workspace:*",
-        "@avatune/theme-builder": "workspace:*",
-        "@avatune/types": "workspace:*",
-        "@avatune/utils": "workspace:*",
-      },
-      "devDependencies": {
-        "@avatune/typescript-config": "workspace:*",
-        "@rslib/core": "^0.16.1",
-        "typescript": "^5.9.3",
-      },
-    },
-    "packages/react": {
-      "name": "@avatune/react",
-      "version": "0.0.0",
-      "dependencies": {
-        "@avatune/types": "workspace:*",
-        "@avatune/utils": "workspace:*",
-        "@blazediff/object": "^1.7.0",
-      },
-      "devDependencies": {
-        "@avatune/typescript-config": "workspace:*",
-        "@rsbuild/plugin-react": "^1.4.1",
-        "@rslib/core": "^0.16.1",
-        "@types/node": "^22.18.12",
-        "@types/react": "^19.0.8",
-        "react": "^19.1.0",
-        "typescript": "^5.9.3",
-      },
-      "peerDependencies": {
-        "react": ">=18.0.0",
-      },
-    },
-    "packages/react-native": {
-      "name": "@avatune/react-native",
-      "version": "0.0.0",
-      "dependencies": {
-        "@avatune/types": "workspace:*",
-        "@avatune/utils": "workspace:*",
-      },
-      "devDependencies": {
-        "@avatune/typescript-config": "workspace:*",
-        "@rsbuild/plugin-react": "^1.4.1",
-        "@rslib/core": "^0.16.1",
-        "@types/node": "^22.18.12",
-        "@types/react": "^19.0.8",
-        "react": "^19.1.0",
-        "react-native": "^0.81.5",
-        "react-native-svg": "^15.9.0",
-        "typescript": "^5.9.3",
-      },
-      "peerDependencies": {
-        "react": ">=18.0.0",
-        "react-native": ">=0.74.0",
-        "react-native-svg": ">=13.0.0",
-      },
-    },
-    "packages/rsbuild-plugin-copy-tfjs-model": {
-      "name": "@avatune/rsbuild-plugin-copy-tfjs-model",
-      "version": "0.0.0",
-      "devDependencies": {
-        "@avatune/typescript-config": "workspace:*",
-        "@rsbuild/core": "^1.5.17",
-        "@rslib/core": "^0.16.1",
-        "@types/node": "^22.18.12",
-        "typescript": "^5.9.3",
-      },
-      "peerDependencies": {
-        "@rsbuild/core": ">=1.0.0",
-      },
-    },
-    "packages/rsbuild-plugin-raw-svg": {
-      "name": "@avatune/rsbuild-plugin-raw-svg",
-      "version": "0.0.1",
-      "dependencies": {
-        "@svgr/core": "^8.1.0",
-        "@svgr/plugin-svgo": "^8.1.0",
-        "deepmerge": "^4.3.1",
-        "svgo": "^4.0.0",
-      },
-      "devDependencies": {
-        "@avatune/typescript-config": "workspace:*",
-        "@rslib/core": "^0.16.1",
-        "@types/node": "^24.9.1",
-        "typescript": "^5.9.3",
-      },
-      "peerDependencies": {
-        "@rsbuild/core": ">=1.1.0",
-      },
-    },
-    "packages/rsbuild-plugin-svg-to-svelte": {
-      "name": "@avatune/rsbuild-plugin-svg-to-svelte",
-      "version": "0.0.0",
-      "dependencies": {
-        "@svgr/core": "^8.1.0",
-        "@svgr/plugin-svgo": "^8.1.0",
-        "deepmerge": "^4.3.1",
-        "svgo": "^4.0.0",
-      },
-      "devDependencies": {
-        "@avatune/typescript-config": "workspace:*",
-        "@rslib/core": "^0.16.1",
-        "@types/node": "^22.18.12",
-        "svelte": "^5.0.0",
-        "typescript": "^5.9.3",
-      },
-      "peerDependencies": {
-        "@rsbuild/core": ">=1.0.0",
-        "svelte": ">=5.0.0",
-      },
-    },
-    "packages/rsbuild-plugin-svg-to-vue": {
-      "name": "@avatune/rsbuild-plugin-svg-to-vue",
-      "version": "0.0.0",
-      "dependencies": {
-        "@svgr/core": "^8.1.0",
-        "@svgr/plugin-svgo": "^8.1.0",
-        "deepmerge": "^4.3.1",
-        "svgo": "^4.0.0",
-      },
-      "devDependencies": {
-        "@avatune/typescript-config": "workspace:*",
-        "@rslib/core": "^0.16.1",
-        "@types/node": "^22.18.12",
-        "typescript": "^5.9.3",
-      },
-      "peerDependencies": {
-        "@rsbuild/core": ">=1.0.0",
-        "@vue/compiler-sfc": "^3.5.22",
-      },
-    },
-    "packages/skin-tone-predictor": {
-      "name": "@avatune/skin-tone-predictor",
-      "version": "0.0.0",
-      "dependencies": {
-        "@avatune/face-detector": "workspace:*",
-        "@avatune/types": "workspace:*",
-      },
-      "devDependencies": {
-        "@avatune/rsbuild-plugin-copy-tfjs-model": "workspace:*",
-        "@rslib/core": "^0.16.0",
-        "@tensorflow/tfjs": "^4.22.0",
-        "@tensorflow/tfjs-backend-wasm": "^4.22.0",
-        "@tensorflow/tfjs-backend-webgl": "^4.22.0",
-        "@types/node": "^22.18.11",
-        "typescript": "^5.9.3",
-      },
-      "peerDependencies": {
-        "@mediapipe/tasks-vision": "^0.10.18",
-        "@tensorflow/tfjs": "^4.22.0",
-        "@tensorflow/tfjs-backend-wasm": "^4.22.0",
-        "@tensorflow/tfjs-backend-webgl": "^4.22.0",
-      },
-    },
-    "packages/svelte": {
-      "name": "@avatune/svelte",
-      "version": "0.0.0",
-      "dependencies": {
-        "@avatune/types": "workspace:*",
-        "@avatune/utils": "workspace:*",
-      },
-      "devDependencies": {
-        "@avatune/typescript-config": "workspace:*",
-        "@rsbuild/plugin-svelte": "^1.0.10",
-        "@rslib/core": "^0.16.1",
-        "@types/node": "^22.18.12",
-        "svelte": "^5.0.0",
-        "typescript": "^5.9.3",
-      },
-      "peerDependencies": {
-        "svelte": ">=5.0.0",
-      },
-    },
-    "packages/theme-builder": {
-      "name": "@avatune/theme-builder",
-      "version": "0.0.0",
-      "dependencies": {
-        "@avatune/types": "workspace:*",
-        "@avatune/utils": "workspace:*",
-      },
-      "devDependencies": {
-        "@avatune/typescript-config": "workspace:*",
-        "@rslib/core": "^0.16.1",
-        "@types/node": "^22.18.12",
-        "typescript": "^5.9.3",
-      },
-    },
-    "packages/types": {
-      "name": "@avatune/types",
-      "version": "0.0.0",
-      "devDependencies": {
-        "@avatune/typescript-config": "workspace:*",
-        "@rslib/core": "^0.16.1",
-        "@types/node": "^22.18.12",
-        "@types/react": "^19.0.8",
-        "react": ">=18.0.0",
-        "react-native": "0.81.5",
-        "react-native-svg": "^15.9.0",
-        "svelte": ">=5.0.0",
-        "typescript": "^5.9.3",
-        "vue": "^3.5.22",
-      },
-    },
-    "packages/typescript-config": {
-      "name": "@avatune/typescript-config",
-      "version": "0.0.0",
-    },
-    "packages/utils": {
-      "name": "@avatune/utils",
-      "version": "0.0.0",
-      "dependencies": {
-        "@avatune/types": "workspace:*",
-      },
-      "devDependencies": {
-        "@avatune/typescript-config": "workspace:*",
-        "@rslib/core": "^0.16.1",
-        "@types/node": "^22.18.12",
-        "typescript": "^5.9.3",
-      },
-    },
-    "packages/vanilla": {
-      "name": "@avatune/vanilla",
-      "version": "0.0.0",
-      "dependencies": {
-        "@avatune/types": "workspace:*",
-        "@avatune/utils": "workspace:*",
-      },
-      "devDependencies": {
-        "@avatune/typescript-config": "workspace:*",
-        "@rslib/core": "^0.16.1",
-        "@types/node": "^22.18.12",
-        "typescript": "^5.9.3",
-      },
-    },
-    "packages/vue": {
-      "name": "@avatune/vue",
-      "version": "0.0.0",
-      "dependencies": {
-        "@avatune/types": "workspace:*",
-        "@avatune/utils": "workspace:*",
-      },
-      "devDependencies": {
-        "@avatune/typescript-config": "workspace:*",
-        "@rsbuild/plugin-vue": "^1.2.0",
-        "@rslib/core": "^0.16.1",
-        "@types/node": "^22.18.12",
-        "typescript": "^5.9.3",
-        "vue": "^3.5.22",
-      },
-      "peerDependencies": {
-        "vue": "^3.5.22",
-      },
-    },
-    "packages/yanliu-assets": {
+    "packages/assets/yanliu-assets": {
       "name": "@avatune/yanliu-assets",
       "version": "0.0.0",
       "dependencies": {
@@ -960,7 +509,458 @@
         "vue",
       ],
     },
-    "packages/yanliu-theme": {
+    "packages/core/theme-builder": {
+      "name": "@avatune/theme-builder",
+      "version": "0.0.0",
+      "dependencies": {
+        "@avatune/types": "workspace:*",
+        "@avatune/utils": "workspace:*",
+      },
+      "devDependencies": {
+        "@avatune/typescript-config": "workspace:*",
+        "@rslib/core": "^0.16.1",
+        "@types/node": "^22.18.12",
+        "typescript": "^5.9.3",
+      },
+    },
+    "packages/core/types": {
+      "name": "@avatune/types",
+      "version": "0.0.0",
+      "devDependencies": {
+        "@avatune/typescript-config": "workspace:*",
+        "@rslib/core": "^0.16.1",
+        "@types/node": "^22.18.12",
+        "@types/react": "^19.0.8",
+        "react": ">=18.0.0",
+        "react-native": "0.81.5",
+        "react-native-svg": "^15.9.0",
+        "svelte": ">=5.0.0",
+        "typescript": "^5.9.3",
+        "vue": "^3.5.22",
+      },
+    },
+    "packages/core/typescript-config": {
+      "name": "@avatune/typescript-config",
+      "version": "0.0.0",
+    },
+    "packages/core/utils": {
+      "name": "@avatune/utils",
+      "version": "0.0.0",
+      "dependencies": {
+        "@avatune/types": "workspace:*",
+      },
+      "devDependencies": {
+        "@avatune/typescript-config": "workspace:*",
+        "@rslib/core": "^0.16.1",
+        "@types/node": "^22.18.12",
+        "typescript": "^5.9.3",
+      },
+    },
+    "packages/predictors/face-detector": {
+      "name": "@avatune/face-detector",
+      "version": "0.0.0",
+      "dependencies": {
+        "@mediapipe/tasks-vision": "^0.10.18",
+      },
+      "devDependencies": {
+        "@avatune/typescript-config": "workspace:*",
+        "@rslib/core": "^0.16.0",
+        "@types/node": "^22.18.11",
+        "typescript": "^5.9.3",
+      },
+    },
+    "packages/predictors/hair-color-predictor": {
+      "name": "@avatune/hair-color-predictor",
+      "version": "0.0.0",
+      "dependencies": {
+        "@avatune/face-detector": "workspace:*",
+        "@avatune/types": "workspace:*",
+      },
+      "devDependencies": {
+        "@avatune/rsbuild-plugin-copy-tfjs-model": "workspace:*",
+        "@rslib/core": "^0.16.0",
+        "@tensorflow/tfjs": "^4.22.0",
+        "@tensorflow/tfjs-backend-wasm": "^4.22.0",
+        "@tensorflow/tfjs-backend-webgl": "^4.22.0",
+        "@types/node": "^22.18.11",
+        "typescript": "^5.9.3",
+      },
+      "peerDependencies": {
+        "@tensorflow/tfjs": "^4.22.0",
+        "@tensorflow/tfjs-backend-wasm": "^4.22.0",
+        "@tensorflow/tfjs-backend-webgl": "^4.22.0",
+      },
+    },
+    "packages/predictors/hair-length-predictor": {
+      "name": "@avatune/hair-length-predictor",
+      "version": "0.0.0",
+      "dependencies": {
+        "@avatune/face-detector": "workspace:*",
+        "@avatune/types": "workspace:*",
+      },
+      "devDependencies": {
+        "@avatune/rsbuild-plugin-copy-tfjs-model": "workspace:*",
+        "@rslib/core": "^0.16.0",
+        "@tensorflow/tfjs": "^4.22.0",
+        "@tensorflow/tfjs-backend-wasm": "^4.22.0",
+        "@tensorflow/tfjs-backend-webgl": "^4.22.0",
+        "@types/node": "^22.18.11",
+        "typescript": "^5.9.3",
+      },
+      "peerDependencies": {
+        "@tensorflow/tfjs": "^4.22.0",
+        "@tensorflow/tfjs-backend-wasm": "^4.22.0",
+        "@tensorflow/tfjs-backend-webgl": "^4.22.0",
+      },
+    },
+    "packages/predictors/skin-tone-predictor": {
+      "name": "@avatune/skin-tone-predictor",
+      "version": "0.0.0",
+      "dependencies": {
+        "@avatune/face-detector": "workspace:*",
+        "@avatune/types": "workspace:*",
+      },
+      "devDependencies": {
+        "@avatune/rsbuild-plugin-copy-tfjs-model": "workspace:*",
+        "@rslib/core": "^0.16.0",
+        "@tensorflow/tfjs": "^4.22.0",
+        "@tensorflow/tfjs-backend-wasm": "^4.22.0",
+        "@tensorflow/tfjs-backend-webgl": "^4.22.0",
+        "@types/node": "^22.18.11",
+        "typescript": "^5.9.3",
+      },
+      "peerDependencies": {
+        "@mediapipe/tasks-vision": "^0.10.18",
+        "@tensorflow/tfjs": "^4.22.0",
+        "@tensorflow/tfjs-backend-wasm": "^4.22.0",
+        "@tensorflow/tfjs-backend-webgl": "^4.22.0",
+      },
+    },
+    "packages/renderers/react": {
+      "name": "@avatune/react",
+      "version": "0.0.0",
+      "dependencies": {
+        "@avatune/types": "workspace:*",
+        "@avatune/utils": "workspace:*",
+        "@blazediff/object": "^1.7.0",
+      },
+      "devDependencies": {
+        "@avatune/typescript-config": "workspace:*",
+        "@rsbuild/plugin-react": "^1.4.1",
+        "@rslib/core": "^0.16.1",
+        "@types/node": "^22.18.12",
+        "@types/react": "^19.0.8",
+        "react": "^19.1.0",
+        "typescript": "^5.9.3",
+      },
+      "peerDependencies": {
+        "react": ">=18.0.0",
+      },
+    },
+    "packages/renderers/react-native": {
+      "name": "@avatune/react-native",
+      "version": "0.0.0",
+      "dependencies": {
+        "@avatune/types": "workspace:*",
+        "@avatune/utils": "workspace:*",
+      },
+      "devDependencies": {
+        "@avatune/typescript-config": "workspace:*",
+        "@rsbuild/plugin-react": "^1.4.1",
+        "@rslib/core": "^0.16.1",
+        "@types/node": "^22.18.12",
+        "@types/react": "^19.0.8",
+        "react": "^19.1.0",
+        "react-native": "^0.81.5",
+        "react-native-svg": "^15.9.0",
+        "typescript": "^5.9.3",
+      },
+      "peerDependencies": {
+        "react": ">=18.0.0",
+        "react-native": ">=0.74.0",
+        "react-native-svg": ">=13.0.0",
+      },
+    },
+    "packages/renderers/svelte": {
+      "name": "@avatune/svelte",
+      "version": "0.0.0",
+      "dependencies": {
+        "@avatune/types": "workspace:*",
+        "@avatune/utils": "workspace:*",
+      },
+      "devDependencies": {
+        "@avatune/typescript-config": "workspace:*",
+        "@rsbuild/plugin-svelte": "^1.0.10",
+        "@rslib/core": "^0.16.1",
+        "@types/node": "^22.18.12",
+        "svelte": "^5.0.0",
+        "typescript": "^5.9.3",
+      },
+      "peerDependencies": {
+        "svelte": ">=5.0.0",
+      },
+    },
+    "packages/renderers/vanilla": {
+      "name": "@avatune/vanilla",
+      "version": "0.0.0",
+      "dependencies": {
+        "@avatune/types": "workspace:*",
+        "@avatune/utils": "workspace:*",
+      },
+      "devDependencies": {
+        "@avatune/typescript-config": "workspace:*",
+        "@rslib/core": "^0.16.1",
+        "@types/node": "^22.18.12",
+        "typescript": "^5.9.3",
+      },
+    },
+    "packages/renderers/vue": {
+      "name": "@avatune/vue",
+      "version": "0.0.0",
+      "dependencies": {
+        "@avatune/types": "workspace:*",
+        "@avatune/utils": "workspace:*",
+      },
+      "devDependencies": {
+        "@avatune/typescript-config": "workspace:*",
+        "@rsbuild/plugin-vue": "^1.2.0",
+        "@rslib/core": "^0.16.1",
+        "@types/node": "^22.18.12",
+        "typescript": "^5.9.3",
+        "vue": "^3.5.22",
+      },
+      "peerDependencies": {
+        "vue": "^3.5.22",
+      },
+    },
+    "packages/rsbuild-plugins/rsbuild-plugin-copy-tfjs-model": {
+      "name": "@avatune/rsbuild-plugin-copy-tfjs-model",
+      "version": "0.0.0",
+      "devDependencies": {
+        "@avatune/typescript-config": "workspace:*",
+        "@rsbuild/core": "^1.5.17",
+        "@rslib/core": "^0.16.1",
+        "@types/node": "^22.18.12",
+        "typescript": "^5.9.3",
+      },
+      "peerDependencies": {
+        "@rsbuild/core": ">=1.0.0",
+      },
+    },
+    "packages/rsbuild-plugins/rsbuild-plugin-raw-svg": {
+      "name": "@avatune/rsbuild-plugin-raw-svg",
+      "version": "0.0.1",
+      "dependencies": {
+        "@svgr/core": "^8.1.0",
+        "@svgr/plugin-svgo": "^8.1.0",
+        "deepmerge": "^4.3.1",
+        "svgo": "^4.0.0",
+      },
+      "devDependencies": {
+        "@avatune/typescript-config": "workspace:*",
+        "@rslib/core": "^0.16.1",
+        "@types/node": "^24.9.1",
+        "typescript": "^5.9.3",
+      },
+      "peerDependencies": {
+        "@rsbuild/core": ">=1.1.0",
+      },
+    },
+    "packages/rsbuild-plugins/rsbuild-plugin-svg-to-svelte": {
+      "name": "@avatune/rsbuild-plugin-svg-to-svelte",
+      "version": "0.0.0",
+      "dependencies": {
+        "@svgr/core": "^8.1.0",
+        "@svgr/plugin-svgo": "^8.1.0",
+        "deepmerge": "^4.3.1",
+        "svgo": "^4.0.0",
+      },
+      "devDependencies": {
+        "@avatune/typescript-config": "workspace:*",
+        "@rslib/core": "^0.16.1",
+        "@types/node": "^22.18.12",
+        "svelte": "^5.0.0",
+        "typescript": "^5.9.3",
+      },
+      "peerDependencies": {
+        "@rsbuild/core": ">=1.0.0",
+        "svelte": ">=5.0.0",
+      },
+    },
+    "packages/rsbuild-plugins/rsbuild-plugin-svg-to-vue": {
+      "name": "@avatune/rsbuild-plugin-svg-to-vue",
+      "version": "0.0.0",
+      "dependencies": {
+        "@svgr/core": "^8.1.0",
+        "@svgr/plugin-svgo": "^8.1.0",
+        "deepmerge": "^4.3.1",
+        "svgo": "^4.0.0",
+      },
+      "devDependencies": {
+        "@avatune/typescript-config": "workspace:*",
+        "@rslib/core": "^0.16.1",
+        "@types/node": "^22.18.12",
+        "typescript": "^5.9.3",
+      },
+      "peerDependencies": {
+        "@rsbuild/core": ">=1.0.0",
+        "@vue/compiler-sfc": "^3.5.22",
+      },
+    },
+    "packages/themes/fatin-verse-theme": {
+      "name": "@avatune/fatin-verse-theme",
+      "version": "0.0.0",
+      "dependencies": {
+        "@avatune/fatin-verse-assets": "workspace:*",
+        "@avatune/theme-builder": "workspace:*",
+        "@avatune/types": "workspace:*",
+        "@avatune/utils": "workspace:*",
+      },
+      "devDependencies": {
+        "@avatune/typescript-config": "workspace:*",
+        "@rslib/core": "^0.16.1",
+        "@types/node": "^22.18.12",
+        "@types/react": "^19.0.8",
+        "react": ">=18.0.0",
+        "svelte": "^5.0.0",
+        "typescript": "^5.9.3",
+        "vue": "^3.5.22",
+      },
+      "peerDependencies": {
+        "react": ">=18.0.0",
+        "svelte": ">=5.0.0",
+        "vue": "^3.5.22",
+      },
+      "optionalPeers": [
+        "react",
+        "svelte",
+        "vue",
+      ],
+    },
+    "packages/themes/kyute-theme": {
+      "name": "@avatune/kyute-theme",
+      "version": "0.0.0",
+      "dependencies": {
+        "@avatune/kyute-assets": "workspace:*",
+        "@avatune/theme-builder": "workspace:*",
+        "@avatune/types": "workspace:*",
+        "@avatune/utils": "workspace:*",
+      },
+      "devDependencies": {
+        "@avatune/typescript-config": "workspace:*",
+        "@rslib/core": "^0.16.1",
+        "@types/node": "^22.18.12",
+        "@types/react": "^19.0.8",
+        "react": ">=18.0.0",
+        "svelte": "^5.0.0",
+        "typescript": "^5.9.3",
+        "vue": "^3.5.22",
+      },
+      "peerDependencies": {
+        "react": ">=18.0.0",
+        "svelte": ">=5.0.0",
+        "vue": "^3.5.22",
+      },
+      "optionalPeers": [
+        "react",
+        "svelte",
+        "vue",
+      ],
+    },
+    "packages/themes/micah-theme": {
+      "name": "@avatune/micah-theme",
+      "version": "0.0.0",
+      "dependencies": {
+        "@avatune/micah-assets": "workspace:*",
+        "@avatune/theme-builder": "workspace:*",
+        "@avatune/types": "workspace:*",
+        "@avatune/utils": "workspace:*",
+      },
+      "devDependencies": {
+        "@avatune/typescript-config": "workspace:*",
+        "@rslib/core": "^0.16.1",
+        "@types/node": "^22.18.12",
+        "@types/react": "^19.0.8",
+        "react": ">=18.0.0",
+        "svelte": "^5.0.0",
+        "typescript": "^5.9.3",
+        "vue": "^3.5.22",
+      },
+      "peerDependencies": {
+        "react": ">=18.0.0",
+        "svelte": ">=5.0.0",
+        "vue": "^3.5.22",
+      },
+      "optionalPeers": [
+        "react",
+        "svelte",
+        "vue",
+      ],
+    },
+    "packages/themes/miniavs-theme": {
+      "name": "@avatune/miniavs-theme",
+      "version": "0.0.0",
+      "dependencies": {
+        "@avatune/miniavs-assets": "workspace:*",
+        "@avatune/theme-builder": "workspace:*",
+        "@avatune/types": "workspace:*",
+        "@avatune/utils": "workspace:*",
+      },
+      "devDependencies": {
+        "@avatune/typescript-config": "workspace:*",
+        "@rslib/core": "^0.16.1",
+        "typescript": "^5.9.3",
+      },
+    },
+    "packages/themes/nevmstas-theme": {
+      "name": "@avatune/nevmstas-theme",
+      "version": "0.0.0",
+      "dependencies": {
+        "@avatune/nevmstas-assets": "workspace:*",
+        "@avatune/theme-builder": "workspace:*",
+        "@avatune/types": "workspace:*",
+        "@avatune/utils": "workspace:*",
+      },
+      "devDependencies": {
+        "@avatune/typescript-config": "workspace:*",
+        "@rslib/core": "^0.16.1",
+        "@types/node": "^22.18.12",
+        "@types/react": "^19.0.8",
+        "react": ">=18.0.0",
+        "react-native": "^0.81.5",
+        "svelte": "^5.0.0",
+        "typescript": "^5.9.3",
+        "vue": "^3.5.22",
+      },
+      "peerDependencies": {
+        "react": ">=18.0.0",
+        "react-native": "*",
+        "svelte": ">=5.0.0",
+        "vue": "^3.5.22",
+      },
+      "optionalPeers": [
+        "react",
+        "react-native",
+        "svelte",
+        "vue",
+      ],
+    },
+    "packages/themes/pacovqzz-theme": {
+      "name": "@avatune/pacovqzz-theme",
+      "version": "0.0.0",
+      "dependencies": {
+        "@avatune/pacovqzz-assets": "workspace:*",
+        "@avatune/theme-builder": "workspace:*",
+        "@avatune/types": "workspace:*",
+        "@avatune/utils": "workspace:*",
+      },
+      "devDependencies": {
+        "@avatune/typescript-config": "workspace:*",
+        "@rslib/core": "^0.16.1",
+        "typescript": "^5.9.3",
+      },
+    },
+    "packages/themes/yanliu-theme": {
       "name": "@avatune/yanliu-theme",
       "version": "0.0.0",
       "dependencies": {
@@ -992,10 +992,10 @@
     },
   },
   "overrides": {
-    "react": "19.1.0",
-    "react-dom": "19.1.0",
-    "react-native": "0.81.5",
     "ws": "^8.18.0",
+    "react": "19.1.0",
+    "react-native": "0.81.5",
+    "react-dom": "19.1.0",
   },
   "packages": {
     "@adobe/css-tools": ["@adobe/css-tools@4.4.4", "", {}, "sha512-Elp+iwUx5rN5+Y8xLt5/GRoG20WGoDCQ/1Fb+1LiGtvwbDavuSk0jhD/eZdckHAuzcDzccnkv+rEjyWfRx18gg=="],
@@ -1040,83 +1040,83 @@
 
     "@avatune/cloudflare-worker": ["@avatune/cloudflare-worker@workspace:apps/cloudflare-worker"],
 
-    "@avatune/face-detector": ["@avatune/face-detector@workspace:packages/face-detector"],
+    "@avatune/face-detector": ["@avatune/face-detector@workspace:packages/predictors/face-detector"],
 
-    "@avatune/fatin-verse-assets": ["@avatune/fatin-verse-assets@workspace:packages/fatin-verse-assets"],
+    "@avatune/fatin-verse-assets": ["@avatune/fatin-verse-assets@workspace:packages/assets/fatin-verse-assets"],
 
-    "@avatune/fatin-verse-theme": ["@avatune/fatin-verse-theme@workspace:packages/fatin-verse-theme"],
+    "@avatune/fatin-verse-theme": ["@avatune/fatin-verse-theme@workspace:packages/themes/fatin-verse-theme"],
 
-    "@avatune/hair-color-predictor": ["@avatune/hair-color-predictor@workspace:packages/hair-color-predictor"],
+    "@avatune/hair-color-predictor": ["@avatune/hair-color-predictor@workspace:packages/predictors/hair-color-predictor"],
 
-    "@avatune/hair-length-predictor": ["@avatune/hair-length-predictor@workspace:packages/hair-length-predictor"],
+    "@avatune/hair-length-predictor": ["@avatune/hair-length-predictor@workspace:packages/predictors/hair-length-predictor"],
 
-    "@avatune/kyute-assets": ["@avatune/kyute-assets@workspace:packages/kyute-assets"],
+    "@avatune/kyute-assets": ["@avatune/kyute-assets@workspace:packages/assets/kyute-assets"],
 
-    "@avatune/kyute-theme": ["@avatune/kyute-theme@workspace:packages/kyute-theme"],
+    "@avatune/kyute-theme": ["@avatune/kyute-theme@workspace:packages/themes/kyute-theme"],
 
-    "@avatune/micah-assets": ["@avatune/micah-assets@workspace:packages/micah-assets"],
+    "@avatune/micah-assets": ["@avatune/micah-assets@workspace:packages/assets/micah-assets"],
 
-    "@avatune/micah-theme": ["@avatune/micah-theme@workspace:packages/micah-theme"],
+    "@avatune/micah-theme": ["@avatune/micah-theme@workspace:packages/themes/micah-theme"],
 
-    "@avatune/miniavs-assets": ["@avatune/miniavs-assets@workspace:packages/miniavs-assets"],
+    "@avatune/miniavs-assets": ["@avatune/miniavs-assets@workspace:packages/assets/miniavs-assets"],
 
-    "@avatune/miniavs-theme": ["@avatune/miniavs-theme@workspace:packages/miniavs-theme"],
+    "@avatune/miniavs-theme": ["@avatune/miniavs-theme@workspace:packages/themes/miniavs-theme"],
 
-    "@avatune/nevmstas-assets": ["@avatune/nevmstas-assets@workspace:packages/nevmstas-assets"],
+    "@avatune/nevmstas-assets": ["@avatune/nevmstas-assets@workspace:packages/assets/nevmstas-assets"],
 
-    "@avatune/nevmstas-theme": ["@avatune/nevmstas-theme@workspace:packages/nevmstas-theme"],
+    "@avatune/nevmstas-theme": ["@avatune/nevmstas-theme@workspace:packages/themes/nevmstas-theme"],
 
-    "@avatune/pacovqzz-assets": ["@avatune/pacovqzz-assets@workspace:packages/pacovqzz-assets"],
+    "@avatune/pacovqzz-assets": ["@avatune/pacovqzz-assets@workspace:packages/assets/pacovqzz-assets"],
 
-    "@avatune/pacovqzz-theme": ["@avatune/pacovqzz-theme@workspace:packages/pacovqzz-theme"],
+    "@avatune/pacovqzz-theme": ["@avatune/pacovqzz-theme@workspace:packages/themes/pacovqzz-theme"],
 
     "@avatune/predictor-storybook": ["@avatune/predictor-storybook@workspace:apps/predictor-storybook"],
 
-    "@avatune/react": ["@avatune/react@workspace:packages/react"],
+    "@avatune/react": ["@avatune/react@workspace:packages/renderers/react"],
 
-    "@avatune/react-native": ["@avatune/react-native@workspace:packages/react-native"],
+    "@avatune/react-native": ["@avatune/react-native@workspace:packages/renderers/react-native"],
 
     "@avatune/react-storybook": ["@avatune/react-storybook@workspace:apps/react-storybook"],
 
     "@avatune/rn-storybook": ["@avatune/rn-storybook@workspace:apps/RNStorybook"],
 
-    "@avatune/rsbuild-plugin-copy-tfjs-model": ["@avatune/rsbuild-plugin-copy-tfjs-model@workspace:packages/rsbuild-plugin-copy-tfjs-model"],
+    "@avatune/rsbuild-plugin-copy-tfjs-model": ["@avatune/rsbuild-plugin-copy-tfjs-model@workspace:packages/rsbuild-plugins/rsbuild-plugin-copy-tfjs-model"],
 
-    "@avatune/rsbuild-plugin-raw-svg": ["@avatune/rsbuild-plugin-raw-svg@workspace:packages/rsbuild-plugin-raw-svg"],
+    "@avatune/rsbuild-plugin-raw-svg": ["@avatune/rsbuild-plugin-raw-svg@workspace:packages/rsbuild-plugins/rsbuild-plugin-raw-svg"],
 
-    "@avatune/rsbuild-plugin-svg-to-svelte": ["@avatune/rsbuild-plugin-svg-to-svelte@workspace:packages/rsbuild-plugin-svg-to-svelte"],
+    "@avatune/rsbuild-plugin-svg-to-svelte": ["@avatune/rsbuild-plugin-svg-to-svelte@workspace:packages/rsbuild-plugins/rsbuild-plugin-svg-to-svelte"],
 
-    "@avatune/rsbuild-plugin-svg-to-vue": ["@avatune/rsbuild-plugin-svg-to-vue@workspace:packages/rsbuild-plugin-svg-to-vue"],
+    "@avatune/rsbuild-plugin-svg-to-vue": ["@avatune/rsbuild-plugin-svg-to-vue@workspace:packages/rsbuild-plugins/rsbuild-plugin-svg-to-vue"],
 
-    "@avatune/skin-tone-predictor": ["@avatune/skin-tone-predictor@workspace:packages/skin-tone-predictor"],
+    "@avatune/skin-tone-predictor": ["@avatune/skin-tone-predictor@workspace:packages/predictors/skin-tone-predictor"],
 
     "@avatune/storybook-root": ["@avatune/storybook-root@workspace:apps/storybook-root"],
 
-    "@avatune/svelte": ["@avatune/svelte@workspace:packages/svelte"],
+    "@avatune/svelte": ["@avatune/svelte@workspace:packages/renderers/svelte"],
 
     "@avatune/svelte-storybook": ["@avatune/svelte-storybook@workspace:apps/svelte-storybook"],
 
-    "@avatune/theme-builder": ["@avatune/theme-builder@workspace:packages/theme-builder"],
+    "@avatune/theme-builder": ["@avatune/theme-builder@workspace:packages/core/theme-builder"],
 
-    "@avatune/types": ["@avatune/types@workspace:packages/types"],
+    "@avatune/types": ["@avatune/types@workspace:packages/core/types"],
 
-    "@avatune/typescript-config": ["@avatune/typescript-config@workspace:packages/typescript-config"],
+    "@avatune/typescript-config": ["@avatune/typescript-config@workspace:packages/core/typescript-config"],
 
-    "@avatune/utils": ["@avatune/utils@workspace:packages/utils"],
+    "@avatune/utils": ["@avatune/utils@workspace:packages/core/utils"],
 
-    "@avatune/vanilla": ["@avatune/vanilla@workspace:packages/vanilla"],
+    "@avatune/vanilla": ["@avatune/vanilla@workspace:packages/renderers/vanilla"],
 
     "@avatune/vanilla-storybook": ["@avatune/vanilla-storybook@workspace:apps/vanilla-storybook"],
 
-    "@avatune/vue": ["@avatune/vue@workspace:packages/vue"],
+    "@avatune/vue": ["@avatune/vue@workspace:packages/renderers/vue"],
 
     "@avatune/vue-storybook": ["@avatune/vue-storybook@workspace:apps/vue-storybook"],
 
     "@avatune/website": ["@avatune/website@workspace:apps/website"],
 
-    "@avatune/yanliu-assets": ["@avatune/yanliu-assets@workspace:packages/yanliu-assets"],
+    "@avatune/yanliu-assets": ["@avatune/yanliu-assets@workspace:packages/assets/yanliu-assets"],
 
-    "@avatune/yanliu-theme": ["@avatune/yanliu-theme@workspace:packages/yanliu-theme"],
+    "@avatune/yanliu-theme": ["@avatune/yanliu-theme@workspace:packages/themes/yanliu-theme"],
 
     "@babel/code-frame": ["@babel/code-frame@7.27.1", "", { "dependencies": { "@babel/helper-validator-identifier": "^7.27.1", "js-tokens": "^4.0.0", "picocolors": "^1.1.1" } }, "sha512-cjQ7ZlQ0Mv3b47hABuTevyTuYN4i+loJKGeV9flcCgIK37cCXRh+L1bd3iBHlynerhQ7BhCkn2BPbQUL+rGqFg=="],
 

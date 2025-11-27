@@ -6,7 +6,7 @@
  * asset discovery, and markdown/MDX generation.
  */
 
-import { existsSync, readFileSync, readdirSync, statSync } from 'node:fs'
+import { existsSync, readdirSync, readFileSync, statSync } from 'node:fs'
 import { basename, join } from 'node:path'
 
 // ============================================================================
@@ -62,7 +62,7 @@ export interface AssetPackageInfo {
 export function toPascalCase(str: string): string {
   return str
     .split(/[-_]/)
-    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
     .join('')
 }
 
@@ -87,7 +87,10 @@ export function kebabToCamelCase(str: string): string {
  * @example camelToKebab('myComponentName') => 'my-component-name'
  */
 export function camelToKebab(str: string): string {
-  return str.replace(/([A-Z])/g, '-$1').toLowerCase().replace(/^-/, '')
+  return str
+    .replace(/([A-Z])/g, '-$1')
+    .toLowerCase()
+    .replace(/^-/, '')
 }
 
 // ============================================================================
@@ -107,17 +110,19 @@ export function findSvgFiles(svgDir: string): CategoryAssets {
     process.exit(1)
   }
 
-  const categories = readdirSync(svgDir).filter(item => {
+  const categories = readdirSync(svgDir).filter((item) => {
     const itemPath = join(svgDir, item)
     return statSync(itemPath).isDirectory()
   })
 
   for (const category of categories) {
     const categoryPath = join(svgDir, category)
-    const files = readdirSync(categoryPath).filter(file => file.endsWith('.svg'))
+    const files = readdirSync(categoryPath).filter((file) =>
+      file.endsWith('.svg'),
+    )
 
     assets[category] = files
-      .map(file => ({
+      .map((file) => ({
         category,
         name: basename(file, '.svg'),
         filename: file,
@@ -134,7 +139,10 @@ export function findSvgFiles(svgDir: string): CategoryAssets {
  * @param packageDir Path to the package directory
  * @returns Object with license and credits filenames if they exist
  */
-export function findLicenseOrCredits(packageDir: string): { license?: string; credits?: string } {
+export function findLicenseOrCredits(packageDir: string): {
+  license?: string
+  credits?: string
+} {
   const result: { license?: string; credits?: string } = {}
 
   const licensePath = join(packageDir, 'LICENSE.md')
@@ -157,7 +165,9 @@ export function findLicenseOrCredits(packageDir: string): { license?: string; cr
  * @returns File content as string, or undefined if file doesn't exist
  */
 export function readFileIfExists(filePath: string): string | undefined {
-  return existsSync(filePath) ? readFileSync(filePath, 'utf-8').trim() : undefined
+  return existsSync(filePath)
+    ? readFileSync(filePath, 'utf-8').trim()
+    : undefined
 }
 
 // ============================================================================
@@ -169,23 +179,32 @@ export function readFileIfExists(filePath: string): string | undefined {
  * @param packagesDir Path to the packages directory
  * @returns Array of theme information objects
  */
-export function discoverThemes(packagesDir: string = join(process.cwd(), 'packages')): ThemeInfo[] {
-  const packages = readdirSync(packagesDir)
-  const themePackages = packages.filter((pkg) => pkg.endsWith('-theme'))
+export function discoverThemes(
+  packagesDir: string = join(process.cwd(), 'packages'),
+): ThemeInfo[] {
+  const themePackages = readdirSync(join(packagesDir, 'themes')).filter((pkg) =>
+    pkg.endsWith('-theme'),
+  )
+  const assetsPackages = readdirSync(join(packagesDir, 'assets')).filter(
+    (pkg) => pkg.endsWith('-assets'),
+  )
+  const packages = [...themePackages, ...assetsPackages]
 
-  return themePackages.map((pkg) => {
+  return packages.map((pkg) => {
     const name = pkg.replace('-theme', '')
     const assetsName = `${name}-assets`
-    const themeDir = join(packagesDir, pkg)
-    const assetsDir = join(packagesDir, assetsName)
-    
+    const themeDir = join(packagesDir, 'themes', pkg)
+    const assetsDir = join(packagesDir, 'assets', assetsName)
+
     const creditsPath = join(assetsDir, 'CREDITS.md')
     const licensePath = join(assetsDir, 'LICENSE.md')
     const themeLicensePath = join(themeDir, 'LICENSE.md')
 
     const hasCredits = existsSync(creditsPath)
     const hasLicense = existsSync(licensePath) || existsSync(themeLicensePath)
-    const creditsContent = hasCredits ? readFileSync(creditsPath, 'utf-8').trim() : undefined
+    const creditsContent = hasCredits
+      ? readFileSync(creditsPath, 'utf-8').trim()
+      : undefined
 
     // Try to extract example items from vanilla.ts source file
     let exampleItems: { hair?: string; body?: string } | undefined
@@ -202,7 +221,9 @@ export function discoverThemes(packagesDir: string = join(process.cwd(), 'packag
       name,
       packageName: pkg,
       assetsPackageName: assetsName,
-      displayName: toPascalCase(name).replace(/([A-Z])/g, ' $1').trim(),
+      displayName: toPascalCase(name)
+        .replace(/([A-Z])/g, ' $1')
+        .trim(),
       hasCredits,
       hasLicense,
       creditsContent,
@@ -216,8 +237,10 @@ export function discoverThemes(packagesDir: string = join(process.cwd(), 'packag
  * @param packagesDir Path to the packages directory
  * @returns Array of asset package information objects
  */
-export function discoverAssetPackages(packagesDir: string = join(process.cwd(), 'packages')): AssetPackageInfo[] {
-  const packages = readdirSync(packagesDir)
+export function discoverAssetPackages(
+  packagesDir: string = join(process.cwd(), 'packages'),
+): AssetPackageInfo[] {
+  const packages = readdirSync(join(packagesDir, 'assets'))
   const assetPackages = packages.filter((pkg) => pkg.endsWith('-assets'))
 
   return assetPackages.map((pkg) => {
@@ -225,7 +248,7 @@ export function discoverAssetPackages(packagesDir: string = join(process.cwd(), 
     const svgDir = join(packageDir, 'src', 'svg')
     const { license, credits } = findLicenseOrCredits(packageDir)
     const name = pkg.replace('-assets', '')
-    
+
     return {
       name,
       packageName: pkg,
@@ -247,7 +270,10 @@ export function discoverAssetPackages(packagesDir: string = join(process.cwd(), 
  * @param sourcePath Path to the vanilla.ts file
  * @returns Object with extracted hair and body example items
  */
-export function parseThemeSource(sourcePath: string): { hair?: string; body?: string } {
+export function parseThemeSource(sourcePath: string): {
+  hair?: string
+  body?: string
+} {
   const sourceCode = readFileSync(sourcePath, 'utf-8')
   const exampleItems: { hair?: string; body?: string } = {}
 
@@ -280,16 +306,19 @@ export function parseThemeSource(sourcePath: string): { hair?: string; body?: st
  * @param assetsPackageName Name of the assets package
  * @returns String containing import statements
  */
-export function generateAssetImports(assets: CategoryAssets, assetsPackageName: string): string {
+export function generateAssetImports(
+  assets: CategoryAssets,
+  assetsPackageName: string,
+): string {
   const imports: string[] = []
-  
+
   for (const [category, files] of Object.entries(assets)) {
     for (const file of files) {
       const importName = `${category}${toPascalCase(file.name)}`
       imports.push(importName)
     }
   }
-  
+
   return `import {
   ${imports.join(',\n  ')},
 } from '@avatune/${assetsPackageName}/svg';`
@@ -315,10 +344,14 @@ export function generateCodeBlock(code: string, language: string = ''): string {
  * @param packageName The theme package name
  * @returns Formatted code example as string
  */
-export function generateFrameworkExample(framework: Framework, packageName: string): string {
+export function generateFrameworkExample(
+  framework: Framework,
+  packageName: string,
+): string {
   switch (framework) {
     case 'react':
-      return generateCodeBlock(`import { Avatar } from '@avatune/react'
+      return generateCodeBlock(
+        `import { Avatar } from '@avatune/react'
 import theme from '@avatune/${packageName}/react'
 
 function App() {
@@ -329,10 +362,13 @@ function App() {
       seed="optional-seed-for-random-generation"
     />
   )
-}`, 'tsx')
+}`,
+        'tsx',
+      )
 
     case 'vue':
-      return generateCodeBlock(`<script setup lang="ts">
+      return generateCodeBlock(
+        `<script setup lang="ts">
 import { Avatar } from '@avatune/vue'
 import theme from '@avatune/${packageName}/vue'
 </script>
@@ -343,10 +379,13 @@ import theme from '@avatune/${packageName}/vue'
     :size="300"
     seed="optional-seed-for-random-generation"
   />
-</template>`, 'vue')
+</template>`,
+        'vue',
+      )
 
     case 'svelte':
-      return generateCodeBlock(`<script lang="ts">
+      return generateCodeBlock(
+        `<script lang="ts">
   import { Avatar } from '@avatune/svelte'
   import theme from '@avatune/${packageName}/svelte'
 </script>
@@ -355,10 +394,13 @@ import theme from '@avatune/${packageName}/vue'
   theme={theme}
   size={300}
   seed="optional-seed-for-random-generation"
-/>`, 'svelte')
+/>`,
+        'svelte',
+      )
 
     case 'vanilla':
-      return generateCodeBlock(`import { avatar } from '@avatune/vanilla'
+      return generateCodeBlock(
+        `import { avatar } from '@avatune/vanilla'
 import theme from '@avatune/${packageName}/vanilla'
 
 const container = document.getElementById('avatar-container')
@@ -368,7 +410,9 @@ const svg = avatar({
   seed: 'optional-seed-for-random-generation',
 })
 
-container?.appendChild(svg)`, 'typescript')
+container?.appendChild(svg)`,
+        'typescript',
+      )
   }
 }
 
@@ -406,7 +450,7 @@ export function generateAssetsTable(assets: CategoryAssets): string {
  * @param assetsPackageName Name of the assets package
  * @returns Formatted MDX table string with AssetPreview components
  */
-export function generateAssetsMDXTable(assets: CategoryAssets, assetsPackageName: string): string {
+export function generateAssetsMDXTable(assets: CategoryAssets): string {
   const lines: string[] = []
   const sortedCategories = Object.keys(assets).sort()
 
@@ -420,7 +464,9 @@ export function generateAssetsMDXTable(assets: CategoryAssets, assetsPackageName
 
     for (const asset of categoryFiles) {
       const importName = `${category}${toPascalCase(asset.name)}`
-      lines.push(`| <AssetPreview svg={${importName}} title="${asset.name}" hideCaption /> | \`${asset.name}\` |`)
+      lines.push(
+        `| <AssetPreview svg={${importName}} title="${asset.name}" hideCaption /> | \`${asset.name}\` |`,
+      )
     }
 
     lines.push('')
@@ -459,7 +505,10 @@ export function generateInstallationSectionMDX(packageName: string): string {
  * @param bodyExample Example body/clothing name
  * @returns Formatted customization section
  */
-export function generateCustomizationSection(hairExample: string = 'braids', bodyExample: string = 'sweaterVest'): string {
+export function generateCustomizationSection(
+  hairExample: string = 'braids',
+  bodyExample: string = 'sweaterVest',
+): string {
   return `## Customization
 
 You can override specific avatar parts:
@@ -521,9 +570,12 @@ bun dev
  * @param isForReadme Whether this is for a README (vs MDX)
  * @returns Formatted related packages section
  */
-export function generateRelatedPackagesSection(assetsPackageName: string, isForReadme: boolean = true): string {
+export function generateRelatedPackagesSection(
+  assetsPackageName: string,
+  isForReadme: boolean = true,
+): string {
   const prefix = isForReadme ? '../packages' : '../'
-  
+
   return `## Related Packages
 
 - [\`@avatune/${assetsPackageName}\`](${prefix}/${assetsPackageName}) - SVG assets used by this theme
@@ -532,4 +584,3 @@ export function generateRelatedPackagesSection(assetsPackageName: string, isForR
 - [\`@avatune/svelte\`](${prefix}/svelte) - Svelte avatar renderer
 - [\`@avatune/vanilla\`](${prefix}/vanilla) - Vanilla JavaScript avatar renderer`
 }
-

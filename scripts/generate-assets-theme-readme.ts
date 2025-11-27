@@ -7,17 +7,23 @@ import { writeFileSync } from 'node:fs'
 import { join } from 'node:path'
 import { parseArgs } from 'node:util'
 import {
-  type Framework,
-  type ThemeInfo,
   discoverThemes,
-  generateFrameworkExample,
   generateCustomizationSection,
-  generateRelatedPackagesSection,
   generateDevelopmentSection,
+  generateFrameworkExample,
+  generateRelatedPackagesSection,
+  type ThemeInfo,
 } from './shared'
 
 function generateREADME(theme: ThemeInfo): string {
-  const { packageName, assetsPackageName, displayName, hasCredits, creditsContent, exampleItems } = theme
+  const {
+    packageName,
+    assetsPackageName,
+    displayName,
+    hasCredits,
+    creditsContent,
+    exampleItems,
+  } = theme
 
   // Use actual items from theme or fallback to generic examples
   const hairExample = exampleItems?.hair || 'braids'
@@ -28,7 +34,9 @@ function generateREADME(theme: ThemeInfo): string {
   // Header
   sections.push(`# @avatune/${packageName}`)
   sections.push('')
-  sections.push(`Avatar theme for Avatune using ${displayName.toLowerCase()} design assets.`)
+  sections.push(
+    `Avatar theme for Avatune using ${displayName.toLowerCase()} design assets.`,
+  )
   sections.push('')
 
   // Installation
@@ -42,7 +50,9 @@ function generateREADME(theme: ThemeInfo): string {
   // Usage
   sections.push('## Usage')
   sections.push('')
-  sections.push('This theme is available for multiple frameworks: React, Vue, Svelte, and Vanilla JavaScript.')
+  sections.push(
+    'This theme is available for multiple frameworks: React, Vue, Svelte, and Vanilla JavaScript.',
+  )
   sections.push('')
 
   sections.push('### React')
@@ -72,25 +82,37 @@ function generateREADME(theme: ThemeInfo): string {
   // Design Assets
   sections.push('## Design Assets')
   sections.push('')
-  sections.push(`This theme uses assets from the [\`@avatune/${assetsPackageName}\`](../packages/${assetsPackageName}) package.`)
+  sections.push(
+    `This theme uses assets from the [\`@avatune/${assetsPackageName}\`](../packages/${assetsPackageName}) package.`,
+  )
   sections.push('')
 
   // License
   sections.push('## License')
   sections.push('')
-  sections.push('This theme package is licensed under MIT (see [LICENSE.md](../../LICENSE.md)).')
+  sections.push(
+    'This theme package is licensed under MIT (see [LICENSE.md](../../LICENSE.md)).',
+  )
   sections.push('')
   if (hasCredits && creditsContent) {
-    sections.push('The design assets used in this theme have their own license and attribution:')
+    sections.push(
+      'The design assets used in this theme have their own license and attribution:',
+    )
     sections.push('')
     sections.push(creditsContent)
     sections.push('')
     sections.push('For full details, see:')
-    sections.push(`- [CREDITS.md](../packages/${assetsPackageName}/CREDITS.md) - Asset attribution`)
-    sections.push(`- Asset package license in [\`@avatune/${assetsPackageName}\`](../packages/${assetsPackageName})`)
+    sections.push(
+      `- [CREDITS.md](../packages/${assetsPackageName}/CREDITS.md) - Asset attribution`,
+    )
+    sections.push(
+      `- Asset package license in [\`@avatune/${assetsPackageName}\`](../packages/${assetsPackageName})`,
+    )
     sections.push('')
   } else {
-    sections.push('The design assets used in this theme are separately licensed. See the asset package for details.')
+    sections.push(
+      'The design assets used in this theme are separately licensed. See the asset package for details.',
+    )
     sections.push('')
   }
 
@@ -121,7 +143,9 @@ function main() {
     : allThemes
 
   if (themes.length === 0) {
-    console.error(`No themes found${values.theme ? ` matching "${values.theme}"` : ''}`)
+    console.error(
+      `No themes found${values.theme ? ` matching "${values.theme}"` : ''}`,
+    )
     process.exit(1)
   }
 
@@ -132,6 +156,7 @@ function main() {
     const outputPath = join(
       process.cwd(),
       'packages',
+      'themes',
       theme.packageName,
       'README.md',
     )

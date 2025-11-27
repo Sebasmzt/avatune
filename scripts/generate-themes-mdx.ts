@@ -1,10 +1,10 @@
 #!/usr/bin/env bun
 /**
  * Generates MDX documentation files for theme packages in the website
- * 
+ *
  * This script creates comprehensive MDX documentation for each theme package,
  * including asset previews, usage examples, and license information.
- * 
+ *
  * Usage: bun scripts/generate-themes-mdx.ts [--theme <theme-name>]
  * Example: bun scripts/generate-themes-mdx.ts --theme micah
  */
@@ -13,17 +13,17 @@ import { existsSync, mkdirSync, writeFileSync } from 'node:fs'
 import { join } from 'node:path'
 import { parseArgs } from 'node:util'
 import {
-  type ThemeInfo,
   discoverThemes,
   findSvgFiles,
-  generateFrameworkExample,
-  generateCustomizationSection,
-  generateRelatedPackagesSection,
-  generateDevelopmentSection,
   generateAssetImports,
   generateAssetsMDXTable,
+  generateCustomizationSection,
+  generateDevelopmentSection,
+  generateFrameworkExample,
   generateInstallationSectionMDX,
+  generateRelatedPackagesSection,
   readFileIfExists,
+  type ThemeInfo,
 } from './shared'
 
 /**
@@ -33,7 +33,7 @@ function generateFrontmatter(theme: ThemeInfo): string {
   return `---
 title: "@avatune/${theme.packageName}"
 description: "Avatar theme for Avatune using ${theme.displayName} assets."
-source: "packages/${theme.packageName}/README.md"
+source: "packages/themes/${theme.packageName}/README.md"
 ---`
 }
 
@@ -41,7 +41,14 @@ source: "packages/${theme.packageName}/README.md"
  * Generates the complete MDX content for a theme
  */
 function generateThemeMDX(theme: ThemeInfo): string {
-  const { packageName, assetsPackageName, displayName, hasCredits, creditsContent, exampleItems } = theme
+  const {
+    packageName,
+    assetsPackageName,
+    displayName,
+    hasCredits,
+    creditsContent,
+    exampleItems,
+  } = theme
 
   // Use actual items from theme or fallback to generic examples
   const hairExample = exampleItems?.hair || 'braids'
@@ -54,13 +61,17 @@ function generateThemeMDX(theme: ThemeInfo): string {
   sections.push('')
 
   // Import statements
-  sections.push("import AssetPreview from '../../../../components/docs/asset-preview.astro';")
-  sections.push("import InstallTabs from '../../../../components/docs/install-tabs.astro';")
-  
+  sections.push(
+    "import AssetPreview from '../../../../components/docs/asset-preview.astro';",
+  )
+  sections.push(
+    "import InstallTabs from '../../../../components/docs/install-tabs.astro';",
+  )
+
   // Get assets for import generation
   const packagesDir = join(process.cwd(), 'packages')
-  const svgDir = join(packagesDir, assetsPackageName, 'src', 'svg')
-  
+  const svgDir = join(packagesDir, 'assets', assetsPackageName, 'src', 'svg')
+
   if (existsSync(svgDir)) {
     const assets = findSvgFiles(svgDir)
     sections.push(generateAssetImports(assets, assetsPackageName))
@@ -68,11 +79,13 @@ function generateThemeMDX(theme: ThemeInfo): string {
   sections.push('')
 
   // Source reference
-  sections.push(`> Source: \`packages/${packageName}/README.md\``)
+  sections.push(`> Source: \`packages/assets/${packageName}/README.md\``)
   sections.push('')
 
   // Introduction
-  sections.push(`Avatar theme for Avatune using ${displayName.toLowerCase()} design assets.`)
+  sections.push(
+    `Avatar theme for Avatune using ${displayName.toLowerCase()} design assets.`,
+  )
   sections.push('')
 
   // Installation
@@ -82,7 +95,9 @@ function generateThemeMDX(theme: ThemeInfo): string {
   // Usage
   sections.push('## Usage')
   sections.push('')
-  sections.push('This theme is available for multiple frameworks: React, Vue, Svelte, and Vanilla JavaScript.')
+  sections.push(
+    'This theme is available for multiple frameworks: React, Vue, Svelte, and Vanilla JavaScript.',
+  )
   sections.push('')
 
   sections.push('### React')
@@ -112,9 +127,13 @@ function generateThemeMDX(theme: ThemeInfo): string {
   // Design Assets
   sections.push('## Design Assets')
   sections.push('')
-  sections.push(`This theme uses ${displayName} style SVG assets for creating customizable avatars. Assets include various options for hair, eyes, eyebrows, mouth, nose, ears, head shape, and body/clothing.`)
+  sections.push(
+    `This theme uses ${displayName} style SVG assets for creating customizable avatars. Assets include various options for hair, eyes, eyebrows, mouth, nose, ears, head shape, and body/clothing.`,
+  )
   sections.push('')
-  sections.push(`The assets are available in the [\`@avatune/${assetsPackageName}\`](https://www.npmjs.com/package/@avatune/${assetsPackageName}) package.`)
+  sections.push(
+    `The assets are available in the [\`@avatune/${assetsPackageName}\`](https://www.npmjs.com/package/@avatune/${assetsPackageName}) package.`,
+  )
   sections.push('')
 
   // Using Assets Directly
@@ -124,28 +143,36 @@ function generateThemeMDX(theme: ThemeInfo): string {
   sections.push('#### SVG Paths')
   sections.push('')
   sections.push('```typescript')
-  sections.push(`import { hair, eyes, mouth } from '@avatune/${assetsPackageName}';`)
+  sections.push(
+    `import { hair, eyes, mouth } from '@avatune/${assetsPackageName}';`,
+  )
   sections.push('```')
   sections.push('')
 
   sections.push('#### React Components')
   sections.push('')
   sections.push('```typescript')
-  sections.push(`import { HairShort, EyesBoring, MouthSmile } from '@avatune/${assetsPackageName}/react';`)
+  sections.push(
+    `import { HairShort, EyesBoring, MouthSmile } from '@avatune/${assetsPackageName}/react';`,
+  )
   sections.push('```')
   sections.push('')
 
   sections.push('#### Svelte Components')
   sections.push('')
   sections.push('```typescript')
-  sections.push(`import { HairShort, EyesBoring, MouthSmile } from '@avatune/${assetsPackageName}/svelte';`)
+  sections.push(
+    `import { HairShort, EyesBoring, MouthSmile } from '@avatune/${assetsPackageName}/svelte';`,
+  )
   sections.push('```')
   sections.push('')
 
   sections.push('#### Vue Components')
   sections.push('')
   sections.push('```typescript')
-  sections.push(`import { HairShort, EyesBoring, MouthSmile } from '@avatune/${assetsPackageName}/vue';`)
+  sections.push(
+    `import { HairShort, EyesBoring, MouthSmile } from '@avatune/${assetsPackageName}/vue';`,
+  )
   sections.push('```')
   sections.push('')
 
@@ -154,16 +181,18 @@ function generateThemeMDX(theme: ThemeInfo): string {
     const assets = findSvgFiles(svgDir)
     sections.push('### Available Assets')
     sections.push('')
-    sections.push(generateAssetsMDXTable(assets, assetsPackageName))
+    sections.push(generateAssetsMDXTable(assets))
   }
 
   // License & Credits
   sections.push('## License & Credits')
   sections.push('')
-  
+
   sections.push('### Theme License')
   sections.push('')
-  sections.push('This theme package is licensed under MIT (see [LICENSE.md](license)).')
+  sections.push(
+    'This theme package is licensed under MIT (see [LICENSE.md](license)).',
+  )
   sections.push('')
 
   if (hasCredits && creditsContent) {
@@ -176,7 +205,9 @@ function generateThemeMDX(theme: ThemeInfo): string {
   } else {
     sections.push('### Design Assets License')
     sections.push('')
-    sections.push('The design assets used in this theme are separately licensed. See the asset package for details.')
+    sections.push(
+      'The design assets used in this theme are separately licensed. See the asset package for details.',
+    )
     sections.push('')
   }
 
@@ -195,8 +226,13 @@ function generateThemeMDX(theme: ThemeInfo): string {
  */
 function generateCreditsMDX(theme: ThemeInfo): string | null {
   const packagesDir = join(process.cwd(), 'packages')
-  const creditsPath = join(packagesDir, theme.assetsPackageName, 'CREDITS.md')
-  
+  const creditsPath = join(
+    packagesDir,
+    'assets',
+    theme.assetsPackageName,
+    'CREDITS.md',
+  )
+
   if (!existsSync(creditsPath)) {
     return null
   }
@@ -211,19 +247,25 @@ function generateCreditsMDX(theme: ThemeInfo): string | null {
   // Frontmatter
   sections.push('---')
   sections.push('title: "CREDITS.md"')
-  
+
   // Extract first line as description if available
   const firstLine = creditsContent.split('\n')[0]
   if (firstLine) {
-    sections.push(`description: "${firstLine.replace(/^#+\s*/, '').replace(/"/g, '\\"')}"`)
+    sections.push(
+      `description: "${firstLine.replace(/^#+\s*/, '').replace(/"/g, '\\"')}"`,
+    )
   }
-  
-  sections.push(`source: "packages/${theme.assetsPackageName}/CREDITS.md"`)
+
+  sections.push(
+    `source: "packages/themes/${theme.assetsPackageName}/CREDITS.md"`,
+  )
   sections.push('---')
   sections.push('')
 
   // Source reference
-  sections.push(`> Source: \`packages/${theme.assetsPackageName}/CREDITS.md\``)
+  sections.push(
+    `> Source: \`packages/assets/${theme.assetsPackageName}/CREDITS.md\``,
+  )
   sections.push('')
 
   // Content
@@ -238,20 +280,30 @@ function generateCreditsMDX(theme: ThemeInfo): string | null {
  */
 function generateLicenseMDX(theme: ThemeInfo): string | null {
   const packagesDir = join(process.cwd(), 'packages')
-  
+
   // Try theme package first, then assets package
-  const themeLicensePath = join(packagesDir, theme.packageName, 'LICENSE.md')
-  const assetsLicensePath = join(packagesDir, theme.assetsPackageName, 'LICENSE.md')
-  
+  const themeLicensePath = join(
+    packagesDir,
+    'themes',
+    theme.packageName,
+    'LICENSE.md',
+  )
+  const assetsLicensePath = join(
+    packagesDir,
+    'assets',
+    theme.assetsPackageName,
+    'LICENSE.md',
+  )
+
   let licenseContent: string | undefined
   let sourcePath: string
-  
+
   if (existsSync(themeLicensePath)) {
     licenseContent = readFileIfExists(themeLicensePath)
-    sourcePath = `packages/${theme.packageName}/LICENSE.md`
+    sourcePath = `packages/themes/${theme.packageName}/LICENSE.md`
   } else if (existsSync(assetsLicensePath)) {
     licenseContent = readFileIfExists(assetsLicensePath)
-    sourcePath = `packages/${theme.assetsPackageName}/LICENSE.md`
+    sourcePath = `packages/assets/${theme.assetsPackageName}/LICENSE.md`
   } else {
     return null
   }
@@ -265,7 +317,7 @@ function generateLicenseMDX(theme: ThemeInfo): string | null {
   // Frontmatter
   sections.push('---')
   sections.push('title: "LICENSE.md"')
-  
+
   // Extract license type from content
   if (licenseContent.includes('MIT License')) {
     sections.push('description: "MIT License"')
@@ -274,7 +326,7 @@ function generateLicenseMDX(theme: ThemeInfo): string | null {
   } else {
     sections.push('description: "License Information"')
   }
-  
+
   sections.push(`source: "${sourcePath}"`)
   sections.push('---')
   sections.push('')
@@ -309,17 +361,27 @@ function main() {
     : allThemes
 
   if (themes.length === 0) {
-    console.error(`No themes found${values.theme ? ` matching "${values.theme}"` : ''}`)
+    console.error(
+      `No themes found${values.theme ? ` matching "${values.theme}"` : ''}`,
+    )
     process.exit(1)
   }
 
-  const websiteDocsDir = join(process.cwd(), 'apps', 'website', 'src', 'content', 'docs', 'packages')
+  const websiteDocsDir = join(
+    process.cwd(),
+    'apps',
+    'website',
+    'src',
+    'content',
+    'docs',
+    'packages',
+  )
 
   console.log(`Generating MDX documentation for ${themes.length} theme(s)...`)
 
   for (const theme of themes) {
     const themeDocsDir = join(websiteDocsDir, theme.packageName)
-    
+
     // Create directory if it doesn't exist
     if (!existsSync(themeDocsDir)) {
       mkdirSync(themeDocsDir, { recursive: true })
@@ -352,4 +414,3 @@ function main() {
 }
 
 main()
-

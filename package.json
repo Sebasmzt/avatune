@@ -25,7 +25,12 @@
   "packageManager": "bun@1.3.1",
   "workspaces": [
     "apps/*",
-    "packages/*"
+    "packages/core/*",
+    "packages/assets/*",
+    "packages/themes/*",
+    "packages/renderers/*",
+    "packages/predictors/*",
+    "packages/rsbuild-plugins/*"
   ],
   "resolutions": {
     "react": "19.1.0",

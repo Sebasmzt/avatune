@@ -33,7 +33,12 @@
     }
   },
   "files": {
-    "includes": ["apps/**/*", "packages/**/*", "!**/*/storybook.requires.ts"]
+    "includes": [
+      "apps/**/*",
+      "packages/**/*",
+      "!**/*/storybook.requires.ts",
+      "scripts/**/*"
+    ]
   },
   "overrides": [
     {

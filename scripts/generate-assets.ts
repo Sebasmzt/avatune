@@ -1,7 +1,6 @@
 #!/usr/bin/env bun
-import { existsSync, readdirSync, statSync } from 'node:fs'
-import { join, relative, basename } from 'node:path'
-import { writeFileSync } from 'node:fs'
+import { existsSync, readdirSync, statSync, writeFileSync } from 'node:fs'
+import { basename, join } from 'node:path'
 
 /**
  * Script to generate asset entrypoints for a given package.
@@ -21,7 +20,7 @@ interface AssetFile {
 function toPascalCase(str: string): string {
   return str
     .split(/[-_]/)
-    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
     .join('')
 }
 
@@ -42,14 +41,16 @@ function findSvgFiles(svgDir: string): AssetFile[] {
     process.exit(1)
   }
 
-  const categories = readdirSync(svgDir).filter(item => {
+  const categories = readdirSync(svgDir).filter((item) => {
     const itemPath = join(svgDir, item)
     return statSync(itemPath).isDirectory()
   })
 
   for (const category of categories) {
     const categoryPath = join(svgDir, category)
-    const files = readdirSync(categoryPath).filter(file => file.endsWith('.svg'))
+    const files = readdirSync(categoryPath).filter((file) =>
+      file.endsWith('.svg'),
+    )
 
     for (const file of files) {
       const name = basename(file, '.svg')
@@ -203,7 +204,7 @@ function main() {
     process.exit(1)
   }
 
-  const packageDir = join(process.cwd(), 'packages', packageName)
+  const packageDir = join(process.cwd(), 'packages', 'assets', packageName)
 
   if (!existsSync(packageDir)) {
     console.error(`Package not found: ${packageDir}`)
@@ -223,10 +224,18 @@ function main() {
     process.exit(1)
   }
 
-  console.log(`Found ${assets.length} SVG files across ${new Set(assets.map(a => a.category)).size} categories`)
+  console.log(
+    `Found ${assets.length} SVG files across ${new Set(assets.map((a) => a.category)).size} categories`,
+  )
 
   // Generate files for each framework
-  const frameworks: Framework[] = ['react', 'vue', 'svelte', 'svg', 'react-native']
+  const frameworks: Framework[] = [
+    'react',
+    'vue',
+    'svelte',
+    'svg',
+    'react-native',
+  ]
 
   for (const framework of frameworks) {
     let content: string

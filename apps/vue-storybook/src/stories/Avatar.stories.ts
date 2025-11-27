@@ -1,15 +1,14 @@
-import fatinVerseTheme from '@avatune/fatin-verse-theme/vue'
+import fatinverseTheme from '@avatune/fatin-verse-theme/vue'
 import kyuteTheme from '@avatune/kyute-theme/vue'
 import micahTheme from '@avatune/micah-theme/vue'
 import miniavsTheme from '@avatune/miniavs-theme/vue'
 import nevmstasTheme from '@avatune/nevmstas-theme/vue'
 import pacovqzzTheme from '@avatune/pacovqzz-theme/vue'
+import yanliuTheme from '@avatune/yanliu-theme/vue'
 import type { Theme, VueAvatarItem } from '@avatune/types'
 import type { AvatarProps } from '@avatune/vue'
 import { Avatar } from '@avatune/vue'
-import yanliuTheme from '@avatune/yanliu-theme/vue'
 import type { Meta, StoryObj } from '@storybook/vue3-vite'
-import { computed } from 'vue'
 
 const meta = {
   title: 'Avatar',
@@ -20,7 +19,7 @@ const meta = {
 
 export default meta
 
-type FatinVerseArgs = Omit<AvatarProps<typeof fatinVerseTheme>, 'theme'>
+type FatinVerseArgs = Omit<AvatarProps<typeof fatinverseTheme>, 'theme'>
 type KyuteArgs = Omit<AvatarProps<typeof kyuteTheme>, 'theme'>
 type MicahArgs = Omit<AvatarProps<typeof micahTheme>, 'theme'>
 type MiniavsArgs = Omit<AvatarProps<typeof miniavsTheme>, 'theme'>
@@ -34,12 +33,7 @@ const getArgTypes = <T extends Theme<VueAvatarItem>>(theme: T) => {
   }
 
   for (const [category, items] of Object.entries(theme)) {
-    const excludeCategories = [
-      'style',
-      'predictorMappings',
-      'colorPalettes',
-      'connectedColors',
-    ]
+    const excludeCategories = ['style', 'predictorMappings', 'colorPalettes', 'connectedColors']
     if (excludeCategories.includes(category)) continue
 
     argTypes[`${category}Color`] = { control: { type: 'color' } }
@@ -53,10 +47,10 @@ const getArgTypes = <T extends Theme<VueAvatarItem>>(theme: T) => {
 }
 
 export const FatinVerse: StoryObj<FatinVerseArgs> = {
-  argTypes: getArgTypes(fatinVerseTheme),
+  argTypes: getArgTypes(fatinverseTheme),
   render: (args: FatinVerseArgs) => ({
     components: { Avatar },
-    setup: () => ({ args, theme: fatinVerseTheme }),
+    setup: () => ({ args, theme: fatinverseTheme }),
     template: '<Avatar :theme="theme" v-bind="args" />',
   }),
   args: {
@@ -137,13 +131,13 @@ export const Yanliu: StoryObj<YanliuArgs> = {
 }
 
 const themes = {
-  FatinVerse: fatinVerseTheme,
-  Kyute: kyuteTheme,
-  Micah: micahTheme,
-  Miniavs: miniavsTheme,
-  Nevmstas: nevmstasTheme,
-  Pacovqzz: pacovqzzTheme,
-  Yanliu: yanliuTheme,
+  'Fatin Verse': fatinverseTheme,
+  'Kyute': kyuteTheme,
+  'Micah': micahTheme,
+  'Miniavs': miniavsTheme,
+  'Nevmstas': nevmstasTheme,
+  'Pacovqzz': pacovqzzTheme,
+  'Yanliu': yanliuTheme,
 } as const
 
 export const Seed: StoryObj<{
@@ -159,19 +153,22 @@ export const Seed: StoryObj<{
     seed: { control: { type: 'text' } },
     size: { control: { type: 'range', min: 100, max: 800, step: 50 } },
   },
-  render: (args: {
+  render: ({
+    theme: themeName,
+    seed,
+    size = 300,
+  }: {
     theme: keyof typeof themes
     seed?: string | number
     size?: number
   }) => ({
     components: { Avatar },
-    setup: () => {
-      const theme = computed(() => themes[args.theme])
-      const size = computed(() => args.size ?? 300)
-
-      return { args, theme, size }
-    },
-    template: '<Avatar :theme="theme" :seed="args.seed" :size="size" />',
+    setup: () => ({
+      theme: themes[themeName],
+      seed,
+      size,
+    }),
+    template: '<Avatar :theme="theme" :seed="seed" :size="size" />',
   }),
   args: {
     theme: Object.keys(themes)[0] as keyof typeof themes,

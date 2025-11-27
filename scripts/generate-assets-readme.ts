@@ -6,8 +6,8 @@ import {
   capitalizeFirst,
   findLicenseOrCredits,
   findSvgFiles,
-  generateAssetsTable,
   generateAssetDevelopmentSection,
+  generateAssetsTable,
 } from './shared'
 
 /**
@@ -26,7 +26,11 @@ function generateReadme(
   const assetsTable = generateAssetsTable(assets)
 
   // Extract style from package name (e.g., "nevmstas" from "nevmstas-assets")
-  const styleName = packageName.replace('-assets', '').split('-').map(capitalizeFirst).join(' ')
+  const styleName = packageName
+    .replace('-assets', '')
+    .split('-')
+    .map(capitalizeFirst)
+    .join(' ')
 
   const sections: string[] = []
 
@@ -39,7 +43,9 @@ function generateReadme(
   // Description
   sections.push('## Description')
   sections.push('')
-  sections.push(`This package provides SVG assets in ${styleName.toLowerCase()} style for creating customizable avatars. Assets include various options for hair, eyes, eyebrows, mouth, nose, ears, head shape, and body/clothing.`)
+  sections.push(
+    `This package provides SVG assets in ${styleName.toLowerCase()} style for creating customizable avatars. Assets include various options for hair, eyes, eyebrows, mouth, nose, ears, head shape, and body/clothing.`,
+  )
   sections.push('')
 
   // Installation
@@ -64,21 +70,27 @@ function generateReadme(
   sections.push('### React Components')
   sections.push('')
   sections.push('```typescript')
-  sections.push(`import { HairShort, EyesBoring, MouthSmile } from '@avatune/${packageName}/react';`)
+  sections.push(
+    `import { HairShort, EyesBoring, MouthSmile } from '@avatune/${packageName}/react';`,
+  )
   sections.push('```')
   sections.push('')
 
   sections.push('### Svelte Components')
   sections.push('')
   sections.push('```typescript')
-  sections.push(`import { HairShort, EyesBoring, MouthSmile } from '@avatune/${packageName}/svelte';`)
+  sections.push(
+    `import { HairShort, EyesBoring, MouthSmile } from '@avatune/${packageName}/svelte';`,
+  )
   sections.push('```')
   sections.push('')
 
   sections.push('### Vue Components')
   sections.push('')
   sections.push('```typescript')
-  sections.push(`import { HairShort, EyesBoring, MouthSmile } from '@avatune/${packageName}/vue';`)
+  sections.push(
+    `import { HairShort, EyesBoring, MouthSmile } from '@avatune/${packageName}/vue';`,
+  )
   sections.push('```')
   sections.push('')
 
@@ -117,7 +129,7 @@ function main() {
     process.exit(1)
   }
 
-  const packageDir = join(process.cwd(), 'packages', packageName)
+  const packageDir = join(process.cwd(), 'packages', 'assets', packageName)
 
   if (!existsSync(packageDir)) {
     console.error(`Package not found: ${packageDir}`)
@@ -132,14 +144,19 @@ function main() {
 
   const assets = findSvgFiles(svgDir)
   const categoryCount = Object.keys(assets).length
-  const totalAssets = Object.values(assets).reduce((sum, files) => sum + files.length, 0)
+  const totalAssets = Object.values(assets).reduce(
+    (sum, files) => sum + files.length,
+    0,
+  )
 
   if (totalAssets === 0) {
     console.error('No SVG files found!')
     process.exit(1)
   }
 
-  console.log(`Found ${totalAssets} SVG files across ${categoryCount} categories`)
+  console.log(
+    `Found ${totalAssets} SVG files across ${categoryCount} categories`,
+  )
 
   const readme = generateReadme(packageName, assets, packageDir)
   const outputPath = join(packageDir, 'README.md')

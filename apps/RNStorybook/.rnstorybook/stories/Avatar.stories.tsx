@@ -1,13 +1,17 @@
-import fatinVerseTheme from '@avatune/fatin-verse-theme/react-native'
+import fatinverseTheme from '@avatune/fatin-verse-theme/react-native'
 import kyuteTheme from '@avatune/kyute-theme/react-native'
 import micahTheme from '@avatune/micah-theme/react-native'
 import miniavsTheme from '@avatune/miniavs-theme/react-native'
 import nevmstasTheme from '@avatune/nevmstas-theme/react-native'
 import pacovqzzTheme from '@avatune/pacovqzz-theme/react-native'
-import yanliuTheme from '@avatune/yanliu-theme/react-native'
 import type { AvatarProps } from '@avatune/react-native'
 import { Avatar } from '@avatune/react-native'
-import type { ReactNativeAvatarItem, ReactNativeTheme, Theme } from '@avatune/types'
+import type {
+  ReactNativeAvatarItem,
+  ReactNativeTheme,
+  Theme,
+} from '@avatune/types'
+import yanliuTheme from '@avatune/yanliu-theme/react-native'
 import type { Meta, StoryObj } from '@storybook/react-native'
 
 const meta = {
@@ -19,20 +23,12 @@ const meta = {
 
 export default meta
 
-export const FatinVerse: StoryObj<FatinVerseArgs> = {
-  argTypes: getArgTypes(fatinVerseTheme),
-  render: (args) => <Avatar theme={fatinVerseTheme} {...args} />,
-  args: {
-    size: 300,
-  },
-}
-
 type ExtractStoryArgs<T extends ReactNativeTheme> = Omit<
   AvatarProps<T>,
   'theme'
 >
 
-type FatinVerseArgs = ExtractStoryArgs<typeof fatinVerseTheme>
+type FatinVerseArgs = ExtractStoryArgs<typeof fatinverseTheme>
 type KyuteArgs = ExtractStoryArgs<typeof kyuteTheme>
 type MicahArgs = ExtractStoryArgs<typeof micahTheme>
 type MiniavsArgs = ExtractStoryArgs<typeof miniavsTheme>
@@ -47,7 +43,12 @@ const getArgTypes = <T extends Theme<ReactNativeAvatarItem>>(theme: T) => {
   }
 
   for (const [category, items] of Object.entries(theme)) {
-    const excludeCategories = ['style', 'predictorMappings', 'colorPalettes', 'connectedColors']
+    const excludeCategories = [
+      'style',
+      'predictorMappings',
+      'colorPalettes',
+      'connectedColors',
+    ]
     if (excludeCategories.includes(category)) continue
 
     argTypes[`${category}Color`] = { control: { type: 'color' } }
@@ -58,6 +59,14 @@ const getArgTypes = <T extends Theme<ReactNativeAvatarItem>>(theme: T) => {
   }
 
   return argTypes as StoryObj<Args>['argTypes']
+}
+
+export const FatinVerse: StoryObj<FatinVerseArgs> = {
+  argTypes: getArgTypes(fatinverseTheme),
+  render: (args) => <Avatar theme={fatinverseTheme} {...args} />,
+  args: {
+    size: 300,
+  },
 }
 
 export const Kyute: StoryObj<KyuteArgs> = {
@@ -109,7 +118,7 @@ export const Yanliu: StoryObj<YanliuArgs> = {
 }
 
 const themes = {
-  FatinVerse: fatinVerseTheme,
+  'Fatin Verse': fatinverseTheme,
   Kyute: kyuteTheme,
   Micah: micahTheme,
   Miniavs: miniavsTheme,

@@ -47,7 +47,7 @@ const FRAMEWORK_CONFIG = {
 
 // Discover available themes
 function discoverThemes(): string[] {
-  const packagesDir = join(process.cwd(), 'packages')
+  const packagesDir = join(process.cwd(), 'packages', 'themes')
   const packages = readdirSync(packagesDir)
 
   return packages
@@ -97,9 +97,16 @@ function generateSeedStoryArgTypes(): string {
   },`
 }
 
-function generateGetArgTypesFunction(avatarItemType: string, includeTypeAssertion = true): string {
-  const typeAsssertion = includeTypeAssertion ? `  type Args = ExtractStoryArgs<T>\n` : ''
-  const returnType = includeTypeAssertion ? ` as StoryObj<Args>['argTypes']` : ''
+function generateGetArgTypesFunction(
+  avatarItemType: string,
+  includeTypeAssertion = true,
+): string {
+  const typeAsssertion = includeTypeAssertion
+    ? `  type Args = ExtractStoryArgs<T>\n`
+    : ''
+  const returnType = includeTypeAssertion
+    ? ` as StoryObj<Args>['argTypes']`
+    : ''
 
   return `const getArgTypes = <T extends Theme<${avatarItemType}>>(theme: T) => {
 ${typeAsssertion}  const argTypes: Record<string, unknown> = {
@@ -121,7 +128,10 @@ ${typeAsssertion}  const argTypes: Record<string, unknown> = {
 }`
 }
 
-function generateThemeTypes(themes: string[], typeTemplate: (themeName: string) => string): string {
+function generateThemeTypes(
+  themes: string[],
+  typeTemplate: (themeName: string) => string,
+): string {
   const sortedThemes = [...themes].sort()
   return sortedThemes
     .map((theme) => {
@@ -151,18 +161,22 @@ function generateReactStory(themes: string[]): string {
 
   const themeTypes = generateThemeTypes(
     themes,
-    (themeName) => `type ${themeName}Args = ExtractStoryArgs<typeof ${themeName.toLowerCase()}Theme>`
+    (themeName) =>
+      `type ${themeName}Args = ExtractStoryArgs<typeof ${themeName.toLowerCase()}Theme>`,
   )
 
   const stories = generateStories(
     themes,
-    (themeName, themeVar) => `export const ${themeName}: StoryObj<${themeName}Args> = {
+    (
+      themeName,
+      themeVar,
+    ) => `export const ${themeName}: StoryObj<${themeName}Args> = {
   argTypes: getArgTypes(${themeVar}Theme),
   render: (args) => <Avatar theme={${themeVar}Theme} {...args} />,
   args: {
     size: 300,
   },
-}`
+}`,
   )
 
   const themesObject = generateThemesObject(themes)
@@ -222,12 +236,16 @@ function generateVueStory(themes: string[]): string {
 
   const themeTypes = generateThemeTypes(
     themes,
-    (themeName) => `type ${themeName}Args = Omit<AvatarProps<typeof ${themeName.toLowerCase()}Theme>, 'theme'>`
+    (themeName) =>
+      `type ${themeName}Args = Omit<AvatarProps<typeof ${themeName.toLowerCase()}Theme>, 'theme'>`,
   )
 
   const stories = generateStories(
     themes,
-    (themeName, themeVar) => `export const ${themeName}: StoryObj<${themeName}Args> = {
+    (
+      themeName,
+      themeVar,
+    ) => `export const ${themeName}: StoryObj<${themeName}Args> = {
   argTypes: getArgTypes(${themeVar}Theme),
   render: (args: ${themeName}Args) => ({
     components: { Avatar },
@@ -237,7 +255,7 @@ function generateVueStory(themes: string[]): string {
   args: {
     size: 300,
   },
-}`
+}`,
   )
 
   const themesObject = generateThemesObject(themes)
@@ -305,12 +323,16 @@ function generateSvelteStory(themes: string[]): string {
 
   const themeTypes = generateThemeTypes(
     themes,
-    (themeName) => `type ${themeName}Args = ExtractStoryArgs<typeof ${themeName.toLowerCase()}Theme>`
+    (themeName) =>
+      `type ${themeName}Args = ExtractStoryArgs<typeof ${themeName.toLowerCase()}Theme>`,
   )
 
   const stories = generateStories(
     themes,
-    (themeName, themeVar) => `export const ${themeName}: StoryObj<${themeName}Args> = {
+    (
+      themeName,
+      themeVar,
+    ) => `export const ${themeName}: StoryObj<${themeName}Args> = {
   argTypes: getArgTypes(${themeVar}Theme),
   render: (args) => ({
     Component: Avatar,
@@ -319,7 +341,7 @@ function generateSvelteStory(themes: string[]): string {
   args: {
     size: 300,
   },
-}`
+}`,
   )
 
   const themesObject = generateThemesObject(themes)
@@ -379,18 +401,22 @@ function generateReactNativeStory(themes: string[]): string {
 
   const themeTypes = generateThemeTypes(
     themes,
-    (themeName) => `type ${themeName}Args = ExtractStoryArgs<typeof ${themeName.toLowerCase()}Theme>`
+    (themeName) =>
+      `type ${themeName}Args = ExtractStoryArgs<typeof ${themeName.toLowerCase()}Theme>`,
   )
 
   const stories = generateStories(
     themes,
-    (themeName, themeVar) => `export const ${themeName}: StoryObj<${themeName}Args> = {
+    (
+      themeName,
+      themeVar,
+    ) => `export const ${themeName}: StoryObj<${themeName}Args> = {
   argTypes: getArgTypes(${themeVar}Theme),
   render: (args) => <Avatar theme={${themeVar}Theme} {...args} />,
   args: {
     size: 300,
   },
-}`
+}`,
   )
 
   const themesObject = generateThemesObject(themes)
@@ -450,12 +476,16 @@ function generateVanillaStory(themes: string[]): string {
 
   const themeTypes = generateThemeTypes(
     themes,
-    (themeName) => `type ${themeName}Args = Omit<AvatarArgs<typeof ${themeName.toLowerCase()}Theme>, 'theme'>`
+    (themeName) =>
+      `type ${themeName}Args = Omit<AvatarArgs<typeof ${themeName.toLowerCase()}Theme>, 'theme'>`,
   )
 
   const stories = generateStories(
     themes,
-    (themeName, themeVar) => `export const ${themeName}: StoryObj<${themeName}Args> = {
+    (
+      themeName,
+      themeVar,
+    ) => `export const ${themeName}: StoryObj<${themeName}Args> = {
   argTypes: getArgTypes(${themeVar}Theme),
   render: (args: ${themeName}Args) => {
     return avatar({ theme: ${themeVar}Theme, ...args })
@@ -463,7 +493,7 @@ function generateVanillaStory(themes: string[]): string {
   args: {
     size: 300,
   },
-}`
+}`,
   )
 
   const themesObject = generateThemesObject(themes)

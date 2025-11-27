@@ -18,7 +18,7 @@ export default {
     for (const modelName of models) {
       const predictorDist = join(
         __dirname,
-        '../../../packages',
+        '../../../packages/predictors',
         `${modelName.replace('_', '-')}-predictor`,
         'dist',
       )
