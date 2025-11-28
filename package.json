@@ -17,7 +17,7 @@
     "generate": "bun scripts/generate-assets-theme-readme.ts && bun scripts/generate-themes-mdx.ts && bun scripts/generate-root-readme.ts",
     "prepare": "husky",
     "release:version": "changeset version && bun update",
-    "release:publish": "bun scripts/release-publish.ts"
+    "release:publish": "changeset publish"
   },
   "devDependencies": {
     "@biomejs/biome": "^2.3.8",
@@ -52,5 +52,8 @@
     "react-dom": "19.1.0",
     "react-native": "0.81.5",
     "ws": "^8.18.0"
+  },
+  "patchedDependencies": {
+    "@changesets/cli@2.29.8": "patches/@changesets%2Fcli@2.29.8.patch"
   }
 }

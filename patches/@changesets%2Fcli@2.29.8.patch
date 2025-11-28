@@ -1,0 +1,132 @@
+diff --git a/node_modules/@changesets/cli/.DS_Store b/.DS_Store
+new file mode 100644
+index 0000000000000000000000000000000000000000..080a17bbefdff2e84f8480d7451981395790aeda
+Binary files /dev/null and b/.DS_Store differ
+diff --git a/dist/changesets-cli.cjs.js b/dist/changesets-cli.cjs.js
+index 0f03e31068a5a7f77ef03ee97684d7f4d5136367..2ba86f5b7bd577d3c38c9e90663b49be75367aad 100644
+--- a/dist/changesets-cli.cjs.js
++++ b/dist/changesets-cli.cjs.js
+@@ -634,25 +634,35 @@ async function getPublishTool(cwd) {
+   const pm = await packageManagerDetector.detect({
+     cwd
+   });
+-  if (!pm || pm.name !== "pnpm") return {
++  if (!pm) return {
+     name: "npm"
+   };
+-  try {
+-    let result = await spawn__default["default"]("pnpm", ["--version"], {
+-      cwd
+-    });
+-    let version = result.stdout.toString().trim();
+-    let parsed = semverParse__default["default"](version);
+-    return {
+-      name: "pnpm",
+-      shouldAddNoGitChecks: (parsed === null || parsed === void 0 ? void 0 : parsed.major) === undefined ? false : parsed.major >= 5
+-    };
+-  } catch (e) {
++  if (pm.name === "bun") {
+     return {
+-      name: "pnpm",
+-      shouldAddNoGitChecks: false
++      name: "bun"
+     };
+   }
++  if (pm.name === "pnpm") {
++    try {
++      let result = await spawn__default["default"]("pnpm", ["--version"], {
++        cwd
++      });
++      let version = result.stdout.toString().trim();
++      let parsed = semverParse__default["default"](version);
++      return {
++        name: "pnpm",
++        shouldAddNoGitChecks: (parsed === null || parsed === void 0 ? void 0 : parsed.major) === undefined ? false : parsed.major >= 5
++      };
++    } catch (e) {
++      return {
++        name: "pnpm",
++        shouldAddNoGitChecks: false
++      };
++    }
++  }
++  return {
++    name: "npm"
++  };
+ }
+ async function getTokenIsRequired() {
+   const {
+@@ -771,6 +781,9 @@ async function internalPublish(packageJson, opts, twoFactorState) {
+   } = publishTool.name === "pnpm" ? await spawn__default["default"]("pnpm", ["publish", "--json", ...publishFlags], {
+     env: Object.assign({}, process.env, envOverride),
+     cwd: opts.cwd
++  }) : publishTool.name === "bun" ? await spawn__default["default"]("bun", ["publish", ...publishFlags], {
++    env: Object.assign({}, process.env, envOverride),
++    cwd: opts.publishDir
+   }) : await spawn__default["default"](publishTool.name, ["publish", opts.publishDir, "--json", ...publishFlags], {
+     env: Object.assign({}, process.env, envOverride)
+   });
+diff --git a/dist/changesets-cli.esm.js b/dist/changesets-cli.esm.js
+index 1946941b0b876b6f90d25c613696a8e151b726c4..6ca3b5523ce76eb18a6b5a3713164a60a6914bac 100644
+--- a/dist/changesets-cli.esm.js
++++ b/dist/changesets-cli.esm.js
+@@ -596,25 +596,35 @@ async function getPublishTool(cwd) {
+   const pm = await detect({
+     cwd
+   });
+-  if (!pm || pm.name !== "pnpm") return {
++  if (!pm) return {
+     name: "npm"
+   };
+-  try {
+-    let result = await spawn$1("pnpm", ["--version"], {
+-      cwd
+-    });
+-    let version = result.stdout.toString().trim();
+-    let parsed = semverParse(version);
+-    return {
+-      name: "pnpm",
+-      shouldAddNoGitChecks: (parsed === null || parsed === void 0 ? void 0 : parsed.major) === undefined ? false : parsed.major >= 5
+-    };
+-  } catch (e) {
++  if (pm.name === "bun") {
+     return {
+-      name: "pnpm",
+-      shouldAddNoGitChecks: false
++      name: "bun"
+     };
+   }
++  if (pm.name === "pnpm") {
++    try {
++      let result = await spawn$1("pnpm", ["--version"], {
++        cwd
++      });
++      let version = result.stdout.toString().trim();
++      let parsed = semverParse(version);
++      return {
++        name: "pnpm",
++        shouldAddNoGitChecks: (parsed === null || parsed === void 0 ? void 0 : parsed.major) === undefined ? false : parsed.major >= 5
++      };
++    } catch (e) {
++      return {
++        name: "pnpm",
++        shouldAddNoGitChecks: false
++      };
++    }
++  }
++  return {
++    name: "npm"
++  };
+ }
+ async function getTokenIsRequired() {
+   const {
+@@ -733,6 +743,9 @@ async function internalPublish(packageJson, opts, twoFactorState) {
+   } = publishTool.name === "pnpm" ? await spawn$1("pnpm", ["publish", "--json", ...publishFlags], {
+     env: Object.assign({}, process.env, envOverride),
+     cwd: opts.cwd
++  }) : publishTool.name === "bun" ? await spawn$1("bun", ["publish", ...publishFlags], {
++    env: Object.assign({}, process.env, envOverride),
++    cwd: opts.publishDir
+   }) : await spawn$1(publishTool.name, ["publish", opts.publishDir, "--json", ...publishFlags], {
+     env: Object.assign({}, process.env, envOverride)
+   });
