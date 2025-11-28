@@ -1,7 +1,12 @@
 {
   "name": "@avatune/svelte-storybook",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "private": true,
+  "author": "Avatune Team (https://avatune.dev)",
+  "contributors": [
+    "Teimur Gasanov <me@teimurjan.dev> (https://github.com/teimurjan)",
+    "Stanislav Nevmyvaka <nevmyvakastas@gmail.com> (https://github.com/nevmstas)"
+  ],
   "type": "module",
   "scripts": {
     "storybook": "storybook dev -p 6008 --no-open",

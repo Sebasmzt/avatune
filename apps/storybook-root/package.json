@@ -1,7 +1,12 @@
 {
   "name": "@avatune/storybook-root",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "private": true,
+  "author": "Avatune Team (https://avatune.dev)",
+  "contributors": [
+    "Teimur Gasanov <me@teimurjan.dev> (https://github.com/teimurjan)",
+    "Stanislav Nevmyvaka <nevmyvakastas@gmail.com> (https://github.com/nevmstas)"
+  ],
   "type": "module",
   "scripts": {
     "storybook": "node scripts/wait-for-ports.mjs && storybook dev -p 6010",

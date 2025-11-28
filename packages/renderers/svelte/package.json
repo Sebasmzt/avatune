@@ -1,12 +1,37 @@
 {
   "name": "@avatune/svelte",
-  "version": "0.0.0",
+  "version": "1.0.0",
+  "private": false,
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AvatuneAI/avatune.git"
+  },
+  "homepage": "https://avatune.dev",
+  "bugs": {
+    "url": "https://github.com/AvatuneAI/avatune/issues"
+  },
+  "author": "Avatune Team (https://avatune.dev)",
+  "contributors": [
+    "Teimur Gasanov <me@teimurjan.dev> (https://github.com/teimurjan)",
+    "Stanislav Nevmyvaka <nevmyvakastas@gmail.com> (https://github.com/nevmstas)"
+  ],
+  "keywords": [
+    "avatune",
+    "avatar",
+    "renderer",
+    "components",
+    "svelte"
+  ],
   "type": "module",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
       "svelte": "./dist/index.js",
-      "import": "./dist/index.js"
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
     }
   },
   "svelte": "./dist/index.js",

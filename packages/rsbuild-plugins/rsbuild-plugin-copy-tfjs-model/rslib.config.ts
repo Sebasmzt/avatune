@@ -19,6 +19,16 @@ export default defineConfig({
         },
       },
     },
+    {
+      format: 'cjs',
+      syntax: ['node 18'],
+      dts: false,
+      output: {
+        distPath: {
+          root: './dist',
+        },
+      },
+    },
   ],
   output: {
     target: 'node',

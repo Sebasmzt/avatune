@@ -1,12 +1,36 @@
 {
   "name": "@avatune/rsbuild-plugin-svg-to-vue",
-  "version": "0.0.0",
-  "type": "module",
+  "version": "1.0.0",
   "description": "Rsbuild plugin to transform SVG files into Vue components",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AvatuneAI/avatune.git"
+  },
+  "homepage": "https://avatune.dev",
+  "bugs": {
+    "url": "https://github.com/AvatuneAI/avatune/issues"
+  },
+  "author": "Avatune Team (https://avatune.dev)",
+  "contributors": [
+    "Teimur Gasanov <me@teimurjan.dev> (https://github.com/teimurjan)",
+    "Stanislav Nevmyvaka <nevmyvakastas@gmail.com> (https://github.com/nevmstas)"
+  ],
+  "keywords": [
+    "avatune",
+    "rsbuild",
+    "plugin",
+    "build-tools",
+    "vue",
+    "svg",
+    "transform"
+  ],
+  "type": "module",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "import": "./dist/index.js"
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
     }
   },
   "types": "./dist/index.d.ts",

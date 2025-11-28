@@ -8,6 +8,10 @@ export default defineConfig({
         bundle: false,
       },
     },
+    {
+      format: 'cjs',
+      dts: false,
+    },
   ],
   output: {
     target: 'node',

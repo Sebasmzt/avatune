@@ -1,32 +1,64 @@
 {
   "name": "@avatune/micah-theme",
-  "version": "0.0.0",
+  "version": "1.0.0",
+  "private": false,
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AvatuneAI/avatune.git"
+  },
+  "homepage": "https://avatune.dev",
+  "bugs": {
+    "url": "https://github.com/AvatuneAI/avatune/issues"
+  },
+  "author": "Avatune Team (https://avatune.dev)",
+  "contributors": [
+    "Teimur Gasanov <me@teimurjan.dev> (https://github.com/teimurjan)",
+    "Stanislav Nevmyvaka <nevmyvakastas@gmail.com> (https://github.com/nevmstas)"
+  ],
+  "keywords": [
+    "avatune",
+    "avatar",
+    "theme",
+    "customization",
+    "react",
+    "vue",
+    "svelte"
+  ],
   "type": "module",
   "exports": {
     ".": {
       "types": "./dist/vanilla.d.ts",
-      "import": "./dist/vanilla.js"
+      "import": "./dist/vanilla.js",
+      "require": "./dist/vanilla.cjs"
     },
     "./vanilla": {
       "types": "./dist/vanilla.d.ts",
-      "import": "./dist/vanilla.js"
+      "import": "./dist/vanilla.js",
+      "require": "./dist/vanilla.cjs"
     },
     "./react": {
       "types": "./dist/react.d.ts",
-      "import": "./dist/react.js"
+      "import": "./dist/react.js",
+      "require": "./dist/react.cjs"
     },
     "./react-native": {
       "types": "./dist/react-native.d.ts",
-      "import": "./dist/react-native.js"
+      "import": "./dist/react-native.js",
+      "require": "./dist/react-native.cjs"
     },
     "./vue": {
       "types": "./dist/vue.d.ts",
-      "import": "./dist/vue.js"
+      "import": "./dist/vue.js",
+      "require": "./dist/vue.cjs"
     },
     "./svelte": {
       "types": "./dist/svelte.d.ts",
       "svelte": "./dist/svelte.js",
-      "import": "./dist/svelte.js"
+      "import": "./dist/svelte.js",
+      "require": "./dist/svelte.cjs"
     }
   },
   "types": "./dist/vanilla.d.ts",
