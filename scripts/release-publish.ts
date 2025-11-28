@@ -1,7 +1,6 @@
 #!/usr/bin/env bun
 
-import { readdir, stat, writeFile } from 'node:fs/promises'
-import { homedir } from 'node:os'
+import { readdir, stat } from 'node:fs/promises'
 import { join } from 'node:path'
 import { $ } from 'bun'
 
@@ -46,7 +45,9 @@ async function publishPackage(dir: string): Promise<boolean> {
   console.log(`📦 Publishing ${name}...`)
 
   try {
-    await $`cd ${dir} && bun publish --access public`
+    await $`cd ${dir} && bun publish --access public`.env({
+      NPM_CONFIG_TOKEN: process.env.NPM_CONFIG_TOKEN,
+    })
     console.log(`✅ Published ${name}`)
     return true
   } catch (error: unknown) {
