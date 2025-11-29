@@ -14,7 +14,7 @@ export default defineConfig({
   integrations: [
     starlight({
       customCss: ['./src/styles/global.css'],
-      title: '',
+      title: 'Avatune',
       favicon: '/favicon.png',
       logo: {
         src: './public/favicon.png',
@@ -31,14 +31,10 @@ export default defineConfig({
         {
           label: 'Overview',
           items: [
-            { label: 'Welcome', slug: 'welcome' },
+            { label: 'Welcome', slug: 'docs' },
             { label: 'Getting Started', slug: 'getting-started' },
             { label: 'Playground', slug: 'playground' },
           ],
-        },
-        {
-          label: 'API',
-          items: [{ label: 'REST API', slug: 'api' }],
         },
         {
           label: 'Frameworks',
@@ -90,6 +86,10 @@ export default defineConfig({
               slug: 'packages/skin-tone-predictor',
             },
           ],
+        },
+        {
+          label: 'API',
+          items: [{ label: 'REST API', slug: 'api' }],
         },
       ],
     }),

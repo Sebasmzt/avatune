@@ -3,9 +3,9 @@ title: "Avatune API"
 description: "REST API for generating avatar SVGs on-demand via Cloudflare Workers."
 ---
 
-import { Aside } from '@astrojs/starlight/components';
-import InstallTabs from '../../../components/docs/install-tabs.astro'
-import ApiClientDemo from '../../../components/client/api-client-demo.svelte'
+import { Aside } from "@astrojs/starlight/components";
+import InstallTabs from "../../../components/docs/install-tabs.astro";
+import ApiClientDemo from "../../../components/client/api-client-demo.svelte";
 
 The Avatune API provides a REST endpoint for generating avatar SVGs on-demand, deployed on Cloudflare Workers at [https://api.avatune.dev](https://api.avatune.dev).
 
@@ -16,15 +16,15 @@ Try the API right here:
 <ApiClientDemo client:visible />
 
 ```typescript
-import { createClient } from '@avatune/api-client'
+import { createClient } from "@avatune/api-client";
 
-const client = createClient()
+const client = createClient();
 
 const svg = await client.getAvatar({
-  theme: 'yanliu',
-  seed: 'user-123',
+  theme: "yanliu",
+  seed: "user-123",
   size: 200,
-})
+});
 ```
 
 ## Live API Endpoint
@@ -34,7 +34,8 @@ https://api.avatune.dev/
 ```
 
 <Aside type="tip">
-  The API is deployed globally on Cloudflare's edge network for fast response times worldwide.
+  The API is deployed globally on Cloudflare's edge network for fast response
+  times worldwide.
 </Aside>
 
 ## API Usage
@@ -57,17 +58,17 @@ The API returns an SVG image that can be used directly in `<img>` tags or embedd
 
 ### Required Parameters
 
-| Parameter | Description | Example |
-|-----------|-------------|---------|
-| `theme` | Theme name | `yanliu`, `nevmstas`, `miniavs`, `micah`, `kyute`, `fatin-verse`, `pacovqzz` |
+| Parameter | Description | Example                                                                      |
+| --------- | ----------- | ---------------------------------------------------------------------------- |
+| `theme`   | Theme name  | `yanliu`, `nevmstas`, `miniavs`, `micah`, `kyute`, `fatin-verse`, `pacovqzz` |
 
 ### Optional Parameters
 
-| Parameter | Description | Default |
-|-----------|-------------|---------|
-| `size` | Avatar size in pixels | Theme default |
-| `seed` | Random seed for generation | Random |
-| `backgroundColor` | Background color (hex) | Theme default |
+| Parameter         | Description                | Default       |
+| ----------------- | -------------------------- | ------------- |
+| `size`            | Avatar size in pixels      | Theme default |
+| `seed`            | Random seed for generation | Random        |
+| `backgroundColor` | Background color (hex)     | Theme default |
 
 ## Rate Limiting
 
@@ -85,6 +86,7 @@ When rate limits are exceeded, the API returns:
 - **Status Code**: `429 Too Many Requests`
 - **Header**: `Retry-After: 3600` (seconds until reset)
 - **Response Body**:
+
 ```json
 {
   "error": "Rate limit exceeded",
@@ -101,12 +103,14 @@ Cache-Control: public, max-age=31536000, immutable
 ```
 
 This means:
+
 - Responses are cached for 1 year
 - Content is immutable (won't change)
 - Can be cached by browsers and CDNs
 
 <Aside type="tip">
-  Use the `seed` parameter to generate consistent avatars for the same user across requests.
+  Use the `seed` parameter to generate consistent avatars for the same user
+  across requests.
 </Aside>
 
 ## CORS
@@ -149,25 +153,25 @@ For type-safe API access, use the official `@avatune/api-client` package:
 ### Basic Usage
 
 ```typescript
-import { createClient } from '@avatune/api-client'
+import { createClient } from "@avatune/api-client";
 
-const client = createClient()
+const client = createClient();
 
 // Get avatar SVG with full type safety
 const svg = await client.getAvatar({
-  theme: 'yanliu',
-  seed: 'user-123',
-  hair: 'braids',      // TypeScript autocompletes available options
-  hairColor: '#8B4513',
-  body: 'sweaterVest',
-})
+  theme: "yanliu",
+  seed: "user-123",
+  hair: "braids", // TypeScript autocompletes available options
+  hairColor: "#8B4513",
+  body: "sweaterVest",
+});
 
 // Get URL for <img> src (no network request)
 const url = client.getAvatarUrl({
-  theme: 'nevmstas',
-  seed: 'user-456',
+  theme: "nevmstas",
+  seed: "user-456",
   size: 300,
-})
+});
 ```
 
 ### Type-Safe Theme Parameters
@@ -175,41 +179,45 @@ const url = client.getAvatarUrl({
 Each theme has its own typed interface with autocomplete for available parts:
 
 ```typescript
-import { createClient, type YanliuParams, type NevmstasParams } from '@avatune/api-client'
+import {
+  createClient,
+  type YanliuParams,
+  type NevmstasParams,
+} from "@avatune/api-client";
 
-const client = createClient()
+const client = createClient();
 
 // Yanliu theme with typed parameters
 const yanliuAvatar = await client.getAvatar({
-  theme: 'yanliu',
-  hair: 'braids',     // 'braids' | 'hijab' | 'medium' | 'puff' | ...
-  body: 'blouse',     // 'blouse' | 'sweaterVest' | 'teeBasic' | ...
-  glasses: 'glass',   // optional
-})
+  theme: "yanliu",
+  hair: "braids", // 'braids' | 'hijab' | 'medium' | 'puff' | ...
+  body: "blouse", // 'blouse' | 'sweaterVest' | 'teeBasic' | ...
+  glasses: "glass", // optional
+});
 
 // Nevmstas theme with different options
 const nevmstasAvatar = await client.getAvatar({
-  theme: 'nevmstas',
-  hair: 'short',      // 'short' | 'long' | 'mohawk' | 'pixie' | ...
-  eyes: 'boring',     // 'boring' | 'dots' | 'round' | ...
-})
+  theme: "nevmstas",
+  hair: "short", // 'short' | 'long' | 'mohawk' | 'pixie' | ...
+  eyes: "boring", // 'boring' | 'dots' | 'round' | ...
+});
 ```
 
 ### Error Handling
 
 ```typescript
-import { createClient, AvatuneApiError } from '@avatune/api-client'
+import { createClient, AvatuneApiError } from "@avatune/api-client";
 
-const client = createClient()
+const client = createClient();
 
 try {
-  const svg = await client.getAvatar({ theme: 'yanliu', seed: 'test' })
+  const svg = await client.getAvatar({ theme: "yanliu", seed: "test" });
 } catch (error) {
   if (error instanceof AvatuneApiError) {
     if (error.isRateLimited) {
-      console.log(`Rate limited. Retry after ${error.retryAfter} seconds`)
+      console.log(`Rate limited. Retry after ${error.retryAfter} seconds`);
     } else {
-      console.log(`API error: ${error.data.error}`)
+      console.log(`API error: ${error.data.error}`);
     }
   }
 }
@@ -221,17 +229,17 @@ For self-hosted instances:
 
 ```typescript
 const client = createClient({
-  baseUrl: 'https://your-api.example.com',
+  baseUrl: "https://your-api.example.com",
   timeout: 5000,
-})
+});
 ```
 
 ### Available Themes
 
 ```typescript
-import { AvatuneClient } from '@avatune/api-client'
+import { AvatuneClient } from "@avatune/api-client";
 
-console.log(AvatuneClient.themes)
+console.log(AvatuneClient.themes);
 // ['yanliu', 'nevmstas', 'miniavs', 'micah', 'kyute', 'fatin-verse', 'pacovqzz']
 ```
 
@@ -240,8 +248,8 @@ console.log(AvatuneClient.themes)
 ### HTML Image Tag
 
 ```html
-<img 
-  src="https://api.avatune.dev/?theme=yanliu&seed=user-123" 
+<img
+  src="https://api.avatune.dev/?theme=yanliu&seed=user-123"
   alt="User Avatar"
   width="200"
   height="200"
@@ -259,17 +267,10 @@ const svgText = await response.text();
 ### React Component
 
 ```tsx
-function UserAvatar({ userId, theme = 'yanliu', size = 200 }) {
+function UserAvatar({ userId, theme = "yanliu", size = 200 }) {
   const avatarUrl = `https://api.avatune.dev/?theme=${theme}&seed=${userId}&size=${size}`;
-  
-  return (
-    <img 
-      src={avatarUrl} 
-      alt="Avatar" 
-      width={size} 
-      height={size}
-    />
-  );
+
+  return <img src={avatarUrl} alt="Avatar" width={size} height={size} />;
 }
 ```
 
@@ -277,25 +278,21 @@ function UserAvatar({ userId, theme = 'yanliu', size = 200 }) {
 
 ```vue
 <template>
-  <img 
-    :src="avatarUrl" 
-    alt="Avatar"
-    :width="size"
-    :height="size"
-  />
+  <img :src="avatarUrl" alt="Avatar" :width="size" :height="size" />
 </template>
 
 <script setup>
-import { computed } from 'vue';
+import { computed } from "vue";
 
 const props = defineProps({
   userId: String,
-  theme: { type: String, default: 'yanliu' },
-  size: { type: Number, default: 200 }
+  theme: { type: String, default: "yanliu" },
+  size: { type: Number, default: 200 },
 });
 
-const avatarUrl = computed(() => 
-  `https://api.avatune.dev/?theme=${props.theme}&seed=${props.userId}&size=${props.size}`
+const avatarUrl = computed(
+  () =>
+    `https://api.avatune.dev/?theme=${props.theme}&seed=${props.userId}&size=${props.size}`
 );
 </script>
 ```
@@ -306,7 +303,7 @@ const avatarUrl = computed(() =>
 .avatar {
   width: 200px;
   height: 200px;
-  background-image: url('https://api.avatune.dev/?theme=miniavs&seed=user-456');
+  background-image: url("https://api.avatune.dev/?theme=miniavs&seed=user-456");
   background-size: cover;
   border-radius: 50%;
 }
@@ -343,17 +340,11 @@ For deployment instructions, see the [GitHub repository](https://github.com/avat
 
 ```javascript
 const params = new URLSearchParams({
-  theme: 'yanliu',
-  seed: 'user-123',
-  hairColor: '#FF5733',  // Will be properly encoded
-  backgroundColor: '#3498DB'
+  theme: "yanliu",
+  seed: "user-123",
+  hairColor: "#FF5733", // Will be properly encoded
+  backgroundColor: "#3498DB",
 });
 
 const url = `https://api.avatune.dev/?${params}`;
 ```
-
-## Support
-
-For issues or questions about the API:
-- [GitHub Issues](https://github.com/avatune/avatune/issues)
-- [Documentation](https://avatune.dev)

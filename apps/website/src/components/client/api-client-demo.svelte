@@ -44,7 +44,7 @@ async function fetchAvatar() {
       type="button"
       onclick={fetchAvatar}
       disabled={loading}
-      class="mt-6 cursor-pointer px-6 py-2.5 text-sm font-medium text-white transition-all disabled:cursor-not-allowed disabled:opacity-50"
+      class="mt-6 cursor-pointer px-6 py-2.5 text-sm font-medium text-white transition-all disabled:cursor-not-allowed disabled:opacity-50 bg-gray-700"
     >
       {#if loading}
         Fetching...
