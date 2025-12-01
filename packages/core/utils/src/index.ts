@@ -33,11 +33,11 @@ export function seededRandom(seed: string | number): () => number {
 }
 
 /**
- * Pick random element from array using seeded random
+ * Pick random element from array using seeded random value
  */
 function pickRandom<T>(items: T[], seedRandomValue?: number): T | undefined {
   if (items.length === 0) return undefined
-  if (!seedRandomValue) return items[0]
+  if (typeof seedRandomValue === 'undefined') return items[0]
   const index = Math.floor(seedRandomValue * items.length)
   return items[index]
 }
