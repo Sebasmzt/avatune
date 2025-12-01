@@ -3,6 +3,7 @@ import type {
   AvatarItemCollection,
   AvatarPartCategory,
   BaseAvatarItem,
+  ColorOptions,
   ConnectedColors,
   ThemeColorPalettes,
   ThemePredictorMappings,
@@ -80,6 +81,8 @@ export interface ThemeBuilder<
     category: keyof ThemeColorPalettes,
     color: string[],
   ): ThemeBuilder<T, IdMap>
+
+  getColors(category: keyof ThemeColorPalettes): ColorOptions | undefined
 
   withColorPalettes(
     palettes: Partial<ThemeColorPalettes>,
@@ -171,6 +174,10 @@ const createBuilder = <T extends AvatarItem, IdMap extends CategoryIdMap>(
           [category]: newPalette,
         },
       })
+    },
+
+    getColors: (category: keyof ThemeColorPalettes) => {
+      return state.palettes[category] || []
     },
 
     withColorPalettes: (palettes: Partial<ThemeColorPalettes>) =>

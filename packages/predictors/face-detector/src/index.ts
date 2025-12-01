@@ -1,7 +1,7 @@
 export {
   type CropPadding,
+  createFaceDetector,
   type FaceBoundingBox,
   type FaceDetection,
   type FaceDetectorOptions,
-  createFaceDetector,
 } from './face-detector.js'

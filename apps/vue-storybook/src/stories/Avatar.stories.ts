@@ -32,6 +32,7 @@ const getArgTypes = <T extends Theme<VueAvatarItem>>(theme: T) => {
     size: { control: { type: 'range', min: 100, max: 800, step: 50 } },
   }
 
+  const colorPalettes = theme.colorPalettes
   for (const [category, items] of Object.entries(theme)) {
     const excludeCategories = [
       'style',
@@ -41,11 +42,15 @@ const getArgTypes = <T extends Theme<VueAvatarItem>>(theme: T) => {
     ]
     if (excludeCategories.includes(category)) continue
 
-    argTypes[`${category}Color`] = { control: { type: 'color' } }
+    const presetColors = colorPalettes[category as keyof typeof colorPalettes]
+    argTypes[`${category}Color`] = { control: { type: 'color', presetColors } }
     argTypes[category] = {
       control: { type: 'select' },
       options: Object.keys(items),
     }
+  }
+  argTypes['backgroundColor'] = {
+    control: { type: 'color', presetColors: colorPalettes.background },
   }
 
   return argTypes

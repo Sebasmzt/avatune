@@ -42,6 +42,7 @@ export const getReplaceAttrValues = (
     '#DAB797': `{${colorPropName}}`,
     '#3A486B': `{${colorPropName}}`,
     '#273D32': `{${colorPropName}}`,
+    '#1A4730': `{${colorPropName}}`,
     '#34483E': `{colord(${colorPropName}).desaturate(0.06).lighten(0.04).toHex()}`,
     '#B77131': `{colord(${colorPropName}).rotate(190).desaturate(0.29).darken(0.14).toHex()}`,
     '#AEA08B': `{${colorPropName}}`,

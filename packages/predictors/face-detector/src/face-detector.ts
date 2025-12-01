@@ -1,7 +1,7 @@
 import {
+  type Detection,
   FaceDetector,
   FilesetResolver,
-  type Detection,
 } from '@mediapipe/tasks-vision'
 
 export type FaceBoundingBox = {
