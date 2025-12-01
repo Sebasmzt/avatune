@@ -1,7 +1,7 @@
 # @avatune/types
 
 [![npm version](https://img.shields.io/npm/v/@avatune/types)](https://www.npmjs.com/package/@avatune/types)
-[![npm bundle size](https://img.shields.io/bundlephobia/minzip/@avatune/types)](https://bundlephobia.com/package/@avatune/types)
+[![npm bundle size](https://img.shields.io/npm/unpacked-size/@avatune/types)](https://www.npmjs.com/package/@avatune/types)
 
 TypeScript type definitions for Avatune packages.
 

@@ -1,7 +1,7 @@
 # @avatune/rsbuild-plugin-svg-to-vue
 
 [![npm version](https://img.shields.io/npm/v/@avatune/rsbuild-plugin-svg-to-vue)](https://www.npmjs.com/package/@avatune/rsbuild-plugin-svg-to-vue)
-[![npm bundle size](https://img.shields.io/bundlephobia/minzip/@avatune/rsbuild-plugin-svg-to-vue)](https://bundlephobia.com/package/@avatune/rsbuild-plugin-svg-to-vue)
+[![npm bundle size](https://img.shields.io/npm/unpacked-size/@avatune/rsbuild-plugin-svg-to-vue)](https://www.npmjs.com/package/@avatune/rsbuild-plugin-svg-to-vue)
 
 Rsbuild plugin to transform SVG files into Vue components.
 

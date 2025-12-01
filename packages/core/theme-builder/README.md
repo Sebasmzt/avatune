@@ -1,7 +1,7 @@
 # @avatune/theme-builder
 
 [![npm version](https://img.shields.io/npm/v/@avatune/theme-builder)](https://www.npmjs.com/package/@avatune/theme-builder)
-[![npm bundle size](https://img.shields.io/bundlephobia/minzip/@avatune/theme-builder)](https://bundlephobia.com/package/@avatune/theme-builder)
+[![npm bundle size](https://img.shields.io/npm/unpacked-size/@avatune/theme-builder)](https://www.npmjs.com/package/@avatune/theme-builder)
 
 Theme builder utilities for creating custom Avatune themes.
 

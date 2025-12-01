@@ -1,7 +1,7 @@
 # @avatune/face-detector
 
 [![npm version](https://img.shields.io/npm/v/@avatune/face-detector)](https://www.npmjs.com/package/@avatune/face-detector)
-[![npm bundle size](https://img.shields.io/bundlephobia/minzip/@avatune/face-detector)](https://bundlephobia.com/package/@avatune/face-detector)
+[![npm bundle size](https://img.shields.io/npm/unpacked-size/@avatune/face-detector)](https://www.npmjs.com/package/@avatune/face-detector)
 
 Browser-based face detection using MediaPipe. Detects faces and provides bounding boxes for cropping.
 

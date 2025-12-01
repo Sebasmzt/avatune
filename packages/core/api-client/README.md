@@ -1,7 +1,7 @@
 # @avatune/api-client
 
 [![npm version](https://img.shields.io/npm/v/@avatune/api-client)](https://www.npmjs.com/package/@avatune/api-client)
-[![npm bundle size](https://img.shields.io/bundlephobia/minzip/@avatune/api-client)](https://bundlephobia.com/package/@avatune/api-client)
+[![npm bundle size](https://img.shields.io/npm/unpacked-size/@avatune/api-client)](https://www.npmjs.com/package/@avatune/api-client)
 
 Typed API client for Avatune REST API.
 

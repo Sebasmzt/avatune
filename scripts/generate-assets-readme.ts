@@ -41,7 +41,7 @@ function generateReadme(
     `[![npm version](https://img.shields.io/npm/v/@avatune/${packageName})](https://www.npmjs.com/package/@avatune/${packageName})`,
   )
   sections.push(
-    `[![npm bundle size](https://img.shields.io/bundlephobia/minzip/@avatune/${packageName})](https://bundlephobia.com/package/@avatune/${packageName})`,
+    `[![npm bundle size](https://img.shields.io/npm/unpacked-size/@avatune/${packageName})](https://www.npmjs.com/package/@avatune/${packageName})`,
   )
   sections.push('')
   sections.push(`${styleName} style SVG assets for avatar generation.`)

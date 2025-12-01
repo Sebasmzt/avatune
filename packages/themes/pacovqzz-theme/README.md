@@ -1,7 +1,7 @@
 # @avatune/pacovqzz-theme
 
 [![npm version](https://img.shields.io/npm/v/@avatune/pacovqzz-theme)](https://www.npmjs.com/package/@avatune/pacovqzz-theme)
-[![npm bundle size](https://img.shields.io/bundlejs/size/@avatune/pacovqzz-theme)](https://bundlephobia.com/package/@avatune/pacovqzz-theme)
+[![npm bundle size](https://img.shields.io/npm/unpacked-size/@avatune/pacovqzz-theme)](https://www.npmjs.com/package/@avatune/pacovqzz-theme)
 
 Avatar theme for Avatune using pacovqzz design assets.
 

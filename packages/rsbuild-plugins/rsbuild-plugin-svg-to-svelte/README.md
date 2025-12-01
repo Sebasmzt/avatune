@@ -1,7 +1,7 @@
 # @avatune/rsbuild-plugin-svg-to-svelte
 
 [![npm version](https://img.shields.io/npm/v/@avatune/rsbuild-plugin-svg-to-svelte)](https://www.npmjs.com/package/@avatune/rsbuild-plugin-svg-to-svelte)
-[![npm bundle size](https://img.shields.io/bundlephobia/minzip/@avatune/rsbuild-plugin-svg-to-svelte)](https://bundlephobia.com/package/@avatune/rsbuild-plugin-svg-to-svelte)
+[![npm bundle size](https://img.shields.io/npm/unpacked-size/@avatune/rsbuild-plugin-svg-to-svelte)](https://www.npmjs.com/package/@avatune/rsbuild-plugin-svg-to-svelte)
 
 Rsbuild plugin to transform SVG files into Svelte components.
 

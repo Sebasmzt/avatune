@@ -1,7 +1,7 @@
 # @avatune/micah-assets
 
 [![npm version](https://img.shields.io/npm/v/@avatune/micah-assets)](https://www.npmjs.com/package/@avatune/micah-assets)
-[![npm bundle size](https://img.shields.io/bundlephobia/minzip/@avatune/micah-assets)](https://bundlephobia.com/package/@avatune/micah-assets)
+[![npm bundle size](https://img.shields.io/npm/unpacked-size/@avatune/micah-assets)](https://www.npmjs.com/package/@avatune/micah-assets)
 
 Micah style SVG assets for avatar generation.
 
@@ -45,96 +45,96 @@ import { HairShort, EyesBoring, MouthSmile } from '@avatune/micah-assets/vue';
 
 ### Accessories
 
-| Preview | Filename |
-|---------|----------|
+| Preview                                                   | Filename        |
+| --------------------------------------------------------- | --------------- |
 | ![hoop-ear-ring](./src/svg/accessories/hoop-ear-ring.svg) | `hoop-ear-ring` |
 | ![stud-ear-ring](./src/svg/accessories/stud-ear-ring.svg) | `stud-ear-ring` |
 
 ### Body
 
-| Preview | Filename |
-|---------|----------|
+| Preview                                              | Filename         |
+| ---------------------------------------------------- | ---------------- |
 | ![collared-shirt](./src/svg/body/collared-shirt.svg) | `collared-shirt` |
-| ![crew-shirt](./src/svg/body/crew-shirt.svg) | `crew-shirt` |
-| ![open-shirt](./src/svg/body/open-shirt.svg) | `open-shirt` |
+| ![crew-shirt](./src/svg/body/crew-shirt.svg)         | `crew-shirt`     |
+| ![open-shirt](./src/svg/body/open-shirt.svg)         | `open-shirt`     |
 
 ### Ears
 
-| Preview | Filename |
-|---------|----------|
+| Preview                              | Filename |
+| ------------------------------------ | -------- |
 | ![medium](./src/svg/ears/medium.svg) | `medium` |
-| ![small](./src/svg/ears/small.svg) | `small` |
+| ![small](./src/svg/ears/small.svg)   | `small`  |
 
 ### Eyebrows
 
-| Preview | Filename |
-|---------|----------|
-| ![down](./src/svg/eyebrows/down.svg) | `down` |
+| Preview                                                  | Filename         |
+| -------------------------------------------------------- | ---------------- |
+| ![down](./src/svg/eyebrows/down.svg)                     | `down`           |
 | ![eyelashes-down](./src/svg/eyebrows/eyelashes-down.svg) | `eyelashes-down` |
-| ![eyelashes-up](./src/svg/eyebrows/eyelashes-up.svg) | `eyelashes-up` |
-| ![up](./src/svg/eyebrows/up.svg) | `up` |
+| ![eyelashes-up](./src/svg/eyebrows/eyelashes-up.svg)     | `eyelashes-up`   |
+| ![up](./src/svg/eyebrows/up.svg)                         | `up`             |
 
 ### Eyes
 
-| Preview | Filename |
-|---------|----------|
+| Preview                                    | Filename    |
+| ------------------------------------------ | ----------- |
 | ![eyeshadow](./src/svg/eyes/eyeshadow.svg) | `eyeshadow` |
-| ![round](./src/svg/eyes/round.svg) | `round` |
-| ![smiling](./src/svg/eyes/smiling.svg) | `smiling` |
-| ![standard](./src/svg/eyes/standard.svg) | `standard` |
+| ![round](./src/svg/eyes/round.svg)         | `round`     |
+| ![smiling](./src/svg/eyes/smiling.svg)     | `smiling`   |
+| ![standard](./src/svg/eyes/standard.svg)   | `standard`  |
 
 ### Face-hair
 
-| Preview | Filename |
-|---------|----------|
-| ![beard](./src/svg/face-hair/beard.svg) | `beard` |
+| Preview                                   | Filename |
+| ----------------------------------------- | -------- |
+| ![beard](./src/svg/face-hair/beard.svg)   | `beard`  |
 | ![scruff](./src/svg/face-hair/scruff.svg) | `scruff` |
 
 ### Glasses
 
-| Preview | Filename |
-|---------|----------|
-| ![round](./src/svg/glasses/round.svg) | `round` |
+| Preview                                 | Filename |
+| --------------------------------------- | -------- |
+| ![round](./src/svg/glasses/round.svg)   | `round`  |
 | ![square](./src/svg/glasses/square.svg) | `square` |
 
 ### Hair
 
-| Preview | Filename |
-|---------|----------|
+| Preview                                            | Filename        |
+| -------------------------------------------------- | --------------- |
 | ![danny-phantom](./src/svg/hair/danny-phantom.svg) | `danny-phantom` |
-| ![doug-funny](./src/svg/hair/doug-funny.svg) | `doug-funny` |
-| ![fonze](./src/svg/hair/fonze.svg) | `fonze` |
-| ![full](./src/svg/hair/full.svg) | `full` |
-| ![mr-t](./src/svg/hair/mr-t.svg) | `mr-t` |
-| ![pixie](./src/svg/hair/pixie.svg) | `pixie` |
-| ![turban](./src/svg/hair/turban.svg) | `turban` |
+| ![doug-funny](./src/svg/hair/doug-funny.svg)       | `doug-funny`    |
+| ![fonze](./src/svg/hair/fonze.svg)                 | `fonze`         |
+| ![full](./src/svg/hair/full.svg)                   | `full`          |
+| ![mr-t](./src/svg/hair/mr-t.svg)                   | `mr-t`          |
+| ![pixie](./src/svg/hair/pixie.svg)                 | `pixie`         |
+| ![turban](./src/svg/hair/turban.svg)               | `turban`        |
 
 ### Head
 
-| Preview | Filename |
-|---------|----------|
+| Preview                                  | Filename   |
+| ---------------------------------------- | ---------- |
 | ![standard](./src/svg/head/standard.svg) | `standard` |
 
 ### Mouth
 
-| Preview | Filename |
-|---------|----------|
-| ![frown](./src/svg/mouth/frown.svg) | `frown` |
-| ![laughing](./src/svg/mouth/laughing.svg) | `laughing` |
-| ![nervous](./src/svg/mouth/nervous.svg) | `nervous` |
-| ![pucker](./src/svg/mouth/pucker.svg) | `pucker` |
-| ![sad](./src/svg/mouth/sad.svg) | `sad` |
-| ![smile](./src/svg/mouth/smile.svg) | `smile` |
-| ![smirk](./src/svg/mouth/smirk.svg) | `smirk` |
+| Preview                                     | Filename    |
+| ------------------------------------------- | ----------- |
+| ![frown](./src/svg/mouth/frown.svg)         | `frown`     |
+| ![laughing](./src/svg/mouth/laughing.svg)   | `laughing`  |
+| ![nervous](./src/svg/mouth/nervous.svg)     | `nervous`   |
+| ![pucker](./src/svg/mouth/pucker.svg)       | `pucker`    |
+| ![sad](./src/svg/mouth/sad.svg)             | `sad`       |
+| ![smile](./src/svg/mouth/smile.svg)         | `smile`     |
+| ![smirk](./src/svg/mouth/smirk.svg)         | `smirk`     |
 | ![surprised](./src/svg/mouth/surprised.svg) | `surprised` |
 
 ### Noses
 
-| Preview | Filename |
-|---------|----------|
-| ![curve](./src/svg/noses/curve.svg) | `curve` |
+| Preview                                 | Filename  |
+| --------------------------------------- | --------- |
+| ![curve](./src/svg/noses/curve.svg)     | `curve`   |
 | ![pointed](./src/svg/noses/pointed.svg) | `pointed` |
-| ![round](./src/svg/noses/round.svg) | `round` |
+| ![round](./src/svg/noses/round.svg)     | `round`   |
 
 ## License & Credits
 

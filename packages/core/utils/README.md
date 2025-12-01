@@ -1,7 +1,7 @@
 # @avatune/utils
 
 [![npm version](https://img.shields.io/npm/v/@avatune/utils)](https://www.npmjs.com/package/@avatune/utils)
-[![npm bundle size](https://img.shields.io/bundlephobia/minzip/@avatune/utils)](https://bundlephobia.com/package/@avatune/utils)
+[![npm bundle size](https://img.shields.io/npm/unpacked-size/@avatune/utils)](https://www.npmjs.com/package/@avatune/utils)
 
 Utility functions for Avatune avatar generation.
 

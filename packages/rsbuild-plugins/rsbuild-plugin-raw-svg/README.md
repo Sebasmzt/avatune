@@ -1,7 +1,7 @@
 # @avatune/rsbuild-plugin-raw-svg
 
 [![npm version](https://img.shields.io/npm/v/@avatune/rsbuild-plugin-raw-svg)](https://www.npmjs.com/package/@avatune/rsbuild-plugin-raw-svg)
-[![npm bundle size](https://img.shields.io/bundlephobia/minzip/@avatune/rsbuild-plugin-raw-svg)](https://bundlephobia.com/package/@avatune/rsbuild-plugin-raw-svg)
+[![npm bundle size](https://img.shields.io/npm/unpacked-size/@avatune/rsbuild-plugin-raw-svg)](https://www.npmjs.com/package/@avatune/rsbuild-plugin-raw-svg)
 
 Rsbuild plugin to import SVG files as raw strings with SVGO optimization.
 

@@ -1,7 +1,7 @@
 # @avatune/skin-tone-predictor
 
 [![npm version](https://img.shields.io/npm/v/@avatune/skin-tone-predictor)](https://www.npmjs.com/package/@avatune/skin-tone-predictor)
-[![npm bundle size](https://img.shields.io/bundlephobia/minzip/@avatune/skin-tone-predictor)](https://bundlephobia.com/package/@avatune/skin-tone-predictor)
+[![npm bundle size](https://img.shields.io/npm/unpacked-size/@avatune/skin-tone-predictor)](https://www.npmjs.com/package/@avatune/skin-tone-predictor)
 
 Browser-based skin tone prediction using TensorFlow.js. Predicts ethnicity (7 classes) and maps to skin tone (dark, medium, light).
 
@@ -133,15 +133,15 @@ Predicts skin tone from an image tensor.
 
 ### Ethnicity to Skin Tone Mapping
 
-| Ethnicity        | Skin Tone |
-| ---------------- | --------- |
-| black            | dark      |
-| east_asian       | light     |
-| indian           | medium    |
-| latino_hispanic  | medium    |
-| middle_eastern   | medium    |
-| southeast_asian  | medium    |
-| white            | light     |
+| Ethnicity       | Skin Tone |
+| --------------- | --------- |
+| black           | dark      |
+| east_asian      | light     |
+| indian          | medium    |
+| latino_hispanic | medium    |
+| middle_eastern  | medium    |
+| southeast_asian | medium    |
+| white           | light     |
 
 ## License
 

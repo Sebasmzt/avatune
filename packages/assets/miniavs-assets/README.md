@@ -1,7 +1,7 @@
 # @avatune/miniavs-assets
 
 [![npm version](https://img.shields.io/npm/v/@avatune/miniavs-assets)](https://www.npmjs.com/package/@avatune/miniavs-assets)
-[![npm bundle size](https://img.shields.io/bundlephobia/minzip/@avatune/miniavs-assets)](https://bundlephobia.com/package/@avatune/miniavs-assets)
+[![npm bundle size](https://img.shields.io/npm/unpacked-size/@avatune/miniavs-assets)](https://www.npmjs.com/package/@avatune/miniavs-assets)
 
 Miniavs style SVG assets for avatar generation.
 
@@ -45,67 +45,67 @@ import { HairShort, EyesBoring, MouthSmile } from '@avatune/miniavs-assets/vue';
 
 ### Body
 
-| Preview | Filename |
-|---------|----------|
-| ![golf](https://raw.githubusercontent.com/avatune/avatune/main/packages/assets/miniavs-assets/src/svg/body/golf.svg) | `golf` |
+| Preview                                                                                                                      | Filename   |
+| ---------------------------------------------------------------------------------------------------------------------------- | ---------- |
+| ![golf](https://raw.githubusercontent.com/avatune/avatune/main/packages/assets/miniavs-assets/src/svg/body/golf.svg)         | `golf`     |
 | ![standard](https://raw.githubusercontent.com/avatune/avatune/main/packages/assets/miniavs-assets/src/svg/body/standard.svg) | `standard` |
 
 ### Eyes
 
-| Preview | Filename |
-|---------|----------|
+| Preview                                                                                                                        | Filename    |
+| ------------------------------------------------------------------------------------------------------------------------------ | ----------- |
 | ![confident](https://raw.githubusercontent.com/avatune/avatune/main/packages/assets/miniavs-assets/src/svg/eyes/confident.svg) | `confident` |
-| ![happy](https://raw.githubusercontent.com/avatune/avatune/main/packages/assets/miniavs-assets/src/svg/eyes/happy.svg) | `happy` |
-| ![standard](https://raw.githubusercontent.com/avatune/avatune/main/packages/assets/miniavs-assets/src/svg/eyes/standard.svg) | `standard` |
+| ![happy](https://raw.githubusercontent.com/avatune/avatune/main/packages/assets/miniavs-assets/src/svg/eyes/happy.svg)         | `happy`     |
+| ![standard](https://raw.githubusercontent.com/avatune/avatune/main/packages/assets/miniavs-assets/src/svg/eyes/standard.svg)   | `standard`  |
 
 ### FaceDetails
 
-| Preview | Filename |
-|---------|----------|
+| Preview                                                                                                                           | Filename  |
+| --------------------------------------------------------------------------------------------------------------------------------- | --------- |
 | ![blushes](https://raw.githubusercontent.com/avatune/avatune/main/packages/assets/miniavs-assets/src/svg/faceDetails/blushes.svg) | `blushes` |
 
 ### FaceHair
 
-| Preview | Filename |
-|---------|----------|
-| ![freddy](https://raw.githubusercontent.com/avatune/avatune/main/packages/assets/miniavs-assets/src/svg/faceHair/freddy.svg) | `freddy` |
-| ![horshoe](https://raw.githubusercontent.com/avatune/avatune/main/packages/assets/miniavs-assets/src/svg/faceHair/horshoe.svg) | `horshoe` |
-| ![pencilThin](https://raw.githubusercontent.com/avatune/avatune/main/packages/assets/miniavs-assets/src/svg/faceHair/pencilThin.svg) | `pencilThin` |
+| Preview                                                                                                                                        | Filename          |
+| ---------------------------------------------------------------------------------------------------------------------------------------------- | ----------------- |
+| ![freddy](https://raw.githubusercontent.com/avatune/avatune/main/packages/assets/miniavs-assets/src/svg/faceHair/freddy.svg)                   | `freddy`          |
+| ![horshoe](https://raw.githubusercontent.com/avatune/avatune/main/packages/assets/miniavs-assets/src/svg/faceHair/horshoe.svg)                 | `horshoe`         |
+| ![pencilThin](https://raw.githubusercontent.com/avatune/avatune/main/packages/assets/miniavs-assets/src/svg/faceHair/pencilThin.svg)           | `pencilThin`      |
 | ![pencilThinBeard](https://raw.githubusercontent.com/avatune/avatune/main/packages/assets/miniavs-assets/src/svg/faceHair/pencilThinBeard.svg) | `pencilThinBeard` |
 
 ### Glasses
 
-| Preview | Filename |
-|---------|----------|
+| Preview                                                                                                                       | Filename  |
+| ----------------------------------------------------------------------------------------------------------------------------- | --------- |
 | ![glasses](https://raw.githubusercontent.com/avatune/avatune/main/packages/assets/miniavs-assets/src/svg/glasses/glasses.svg) | `glasses` |
 
 ### Hair
 
-| Preview | Filename |
-|---------|----------|
-| ![baldness](https://raw.githubusercontent.com/avatune/avatune/main/packages/assets/miniavs-assets/src/svg/hair/baldness.svg) | `baldness` |
-| ![classic1](https://raw.githubusercontent.com/avatune/avatune/main/packages/assets/miniavs-assets/src/svg/hair/classic1.svg) | `classic1` |
-| ![classic2](https://raw.githubusercontent.com/avatune/avatune/main/packages/assets/miniavs-assets/src/svg/hair/classic2.svg) | `classic2` |
-| ![curly](https://raw.githubusercontent.com/avatune/avatune/main/packages/assets/miniavs-assets/src/svg/hair/curly.svg) | `curly` |
-| ![elvis](https://raw.githubusercontent.com/avatune/avatune/main/packages/assets/miniavs-assets/src/svg/hair/elvis.svg) | `elvis` |
-| ![long](https://raw.githubusercontent.com/avatune/avatune/main/packages/assets/miniavs-assets/src/svg/hair/long.svg) | `long` |
-| ![ponyTail](https://raw.githubusercontent.com/avatune/avatune/main/packages/assets/miniavs-assets/src/svg/hair/ponyTail.svg) | `ponyTail` |
+| Preview                                                                                                                        | Filename    |
+| ------------------------------------------------------------------------------------------------------------------------------ | ----------- |
+| ![baldness](https://raw.githubusercontent.com/avatune/avatune/main/packages/assets/miniavs-assets/src/svg/hair/baldness.svg)   | `baldness`  |
+| ![classic1](https://raw.githubusercontent.com/avatune/avatune/main/packages/assets/miniavs-assets/src/svg/hair/classic1.svg)   | `classic1`  |
+| ![classic2](https://raw.githubusercontent.com/avatune/avatune/main/packages/assets/miniavs-assets/src/svg/hair/classic2.svg)   | `classic2`  |
+| ![curly](https://raw.githubusercontent.com/avatune/avatune/main/packages/assets/miniavs-assets/src/svg/hair/curly.svg)         | `curly`     |
+| ![elvis](https://raw.githubusercontent.com/avatune/avatune/main/packages/assets/miniavs-assets/src/svg/hair/elvis.svg)         | `elvis`     |
+| ![long](https://raw.githubusercontent.com/avatune/avatune/main/packages/assets/miniavs-assets/src/svg/hair/long.svg)           | `long`      |
+| ![ponyTail](https://raw.githubusercontent.com/avatune/avatune/main/packages/assets/miniavs-assets/src/svg/hair/ponyTail.svg)   | `ponyTail`  |
 | ![slaughter](https://raw.githubusercontent.com/avatune/avatune/main/packages/assets/miniavs-assets/src/svg/hair/slaughter.svg) | `slaughter` |
-| ![stylish](https://raw.githubusercontent.com/avatune/avatune/main/packages/assets/miniavs-assets/src/svg/hair/stylish.svg) | `stylish` |
+| ![stylish](https://raw.githubusercontent.com/avatune/avatune/main/packages/assets/miniavs-assets/src/svg/hair/stylish.svg)     | `stylish`   |
 
 ### Head
 
-| Preview | Filename |
-|---------|----------|
+| Preview                                                                                                                      | Filename   |
+| ---------------------------------------------------------------------------------------------------------------------------- | ---------- |
 | ![standard](https://raw.githubusercontent.com/avatune/avatune/main/packages/assets/miniavs-assets/src/svg/head/standard.svg) | `standard` |
-| ![thin](https://raw.githubusercontent.com/avatune/avatune/main/packages/assets/miniavs-assets/src/svg/head/thin.svg) | `thin` |
-| ![wide](https://raw.githubusercontent.com/avatune/avatune/main/packages/assets/miniavs-assets/src/svg/head/wide.svg) | `wide` |
+| ![thin](https://raw.githubusercontent.com/avatune/avatune/main/packages/assets/miniavs-assets/src/svg/head/thin.svg)         | `thin`     |
+| ![wide](https://raw.githubusercontent.com/avatune/avatune/main/packages/assets/miniavs-assets/src/svg/head/wide.svg)         | `wide`     |
 
 ### Mouth
 
-| Preview | Filename |
-|---------|----------|
-| ![standard](https://raw.githubusercontent.com/avatune/avatune/main/packages/assets/miniavs-assets/src/svg/mouth/standard.svg) | `standard` |
+| Preview                                                                                                                         | Filename    |
+| ------------------------------------------------------------------------------------------------------------------------------- | ----------- |
+| ![standard](https://raw.githubusercontent.com/avatune/avatune/main/packages/assets/miniavs-assets/src/svg/mouth/standard.svg)   | `standard`  |
 | ![toothless](https://raw.githubusercontent.com/avatune/avatune/main/packages/assets/miniavs-assets/src/svg/mouth/toothless.svg) | `toothless` |
 
 ## License & Credits

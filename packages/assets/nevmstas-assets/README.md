@@ -1,7 +1,7 @@
 # @avatune/nevmstas-assets
 
 [![npm version](https://img.shields.io/npm/v/@avatune/nevmstas-assets)](https://www.npmjs.com/package/@avatune/nevmstas-assets)
-[![npm bundle size](https://img.shields.io/bundlephobia/minzip/@avatune/nevmstas-assets)](https://bundlephobia.com/package/@avatune/nevmstas-assets)
+[![npm bundle size](https://img.shields.io/npm/unpacked-size/@avatune/nevmstas-assets)](https://www.npmjs.com/package/@avatune/nevmstas-assets)
 
 Nevmstas style SVG assets for avatar generation.
 
@@ -45,71 +45,71 @@ import { HairShort, EyesBoring, MouthSmile } from '@avatune/nevmstas-assets/vue'
 
 ### Body
 
-| Preview | Filename |
-|---------|----------|
-| ![shirt](https://raw.githubusercontent.com/avatune/avatune/main/packages/assets/nevmstas-assets/src/svg/body/shirt.svg) | `shirt` |
-| ![sweater](https://raw.githubusercontent.com/avatune/avatune/main/packages/assets/nevmstas-assets/src/svg/body/sweater.svg) | `sweater` |
-| ![tshirt](https://raw.githubusercontent.com/avatune/avatune/main/packages/assets/nevmstas-assets/src/svg/body/tshirt.svg) | `tshirt` |
+| Preview                                                                                                                           | Filename     |
+| --------------------------------------------------------------------------------------------------------------------------------- | ------------ |
+| ![shirt](https://raw.githubusercontent.com/avatune/avatune/main/packages/assets/nevmstas-assets/src/svg/body/shirt.svg)           | `shirt`      |
+| ![sweater](https://raw.githubusercontent.com/avatune/avatune/main/packages/assets/nevmstas-assets/src/svg/body/sweater.svg)       | `sweater`    |
+| ![tshirt](https://raw.githubusercontent.com/avatune/avatune/main/packages/assets/nevmstas-assets/src/svg/body/tshirt.svg)         | `tshirt`     |
 | ![turtleneck](https://raw.githubusercontent.com/avatune/avatune/main/packages/assets/nevmstas-assets/src/svg/body/turtleneck.svg) | `turtleneck` |
 
 ### Ears
 
-| Preview | Filename |
-|---------|----------|
+| Preview                                                                                                                       | Filename   |
+| ----------------------------------------------------------------------------------------------------------------------------- | ---------- |
 | ![standard](https://raw.githubusercontent.com/avatune/avatune/main/packages/assets/nevmstas-assets/src/svg/ears/standard.svg) | `standard` |
 
 ### Eyebrows
 
-| Preview | Filename |
-|---------|----------|
-| ![angry](https://raw.githubusercontent.com/avatune/avatune/main/packages/assets/nevmstas-assets/src/svg/eyebrows/angry.svg) | `angry` |
-| ![small](https://raw.githubusercontent.com/avatune/avatune/main/packages/assets/nevmstas-assets/src/svg/eyebrows/small.svg) | `small` |
+| Preview                                                                                                                           | Filename   |
+| --------------------------------------------------------------------------------------------------------------------------------- | ---------- |
+| ![angry](https://raw.githubusercontent.com/avatune/avatune/main/packages/assets/nevmstas-assets/src/svg/eyebrows/angry.svg)       | `angry`    |
+| ![small](https://raw.githubusercontent.com/avatune/avatune/main/packages/assets/nevmstas-assets/src/svg/eyebrows/small.svg)       | `small`    |
 | ![standard](https://raw.githubusercontent.com/avatune/avatune/main/packages/assets/nevmstas-assets/src/svg/eyebrows/standard.svg) | `standard` |
 
 ### Eyes
 
-| Preview | Filename |
-|---------|----------|
-| ![boring](https://raw.githubusercontent.com/avatune/avatune/main/packages/assets/nevmstas-assets/src/svg/eyes/boring.svg) | `boring` |
-| ![dots](https://raw.githubusercontent.com/avatune/avatune/main/packages/assets/nevmstas-assets/src/svg/eyes/dots.svg) | `dots` |
-| ![openCircle](https://raw.githubusercontent.com/avatune/avatune/main/packages/assets/nevmstas-assets/src/svg/eyes/openCircle.svg) | `openCircle` |
+| Preview                                                                                                                             | Filename      |
+| ----------------------------------------------------------------------------------------------------------------------------------- | ------------- |
+| ![boring](https://raw.githubusercontent.com/avatune/avatune/main/packages/assets/nevmstas-assets/src/svg/eyes/boring.svg)           | `boring`      |
+| ![dots](https://raw.githubusercontent.com/avatune/avatune/main/packages/assets/nevmstas-assets/src/svg/eyes/dots.svg)               | `dots`        |
+| ![openCircle](https://raw.githubusercontent.com/avatune/avatune/main/packages/assets/nevmstas-assets/src/svg/eyes/openCircle.svg)   | `openCircle`  |
 | ![openRounded](https://raw.githubusercontent.com/avatune/avatune/main/packages/assets/nevmstas-assets/src/svg/eyes/openRounded.svg) | `openRounded` |
 
 ### Hair
 
-| Preview | Filename |
-|---------|----------|
-| ![bobRounded](https://raw.githubusercontent.com/avatune/avatune/main/packages/assets/nevmstas-assets/src/svg/hair/bobRounded.svg) | `bobRounded` |
+| Preview                                                                                                                             | Filename      |
+| ----------------------------------------------------------------------------------------------------------------------------------- | ------------- |
+| ![bobRounded](https://raw.githubusercontent.com/avatune/avatune/main/packages/assets/nevmstas-assets/src/svg/hair/bobRounded.svg)   | `bobRounded`  |
 | ![bobStraight](https://raw.githubusercontent.com/avatune/avatune/main/packages/assets/nevmstas-assets/src/svg/hair/bobStraight.svg) | `bobStraight` |
-| ![long](https://raw.githubusercontent.com/avatune/avatune/main/packages/assets/nevmstas-assets/src/svg/hair/long.svg) | `long` |
-| ![medium](https://raw.githubusercontent.com/avatune/avatune/main/packages/assets/nevmstas-assets/src/svg/hair/medium.svg) | `medium` |
-| ![short](https://raw.githubusercontent.com/avatune/avatune/main/packages/assets/nevmstas-assets/src/svg/hair/short.svg) | `short` |
+| ![long](https://raw.githubusercontent.com/avatune/avatune/main/packages/assets/nevmstas-assets/src/svg/hair/long.svg)               | `long`        |
+| ![medium](https://raw.githubusercontent.com/avatune/avatune/main/packages/assets/nevmstas-assets/src/svg/hair/medium.svg)           | `medium`      |
+| ![short](https://raw.githubusercontent.com/avatune/avatune/main/packages/assets/nevmstas-assets/src/svg/hair/short.svg)             | `short`       |
 
 ### Head
 
-| Preview | Filename |
-|---------|----------|
-| ![oval](https://raw.githubusercontent.com/avatune/avatune/main/packages/assets/nevmstas-assets/src/svg/head/oval.svg) | `oval` |
+| Preview                                                                                                               | Filename |
+| --------------------------------------------------------------------------------------------------------------------- | -------- |
+| ![oval](https://raw.githubusercontent.com/avatune/avatune/main/packages/assets/nevmstas-assets/src/svg/head/oval.svg) | `oval`   |
 
 ### Mouth
 
-| Preview | Filename |
-|---------|----------|
+| Preview                                                                                                                        | Filename   |
+| ------------------------------------------------------------------------------------------------------------------------------ | ---------- |
 | ![bigSmile](https://raw.githubusercontent.com/avatune/avatune/main/packages/assets/nevmstas-assets/src/svg/mouth/bigSmile.svg) | `bigSmile` |
-| ![flat](https://raw.githubusercontent.com/avatune/avatune/main/packages/assets/nevmstas-assets/src/svg/mouth/flat.svg) | `flat` |
-| ![frown](https://raw.githubusercontent.com/avatune/avatune/main/packages/assets/nevmstas-assets/src/svg/mouth/frown.svg) | `frown` |
+| ![flat](https://raw.githubusercontent.com/avatune/avatune/main/packages/assets/nevmstas-assets/src/svg/mouth/flat.svg)         | `flat`     |
+| ![frown](https://raw.githubusercontent.com/avatune/avatune/main/packages/assets/nevmstas-assets/src/svg/mouth/frown.svg)       | `frown`    |
 | ![halfOpen](https://raw.githubusercontent.com/avatune/avatune/main/packages/assets/nevmstas-assets/src/svg/mouth/halfOpen.svg) | `halfOpen` |
-| ![laugh](https://raw.githubusercontent.com/avatune/avatune/main/packages/assets/nevmstas-assets/src/svg/mouth/laugh.svg) | `laugh` |
-| ![nervous](https://raw.githubusercontent.com/avatune/avatune/main/packages/assets/nevmstas-assets/src/svg/mouth/nervous.svg) | `nervous` |
-| ![smile](https://raw.githubusercontent.com/avatune/avatune/main/packages/assets/nevmstas-assets/src/svg/mouth/smile.svg) | `smile` |
+| ![laugh](https://raw.githubusercontent.com/avatune/avatune/main/packages/assets/nevmstas-assets/src/svg/mouth/laugh.svg)       | `laugh`    |
+| ![nervous](https://raw.githubusercontent.com/avatune/avatune/main/packages/assets/nevmstas-assets/src/svg/mouth/nervous.svg)   | `nervous`  |
+| ![smile](https://raw.githubusercontent.com/avatune/avatune/main/packages/assets/nevmstas-assets/src/svg/mouth/smile.svg)       | `smile`    |
 
 ### Noses
 
-| Preview | Filename |
-|---------|----------|
-| ![big](https://raw.githubusercontent.com/avatune/avatune/main/packages/assets/nevmstas-assets/src/svg/noses/big.svg) | `big` |
-| ![curve](https://raw.githubusercontent.com/avatune/avatune/main/packages/assets/nevmstas-assets/src/svg/noses/curve.svg) | `curve` |
-| ![dots](https://raw.githubusercontent.com/avatune/avatune/main/packages/assets/nevmstas-assets/src/svg/noses/dots.svg) | `dots` |
+| Preview                                                                                                                        | Filename   |
+| ------------------------------------------------------------------------------------------------------------------------------ | ---------- |
+| ![big](https://raw.githubusercontent.com/avatune/avatune/main/packages/assets/nevmstas-assets/src/svg/noses/big.svg)           | `big`      |
+| ![curve](https://raw.githubusercontent.com/avatune/avatune/main/packages/assets/nevmstas-assets/src/svg/noses/curve.svg)       | `curve`    |
+| ![dots](https://raw.githubusercontent.com/avatune/avatune/main/packages/assets/nevmstas-assets/src/svg/noses/dots.svg)         | `dots`     |
 | ![halfOval](https://raw.githubusercontent.com/avatune/avatune/main/packages/assets/nevmstas-assets/src/svg/noses/halfOval.svg) | `halfOval` |
 
 ## License & Credits

@@ -1,7 +1,7 @@
 # @avatune/hair-length-predictor
 
 [![npm version](https://img.shields.io/npm/v/@avatune/hair-length-predictor)](https://www.npmjs.com/package/@avatune/hair-length-predictor)
-[![npm bundle size](https://img.shields.io/bundlephobia/minzip/@avatune/hair-length-predictor)](https://bundlephobia.com/package/@avatune/hair-length-predictor)
+[![npm bundle size](https://img.shields.io/npm/unpacked-size/@avatune/hair-length-predictor)](https://www.npmjs.com/package/@avatune/hair-length-predictor)
 
 Browser-based hair length prediction using TensorFlow.js. Classifies hair into 3 categories: short, medium, long.
 

@@ -1,7 +1,7 @@
 # @avatune/vanilla
 
 [![npm version](https://img.shields.io/npm/v/@avatune/vanilla)](https://www.npmjs.com/package/@avatune/vanilla)
-[![npm bundle size](https://img.shields.io/bundlephobia/minzip/@avatune/vanilla)](https://bundlephobia.com/package/@avatune/vanilla)
+[![npm bundle size](https://img.shields.io/npm/unpacked-size/@avatune/vanilla)](https://www.npmjs.com/package/@avatune/vanilla)
 
 Vanilla JavaScript function for rendering avatars from themes.
 

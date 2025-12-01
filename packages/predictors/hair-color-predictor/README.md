@@ -1,7 +1,7 @@
 # @avatune/hair-color-predictor
 
 [![npm version](https://img.shields.io/npm/v/@avatune/hair-color-predictor)](https://www.npmjs.com/package/@avatune/hair-color-predictor)
-[![npm bundle size](https://img.shields.io/bundlephobia/minzip/@avatune/hair-color-predictor)](https://bundlephobia.com/package/@avatune/hair-color-predictor)
+[![npm bundle size](https://img.shields.io/npm/unpacked-size/@avatune/hair-color-predictor)](https://www.npmjs.com/package/@avatune/hair-color-predictor)
 
 Browser-based hair color prediction using TensorFlow.js. Classifies hair into 4 categories: black, brown, blond, gray.
 

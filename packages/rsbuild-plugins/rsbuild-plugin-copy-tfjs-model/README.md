@@ -1,7 +1,7 @@
 # @avatune/rsbuild-plugin-copy-tfjs-model
 
 [![npm version](https://img.shields.io/npm/v/@avatune/rsbuild-plugin-copy-tfjs-model)](https://www.npmjs.com/package/@avatune/rsbuild-plugin-copy-tfjs-model)
-[![npm bundle size](https://img.shields.io/bundlephobia/minzip/@avatune/rsbuild-plugin-copy-tfjs-model)](https://bundlephobia.com/package/@avatune/rsbuild-plugin-copy-tfjs-model)
+[![npm bundle size](https://img.shields.io/npm/unpacked-size/@avatune/rsbuild-plugin-copy-tfjs-model)](https://www.npmjs.com/package/@avatune/rsbuild-plugin-copy-tfjs-model)
 
 Rsbuild plugin to copy TensorFlow.js models during build.
 
