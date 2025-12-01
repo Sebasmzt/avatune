@@ -27,7 +27,7 @@ export enum SkinTones {
   Medium = '#C78A5C',
   Dark = '#80502E',
   Light = '#FCBE93',
-  VeryLight = '#fdcdac',
+  VeryLight = '#FDCDAC',
   VeryLight2 = '#F5D0C5',
 }
 

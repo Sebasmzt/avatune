@@ -47,9 +47,9 @@ function getThemeId(packageName: string): string {
 function generateExamplesSection(themeId: string): string {
   return `
 <div style="display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; margin: 2rem 0;">
-  <AvatarUsagePreview client:only="svelte" themeId="${themeId}" seed="example-1" size={200} />
-  <AvatarUsagePreview client:only="svelte" themeId="${themeId}" seed="example-2" size={200} />
-  <AvatarUsagePreview client:only="svelte" themeId="${themeId}" seed="example-3" size={200} />
+  <AvatarUsagePreview client:only="svelte" themeId="${themeId}" seed="example-12345" size={200} />
+  <AvatarUsagePreview client:only="svelte" themeId="${themeId}" seed="example-678910" size={200} />
+  <AvatarUsagePreview client:only="svelte" themeId="${themeId}" seed="example-101112131415" size={200} />
 </div>`
 }
 

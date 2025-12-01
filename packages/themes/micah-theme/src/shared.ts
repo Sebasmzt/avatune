@@ -24,9 +24,9 @@ export default createTheme<BaseAvatarItem>()
   .mapPrediction('hairColor', 'brown', [AccentColors.Black])
   .mapPrediction('hairColor', 'blond', [AccentColors.Canary])
   .mapPrediction('hairColor', 'gray', [AccentColors.White])
-  .mapPrediction('skinTone', 'dark', [SkinTones.Topaz])
-  .mapPrediction('skinTone', 'medium', [SkinTones.Cost])
-  .mapPrediction('skinTone', 'light', [SkinTones.Apricot])
+  .mapPrediction('skinTone', 'dark', [SkinTones.Dark])
+  .mapPrediction('skinTone', 'medium', [SkinTones.Medium])
+  .mapPrediction('skinTone', 'light', [SkinTones.Light])
   .addColors('background', [BackgroundColors.Seashell])
   .addColors('hair', [
     AccentColors.Black,
@@ -36,7 +36,13 @@ export default createTheme<BaseAvatarItem>()
     AccentColors.Salmon,
     AccentColors.Canary,
   ])
-  .addColors('head', [SkinTones.Topaz, SkinTones.Cost, SkinTones.Apricot])
+  .addColors('head', [
+    SkinTones.Dark,
+    SkinTones.Medium,
+    SkinTones.Light,
+    SkinTones.VeryLight,
+    SkinTones.VeryLight2,
+  ])
   .addColors('faceHair', [
     AccentColors.Black,
     AccentColors.White,
@@ -50,7 +56,13 @@ export default createTheme<BaseAvatarItem>()
   .addColors('glasses', [AccentColors.Black])
   .addColors('mouth', [AccentColors.Black])
   .addColors('noses', [AccentColors.Black])
-  .addColors('ears', [SkinTones.Topaz, SkinTones.Cost, SkinTones.Apricot])
+  .addColors('ears', [
+    SkinTones.Dark,
+    SkinTones.Medium,
+    SkinTones.Light,
+    SkinTones.VeryLight,
+    SkinTones.VeryLight2,
+  ])
   .addColors('accessories', [AccentColors.Canary])
   .addColors('body', [AccentColors.Lavender])
   .addColors('body', [AccentColors.Sky])

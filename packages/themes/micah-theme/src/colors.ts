@@ -1,7 +1,9 @@
 export enum SkinTones {
-  Apricot = '#F9C9B6',
-  Cost = '#AC6651',
-  Topaz = '#77311D',
+  Medium = '#C78A5C',
+  Dark = '#80502E',
+  Light = '#FCBE93',
+  VeryLight = '#FDCDAC',
+  VeryLight2 = '#F5D0C5',
 }
 
 export enum AccentColors {
