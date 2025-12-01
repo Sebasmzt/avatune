@@ -292,8 +292,23 @@ export function selectColorValue<I extends AvatarItem, T extends Theme<I>>(
 }
 
 /**
+ * Generate a deterministic random value for a specific category
+ * Same seed + category always produces the same value
+ */
+function getCategoryRandomValue(
+  baseSeed: string | number,
+  category: string,
+): number {
+  const combinedSeed = `${baseSeed}-${category}`
+  return seededRandom(combinedSeed)()
+}
+
+/**
  * Select items and colors for avatar generation
  * Supports explicit config, ML predictors, and random fallbacks
+ *
+ * Each category gets its own deterministic random value derived from
+ * the base seed, ensuring overriding one category doesn't affect others
  */
 export function selectItems<I extends AvatarItem, T extends Theme<I>>(
   config: AvatarConfig<I, T>,
@@ -306,10 +321,9 @@ export function selectItems<I extends AvatarItem, T extends Theme<I>>(
   style: T['style']
   seed?: string | number
 } {
-  const seed = predictions
+  const baseSeed = predictions
     ? JSON.stringify(predictions)
     : (config.seed ?? 'avatune')
-  const seedRandomValue = seededRandom(seed)()
 
   const selected: Partial<Record<AvatarPartCategory, I>> = {}
   const identifiers: Partial<Record<AvatarPartCategory, string>> = {}
@@ -317,13 +331,14 @@ export function selectItems<I extends AvatarItem, T extends Theme<I>>(
 
   // Select background color
   const backgroundColor = selectWithPriority(
-    // Priority 1: Explicit from config
     () => config.backgroundColor,
-    // Priority 2: Random from palette
-    () => selectColor(theme.colorPalettes.background, seedRandomValue),
+    () =>
+      selectColor(
+        theme.colorPalettes.background,
+        getCategoryRandomValue(baseSeed, 'background'),
+      ),
   )
 
-  // Create style object with selected background color
   const style: T['style'] = {
     ...theme.style,
     backgroundColor,
@@ -334,13 +349,20 @@ export function selectItems<I extends AvatarItem, T extends Theme<I>>(
   ) as AvatarPartCategory[]
 
   for (const category of allCategories) {
+    // Each category gets unique random values for item and color selection
+    const itemRandomValue = getCategoryRandomValue(baseSeed, `${category}-item`)
+    const colorRandomValue = getCategoryRandomValue(
+      baseSeed,
+      `${category}-color`,
+    )
+
     // Select item (shape/asset)
     const identifier = selectIdentifier(
       category,
       config,
       predictions,
       theme,
-      seedRandomValue,
+      itemRandomValue,
     )
 
     if (identifier && theme[category]) {
@@ -358,7 +380,7 @@ export function selectItems<I extends AvatarItem, T extends Theme<I>>(
       predictions,
       theme,
       colors,
-      seedRandomValue,
+      colorRandomValue,
     )
 
     if (color) {
