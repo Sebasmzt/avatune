@@ -1,5 +1,8 @@
 # @avatune/kyute-assets
 
+[![npm version](https://img.shields.io/npm/v/@avatune/kyute-assets)](https://www.npmjs.com/package/@avatune/kyute-assets)
+[![npm bundle size](https://img.shields.io/bundlephobia/minzip/@avatune/kyute-assets)](https://bundlephobia.com/package/@avatune/kyute-assets)
+
 Kyute style SVG assets for avatar generation.
 
 ## Description

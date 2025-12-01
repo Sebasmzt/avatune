@@ -1,5 +1,8 @@
 # @avatune/yanliu-assets
 
+[![npm version](https://img.shields.io/npm/v/@avatune/yanliu-assets)](https://www.npmjs.com/package/@avatune/yanliu-assets)
+[![npm bundle size](https://img.shields.io/bundlephobia/minzip/@avatune/yanliu-assets)](https://bundlephobia.com/package/@avatune/yanliu-assets)
+
 Yanliu style SVG assets for avatar generation.
 
 ## Description

@@ -1,5 +1,8 @@
 # @avatune/kyute-theme
 
+[![npm version](https://img.shields.io/npm/v/@avatune/kyute-theme)](https://www.npmjs.com/package/@avatune/kyute-theme)
+[![npm bundle size](https://img.shields.io/bundlephobia/minzip/@avatune/kyute-theme)](https://bundlephobia.com/package/@avatune/kyute-theme)
+
 Avatar theme for Avatune using kyute design assets.
 
 ## Installation

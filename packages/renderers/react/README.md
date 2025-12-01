@@ -1,5 +1,8 @@
 # @avatune/react
 
+[![npm version](https://img.shields.io/npm/v/@avatune/react)](https://www.npmjs.com/package/@avatune/react)
+[![npm bundle size](https://img.shields.io/bundlephobia/minzip/@avatune/react)](https://bundlephobia.com/package/@avatune/react)
+
 React component for rendering avatars from themes.
 
 ## Installation

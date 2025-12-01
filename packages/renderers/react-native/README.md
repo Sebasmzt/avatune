@@ -1,5 +1,8 @@
 # @avatune/react-native
 
+[![npm version](https://img.shields.io/npm/v/@avatune/react-native)](https://www.npmjs.com/package/@avatune/react-native)
+[![npm bundle size](https://img.shields.io/bundlephobia/minzip/@avatune/react-native)](https://bundlephobia.com/package/@avatune/react-native)
+
 React Native component for rendering avatars from themes.
 
 ## Installation

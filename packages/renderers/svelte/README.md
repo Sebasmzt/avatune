@@ -1,5 +1,8 @@
 # @avatune/svelte
 
+[![npm version](https://img.shields.io/npm/v/@avatune/svelte)](https://www.npmjs.com/package/@avatune/svelte)
+[![npm bundle size](https://img.shields.io/bundlephobia/minzip/@avatune/svelte)](https://bundlephobia.com/package/@avatune/svelte)
+
 Svelte component for rendering avatars from themes.
 
 ## Installation

@@ -1,5 +1,8 @@
 # @avatune/nevmstas-assets
 
+[![npm version](https://img.shields.io/npm/v/@avatune/nevmstas-assets)](https://www.npmjs.com/package/@avatune/nevmstas-assets)
+[![npm bundle size](https://img.shields.io/bundlephobia/minzip/@avatune/nevmstas-assets)](https://bundlephobia.com/package/@avatune/nevmstas-assets)
+
 Nevmstas style SVG assets for avatar generation.
 
 ## Description

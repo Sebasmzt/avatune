@@ -1,5 +1,8 @@
 # @avatune/miniavs-theme
 
+[![npm version](https://img.shields.io/npm/v/@avatune/miniavs-theme)](https://www.npmjs.com/package/@avatune/miniavs-theme)
+[![npm bundle size](https://img.shields.io/bundlephobia/minzip/@avatune/miniavs-theme)](https://bundlephobia.com/package/@avatune/miniavs-theme)
+
 Avatar theme for Avatune using miniavs design assets.
 
 ## Installation

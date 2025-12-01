@@ -35,6 +35,13 @@ function generateREADME(theme: ThemeInfo): string {
   sections.push(`# @avatune/${packageName}`)
   sections.push('')
   sections.push(
+    `[![npm version](https://img.shields.io/npm/v/@avatune/${packageName})](https://www.npmjs.com/package/@avatune/${packageName})`,
+  )
+  sections.push(
+    `[![npm bundle size](https://img.shields.io/bundlephobia/minzip/@avatune/${packageName})](https://bundlephobia.com/package/@avatune/${packageName})`,
+  )
+  sections.push('')
+  sections.push(
     `Avatar theme for Avatune using ${displayName.toLowerCase()} design assets.`,
   )
   sections.push('')

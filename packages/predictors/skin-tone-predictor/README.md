@@ -1,5 +1,8 @@
 # @avatune/skin-tone-predictor
 
+[![npm version](https://img.shields.io/npm/v/@avatune/skin-tone-predictor)](https://www.npmjs.com/package/@avatune/skin-tone-predictor)
+[![npm bundle size](https://img.shields.io/bundlephobia/minzip/@avatune/skin-tone-predictor)](https://bundlephobia.com/package/@avatune/skin-tone-predictor)
+
 Browser-based skin tone prediction using TensorFlow.js. Predicts ethnicity (7 classes) and maps to skin tone (dark, medium, light).
 
 Uses an ethnicity classifier trained on FairFace dataset, then maps predictions to skin tones for more accurate results.

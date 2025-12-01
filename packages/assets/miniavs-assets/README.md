@@ -1,5 +1,8 @@
 # @avatune/miniavs-assets
 
+[![npm version](https://img.shields.io/npm/v/@avatune/miniavs-assets)](https://www.npmjs.com/package/@avatune/miniavs-assets)
+[![npm bundle size](https://img.shields.io/bundlephobia/minzip/@avatune/miniavs-assets)](https://bundlephobia.com/package/@avatune/miniavs-assets)
+
 Miniavs style SVG assets for avatar generation.
 
 ## Description

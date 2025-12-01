@@ -1,5 +1,8 @@
 # @avatune/vue
 
+[![npm version](https://img.shields.io/npm/v/@avatune/vue)](https://www.npmjs.com/package/@avatune/vue)
+[![npm bundle size](https://img.shields.io/bundlephobia/minzip/@avatune/vue)](https://bundlephobia.com/package/@avatune/vue)
+
 Vue component for rendering avatars from themes.
 
 ## Installation

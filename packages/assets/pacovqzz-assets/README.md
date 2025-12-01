@@ -1,5 +1,8 @@
 # @avatune/pacovqzz-assets
 
+[![npm version](https://img.shields.io/npm/v/@avatune/pacovqzz-assets)](https://www.npmjs.com/package/@avatune/pacovqzz-assets)
+[![npm bundle size](https://img.shields.io/bundlephobia/minzip/@avatune/pacovqzz-assets)](https://bundlephobia.com/package/@avatune/pacovqzz-assets)
+
 Pacovqzz style SVG assets for avatar generation.
 
 ## Description

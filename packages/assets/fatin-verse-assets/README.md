@@ -1,5 +1,8 @@
 # @avatune/fatin-verse-assets
 
+[![npm version](https://img.shields.io/npm/v/@avatune/fatin-verse-assets)](https://www.npmjs.com/package/@avatune/fatin-verse-assets)
+[![npm bundle size](https://img.shields.io/bundlephobia/minzip/@avatune/fatin-verse-assets)](https://bundlephobia.com/package/@avatune/fatin-verse-assets)
+
 Fatin Verse style SVG assets for avatar generation.
 
 ## Description
