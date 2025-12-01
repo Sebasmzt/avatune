@@ -35,10 +35,10 @@ export function seededRandom(seed: string | number): () => number {
 /**
  * Pick random element from array using seeded random
  */
-function pickRandom<T>(items: T[], random?: () => number): T | undefined {
+function pickRandom<T>(items: T[], seedRandomValue?: number): T | undefined {
   if (items.length === 0) return undefined
-  if (!random) return items[0]
-  const index = Math.floor(random() * items.length)
+  if (!seedRandomValue) return items[0]
+  const index = Math.floor(seedRandomValue * items.length)
   return items[index]
 }
 
@@ -55,7 +55,7 @@ const NONE_WEIGHT = 2 / 3
 export function selectItem<I extends AvatarItem>(
   collection: AvatarItemCollection<I>,
   identifier?: string,
-  random?: () => number,
+  seedRandomValue?: number,
 ): { key: string; item: I } | null {
   if (identifier && collection[identifier]) {
     return { key: identifier, item: collection[identifier] }
@@ -68,7 +68,7 @@ export function selectItem<I extends AvatarItem>(
   }
 
   // No random function - return first item
-  if (!random) {
+  if (typeof seedRandomValue === 'undefined') {
     const selected = candidates[0]
     return selected ? { key: selected[0], item: selected[1] } : null
   }
@@ -79,13 +79,13 @@ export function selectItem<I extends AvatarItem>(
 
   // If no 'none' option, use uniform random
   if (!hasNone || nonNoneCandidates.length === 0) {
-    const index = Math.floor(random() * candidates.length)
+    const index = Math.floor(seedRandomValue * candidates.length)
     const selected = candidates[index]
     return selected ? { key: selected[0], item: selected[1] } : null
   }
 
   // Weighted selection: 'none' gets NONE_WEIGHT, rest share (1 - NONE_WEIGHT)
-  const roll = random()
+  const roll = seedRandomValue
   const noneItem = collection.none
 
   if (roll < NONE_WEIGHT && noneItem) {
@@ -106,11 +106,11 @@ export function selectItem<I extends AvatarItem>(
  */
 export function selectColor(
   options: ColorOptions | undefined,
-  random: () => number = Math.random,
+  seedRandomValue: number,
 ): string | undefined {
   if (!options) return undefined
   if (typeof options === 'string') return options
-  return pickRandom(options, random)
+  return pickRandom(options, seedRandomValue ?? Math.random())
 }
 
 /**
@@ -233,7 +233,7 @@ function selectIdentifier<I extends AvatarItem, T extends Theme<I>>(
   config: AvatarConfig<I, T>,
   predictions: Predictions | undefined,
   theme: T,
-  random?: () => number,
+  seedRandomValue: number,
 ): string | undefined {
   return selectWithPriority(
     // Priority 1: Explicit from config
@@ -245,13 +245,13 @@ function selectIdentifier<I extends AvatarItem, T extends Theme<I>>(
     () => {
       if (!predictions) return undefined
       const candidates = getPredictorIdentifiers(category, predictions, theme)
-      return candidates ? pickRandom(candidates, random) : undefined
+      return candidates ? pickRandom(candidates, seedRandomValue) : undefined
     },
     // Priority 3: Random from collection
     () => {
       const collection = theme[category]
       if (!collection) return undefined
-      const result = selectItem(collection, undefined, random)
+      const result = selectItem(collection, undefined, seedRandomValue)
       return result?.key
     },
   )
@@ -266,7 +266,7 @@ export function selectColorValue<I extends AvatarItem, T extends Theme<I>>(
   predictions: Predictions | undefined,
   theme: T,
   colors: Partial<Record<AvatarPartCategory, string>>,
-  random?: () => number,
+  seedRandomValue: number,
 ): string | undefined {
   return selectWithPriority(
     // Priority 1: Explicit from config
@@ -280,13 +280,13 @@ export function selectColorValue<I extends AvatarItem, T extends Theme<I>>(
     () => {
       if (!predictions) return undefined
       const candidates = getPredictorColors(category, predictions, theme)
-      return candidates ? pickRandom(candidates, random) : undefined
+      return candidates ? pickRandom(candidates, seedRandomValue) : undefined
     },
     // Priority 4: Random from palette
     () => {
       const palette =
         theme.colorPalettes?.[category as keyof typeof theme.colorPalettes]
-      return selectColor(palette, random)
+      return selectColor(palette, seedRandomValue)
     },
   )
 }
@@ -309,7 +309,7 @@ export function selectItems<I extends AvatarItem, T extends Theme<I>>(
   const seed = predictions
     ? JSON.stringify(predictions)
     : (config.seed ?? 'avatune')
-  const random = seededRandom(seed)
+  const seedRandomValue = seededRandom(seed)()
 
   const selected: Partial<Record<AvatarPartCategory, I>> = {}
   const identifiers: Partial<Record<AvatarPartCategory, string>> = {}
@@ -320,7 +320,7 @@ export function selectItems<I extends AvatarItem, T extends Theme<I>>(
     // Priority 1: Explicit from config
     () => config.backgroundColor,
     // Priority 2: Random from palette
-    () => selectColor(theme.colorPalettes.background, random),
+    () => selectColor(theme.colorPalettes.background, seedRandomValue),
   )
 
   // Create style object with selected background color
@@ -340,7 +340,7 @@ export function selectItems<I extends AvatarItem, T extends Theme<I>>(
       config,
       predictions,
       theme,
-      random,
+      seedRandomValue,
     )
 
     if (identifier && theme[category]) {
@@ -358,7 +358,7 @@ export function selectItems<I extends AvatarItem, T extends Theme<I>>(
       predictions,
       theme,
       colors,
-      random,
+      seedRandomValue,
     )
 
     if (color) {
