@@ -124,7 +124,7 @@ ${typeAsssertion}  const argTypes: Record<string, unknown> = {
       options: Object.keys(items),
     }
   }
-  argTypes['backgroundColor'] = { control: { type: 'color', presetColors: colorPalettes.background } }
+  argTypes.backgroundColor = { control: { type: 'color', presetColors: colorPalettes.background } } as const
 
   return argTypes${returnType}
 }`

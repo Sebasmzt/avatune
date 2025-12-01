@@ -49,9 +49,9 @@ const getArgTypes = <T extends Theme<VueAvatarItem>>(theme: T) => {
       options: Object.keys(items),
     }
   }
-  argTypes['backgroundColor'] = {
+  argTypes.backgroundColor = {
     control: { type: 'color', presetColors: colorPalettes.background },
-  }
+  } as const
 
   return argTypes
 }

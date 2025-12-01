@@ -1,7 +1,7 @@
 # @avatune/yanliu-theme
 
 [![npm version](https://img.shields.io/npm/v/@avatune/yanliu-theme)](https://www.npmjs.com/package/@avatune/yanliu-theme)
-[![npm bundle size](https://img.shields.io/bundlephobia/minzip/@avatune/yanliu-theme)](https://bundlephobia.com/package/@avatune/yanliu-theme)
+[![npm bundle size](https://img.shields.io/bundlejs/size/@avatune/yanliu-theme)](https://bundlephobia.com/package/@avatune/yanliu-theme)
 
 Avatar theme for Avatune using yanliu design assets.
 
