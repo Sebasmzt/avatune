@@ -123,7 +123,7 @@ export default createTheme<BaseAvatarItem>()
     layer: Layer.Hair,
   })
   .addItem('hair', 'hijab', {
-    position: fromHeadOffset(-percentage('10%'), -percentage('14%')),
+    position: fromHeadOffset(-percentage('3%'), -percentage('7%')),
     layer: Layer.Accessories,
   })
   // Head
