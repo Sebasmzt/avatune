@@ -1,11 +1,9 @@
 <script lang="ts">
-import kyuteTheme from '@avatune/kyute-theme/svelte'
 import micahTheme from '@avatune/micah-theme/svelte'
 import miniavsTheme from '@avatune/miniavs-theme/svelte'
-import nevmstasTheme from '@avatune/nevmstas-theme/svelte'
+import pacovqzzTheme from '@avatune/pacovqzz-theme/svelte'
 import { Avatar } from '@avatune/svelte'
 import type { Predictions } from '@avatune/types'
-import yanliuTheme from '@avatune/yanliu-theme/svelte'
 import { onDestroy, onMount } from 'svelte'
 import photo1 from '../../assets/prediction-1.jpg'
 import photo2 from '../../assets/prediction-2.jpg'
@@ -16,13 +14,7 @@ const examplePhotoNote =
 
 const photos = [photo1, photo2, photo3]
 
-const themes = [
-  micahTheme,
-  kyuteTheme,
-  miniavsTheme,
-  nevmstasTheme,
-  yanliuTheme,
-]
+const themes = [micahTheme, pacovqzzTheme, miniavsTheme]
 
 const mockPredictions: Predictions[] = [
   { hairLength: 'long', hairColor: 'blond', skinTone: 'light' },
