@@ -10,7 +10,7 @@ import {
   eyebrowsEyelashesDown,
   eyebrowsEyelashesUp,
   eyebrowsUp,
-  eyesEyeshadow,
+  eyeshadow,
   eyesRound,
   eyesSmiling,
   eyesStandard,
@@ -34,9 +34,9 @@ import {
   mouthSmile,
   mouthSmirk,
   mouthSurprised,
-  nosesCurve,
-  nosesPointed,
-  nosesRound,
+  noseCurve,
+  nosePointed,
+  noseRound,
 } from '@avatune/micah-assets'
 import type { VanillaAvatarItem, VanillaTheme } from '@avatune/types'
 import shared from './shared'
@@ -63,7 +63,7 @@ export default shared
     up: { code: eyebrowsUp },
   })
   .withComponents('eyes', {
-    eyeshadow: { code: eyesEyeshadow },
+    eyeshadow: { code: eyeshadow },
     round: { code: eyesRound },
     smiling: { code: eyesSmiling },
     standard: { code: eyesStandard },
@@ -98,9 +98,9 @@ export default shared
     smirk: { code: mouthSmirk },
     surprised: { code: mouthSurprised },
   })
-  .withComponents('noses', {
-    curve: { code: nosesCurve },
-    pointed: { code: nosesPointed },
-    round: { code: nosesRound },
+  .withComponents('nose', {
+    curve: { code: noseCurve },
+    pointed: { code: nosePointed },
+    round: { code: noseRound },
   })
   .build() satisfies VanillaTheme

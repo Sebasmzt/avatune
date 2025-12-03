@@ -78,15 +78,15 @@ import MouthTongue1 from './svg/mouth/tongue1.svg?vue'
 import MouthTongue2 from './svg/mouth/tongue2.svg?vue'
 import MouthVampire from './svg/mouth/vampire.svg?vue'
 
-// Noses
-import NosesManBig from './svg/noses/manBig.svg?vue'
-import NosesManBigWide from './svg/noses/manBigWide.svg?vue'
-import NosesManSmall from './svg/noses/manSmall.svg?vue'
-import NosesManStandard from './svg/noses/manStandard.svg?vue'
-import NosesManWide from './svg/noses/manWide.svg?vue'
-import NosesWomanBig from './svg/noses/womanBig.svg?vue'
-import NosesWomanSmall from './svg/noses/womanSmall.svg?vue'
-import NosesWomanStandard from './svg/noses/womanStandard.svg?vue'
+// Nose
+import NoseManBig from './svg/nose/manBig.svg?vue'
+import NoseManBigWide from './svg/nose/manBigWide.svg?vue'
+import NoseManSmall from './svg/nose/manSmall.svg?vue'
+import NoseManStandard from './svg/nose/manStandard.svg?vue'
+import NoseManWide from './svg/nose/manWide.svg?vue'
+import NoseWomanBig from './svg/nose/womanBig.svg?vue'
+import NoseWomanSmall from './svg/nose/womanSmall.svg?vue'
+import NoseWomanStandard from './svg/nose/womanStandard.svg?vue'
 
 export {
   // Ears
@@ -162,13 +162,13 @@ export {
   MouthTongue1,
   MouthTongue2,
   MouthVampire,
-  // Noses
-  NosesManBig,
-  NosesManBigWide,
-  NosesManSmall,
-  NosesManStandard,
-  NosesManWide,
-  NosesWomanBig,
-  NosesWomanSmall,
-  NosesWomanStandard,
+  // Nose
+  NoseManBig,
+  NoseManBigWide,
+  NoseManSmall,
+  NoseManStandard,
+  NoseManWide,
+  NoseWomanBig,
+  NoseWomanSmall,
+  NoseWomanStandard,
 }

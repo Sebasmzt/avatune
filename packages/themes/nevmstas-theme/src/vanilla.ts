@@ -24,10 +24,10 @@ import {
   mouthLaugh,
   mouthNervous,
   mouthSmile,
-  nosesBig,
-  nosesCurve,
-  nosesDots,
-  nosesHalfOval,
+  noseBig,
+  noseCurve,
+  noseDots,
+  noseHalfOval,
 } from '@avatune/nevmstas-assets'
 import type { VanillaAvatarItem, VanillaTheme } from '@avatune/types'
 import shared from './shared'
@@ -73,10 +73,10 @@ export default shared
     nervous: { code: mouthNervous },
     smile: { code: mouthSmile },
   })
-  .withComponents('noses', {
-    big: { code: nosesBig },
-    curve: { code: nosesCurve },
-    dots: { code: nosesDots },
-    halfOval: { code: nosesHalfOval },
+  .withComponents('nose', {
+    big: { code: noseBig },
+    curve: { code: noseCurve },
+    dots: { code: noseDots },
+    halfOval: { code: noseHalfOval },
   })
   .build() satisfies VanillaTheme

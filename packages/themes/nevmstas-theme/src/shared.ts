@@ -98,7 +98,7 @@ export default createTheme<BaseAvatarItem>()
   ])
   .addColors('eyes', [AccentColors.Black])
   .addColors('mouth', [AccentColors.LipPink])
-  .addColors('noses', [AccentColors.BlushPink])
+  .addColors('nose', [AccentColors.BlushPink])
   // Body
   .addItem('body', 'shirt', {
     position: fromHeadOffset(-percentage('0%'), percentage('49.63%')),
@@ -206,20 +206,20 @@ export default createTheme<BaseAvatarItem>()
     position: fromHeadOffset(percentage('11.59%'), percentage('39.02%')),
     layer: 25,
   })
-  // Noses
-  .addItem('noses', 'big', {
+  // Nose
+  .addItem('nose', 'big', {
     position: fromHeadOffset(percentage('18.90%'), percentage('30.49%')),
     layer: 15,
   })
-  .addItem('noses', 'curve', {
+  .addItem('nose', 'curve', {
     position: fromHeadOffset(percentage('20.12%'), percentage('34.15%')),
     layer: 15,
   })
-  .addItem('noses', 'dots', {
+  .addItem('nose', 'dots', {
     position: fromHeadOffset(percentage('19.51%'), percentage('34.15%')),
     layer: 15,
   })
-  .addItem('noses', 'halfOval', {
+  .addItem('nose', 'halfOval', {
     position: fromHeadOffset(percentage('19.51%'), percentage('34.15%')),
     layer: 15,
   })

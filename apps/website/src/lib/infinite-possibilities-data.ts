@@ -47,7 +47,4 @@ export const TOTAL_COMBINATIONS = [
   pawelOlekManTheme,
   pawelOlekWomanTheme,
   ashleySeoTheme,
-].reduce((acc, theme) => {
-  console.log(theme, calculateCombinations(theme))
-  return acc + calculateCombinations(theme)
-}, 0)
+].reduce((acc, theme) => acc + calculateCombinations(theme), 0)

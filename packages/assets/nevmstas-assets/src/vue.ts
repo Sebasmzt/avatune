@@ -37,11 +37,11 @@ import MouthLaugh from './svg/mouth/laugh.svg?vue'
 import MouthNervous from './svg/mouth/nervous.svg?vue'
 import MouthSmile from './svg/mouth/smile.svg?vue'
 
-// Noses
-import NosesBig from './svg/noses/big.svg?vue'
-import NosesCurve from './svg/noses/curve.svg?vue'
-import NosesDots from './svg/noses/dots.svg?vue'
-import NosesHalfOval from './svg/noses/halfOval.svg?vue'
+// Nose
+import NoseBig from './svg/nose/big.svg?vue'
+import NoseCurve from './svg/nose/curve.svg?vue'
+import NoseDots from './svg/nose/dots.svg?vue'
+import NoseHalfOval from './svg/nose/halfOval.svg?vue'
 
 export {
   // Body
@@ -76,9 +76,9 @@ export {
   MouthLaugh,
   MouthNervous,
   MouthSmile,
-  // Noses
-  NosesBig,
-  NosesCurve,
-  NosesDots,
-  NosesHalfOval,
+  // Nose
+  NoseBig,
+  NoseCurve,
+  NoseDots,
+  NoseHalfOval,
 }

@@ -103,14 +103,14 @@ import { HairShort, EyesBoring, MouthSmile } from '@avatune/nevmstas-assets/vue'
 | ![nervous](https://raw.githubusercontent.com/avatune/avatune/main/packages/assets/nevmstas-assets/src/svg/mouth/nervous.svg)   | `nervous`  |
 | ![smile](https://raw.githubusercontent.com/avatune/avatune/main/packages/assets/nevmstas-assets/src/svg/mouth/smile.svg)       | `smile`    |
 
-### Noses
+### Nose
 
-| Preview                                                                                                                        | Filename   |
-| ------------------------------------------------------------------------------------------------------------------------------ | ---------- |
-| ![big](https://raw.githubusercontent.com/avatune/avatune/main/packages/assets/nevmstas-assets/src/svg/noses/big.svg)           | `big`      |
-| ![curve](https://raw.githubusercontent.com/avatune/avatune/main/packages/assets/nevmstas-assets/src/svg/noses/curve.svg)       | `curve`    |
-| ![dots](https://raw.githubusercontent.com/avatune/avatune/main/packages/assets/nevmstas-assets/src/svg/noses/dots.svg)         | `dots`     |
-| ![halfOval](https://raw.githubusercontent.com/avatune/avatune/main/packages/assets/nevmstas-assets/src/svg/noses/halfOval.svg) | `halfOval` |
+| Preview                                                                                                                       | Filename   |
+| ----------------------------------------------------------------------------------------------------------------------------- | ---------- |
+| ![big](https://raw.githubusercontent.com/avatune/avatune/main/packages/assets/nevmstas-assets/src/svg/nose/big.svg)           | `big`      |
+| ![curve](https://raw.githubusercontent.com/avatune/avatune/main/packages/assets/nevmstas-assets/src/svg/nose/curve.svg)       | `curve`    |
+| ![dots](https://raw.githubusercontent.com/avatune/avatune/main/packages/assets/nevmstas-assets/src/svg/nose/dots.svg)         | `dots`     |
+| ![halfOval](https://raw.githubusercontent.com/avatune/avatune/main/packages/assets/nevmstas-assets/src/svg/nose/halfOval.svg) | `halfOval` |
 
 ## License & Credits
 

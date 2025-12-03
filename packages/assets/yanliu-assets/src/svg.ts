@@ -57,8 +57,8 @@ import mouthSmile from './svg/mouth/smile.svg?raw'
 // Neck
 import neckStandard from './svg/neck/standard.svg?raw'
 
-// Noses
-import nosesStandard from './svg/noses/standard.svg?raw'
+// Nose
+import noseStandard from './svg/nose/standard.svg?raw'
 
 export {
   // Body
@@ -108,6 +108,6 @@ export {
   mouthSmile,
   // Neck
   neckStandard,
-  // Noses
-  nosesStandard,
+  // Nose
+  noseStandard,
 }

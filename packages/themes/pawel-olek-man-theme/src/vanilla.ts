@@ -46,11 +46,11 @@ import {
   mouthTongue1,
   mouthTongue2,
   mouthVampire,
-  nosesManBig,
-  nosesManBigWide,
-  nosesManSmall,
-  nosesManStandard,
-  nosesManWide,
+  noseManBig,
+  noseManBigWide,
+  noseManSmall,
+  noseManStandard,
+  noseManWide,
 } from '@avatune/pawel-olek-assets'
 import type { VanillaAvatarItem } from '@avatune/types'
 import shared from './shared'
@@ -118,11 +118,11 @@ export default shared
     tongue2: { code: mouthTongue2 },
     vampire: { code: mouthVampire },
   })
-  .withComponents('noses', {
-    big: { code: nosesManBig },
-    bigWide: { code: nosesManBigWide },
-    small: { code: nosesManSmall },
-    standard: { code: nosesManStandard },
-    wide: { code: nosesManWide },
+  .withComponents('nose', {
+    big: { code: noseManBig },
+    bigWide: { code: noseManBigWide },
+    small: { code: noseManSmall },
+    standard: { code: noseManStandard },
+    wide: { code: noseManWide },
   })
   .build()

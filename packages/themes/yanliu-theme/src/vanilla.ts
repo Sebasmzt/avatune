@@ -35,7 +35,7 @@ import {
   headStandard,
   mouthSmile,
   neckStandard,
-  nosesStandard,
+  noseStandard,
 } from '@avatune/yanliu-assets'
 import shared from './shared'
 
@@ -100,7 +100,7 @@ export default shared
   .withComponents('neck', {
     standard: { code: neckStandard },
   })
-  .withComponents('noses', {
-    standard: { code: nosesStandard },
+  .withComponents('nose', {
+    standard: { code: noseStandard },
   })
   .build() satisfies VanillaTheme

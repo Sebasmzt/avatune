@@ -128,13 +128,13 @@ import { HairShort, EyesBoring, MouthSmile } from '@avatune/micah-assets/vue';
 | ![smirk](./src/svg/mouth/smirk.svg)         | `smirk`     |
 | ![surprised](./src/svg/mouth/surprised.svg) | `surprised` |
 
-### Noses
+### Nose
 
-| Preview                                 | Filename  |
-| --------------------------------------- | --------- |
-| ![curve](./src/svg/noses/curve.svg)     | `curve`   |
-| ![pointed](./src/svg/noses/pointed.svg) | `pointed` |
-| ![round](./src/svg/noses/round.svg)     | `round`   |
+| Preview                                | Filename  |
+| -------------------------------------- | --------- |
+| ![curve](./src/svg/nose/curve.svg)     | `curve`   |
+| ![pointed](./src/svg/nose/pointed.svg) | `pointed` |
+| ![round](./src/svg/nose/round.svg)     | `round`   |
 
 ## License & Credits
 

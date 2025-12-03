@@ -178,7 +178,7 @@ export interface ThemeColorPalettes {
   head: ColorOptions
   mouth: ColorOptions
   neck?: ColorOptions
-  noses: ColorOptions
+  nose: ColorOptions
 }
 
 export type ThemeStyle = {
@@ -217,7 +217,7 @@ export interface Theme<T extends AvatarItem> {
   head: AvatarItemCollection<T>
   mouth: AvatarItemCollection<T>
   neck?: AvatarItemCollection<T>
-  noses: AvatarItemCollection<T>
+  nose: AvatarItemCollection<T>
   colorPalettes: ThemeColorPalettes
   predictorMappings?: ThemePredictorMappings
   connectedColors?: ConnectedColors
@@ -295,7 +295,7 @@ export type AvatarConfig<I extends AvatarItem, T extends Theme<I>> = {
   neck?: T['neck'] extends AvatarItemCollection<I>
     ? ExtractIdentifiers<T['neck']>
     : never
-  noses?: ExtractIdentifiers<T['noses']>
+  nose?: ExtractIdentifiers<T['nose']>
   backgroundColor?: string
   accessoriesColor?: T['accessories'] extends AvatarItemCollection<I>
     ? string
@@ -315,5 +315,5 @@ export type AvatarConfig<I extends AvatarItem, T extends Theme<I>> = {
   headColor?: string
   mouthColor?: string
   neckColor?: T['neck'] extends AvatarItemCollection<I> ? string : never
-  nosesColor?: string
+  noseColor?: string
 }

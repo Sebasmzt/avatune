@@ -4,8 +4,8 @@ description: "Svelte component for rendering avatars from themes."
 source: "packages/svelte/README.md"
 ---
 
-import InstallTabs from '../../../../components/docs/install-tabs.astro'
-import AvatarUsagePreview from '../../../../components/docs/avatar-usage-preview.svelte'
+import InstallTabs from "../../../../components/docs/install-tabs.astro";
+import AvatarUsagePreview from "../../../../components/docs/avatar-usage-preview.svelte";
 
 > Source: `packages/svelte/README.md`
 
@@ -17,7 +17,12 @@ Svelte component for rendering avatars from themes.
 
 ## Usage
 
-<AvatarUsagePreview client:only="svelte" themeId="nevmstas" seed="user@example.com" size={200} />
+<AvatarUsagePreview
+  client:only="svelte"
+  themeId="nevmstas"
+  seed="user@example.com"
+  size={200}
+/>
 
 ```svelte
 <script>
@@ -50,7 +55,7 @@ Svelte component for rendering avatars from themes.
   hair?: string
   head?: string
   mouth?: string
-  noses?: string
+  nose?: string
 
   // Part colors (CSS color values)
   bodyColor?: string
@@ -60,18 +65,20 @@ Svelte component for rendering avatars from themes.
   hairColor?: string
   headColor?: string
   mouthColor?: string
-  nosesColor?: string
+  noseColor?: string
 }
 ```
 
 ## Examples
 
 Random avatar with seed:
+
 ```svelte
 <Avatar theme={nevmstasTheme} seed="521411f1-fab6-4ed5-90bf-2863028bcae6" />
 ```
 
 Specific parts with custom colors:
+
 ```svelte
 <Avatar
   theme={nevmstasTheme}

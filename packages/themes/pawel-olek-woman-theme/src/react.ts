@@ -31,9 +31,9 @@ import {
   MouthTongue1,
   MouthTongue2,
   MouthVampire,
-  NosesWomanBig,
-  NosesWomanSmall,
-  NosesWomanStandard,
+  NoseWomanBig,
+  NoseWomanSmall,
+  NoseWomanStandard,
 } from '@avatune/pawel-olek-assets/react'
 import type { ReactAvatarItem } from '@avatune/types'
 import shared from './shared'
@@ -86,9 +86,9 @@ export default shared
     tongue2: { Component: MouthTongue2 },
     vampire: { Component: MouthVampire },
   })
-  .withComponents('noses', {
-    big: { Component: NosesWomanBig },
-    small: { Component: NosesWomanSmall },
-    standard: { Component: NosesWomanStandard },
+  .withComponents('nose', {
+    big: { Component: NoseWomanBig },
+    small: { Component: NoseWomanSmall },
+    standard: { Component: NoseWomanStandard },
   })
   .build()

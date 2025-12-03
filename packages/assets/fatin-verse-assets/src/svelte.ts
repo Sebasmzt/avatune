@@ -19,19 +19,19 @@ import BodySuit from './svg/body/suit.svg?svelte'
 import BodyTurtleneck from './svg/body/turtleneck.svg?svelte'
 
 // Eyebrows
-import EyebrowsBrowAngled from './svg/eyebrows/brow-angled.svg?svelte'
-import EyebrowsBrowFlat from './svg/eyebrows/brow-flat.svg?svelte'
-import EyebrowsBrowRaised from './svg/eyebrows/brow-raised.svg?svelte'
-import EyebrowsBrowSoft from './svg/eyebrows/brow-soft.svg?svelte'
-import EyebrowsBrowThick from './svg/eyebrows/brow-thick.svg?svelte'
-import EyebrowsBrowThin from './svg/eyebrows/brow-thin.svg?svelte'
+import EyebrowsBrowAngled from './svg/eyebrows/angled.svg?svelte'
+import EyebrowsBrowFlat from './svg/eyebrows/flat.svg?svelte'
+import EyebrowsBrowRaised from './svg/eyebrows/raised.svg?svelte'
+import EyebrowsBrowSoft from './svg/eyebrows/soft.svg?svelte'
+import EyebrowsBrowThick from './svg/eyebrows/thick.svg?svelte'
+import EyebrowsBrowThin from './svg/eyebrows/thin.svg?svelte'
 
 // Eyes
-import EyesEyesFocused from './svg/eyes/eyes-focused.svg?svelte'
-import EyesEyesHappy from './svg/eyes/eyes-happy.svg?svelte'
-import EyesEyesNeutral from './svg/eyes/eyes-neutral.svg?svelte'
-import EyesEyesSurprised from './svg/eyes/eyes-surprised.svg?svelte'
-import EyesEyesWide from './svg/eyes/eyes-wide.svg?svelte'
+import EyesFocused from './svg/eyes/focused.svg?svelte'
+import EyesHappy from './svg/eyes/happy.svg?svelte'
+import EyesNeutral from './svg/eyes/neutral.svg?svelte'
+import EyesSurprised from './svg/eyes/surprised.svg?svelte'
+import EyesWide from './svg/eyes/wide.svg?svelte'
 
 // Face Hair
 import FaceHairBeard from './svg/faceHair/beard.svg?svelte'
@@ -75,13 +75,13 @@ import MouthSmirkLeft from './svg/mouth/smirk-left.svg?svelte'
 import MouthSmirkRight from './svg/mouth/smirk-right.svg?svelte'
 import MouthTinyDot from './svg/mouth/tiny-dot.svg?svelte'
 
-// Noses
-import NosesNoseCurve from './svg/noses/nose-curve.svg?svelte'
-import NosesNoseLong from './svg/noses/nose-long.svg?svelte'
-import NosesNosePointy from './svg/noses/nose-pointy.svg?svelte'
-import NosesNoseRound from './svg/noses/nose-round.svg?svelte'
-import NosesNoseSmall from './svg/noses/nose-small.svg?svelte'
-import NosesNoseSoft from './svg/noses/nose-soft.svg?svelte'
+// Nose
+import NoseNoseCurve from './svg/nose/curve.svg?svelte'
+import NoseNoseLong from './svg/nose/long.svg?svelte'
+import NoseNosePointy from './svg/nose/pointy.svg?svelte'
+import NoseNoseRound from './svg/nose/round.svg?svelte'
+import NoseNoseSmall from './svg/nose/small.svg?svelte'
+import NoseNoseSoft from './svg/nose/soft.svg?svelte'
 
 export {
   // Accessories
@@ -110,11 +110,11 @@ export {
   EyebrowsBrowThick,
   EyebrowsBrowThin,
   // Eyes
-  EyesEyesFocused,
-  EyesEyesHappy,
-  EyesEyesNeutral,
-  EyesEyesSurprised,
-  EyesEyesWide,
+  EyesFocused,
+  EyesHappy,
+  EyesNeutral,
+  EyesSurprised,
+  EyesWide,
   // Face Hair
   FaceHairBeard,
   FaceHairMustache,
@@ -153,11 +153,11 @@ export {
   MouthSmirkLeft,
   MouthSmirkRight,
   MouthTinyDot,
-  // Noses
-  NosesNoseCurve,
-  NosesNoseLong,
-  NosesNosePointy,
-  NosesNoseRound,
-  NosesNoseSmall,
-  NosesNoseSoft,
+  // Nose
+  NoseNoseCurve,
+  NoseNoseLong,
+  NoseNosePointy,
+  NoseNoseRound,
+  NoseNoseSmall,
+  NoseNoseSoft,
 }

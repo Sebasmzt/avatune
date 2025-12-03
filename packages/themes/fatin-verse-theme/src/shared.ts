@@ -24,7 +24,7 @@ export enum Layer {
   Glasses = 33,
   HeadStroke = 40,
   Mouth = 70,
-  Noses = 22,
+  Nose = 22,
 }
 
 const getHeadPosition = (size: number) => ({
@@ -340,28 +340,28 @@ export default createTheme<BaseAvatarItem>()
     position: fromHeadOffset(percentage('0%'), percentage('0%')),
     layer: Layer.Mouth,
   })
-  // Noses
-  .addItem('noses', 'noseCurve', {
+  // Nose
+  .addItem('nose', 'noseCurve', {
     position: fromHeadOffset(percentage('0%'), percentage('0%')),
-    layer: Layer.Noses,
+    layer: Layer.Nose,
   })
-  .addItem('noses', 'noseLong', {
+  .addItem('nose', 'noseLong', {
     position: fromHeadOffset(percentage('0%'), percentage('0%')),
-    layer: Layer.Noses,
+    layer: Layer.Nose,
   })
-  .addItem('noses', 'nosePointy', {
+  .addItem('nose', 'nosePointy', {
     position: fromHeadOffset(percentage('0%'), percentage('0%')),
-    layer: Layer.Noses,
+    layer: Layer.Nose,
   })
-  .addItem('noses', 'noseRound', {
+  .addItem('nose', 'noseRound', {
     position: fromHeadOffset(percentage('0%'), percentage('0%')),
-    layer: Layer.Noses,
+    layer: Layer.Nose,
   })
-  .addItem('noses', 'noseSmall', {
+  .addItem('nose', 'noseSmall', {
     position: fromHeadOffset(percentage('0%'), percentage('0%')),
-    layer: Layer.Noses,
+    layer: Layer.Nose,
   })
-  .addItem('noses', 'noseSoft', {
+  .addItem('nose', 'noseSoft', {
     position: fromHeadOffset(percentage('0%'), percentage('0%')),
-    layer: Layer.Noses,
+    layer: Layer.Nose,
   })

@@ -35,7 +35,7 @@ import {
   HeadStandard,
   MouthSmile,
   NeckStandard,
-  NosesStandard,
+  NoseStandard,
 } from '@avatune/yanliu-assets/vue'
 import shared from './shared'
 
@@ -100,7 +100,7 @@ export default shared
   .withComponents('neck', {
     standard: { Component: NeckStandard },
   })
-  .withComponents('noses', {
-    standard: { Component: NosesStandard },
+  .withComponents('nose', {
+    standard: { Component: NoseStandard },
   })
   .build() satisfies VueTheme

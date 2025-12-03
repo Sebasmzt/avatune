@@ -71,24 +71,24 @@ import { HairShort, EyesBoring, MouthSmile } from '@avatune/fatin-verse-assets/v
 
 ### Eyebrows
 
-| Preview                                                                                                                                    | Filename      |
-| ------------------------------------------------------------------------------------------------------------------------------------------ | ------------- |
-| ![brow-angled](https://raw.githubusercontent.com/avatune/avatune/main/packages/assets/fatin-verse-assets/src/svg/eyebrows/brow-angled.svg) | `brow-angled` |
-| ![brow-flat](https://raw.githubusercontent.com/avatune/avatune/main/packages/assets/fatin-verse-assets/src/svg/eyebrows/brow-flat.svg)     | `brow-flat`   |
-| ![brow-raised](https://raw.githubusercontent.com/avatune/avatune/main/packages/assets/fatin-verse-assets/src/svg/eyebrows/brow-raised.svg) | `brow-raised` |
-| ![brow-soft](https://raw.githubusercontent.com/avatune/avatune/main/packages/assets/fatin-verse-assets/src/svg/eyebrows/brow-soft.svg)     | `brow-soft`   |
-| ![brow-thick](https://raw.githubusercontent.com/avatune/avatune/main/packages/assets/fatin-verse-assets/src/svg/eyebrows/brow-thick.svg)   | `brow-thick`  |
-| ![brow-thin](https://raw.githubusercontent.com/avatune/avatune/main/packages/assets/fatin-verse-assets/src/svg/eyebrows/brow-thin.svg)     | `brow-thin`   |
+| Preview                                                                                                                               | Filename      |
+| ------------------------------------------------------------------------------------------------------------------------------------- | ------------- |
+| ![brow-angled](https://raw.githubusercontent.com/avatune/avatune/main/packages/assets/fatin-verse-assets/src/svg/eyebrows/angled.svg) | `brow-angled` |
+| ![brow-flat](https://raw.githubusercontent.com/avatune/avatune/main/packages/assets/fatin-verse-assets/src/svg/eyebrows/flat.svg)     | `brow-flat`   |
+| ![brow-raised](https://raw.githubusercontent.com/avatune/avatune/main/packages/assets/fatin-verse-assets/src/svg/eyebrows/raised.svg) | `brow-raised` |
+| ![brow-soft](https://raw.githubusercontent.com/avatune/avatune/main/packages/assets/fatin-verse-assets/src/svg/eyebrows/soft.svg)     | `brow-soft`   |
+| ![brow-thick](https://raw.githubusercontent.com/avatune/avatune/main/packages/assets/fatin-verse-assets/src/svg/eyebrows/thick.svg)   | `brow-thick`  |
+| ![brow-thin](https://raw.githubusercontent.com/avatune/avatune/main/packages/assets/fatin-verse-assets/src/svg/eyebrows/thin.svg)     | `brow-thin`   |
 
 ### Eyes
 
-| Preview                                                                                                                                      | Filename         |
-| -------------------------------------------------------------------------------------------------------------------------------------------- | ---------------- |
-| ![eyes-focused](https://raw.githubusercontent.com/avatune/avatune/main/packages/assets/fatin-verse-assets/src/svg/eyes/eyes-focused.svg)     | `eyes-focused`   |
-| ![eyes-happy](https://raw.githubusercontent.com/avatune/avatune/main/packages/assets/fatin-verse-assets/src/svg/eyes/eyes-happy.svg)         | `eyes-happy`     |
-| ![eyes-neutral](https://raw.githubusercontent.com/avatune/avatune/main/packages/assets/fatin-verse-assets/src/svg/eyes/eyes-neutral.svg)     | `eyes-neutral`   |
-| ![eyes-surprised](https://raw.githubusercontent.com/avatune/avatune/main/packages/assets/fatin-verse-assets/src/svg/eyes/eyes-surprised.svg) | `eyes-surprised` |
-| ![eyes-wide](https://raw.githubusercontent.com/avatune/avatune/main/packages/assets/fatin-verse-assets/src/svg/eyes/eyes-wide.svg)           | `eyes-wide`      |
+| Preview                                                                                                                                 | Filename         |
+| --------------------------------------------------------------------------------------------------------------------------------------- | ---------------- |
+| ![eyes-focused](https://raw.githubusercontent.com/avatune/avatune/main/packages/assets/fatin-verse-assets/src/svg/eyes/focused.svg)     | `eyes-focused`   |
+| ![eyes-happy](https://raw.githubusercontent.com/avatune/avatune/main/packages/assets/fatin-verse-assets/src/svg/eyes/happy.svg)         | `eyes-happy`     |
+| ![eyes-neutral](https://raw.githubusercontent.com/avatune/avatune/main/packages/assets/fatin-verse-assets/src/svg/eyes/neutral.svg)     | `eyes-neutral`   |
+| ![eyes-surprised](https://raw.githubusercontent.com/avatune/avatune/main/packages/assets/fatin-verse-assets/src/svg/eyes/surprised.svg) | `eyes-surprised` |
+| ![eyes-wide](https://raw.githubusercontent.com/avatune/avatune/main/packages/assets/fatin-verse-assets/src/svg/eyes/wide.svg)           | `eyes-wide`      |
 
 ### FaceHair
 
@@ -144,16 +144,16 @@ import { HairShort, EyesBoring, MouthSmile } from '@avatune/fatin-verse-assets/v
 | ![smirk-right](https://raw.githubusercontent.com/avatune/avatune/main/packages/assets/fatin-verse-assets/src/svg/mouth/smirk-right.svg)   | `smirk-right`  |
 | ![tiny-dot](https://raw.githubusercontent.com/avatune/avatune/main/packages/assets/fatin-verse-assets/src/svg/mouth/tiny-dot.svg)         | `tiny-dot`     |
 
-### Noses
+### Nose
 
-| Preview                                                                                                                                 | Filename      |
-| --------------------------------------------------------------------------------------------------------------------------------------- | ------------- |
-| ![nose-curve](https://raw.githubusercontent.com/avatune/avatune/main/packages/assets/fatin-verse-assets/src/svg/noses/nose-curve.svg)   | `nose-curve`  |
-| ![nose-long](https://raw.githubusercontent.com/avatune/avatune/main/packages/assets/fatin-verse-assets/src/svg/noses/nose-long.svg)     | `nose-long`   |
-| ![nose-pointy](https://raw.githubusercontent.com/avatune/avatune/main/packages/assets/fatin-verse-assets/src/svg/noses/nose-pointy.svg) | `nose-pointy` |
-| ![nose-round](https://raw.githubusercontent.com/avatune/avatune/main/packages/assets/fatin-verse-assets/src/svg/noses/nose-round.svg)   | `nose-round`  |
-| ![nose-small](https://raw.githubusercontent.com/avatune/avatune/main/packages/assets/fatin-verse-assets/src/svg/noses/nose-small.svg)   | `nose-small`  |
-| ![nose-soft](https://raw.githubusercontent.com/avatune/avatune/main/packages/assets/fatin-verse-assets/src/svg/noses/nose-soft.svg)     | `nose-soft`   |
+| Preview                                                                                                                           | Filename      |
+| --------------------------------------------------------------------------------------------------------------------------------- | ------------- |
+| ![nose-curve](https://raw.githubusercontent.com/avatune/avatune/main/packages/assets/fatin-verse-assets/src/svg/nose/curve.svg)   | `nose-curve`  |
+| ![nose-long](https://raw.githubusercontent.com/avatune/avatune/main/packages/assets/fatin-verse-assets/src/svg/nose/long.svg)     | `nose-long`   |
+| ![nose-pointy](https://raw.githubusercontent.com/avatune/avatune/main/packages/assets/fatin-verse-assets/src/svg/nose/pointy.svg) | `nose-pointy` |
+| ![nose-round](https://raw.githubusercontent.com/avatune/avatune/main/packages/assets/fatin-verse-assets/src/svg/nose/round.svg)   | `nose-round`  |
+| ![nose-small](https://raw.githubusercontent.com/avatune/avatune/main/packages/assets/fatin-verse-assets/src/svg/nose/small.svg)   | `nose-small`  |
+| ![nose-soft](https://raw.githubusercontent.com/avatune/avatune/main/packages/assets/fatin-verse-assets/src/svg/nose/soft.svg)     | `nose-soft`   |
 
 ## Development
 

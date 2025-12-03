@@ -4,8 +4,8 @@ description: "React Native component for rendering avatars from themes."
 source: "packages/react-native/README.md"
 ---
 
-import InstallTabs from '../../../../components/docs/install-tabs.astro'
-import AvatarUsagePreview from '../../../../components/docs/avatar-usage-preview.svelte'
+import InstallTabs from "../../../../components/docs/install-tabs.astro";
+import AvatarUsagePreview from "../../../../components/docs/avatar-usage-preview.svelte";
 
 > Source: `packages/react-native/README.md`
 
@@ -19,23 +19,21 @@ React Native component for rendering avatars from themes.
 
 ## Usage
 
-<AvatarUsagePreview client:only="svelte" themeId="pacovqzz" seed="user@example.com" size={200} />
+<AvatarUsagePreview
+  client:only="svelte"
+  themeId="pacovqzz"
+  seed="user@example.com"
+  size={200}
+/>
 
 ```tsx
-import { Avatar } from '@avatune/react-native'
-import theme from '@avatune/kyute-theme/react-native'
+import { Avatar } from "@avatune/react-native";
+import theme from "@avatune/kyute-theme/react-native";
 
 function App() {
-  return (
-    <Avatar
-      theme={theme}
-      seed="user@example.com"
-      size={200}
-    />
-  )
+  return <Avatar theme={theme} seed="user@example.com" size={200} />;
 }
 ```
-
 
 ## Props
 
@@ -54,7 +52,7 @@ function App() {
   hair?: string
   head?: string
   mouth?: string
-  noses?: string
+  nose?: string
 
   // Part colors (CSS color values)
   bodyColor?: string
@@ -64,7 +62,7 @@ function App() {
   hairColor?: string
   headColor?: string
   mouthColor?: string
-  nosesColor?: string
+  noseColor?: string
 }
 ```
 
@@ -93,5 +91,3 @@ Specific parts with custom colors:
 - React Native >= 0.70.0
 - React >= 18.0.0
 - react-native-svg >= 13.0.0
-
-

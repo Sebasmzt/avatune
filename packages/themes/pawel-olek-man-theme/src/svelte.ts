@@ -46,11 +46,11 @@ import {
   MouthTongue1,
   MouthTongue2,
   MouthVampire,
-  NosesManBig,
-  NosesManBigWide,
-  NosesManSmall,
-  NosesManStandard,
-  NosesManWide,
+  NoseManBig,
+  NoseManBigWide,
+  NoseManSmall,
+  NoseManStandard,
+  NoseManWide,
 } from '@avatune/pawel-olek-assets/svelte'
 import type { SvelteAvatarItem } from '@avatune/types'
 import shared from './shared'
@@ -118,11 +118,11 @@ export default shared
     tongue2: { Component: MouthTongue2 },
     vampire: { Component: MouthVampire },
   })
-  .withComponents('noses', {
-    big: { Component: NosesManBig },
-    bigWide: { Component: NosesManBigWide },
-    small: { Component: NosesManSmall },
-    standard: { Component: NosesManStandard },
-    wide: { Component: NosesManWide },
+  .withComponents('nose', {
+    big: { Component: NoseManBig },
+    bigWide: { Component: NoseManBigWide },
+    small: { Component: NoseManSmall },
+    standard: { Component: NoseManStandard },
+    wide: { Component: NoseManWide },
   })
   .build()

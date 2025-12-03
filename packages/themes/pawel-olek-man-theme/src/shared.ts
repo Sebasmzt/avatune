@@ -36,7 +36,7 @@ export default createTheme<BaseAvatarItem>()
   .addColors('hair', [HairColors.Black])
   .addColors('head', [SkinTones.Light, SkinTones.Dark])
   .addColors('mouth', [AccentColors.Primary])
-  .addColors('noses', [AccentColors.Primary])
+  .addColors('nose', [AccentColors.Primary])
   // Ears
   .addItem('ears', 'big', {
     position: fromHeadOffset(-percentage('8%'), percentage('30%')),
@@ -234,24 +234,24 @@ export default createTheme<BaseAvatarItem>()
     position: fromHeadOffset(percentage('17%'), percentage('52%')),
     layer: Layer.Mouth,
   })
-  // Noses
-  .addItem('noses', 'big', {
+  // Nose
+  .addItem('nose', 'big', {
     position: fromHeadOffset(percentage('19%'), percentage('33%')),
     layer: Layer.Mouth,
   })
-  .addItem('noses', 'bigWide', {
+  .addItem('nose', 'bigWide', {
     position: fromHeadOffset(percentage('19%'), percentage('33%')),
     layer: Layer.Mouth,
   })
-  .addItem('noses', 'small', {
+  .addItem('nose', 'small', {
     position: fromHeadOffset(percentage('19%'), percentage('33%')),
     layer: Layer.Mouth,
   })
-  .addItem('noses', 'standard', {
+  .addItem('nose', 'standard', {
     position: fromHeadOffset(percentage('20%'), percentage('33%')),
     layer: Layer.Mouth,
   })
-  .addItem('noses', 'wide', {
+  .addItem('nose', 'wide', {
     position: fromHeadOffset(percentage('18.5%'), percentage('33%')),
     layer: Layer.Mouth,
   })

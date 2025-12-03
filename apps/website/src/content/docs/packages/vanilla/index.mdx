@@ -4,8 +4,8 @@ description: "Vanilla JavaScript function for rendering avatars from themes."
 source: "packages/vanilla/README.md"
 ---
 
-import InstallTabs from '../../../../components/docs/install-tabs.astro'
-import AvatarUsagePreview from '../../../../components/docs/avatar-usage-preview.svelte'
+import InstallTabs from "../../../../components/docs/install-tabs.astro";
+import AvatarUsagePreview from "../../../../components/docs/avatar-usage-preview.svelte";
 
 > Source: `packages/vanilla/README.md`
 
@@ -17,29 +17,34 @@ Vanilla JavaScript function for rendering avatars from themes.
 
 ## Usage
 
-<AvatarUsagePreview client:only="svelte" themeId="micah" seed="user@example.com" size={200} />
+<AvatarUsagePreview
+  client:only="svelte"
+  themeId="micah"
+  seed="user@example.com"
+  size={200}
+/>
 
 ```ts
-import { avatar } from '@avatune/vanilla'
-import theme from '@avatune/micah-theme/vanilla'
+import { avatar } from "@avatune/vanilla";
+import theme from "@avatune/micah-theme/vanilla";
 
 const svgString = avatar({
   theme,
-  seed: 'user@example.com',
-  size: 200
-})
+  seed: "user@example.com",
+  size: 200,
+});
 
-document.getElementById('avatar-container').innerHTML = svgString
+document.getElementById("avatar-container").innerHTML = svgString;
 ```
-
 
 ## API
 
 ```ts
-function avatar(args: AvatarArgs): string
+function avatar(args: AvatarArgs): string;
 ```
 
 **Parameters:**
+
 ```ts
 {
   theme: VanillaTheme        // Theme to use for rendering (required)
@@ -54,7 +59,7 @@ function avatar(args: AvatarArgs): string
   hair?: string
   head?: string
   mouth?: string
-  noses?: string
+  nose?: string
 
   // Part colors (CSS color values)
   bodyColor?: string
@@ -64,7 +69,7 @@ function avatar(args: AvatarArgs): string
   hairColor?: string
   headColor?: string
   mouthColor?: string
-  nosesColor?: string
+  noseColor?: string
 }
 ```
 
@@ -73,20 +78,22 @@ function avatar(args: AvatarArgs): string
 ## Examples
 
 Random avatar with seed:
+
 ```ts
 const svg = avatar({
   theme: nevmstasTheme,
-  seed: '521411f1-fab6-4ed5-90bf-2863028bcae6'
-})
+  seed: "521411f1-fab6-4ed5-90bf-2863028bcae6",
+});
 ```
 
 Specific parts with custom colors:
+
 ```ts
 const svg = avatar({
   theme: nevmstasTheme,
-  hair: 'long',
-  hairColor: '#ff6b6b',
-  eyes: 'happy',
-  eyesColor: '#4ecdc4'
-})
+  hair: "long",
+  hairColor: "#ff6b6b",
+  eyes: "happy",
+  eyesColor: "#4ecdc4",
+});
 ```

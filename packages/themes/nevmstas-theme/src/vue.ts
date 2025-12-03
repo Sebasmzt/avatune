@@ -24,10 +24,10 @@ import {
   MouthLaugh,
   MouthNervous,
   MouthSmile,
-  NosesBig,
-  NosesCurve,
-  NosesDots,
-  NosesHalfOval,
+  NoseBig,
+  NoseCurve,
+  NoseDots,
+  NoseHalfOval,
 } from '@avatune/nevmstas-assets/vue'
 import type { VueAvatarItem, VueTheme } from '@avatune/types'
 import shared from './shared'
@@ -73,10 +73,10 @@ export default shared
     nervous: { Component: MouthNervous },
     smile: { Component: MouthSmile },
   })
-  .withComponents('noses', {
-    big: { Component: NosesBig },
-    curve: { Component: NosesCurve },
-    dots: { Component: NosesDots },
-    halfOval: { Component: NosesHalfOval },
+  .withComponents('nose', {
+    big: { Component: NoseBig },
+    curve: { Component: NoseCurve },
+    dots: { Component: NoseDots },
+    halfOval: { Component: NoseHalfOval },
   })
   .build() satisfies VueTheme

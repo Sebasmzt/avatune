@@ -21,11 +21,11 @@ import {
   EyebrowsBrowSoft,
   EyebrowsBrowThick,
   EyebrowsBrowThin,
-  EyesEyesFocused,
-  EyesEyesHappy,
-  EyesEyesNeutral,
-  EyesEyesSurprised,
-  EyesEyesWide,
+  EyesFocused,
+  EyesHappy,
+  EyesNeutral,
+  EyesSurprised,
+  EyesWide,
   FaceHairBeard,
   FaceHairMustache,
   HairCurlyPuff,
@@ -60,12 +60,12 @@ import {
   MouthSmirkLeft,
   MouthSmirkRight,
   MouthTinyDot,
-  NosesNoseCurve,
-  NosesNoseLong,
-  NosesNosePointy,
-  NosesNoseRound,
-  NosesNoseSmall,
-  NosesNoseSoft,
+  NoseNoseCurve,
+  NoseNoseLong,
+  NoseNosePointy,
+  NoseNoseRound,
+  NoseNoseSmall,
+  NoseNoseSoft,
 } from '@avatune/fatin-verse-assets/vue'
 import type { VueAvatarItem } from '@avatune/types'
 import shared from './shared'
@@ -114,11 +114,11 @@ export default shared
     turtleneck: { Component: BodyTurtleneck },
   })
   .withComponents('eyes', {
-    eyesFocused: { Component: EyesEyesFocused },
-    eyesHappy: { Component: EyesEyesHappy },
-    eyesNeutral: { Component: EyesEyesNeutral },
-    eyesSurprised: { Component: EyesEyesSurprised },
-    eyesWide: { Component: EyesEyesWide },
+    eyesFocused: { Component: EyesFocused },
+    eyesHappy: { Component: EyesHappy },
+    eyesNeutral: { Component: EyesNeutral },
+    eyesSurprised: { Component: EyesSurprised },
+    eyesWide: { Component: EyesWide },
   })
   .withComponents('eyebrows', {
     browAngled: { Component: EyebrowsBrowAngled },
@@ -151,12 +151,12 @@ export default shared
     smirkRight: { Component: MouthSmirkRight },
     tinyDot: { Component: MouthTinyDot },
   })
-  .withComponents('noses', {
-    noseCurve: { Component: NosesNoseCurve },
-    noseLong: { Component: NosesNoseLong },
-    nosePointy: { Component: NosesNosePointy },
-    noseRound: { Component: NosesNoseRound },
-    noseSmall: { Component: NosesNoseSmall },
-    noseSoft: { Component: NosesNoseSoft },
+  .withComponents('nose', {
+    noseCurve: { Component: NoseNoseCurve },
+    noseLong: { Component: NoseNoseLong },
+    nosePointy: { Component: NoseNosePointy },
+    noseRound: { Component: NoseNoseRound },
+    noseSmall: { Component: NoseNoseSmall },
+    noseSoft: { Component: NoseNoseSoft },
   })
   .build()

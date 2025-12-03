@@ -138,11 +138,11 @@ import { HairShort, EyesBoring, MouthSmile } from '@avatune/yanliu-assets/vue';
 | --------------------------------------------------------------------------------------------------------------------------- | ---------- |
 | ![standard](https://raw.githubusercontent.com/avatune/avatune/main/packages/assets/yanliu-assets/src/svg/neck/standard.svg) | `standard` |
 
-### Noses
+### Nose
 
-| Preview                                                                                                                      | Filename   |
-| ---------------------------------------------------------------------------------------------------------------------------- | ---------- |
-| ![standard](https://raw.githubusercontent.com/avatune/avatune/main/packages/assets/yanliu-assets/src/svg/noses/standard.svg) | `standard` |
+| Preview                                                                                                                     | Filename   |
+| --------------------------------------------------------------------------------------------------------------------------- | ---------- |
+| ![standard](https://raw.githubusercontent.com/avatune/avatune/main/packages/assets/yanliu-assets/src/svg/nose/standard.svg) | `standard` |
 
 ## License & Credits
 

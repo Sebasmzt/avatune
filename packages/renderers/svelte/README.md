@@ -44,7 +44,7 @@ npm install @avatune/svelte
   hair?: string
   head?: string
   mouth?: string
-  noses?: string
+  nose?: string
 
   // Part colors (CSS color values)
   bodyColor?: string
@@ -54,7 +54,7 @@ npm install @avatune/svelte
   hairColor?: string
   headColor?: string
   mouthColor?: string
-  nosesColor?: string
+  noseColor?: string
 }
 ```
 

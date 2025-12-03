@@ -10,7 +10,7 @@ import {
   EyebrowsEyelashesDown,
   EyebrowsEyelashesUp,
   EyebrowsUp,
-  EyesEyeshadow,
+  Eyeshadow,
   EyesRound,
   EyesSmiling,
   EyesStandard,
@@ -34,9 +34,9 @@ import {
   MouthSmile,
   MouthSmirk,
   MouthSurprised,
-  NosesCurve,
-  NosesPointed,
-  NosesRound,
+  NoseCurve,
+  NosePointed,
+  NoseRound,
 } from '@avatune/micah-assets/vue'
 import type { VueAvatarItem, VueTheme } from '@avatune/types'
 import shared from './shared'
@@ -63,7 +63,7 @@ export default shared
     up: { Component: EyebrowsUp },
   })
   .withComponents('eyes', {
-    eyeshadow: { Component: EyesEyeshadow },
+    eyeshadow: { Component: Eyeshadow },
     round: { Component: EyesRound },
     smiling: { Component: EyesSmiling },
     standard: { Component: EyesStandard },
@@ -98,9 +98,9 @@ export default shared
     smirk: { Component: MouthSmirk },
     surprised: { Component: MouthSurprised },
   })
-  .withComponents('noses', {
-    curve: { Component: NosesCurve },
-    pointed: { Component: NosesPointed },
-    round: { Component: NosesRound },
+  .withComponents('nose', {
+    curve: { Component: NoseCurve },
+    pointed: { Component: NosePointed },
+    round: { Component: NoseRound },
   })
   .build() satisfies VueTheme

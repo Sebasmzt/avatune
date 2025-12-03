@@ -47,7 +47,7 @@ function avatar(args: AvatarArgs): string
   hair?: string
   head?: string
   mouth?: string
-  noses?: string
+  nose?: string
 
   // Part colors (CSS color values)
   bodyColor?: string
@@ -57,7 +57,7 @@ function avatar(args: AvatarArgs): string
   hairColor?: string
   headColor?: string
   mouthColor?: string
-  nosesColor?: string
+  noseColor?: string
 }
 ```
 

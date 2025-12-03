@@ -46,7 +46,7 @@ import { nevmstasTheme } from '@avatune/nevmstas-theme/vue'
   hair?: string
   head?: string
   mouth?: string
-  noses?: string
+  nose?: string
 
   // Part colors (CSS color values)
   bodyColor?: string
@@ -56,7 +56,7 @@ import { nevmstasTheme } from '@avatune/nevmstas-theme/vue'
   hairColor?: string
   headColor?: string
   mouthColor?: string
-  nosesColor?: string
+  noseColor?: string
 }
 ```
 

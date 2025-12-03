@@ -36,7 +36,7 @@ export default createTheme<BaseAvatarItem>()
   .addColors('hair', [HairColors.Black])
   .addColors('head', [SkinTones.Light, SkinTones.Dark])
   .addColors('mouth', [AccentColors.Primary])
-  .addColors('noses', [AccentColors.Primary])
+  .addColors('nose', [AccentColors.Primary])
   // Ears
   .addItem('ears', 'dropEarrings', {
     position: fromHeadOffset(-percentage('9%'), percentage('27%')),
@@ -172,16 +172,16 @@ export default createTheme<BaseAvatarItem>()
     position: fromHeadOffset(percentage('17.5%'), percentage('49%')),
     layer: Layer.Mouth,
   })
-  // Noses
-  .addItem('noses', 'big', {
+  // Nose
+  .addItem('nose', 'big', {
     position: fromHeadOffset(percentage('20%'), percentage('31%')),
     layer: Layer.Mouth,
   })
-  .addItem('noses', 'small', {
+  .addItem('nose', 'small', {
     position: fromHeadOffset(percentage('20%'), percentage('31%')),
     layer: Layer.Mouth,
   })
-  .addItem('noses', 'standard', {
+  .addItem('nose', 'standard', {
     position: fromHeadOffset(percentage('20%'), percentage('31%')),
     layer: Layer.Mouth,
   })

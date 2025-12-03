@@ -15,7 +15,7 @@ import EyebrowsEyelashesDown from './svg/eyebrows/eyelashes-down.svg?vue'
 import EyebrowsEyelashesUp from './svg/eyebrows/eyelashes-up.svg?vue'
 import EyebrowsUp from './svg/eyebrows/up.svg?vue'
 // Eyes
-import EyesEyeshadow from './svg/eyes/eyeshadow.svg?vue'
+import Eyeshadow from './svg/eyes/eyeshadow.svg?vue'
 import EyesRound from './svg/eyes/round.svg?vue'
 import EyesSmiling from './svg/eyes/smiling.svg?vue'
 import EyesStandard from './svg/eyes/standard.svg?vue'
@@ -44,10 +44,10 @@ import MouthSad from './svg/mouth/sad.svg?vue'
 import MouthSmile from './svg/mouth/smile.svg?vue'
 import MouthSmirk from './svg/mouth/smirk.svg?vue'
 import MouthSurprised from './svg/mouth/surprised.svg?vue'
-// Noses
-import NosesCurve from './svg/noses/curve.svg?vue'
-import NosesPointed from './svg/noses/pointed.svg?vue'
-import NosesRound from './svg/noses/round.svg?vue'
+// Nose
+import NoseCurve from './svg/nose/curve.svg?vue'
+import NosePointed from './svg/nose/pointed.svg?vue'
+import NoseRound from './svg/nose/round.svg?vue'
 
 export {
   // Accessories
@@ -66,7 +66,7 @@ export {
   EyebrowsEyelashesUp,
   EyebrowsUp,
   // Eyes
-  EyesEyeshadow,
+  Eyeshadow,
   EyesRound,
   EyesSmiling,
   EyesStandard,
@@ -95,8 +95,8 @@ export {
   MouthSmile,
   MouthSmirk,
   MouthSurprised,
-  // Noses
-  NosesCurve,
-  NosesPointed,
-  NosesRound,
+  // Nose
+  NoseCurve,
+  NosePointed,
+  NoseRound,
 }

@@ -55,7 +55,7 @@ export default createTheme<BaseAvatarItem>()
   .addColors('eyebrows', [AccentColors.Black])
   .addColors('glasses', [AccentColors.Black])
   .addColors('mouth', [AccentColors.Black])
-  .addColors('noses', [AccentColors.Black])
+  .addColors('nose', [AccentColors.Black])
   .addColors('ears', [
     SkinTones.Dark,
     SkinTones.Medium,
@@ -221,16 +221,16 @@ export default createTheme<BaseAvatarItem>()
     position: fromHeadOffset(percentage('20%'), percentage('40%')),
     layer: 32,
   })
-  // Noses
-  .addItem('noses', 'curve', {
+  // Nose
+  .addItem('nose', 'curve', {
     position: fromHeadOffset(percentage('23%'), percentage('32%')),
     layer: 21,
   })
-  .addItem('noses', 'pointed', {
+  .addItem('nose', 'pointed', {
     position: fromHeadOffset(percentage('23%'), percentage('32%')),
     layer: 21,
   })
-  .addItem('noses', 'round', {
+  .addItem('nose', 'round', {
     position: fromHeadOffset(percentage('23%'), percentage('32%')),
     layer: 21,
   })

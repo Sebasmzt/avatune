@@ -75,7 +75,7 @@ export const Avatar = defineComponent({
       type: [String, Array] as PropType<string | string[]>,
       default: undefined,
     },
-    noses: {
+    nose: {
       type: [String, Array] as PropType<string | string[]>,
       default: undefined,
     },
@@ -107,7 +107,7 @@ export const Avatar = defineComponent({
       type: String,
       default: undefined,
     },
-    nosesColor: {
+    noseColor: {
       type: String,
       default: undefined,
     },
