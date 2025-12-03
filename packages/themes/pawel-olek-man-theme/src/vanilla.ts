@@ -1,0 +1,128 @@
+import {
+  earsManBig,
+  earsManBiten,
+  earsManRingEarring,
+  earsManSmall,
+  earsManStandard,
+  earsManStudEarrings,
+  eyesManBig,
+  eyesManEyelashes,
+  eyesManEyelids,
+  eyesManHappy,
+  eyesManSmall,
+  eyesManStandard,
+  faceDetailsChinDimple1,
+  faceDetailsChinDimple2,
+  faceDetailsChinDimple3,
+  faceDetailsChinDimple4,
+  glassesManBrow,
+  glassesManPatch,
+  glassesManRound,
+  glassesManSquare,
+  glassesManStylish,
+  hairBeanie,
+  hairManBald,
+  hairManCurly,
+  hairManElvis,
+  hairManMediumTopknot,
+  hairManMessy,
+  hairManShortTopknot,
+  hairManStylish,
+  headManBeardMustache,
+  headManBeardSharp,
+  headManBeardSlim,
+  headManBeardStandard,
+  headManBristle,
+  headManBristleMustache,
+  headManChin,
+  headManSharp,
+  headManStandard,
+  mouthChin,
+  mouthPhiltrum1,
+  mouthPhiltrum2,
+  mouthSad,
+  mouthSmall,
+  mouthSmile,
+  mouthTongue1,
+  mouthTongue2,
+  mouthVampire,
+  nosesManBig,
+  nosesManBigWide,
+  nosesManSmall,
+  nosesManStandard,
+  nosesManWide,
+} from '@avatune/pawel-olek-assets'
+import type { VanillaAvatarItem } from '@avatune/types'
+import shared from './shared'
+
+export default shared
+  .toFramework<VanillaAvatarItem>()
+  .withComponents('ears', {
+    manBig: { code: earsManBig },
+    manBiten: { code: earsManBiten },
+    manRingEarring: { code: earsManRingEarring },
+    manSmall: { code: earsManSmall },
+    manStandard: { code: earsManStandard },
+    manStudEarrings: { code: earsManStudEarrings },
+  })
+  .withComponents('eyes', {
+    manBig: { code: eyesManBig },
+    manHappy: { code: eyesManHappy },
+    manSmall: { code: eyesManSmall },
+    manStandard: { code: eyesManStandard },
+    manEyelashes: { code: eyesManEyelashes },
+    manEyelids: { code: eyesManEyelids },
+  })
+  .withComponents('faceDetails', {
+    chinDimple1: { code: faceDetailsChinDimple1 },
+    chinDimple2: { code: faceDetailsChinDimple2 },
+    chinDimple3: { code: faceDetailsChinDimple3 },
+    chinDimple4: { code: faceDetailsChinDimple4 },
+  })
+  .withComponents('glasses', {
+    manBrow: { code: glassesManBrow },
+    manPatch: { code: glassesManPatch },
+    manRound: { code: glassesManRound },
+    manSquare: { code: glassesManSquare },
+    manStylish: { code: glassesManStylish },
+  })
+  .withComponents('hair', {
+    manBald: { code: hairManBald },
+    manCurly: { code: hairManCurly },
+    manElvis: { code: hairManElvis },
+    manMediumTopknot: { code: hairManMediumTopknot },
+    manMessy: { code: hairManMessy },
+    manShortTopknot: { code: hairManShortTopknot },
+    manStylish: { code: hairManStylish },
+    beanie: { code: hairBeanie },
+  })
+  .withComponents('head', {
+    manBeardMustache: { code: headManBeardMustache },
+    manBeardSharp: { code: headManBeardSharp },
+    manBeardSlim: { code: headManBeardSlim },
+    manBeardStandard: { code: headManBeardStandard },
+    manBristle: { code: headManBristle },
+    manBristleMustache: { code: headManBristleMustache },
+    manChin: { code: headManChin },
+    manSharp: { code: headManSharp },
+    manStandard: { code: headManStandard },
+  })
+  .withComponents('mouth', {
+    chin: { code: mouthChin },
+    philtrum1: { code: mouthPhiltrum1 },
+    philtrum2: { code: mouthPhiltrum2 },
+    sad: { code: mouthSad },
+    small: { code: mouthSmall },
+    smile: { code: mouthSmile },
+    tongue1: { code: mouthTongue1 },
+    tongue2: { code: mouthTongue2 },
+    vampire: { code: mouthVampire },
+  })
+  .withComponents('noses', {
+    manBig: { code: nosesManBig },
+    manBigWide: { code: nosesManBigWide },
+    manSmall: { code: nosesManSmall },
+    manStandard: { code: nosesManStandard },
+    manWide: { code: nosesManWide },
+  })
+  .build()

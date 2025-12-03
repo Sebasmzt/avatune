@@ -80,14 +80,12 @@
     "@avatune/typescript-config": "workspace:*",
     "@rslib/core": "^0.16.1",
     "@types/node": "^22.18.12",
-    "@types/react": "^19.0.8",
-    "svelte": "^5.0.0",
-    "typescript": "^5.9.3",
-    "vue": "^3.5.22",
-    "react": ">=18.0.0"
+    "typescript": "^5.9.3"
   },
   "peerDependencies": {
     "react": ">=18.0.0",
+    "react-native": ">=0.74.0",
+    "react-native-svg": ">=15.0.0",
     "svelte": ">=5.0.0",
     "vue": "^3.5.22"
   },
@@ -100,6 +98,13 @@
     },
     "vue": {
       "optional": true
+    },
+    "react-native": {
+      "optional": true
+    },
+    "react-native-svg": {
+      "optional": true
     }
-  }
+  },
+  "license": "MIT"
 }

@@ -4,6 +4,8 @@ import micahTheme from '@avatune/micah-theme/svelte'
 import miniavsTheme from '@avatune/miniavs-theme/svelte'
 import nevmstasTheme from '@avatune/nevmstas-theme/svelte'
 import pacovqzzTheme from '@avatune/pacovqzz-theme/svelte'
+import pawelolekmanTheme from '@avatune/pawel-olek-man-theme/svelte'
+import pawelolekwomanTheme from '@avatune/pawel-olek-woman-theme/svelte'
 import type { AvatarProps } from '@avatune/svelte'
 import { Avatar } from '@avatune/svelte'
 import type { SvelteAvatarItem, Theme } from '@avatune/types'
@@ -30,6 +32,8 @@ type MicahArgs = ExtractStoryArgs<typeof micahTheme>
 type MiniavsArgs = ExtractStoryArgs<typeof miniavsTheme>
 type NevmstasArgs = ExtractStoryArgs<typeof nevmstasTheme>
 type PacovqzzArgs = ExtractStoryArgs<typeof pacovqzzTheme>
+type PawelOlekManArgs = ExtractStoryArgs<typeof pawelolekmanTheme>
+type PawelOlekWomanArgs = ExtractStoryArgs<typeof pawelolekwomanTheme>
 type YanliuArgs = ExtractStoryArgs<typeof yanliuTheme>
 
 const getArgTypes = <T extends Theme<SvelteAvatarItem>>(theme: T) => {
@@ -128,6 +132,28 @@ export const Pacovqzz: StoryObj<PacovqzzArgs> = {
   },
 }
 
+export const PawelOlekMan: StoryObj<PawelOlekManArgs> = {
+  argTypes: getArgTypes(pawelolekmanTheme),
+  render: (args) => ({
+    Component: Avatar,
+    props: { theme: pawelolekmanTheme, ...args },
+  }),
+  args: {
+    size: 300,
+  },
+}
+
+export const PawelOlekWoman: StoryObj<PawelOlekWomanArgs> = {
+  argTypes: getArgTypes(pawelolekwomanTheme),
+  render: (args) => ({
+    Component: Avatar,
+    props: { theme: pawelolekwomanTheme, ...args },
+  }),
+  args: {
+    size: 300,
+  },
+}
+
 export const Yanliu: StoryObj<YanliuArgs> = {
   argTypes: getArgTypes(yanliuTheme),
   render: (args) => ({
@@ -146,6 +172,8 @@ const themes = {
   Miniavs: miniavsTheme,
   Nevmstas: nevmstasTheme,
   Pacovqzz: pacovqzzTheme,
+  'Pawel Olek Man': pawelolekmanTheme,
+  'Pawel Olek Woman': pawelolekwomanTheme,
   Yanliu: yanliuTheme,
 } as const
 

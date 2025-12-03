@@ -4,6 +4,8 @@ import micahTheme from '@avatune/micah-theme/vanilla'
 import miniavsTheme from '@avatune/miniavs-theme/vanilla'
 import nevmstasTheme from '@avatune/nevmstas-theme/vanilla'
 import pacovqzzTheme from '@avatune/pacovqzz-theme/vanilla'
+import pawelOlekManTheme from '@avatune/pawel-olek-man-theme/vanilla'
+import pawelOlekWomanTheme from '@avatune/pawel-olek-woman-theme/vanilla'
 import type {
   AvatarConfig,
   VanillaAvatarItem,
@@ -20,6 +22,8 @@ const THEMES = {
   kyute: kyuteTheme,
   'fatin-verse': fatinVerseTheme,
   pacovqzz: pacovqzzTheme,
+  'pawel-olek-man': pawelOlekManTheme,
+  'pawel-olek-woman': pawelOlekWomanTheme,
 } as const
 
 type ThemeName = keyof typeof THEMES

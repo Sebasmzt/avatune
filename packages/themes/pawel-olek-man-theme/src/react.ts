@@ -1,0 +1,128 @@
+import {
+  EarsManBig,
+  EarsManBiten,
+  EarsManRingEarring,
+  EarsManSmall,
+  EarsManStandard,
+  EarsManStudEarrings,
+  EyesManBig,
+  EyesManEyelashes,
+  EyesManEyelids,
+  EyesManHappy,
+  EyesManSmall,
+  EyesManStandard,
+  FaceDetailsChinDimple1,
+  FaceDetailsChinDimple2,
+  FaceDetailsChinDimple3,
+  FaceDetailsChinDimple4,
+  GlassesManBrow,
+  GlassesManPatch,
+  GlassesManRound,
+  GlassesManSquare,
+  GlassesManStylish,
+  HairBeanie,
+  HairManBald,
+  HairManCurly,
+  HairManElvis,
+  HairManMediumTopknot,
+  HairManMessy,
+  HairManShortTopknot,
+  HairManStylish,
+  HeadManBeardMustache,
+  HeadManBeardSharp,
+  HeadManBeardSlim,
+  HeadManBeardStandard,
+  HeadManBristle,
+  HeadManBristleMustache,
+  HeadManChin,
+  HeadManSharp,
+  HeadManStandard,
+  MouthChin,
+  MouthPhiltrum1,
+  MouthPhiltrum2,
+  MouthSad,
+  MouthSmall,
+  MouthSmile,
+  MouthTongue1,
+  MouthTongue2,
+  MouthVampire,
+  NosesManBig,
+  NosesManBigWide,
+  NosesManSmall,
+  NosesManStandard,
+  NosesManWide,
+} from '@avatune/pawel-olek-assets/react'
+import type { ReactAvatarItem } from '@avatune/types'
+import shared from './shared'
+
+export default shared
+  .toFramework<ReactAvatarItem>()
+  .withComponents('ears', {
+    manBig: { Component: EarsManBig },
+    manBiten: { Component: EarsManBiten },
+    manRingEarring: { Component: EarsManRingEarring },
+    manSmall: { Component: EarsManSmall },
+    manStandard: { Component: EarsManStandard },
+    manStudEarrings: { Component: EarsManStudEarrings },
+  })
+  .withComponents('eyes', {
+    manBig: { Component: EyesManBig },
+    manHappy: { Component: EyesManHappy },
+    manSmall: { Component: EyesManSmall },
+    manStandard: { Component: EyesManStandard },
+    manEyelashes: { Component: EyesManEyelashes },
+    manEyelids: { Component: EyesManEyelids },
+  })
+  .withComponents('faceDetails', {
+    chinDimple1: { Component: FaceDetailsChinDimple1 },
+    chinDimple2: { Component: FaceDetailsChinDimple2 },
+    chinDimple3: { Component: FaceDetailsChinDimple3 },
+    chinDimple4: { Component: FaceDetailsChinDimple4 },
+  })
+  .withComponents('glasses', {
+    manBrow: { Component: GlassesManBrow },
+    manPatch: { Component: GlassesManPatch },
+    manRound: { Component: GlassesManRound },
+    manSquare: { Component: GlassesManSquare },
+    manStylish: { Component: GlassesManStylish },
+  })
+  .withComponents('hair', {
+    manBald: { Component: HairManBald },
+    manCurly: { Component: HairManCurly },
+    manElvis: { Component: HairManElvis },
+    manMediumTopknot: { Component: HairManMediumTopknot },
+    manMessy: { Component: HairManMessy },
+    manShortTopknot: { Component: HairManShortTopknot },
+    manStylish: { Component: HairManStylish },
+    beanie: { Component: HairBeanie },
+  })
+  .withComponents('head', {
+    manBeardMustache: { Component: HeadManBeardMustache },
+    manBeardSharp: { Component: HeadManBeardSharp },
+    manBeardSlim: { Component: HeadManBeardSlim },
+    manBeardStandard: { Component: HeadManBeardStandard },
+    manBristle: { Component: HeadManBristle },
+    manBristleMustache: { Component: HeadManBristleMustache },
+    manChin: { Component: HeadManChin },
+    manSharp: { Component: HeadManSharp },
+    manStandard: { Component: HeadManStandard },
+  })
+  .withComponents('mouth', {
+    chin: { Component: MouthChin },
+    philtrum1: { Component: MouthPhiltrum1 },
+    philtrum2: { Component: MouthPhiltrum2 },
+    sad: { Component: MouthSad },
+    small: { Component: MouthSmall },
+    smile: { Component: MouthSmile },
+    tongue1: { Component: MouthTongue1 },
+    tongue2: { Component: MouthTongue2 },
+    vampire: { Component: MouthVampire },
+  })
+  .withComponents('noses', {
+    manBig: { Component: NosesManBig },
+    manBigWide: { Component: NosesManBigWide },
+    manSmall: { Component: NosesManSmall },
+    manStandard: { Component: NosesManStandard },
+    manWide: { Component: NosesManWide },
+  })
+  .build()

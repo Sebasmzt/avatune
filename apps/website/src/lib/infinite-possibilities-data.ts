@@ -3,6 +3,8 @@ import micahTheme from '@avatune/micah-theme/vanilla'
 import miniavsTheme from '@avatune/miniavs-theme/vanilla'
 import nevmstasTheme from '@avatune/nevmstas-theme/vanilla'
 import pacovqzzTheme from '@avatune/pacovqzz-theme/vanilla'
+import pawelOlekManTheme from '@avatune/pawel-olek-man-theme/vanilla'
+import pawelOlekWomanTheme from '@avatune/pawel-olek-woman-theme/vanilla'
 import type { AvatarPartCategory, VanillaTheme } from '@avatune/types'
 import yanliuTheme from '@avatune/yanliu-theme/vanilla'
 
@@ -53,6 +55,8 @@ export const COMBINATIONS: Record<string, number> = {
   micah: calculateCombinations(micahTheme),
   pacovqzz: calculateCombinations(pacovqzzTheme),
   fatinVerse: calculateCombinations(fatinVerseTheme),
+  pawelOlekMan: calculateCombinations(pawelOlekManTheme),
+  pawelOlekWoman: calculateCombinations(pawelOlekWomanTheme),
 }
 
 export const TOTAL_COMBINATIONS = Object.values(COMBINATIONS).reduce(

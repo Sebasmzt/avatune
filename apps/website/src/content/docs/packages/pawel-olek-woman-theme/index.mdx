@@ -1,0 +1,171 @@
+---
+title: "@avatune/pawel-olek-woman-theme"
+description: "Avatar theme for Avatune using Pawel Olek Woman assets."
+source: "packages/themes/pawel-olek-woman-theme/README.md"
+---
+
+import AssetPreview from '../../../../components/docs/asset-preview.astro';
+import InstallTabs from '../../../../components/docs/install-tabs.astro';
+import AvatarUsagePreview from '../../../../components/docs/avatar-usage-preview.svelte';
+
+> Source: `packages/assets/pawel-olek-woman-theme/README.md`
+
+Avatar theme for Avatune using pawel olek woman design assets.
+
+
+<div style="display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; margin: 2rem 0;">
+  <AvatarUsagePreview client:only="svelte" themeId="pawel-olek-woman" seed="example-12345" size={200} />
+  <AvatarUsagePreview client:only="svelte" themeId="pawel-olek-woman" seed="example-678910" size={200} />
+  <AvatarUsagePreview client:only="svelte" themeId="pawel-olek-woman" seed="example-101112131415" size={200} />
+</div>
+
+## Installation
+
+<InstallTabs packages="@avatune/pawel-olek-woman-theme" />
+
+## Usage
+
+This theme is available for multiple frameworks: React, Vue, Svelte, and Vanilla JavaScript.
+
+### React
+
+```tsx
+import { Avatar } from '@avatune/react'
+import theme from '@avatune/pawel-olek-woman-theme/react'
+
+function App() {
+  return (
+    <Avatar
+      theme={theme}
+      size={300}
+      seed="optional-seed-for-random-generation"
+    />
+  )
+}
+```
+
+### Vue
+
+```vue
+<script setup lang="ts">
+import { Avatar } from '@avatune/vue'
+import theme from '@avatune/pawel-olek-woman-theme/vue'
+</script>
+
+<template>
+  <Avatar
+    :theme="theme"
+    :size="300"
+    seed="optional-seed-for-random-generation"
+  />
+</template>
+```
+
+### Svelte
+
+```svelte
+<script lang="ts">
+  import { Avatar } from '@avatune/svelte'
+  import theme from '@avatune/pawel-olek-woman-theme/svelte'
+</script>
+
+<Avatar
+  theme={theme}
+  size={300}
+  seed="optional-seed-for-random-generation"
+/>
+```
+
+### Vanilla JavaScript
+
+```typescript
+import { avatar } from '@avatune/vanilla'
+import theme from '@avatune/pawel-olek-woman-theme/vanilla'
+
+const container = document.getElementById('avatar-container')
+const svg = avatar({
+  theme,
+  size: 300,
+  seed: 'optional-seed-for-random-generation',
+})
+
+container?.appendChild(svg)
+```
+
+## Customization
+
+You can override specific avatar parts:
+
+```tsx
+<Avatar
+  theme={theme}
+  size={300}
+  hair="womanBob"          // Choose specific hair style
+  hairColor="#FF5733"    // Custom hair color
+  body="sweaterVest"     // Choose specific clothing
+  bodyColor="#3498DB"    // Custom clothing color
+/>
+```
+
+## Design Assets
+
+This theme uses Pawel Olek Woman style SVG assets for creating customizable avatars. Assets include various options for hair, eyes, eyebrows, mouth, nose, ears, head shape, and body/clothing.
+
+The assets are available in the [`@avatune/pawel-olek-woman-assets`](https://www.npmjs.com/package/@avatune/pawel-olek-woman-assets) package.
+
+### Using Assets Directly
+
+#### SVG Paths
+
+```typescript
+import { hair, eyes, mouth } from '@avatune/pawel-olek-woman-assets';
+```
+
+#### React Components
+
+```typescript
+import { HairShort, EyesBoring, MouthSmile } from '@avatune/pawel-olek-woman-assets/react';
+```
+
+#### Svelte Components
+
+```typescript
+import { HairShort, EyesBoring, MouthSmile } from '@avatune/pawel-olek-woman-assets/svelte';
+```
+
+#### Vue Components
+
+```typescript
+import { HairShort, EyesBoring, MouthSmile } from '@avatune/pawel-olek-woman-assets/vue';
+```
+
+## License & Credits
+
+### Theme License
+
+This theme package is licensed under MIT (see [LICENSE.md](license)).
+
+### Design Assets License
+
+The design assets used in this theme are separately licensed. See the asset package for details.
+
+## Related Packages
+
+- [`@avatune/pawel-olek-woman-assets`](https://github.com/avatune/avatune/tree/main/packages/assets/pawel-olek-woman-assets) - SVG assets used by this theme
+- [`@avatune/react`](https://github.com/avatune/avatune/tree/main/packages/renderers/react) - React avatar renderer
+- [`@avatune/vue`](https://github.com/avatune/avatune/tree/main/packages/renderers/vue) - Vue avatar renderer
+- [`@avatune/svelte`](https://github.com/avatune/avatune/tree/main/packages/renderers/svelte) - Svelte avatar renderer
+- [`@avatune/vanilla`](https://github.com/avatune/avatune/tree/main/packages/renderers/vanilla) - Vanilla JavaScript avatar renderer
+
+## Development
+
+```bash
+# Build the theme
+bun run build
+
+# Build in watch mode
+bun run dev
+
+# Type checking
+bun run check-types
+```

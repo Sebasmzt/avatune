@@ -1,0 +1,28 @@
+import { defineConfig } from '@rslib/core'
+
+export default defineConfig({
+  lib: [
+    {
+      format: 'esm',
+      syntax: ['node 18'],
+      dts: true,
+    },
+    {
+      format: 'cjs',
+      syntax: ['node 18'],
+      dts: false,
+    },
+  ],
+  output: {
+    minify: true,
+  },
+  source: {
+    entry: {
+      vanilla: './src/vanilla.ts',
+      react: './src/react.ts',
+      vue: './src/vue.ts',
+      svelte: './src/svelte.ts',
+      'react-native': './src/react-native.ts',
+    },
+  },
+})

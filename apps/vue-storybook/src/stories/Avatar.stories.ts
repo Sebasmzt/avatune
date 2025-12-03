@@ -4,6 +4,8 @@ import micahTheme from '@avatune/micah-theme/vue'
 import miniavsTheme from '@avatune/miniavs-theme/vue'
 import nevmstasTheme from '@avatune/nevmstas-theme/vue'
 import pacovqzzTheme from '@avatune/pacovqzz-theme/vue'
+import pawelolekmanTheme from '@avatune/pawel-olek-man-theme/vue'
+import pawelolekwomanTheme from '@avatune/pawel-olek-woman-theme/vue'
 import type { Theme, VueAvatarItem } from '@avatune/types'
 import type { AvatarProps } from '@avatune/vue'
 import { Avatar } from '@avatune/vue'
@@ -25,6 +27,8 @@ type MicahArgs = Omit<AvatarProps<typeof micahTheme>, 'theme'>
 type MiniavsArgs = Omit<AvatarProps<typeof miniavsTheme>, 'theme'>
 type NevmstasArgs = Omit<AvatarProps<typeof nevmstasTheme>, 'theme'>
 type PacovqzzArgs = Omit<AvatarProps<typeof pacovqzzTheme>, 'theme'>
+type PawelOlekManArgs = Omit<AvatarProps<typeof pawelolekmanTheme>, 'theme'>
+type PawelOlekWomanArgs = Omit<AvatarProps<typeof pawelolekwomanTheme>, 'theme'>
 type YanliuArgs = Omit<AvatarProps<typeof yanliuTheme>, 'theme'>
 
 const getArgTypes = <T extends Theme<VueAvatarItem>>(theme: T) => {
@@ -128,6 +132,30 @@ export const Pacovqzz: StoryObj<PacovqzzArgs> = {
   },
 }
 
+export const PawelOlekMan: StoryObj<PawelOlekManArgs> = {
+  argTypes: getArgTypes(pawelolekmanTheme),
+  render: (args: PawelOlekManArgs) => ({
+    components: { Avatar },
+    setup: () => ({ args, theme: pawelolekmanTheme }),
+    template: '<Avatar :theme="theme" v-bind="args" />',
+  }),
+  args: {
+    size: 300,
+  },
+}
+
+export const PawelOlekWoman: StoryObj<PawelOlekWomanArgs> = {
+  argTypes: getArgTypes(pawelolekwomanTheme),
+  render: (args: PawelOlekWomanArgs) => ({
+    components: { Avatar },
+    setup: () => ({ args, theme: pawelolekwomanTheme }),
+    template: '<Avatar :theme="theme" v-bind="args" />',
+  }),
+  args: {
+    size: 300,
+  },
+}
+
 export const Yanliu: StoryObj<YanliuArgs> = {
   argTypes: getArgTypes(yanliuTheme),
   render: (args: YanliuArgs) => ({
@@ -147,6 +175,8 @@ const themes = {
   Miniavs: miniavsTheme,
   Nevmstas: nevmstasTheme,
   Pacovqzz: pacovqzzTheme,
+  'Pawel Olek Man': pawelolekmanTheme,
+  'Pawel Olek Woman': pawelolekwomanTheme,
   Yanliu: yanliuTheme,
 } as const
 

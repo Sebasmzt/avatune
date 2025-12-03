@@ -4,6 +4,8 @@ import micahTheme from '@avatune/micah-theme/vanilla'
 import miniavsTheme from '@avatune/miniavs-theme/vanilla'
 import nevmstasTheme from '@avatune/nevmstas-theme/vanilla'
 import pacovqzzTheme from '@avatune/pacovqzz-theme/vanilla'
+import pawelolekmanTheme from '@avatune/pawel-olek-man-theme/vanilla'
+import pawelolekwomanTheme from '@avatune/pawel-olek-woman-theme/vanilla'
 import type { Theme, VanillaAvatarItem } from '@avatune/types'
 import { type AvatarArgs, avatar } from '@avatune/vanilla'
 import yanliuTheme from '@avatune/yanliu-theme/vanilla'
@@ -23,6 +25,8 @@ type MicahArgs = Omit<AvatarArgs<typeof micahTheme>, 'theme'>
 type MiniavsArgs = Omit<AvatarArgs<typeof miniavsTheme>, 'theme'>
 type NevmstasArgs = Omit<AvatarArgs<typeof nevmstasTheme>, 'theme'>
 type PacovqzzArgs = Omit<AvatarArgs<typeof pacovqzzTheme>, 'theme'>
+type PawelOlekManArgs = Omit<AvatarArgs<typeof pawelolekmanTheme>, 'theme'>
+type PawelOlekWomanArgs = Omit<AvatarArgs<typeof pawelolekwomanTheme>, 'theme'>
 type YanliuArgs = Omit<AvatarArgs<typeof yanliuTheme>, 'theme'>
 
 const getArgTypes = <T extends Theme<VanillaAvatarItem>>(theme: T) => {
@@ -114,6 +118,26 @@ export const Pacovqzz: StoryObj<PacovqzzArgs> = {
   },
 }
 
+export const PawelOlekMan: StoryObj<PawelOlekManArgs> = {
+  argTypes: getArgTypes(pawelolekmanTheme),
+  render: (args: PawelOlekManArgs) => {
+    return avatar({ theme: pawelolekmanTheme, ...args })
+  },
+  args: {
+    size: 300,
+  },
+}
+
+export const PawelOlekWoman: StoryObj<PawelOlekWomanArgs> = {
+  argTypes: getArgTypes(pawelolekwomanTheme),
+  render: (args: PawelOlekWomanArgs) => {
+    return avatar({ theme: pawelolekwomanTheme, ...args })
+  },
+  args: {
+    size: 300,
+  },
+}
+
 export const Yanliu: StoryObj<YanliuArgs> = {
   argTypes: getArgTypes(yanliuTheme),
   render: (args: YanliuArgs) => {
@@ -131,6 +155,8 @@ const themes = {
   Miniavs: miniavsTheme,
   Nevmstas: nevmstasTheme,
   Pacovqzz: pacovqzzTheme,
+  'Pawel Olek Man': pawelolekmanTheme,
+  'Pawel Olek Woman': pawelolekwomanTheme,
   Yanliu: yanliuTheme,
 } as const
 

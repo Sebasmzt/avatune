@@ -74,6 +74,8 @@ All themes support React, Vue, Svelte, and Vanilla JavaScript.
 | Miniavs | [`@avatune/miniavs-theme`](./packages/themes/miniavs-theme) |
 | Nevmstas | [`@avatune/nevmstas-theme`](./packages/themes/nevmstas-theme) |
 | Pacovqzz | [`@avatune/pacovqzz-theme`](./packages/themes/pacovqzz-theme) |
+| Pawel Olek Man | [`@avatune/pawel-olek-man-theme`](./packages/themes/pawel-olek-man-theme) |
+| Pawel Olek Woman | [`@avatune/pawel-olek-woman-theme`](./packages/themes/pawel-olek-woman-theme) |
 | Yanliu | [`@avatune/yanliu-theme`](./packages/themes/yanliu-theme) |
 
 ## Framework Renderers
