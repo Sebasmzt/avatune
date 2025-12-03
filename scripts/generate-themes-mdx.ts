@@ -33,11 +33,6 @@ function getThemeId(packageName: string): string {
   // Remove '-theme' suffix and convert to theme ID format
   const baseName = packageName.replace(/-theme$/, '')
 
-  // Special case for fatin-verse -> fatinVerse
-  if (baseName === 'fatin-verse') {
-    return 'fatinVerse'
-  }
-
   return baseName
 }
 

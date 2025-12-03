@@ -14,25 +14,75 @@ The workflow: Python trains models → exports to TFJS → TypeScript packages l
 
 ```
 avatune/
-├── apps/                             # Example applications
-│   ├── *-storybook/                  # Storybook demo apps
-│   └── storybook-root                # Storybook root to ref all the *-storybook demo apps
-├── packages/                         # Reusable packages
-│   ├── *-predictor/                  # TFJS browser inference packages
-│   ├── *-assets/                     # SVG assets bundled for all supported platforms (React, Vue, Svelte, Vanilla)
-│   ├── *-theme/                      # Themes to be used by the platform renderers to visualize an avatar
-│   ├── (svelte|react|vue|vanilla)/   # Avatar platform renderers
-│   │── types                         # Types shared across other packages
-│   │── utils                         # Utils shared across other packages
-│   │── rsbuild-plugin-*              # Plugins shared across other packages built with Rsbuild
-│   └── typescript-config/            # Shared TS configs to extend in the other monorepo packages
-└── python/                           # ML training pipeline
-    ├── notebooks/                    # Marimo notebooks for training
+├── apps/                                    # Applications
+│   ├── website/                             # Documentation website (Astro)
+│   ├── cloudflare-worker/                   # Cloudflare Worker API
+│   ├── RNStorybook/                         # React Native Storybook
+│   ├── react-storybook/                     # React Storybook
+│   ├── svelte-storybook/                    # Svelte Storybook
+│   ├── vue-storybook/                       # Vue Storybook
+│   ├── vanilla-storybook/                   # Vanilla JS Storybook
+│   ├── predictor-storybook/                 # ML Predictor demos
+│   └── storybook-root/                      # Root Storybook aggregator
+├── packages/
+│   ├── assets/                              # SVG assets per theme
+│   │   ├── kyute-assets/
+│   │   ├── micah-assets/
+│   │   ├── miniavs-assets/
+│   │   ├── nevmstas-assets/
+│   │   ├── pacovqzz-assets/
+│   │   ├── pawel-olek-assets/
+│   │   ├── fatin-verse-assets/
+│   │   ├── yanliu-assets/
+│   │   └── yanliu-assets/
+│   ├── themes/                              # Theme configurations
+│   │   ├── kyute-theme/
+│   │   ├── micah-theme/
+│   │   ├── miniavs-theme/
+│   │   ├── nevmstas-theme/
+│   │   ├── pacovqzz-theme/
+│   │   ├── pawel-olek-man-theme/
+│   │   ├── pawel-olek-woman-theme/
+│   │   ├── fatin-verse-theme/
+│   │   └── yanliu-theme/
+│   ├── renderers/                           # Platform-specific renderers
+│   │   ├── react/
+│   │   ├── react-native/
+│   │   ├── svelte/
+│   │   ├── vue/
+│   │   └── vanilla/
+│   ├── predictors/                          # ML prediction packages
+│   │   ├── face-detector/
+│   │   ├── hair-color-predictor/
+│   │   ├── hair-length-predictor/
+│   │   └── skin-tone-predictor/
+│   ├── core/                                # Shared core packages
+│   │   ├── types/                           # TypeScript types
+│   │   ├── utils/                           # Shared utilities
+│   │   ├── theme-builder/                   # Theme builder API
+│   │   ├── api-client/                      # API client
+│   │   └── typescript-config/               # Shared TS configs
+│   └── rsbuild-plugins/                     # Build plugins
+│       ├── rsbuild-plugin-copy-tfjs-model/
+│       ├── rsbuild-plugin-raw-svg/
+│       ├── rsbuild-plugin-svg-to-svelte/
+│       └── rsbuild-plugin-svg-to-vue/
+├── scripts/                                 # Build/generation scripts
+│   ├── generate-assets.ts                   # Generate asset entrypoints
+│   ├── generate-theme.ts                    # Scaffold new themes
+│   ├── generate-stories.ts                  # Generate Storybook stories
+│   ├── generate-assets-readme.ts            # Generate asset READMEs
+│   ├── generate-assets-theme-readme.ts      # Generate theme READMEs
+│   ├── generate-themes-mdx.ts               # Generate theme docs
+│   ├── generate-root-readme.ts              # Generate root README
+│   └── shared.ts                            # Shared script utilities
+└── python/                                  # ML training pipeline
+    ├── notebooks/                           # Marimo notebooks
     │   ├── hair_color/
     │   ├── hair_length/
     │   └── skin_tone/
-    ├── data/                         # Training datasets (gitignored)
-    └── models/                       # Trained Keras models + TFJS exports
+    ├── data/                                # Training datasets (gitignored)
+    └── models/                              # Trained models + TFJS exports
 ```
 
 ### Key Technologies
@@ -42,134 +92,121 @@ avatune/
 - **Biome** - Linting and formatting (replaces ESLint/Prettier)
 - **Rslib** - Library bundler for packages (dual ESM/CJS)
 - **Rsbuild** - App bundler (Rspack-based, faster than Webpack)
-- **Storybook** - Library to show for demos
+- **Storybook** - Component demos
 - **TensorFlow.js** - Browser-based ML inference
 - **uv** - Python package manager (fast pip alternative)
 - **Marimo** - Interactive Python notebooks
+- **Astro** - Documentation website
 
 ## Common Commands
 
 ### Root Level
 
 ```bash
-# Install dependencies
-bun install
+bun install              # Install dependencies
+bun run build            # Build all packages and apps
+bun dev                  # Dev mode (all workspaces with watch)
+bun storybook            # Run all storybooks
+bun lint                 # Lint all workspaces
+bun format               # Format all code
+bun run check-types      # Type checking
+```
 
-# Build all packages and apps
-bun run build
+### Scripts
 
-# Dev mode (all workspaces with watch)
-bun dev
+```bash
+# Generate asset entrypoints from SVG files
+bun scripts/generate-assets.ts <assets-package-name>
+# Example: bun scripts/generate-assets.ts kyute-assets
 
-# Storybook (run all storybooks and the root one waiting for the others)
-bun storybook
+# Scaffold a new theme from assets package
+bun scripts/generate-theme.ts <theme-name>
+# Example: bun scripts/generate-theme.ts kyute-theme
 
-# Lint all workspaces
-bun lint
-
-# Format all code
-bun format
-
-# Type checking
-bun run check-types
+# Generate Storybook stories
+bun scripts/generate-stories.ts <theme-name>
 ```
 
 ### Python ML Training
 
 ```bash
 cd python
-
-# Install Python dependencies (use uv, not pip)
-uv pip install -e .
-
-# Run interactive notebook
-marimo edit notebooks/hair_color/03_train.py
-
-# Run notebook headless (trains + converts to TFJS)
-marimo run notebooks/hair_color/03_train.py
+uv pip install -e .                              # Install dependencies
+marimo edit notebooks/hair_color/03_train.py     # Interactive notebook
+marimo run notebooks/hair_color/03_train.py      # Headless training
 ```
 
-Training notebooks automatically convert models to TFJS format at `models/tfjs/{model_name}/`.
+## Package Relationships
+
+### Assets → Theme → Renderer Flow
+
+1. **Assets packages** (`@avatune/*-assets`) contain SVG files organized by category
+2. **Theme packages** (`@avatune/*-theme`) define positions, layers, colors, and link to assets
+3. **Renderer packages** (`@avatune/react`, etc.) render avatars using themes
+
+### Theme Structure
+
+Each theme has:
+- `colors.ts` - Color enums (SkinTones, HairColors, AccentColors, BackgroundColors)
+- `shared.ts` - Base theme config (positions, layers, colors, items)
+- `react.ts`, `vue.ts`, `svelte.ts`, `vanilla.ts`, `react-native.ts` - Framework bindings
+- `index.ts` - Barrel exports
+
+### Theme Builder API
+
+```typescript
+import { createTheme, fromHead } from '@avatune/theme-builder'
+
+createTheme()
+  .withStyle({ size: 400, borderRadius: '100%' })
+  .addColors('head', [SkinTones.Light, SkinTones.Medium])
+  .addColors('hair', [HairColors.Black, HairColors.Brown])
+  .connectColors('head', ['ears'])           // ears uses head's color
+  .setOptional('glasses')                    // adds 'none' option
+  .mapPrediction('skinTone', 'dark', [SkinTones.Dark])
+  .addItem('head', 'standard', {
+    position: fromHeadOffset(percentage('0%'), percentage('0%')),
+    layer: Layer.Head,
+  })
+  .build()
+```
 
 ## ML Models Pipeline
 
 ### Models Overview
 
-All models follow a consistent structure:
-- **Classes**: 3-4 categories per model
 - **Input**: 128x128 RGB images, normalized to [0, 1]
 - **Architecture**: MobileNetV2-based CNNs
-- **Format**: TensorFlow.js (quantized to uint8 for smaller size)
+- **Format**: TensorFlow.js (quantized to uint8)
 - **Location**: `python/models/<model_name>/tfjs/`
-
-Current models include hair color, skin tone, and hair length predictors. Check `python/models/` for the complete list.
 
 ### Training Flow
 
-1. **Explore** (`01_explore.py`) - Analyze dataset distribution
-2. **Prepare** (`02_prepare.py`) - Balance classes, organize images
-3. **Train** (`03_train.py`) - Train Keras model + auto-convert to TFJS with uint8 quantization
-
-Output structure:
-```
-models/
-├── {model_name}.keras
-├── {model_name}_classes.json
-├── {model_name}_history.json
-└── tfjs/
-    └── {model_name}/
-        ├── model.json
-        ├── group1-shard1of1.bin
-        └── classes.json
-```
+1. `01_explore.py` - Analyze dataset distribution
+2. `02_prepare.py` - Balance classes, organize images
+3. `03_train.py` - Train Keras model + auto-convert to TFJS
 
 ### TFJS Integration
 
-Predictor packages export classes with `loadModel()` and `predict()` methods:
-
-- Models are externalized in rslib builds (not bundled)
-- TensorFlow.js is a peer dependency
-- Model paths resolved via `getModelPath()` utility in each package
-- Default base path: `/models` (configurable via `globalThis.__TFJS_MODEL_BASE_URL__`)
+Predictor packages export classes with `loadModel()` and `predict()` methods. Default model path: `/models` (configurable via `globalThis.__TFJS_MODEL_BASE_URL__`).
 
 ## Code Style
 
 - **Biome** enforces style (not Prettier/ESLint)
 - Single quotes, semicolons optional (ASI)
 - Organize imports on save
-- CSS modules enabled
 - Do not add obvious comments
-
-Format: `bun run format`
 
 ## Dependencies
 
-- **Node**: >=22 (specified in engines)
-- **Python**: >=3.12 (pyproject.toml)
-- **Bun**: 1.3.1 (packageManager field)
-
-## Testing
-
-No test framework currently configured. Tests should be added to individual packages as needed.
-
-## Key Implementation Details
-
-### Workspace Protocol
-
-All internal dependencies use `workspace:*` protocol for linking.
-
-### Python Paths
-
-Marimo notebooks use relative paths from their location to access `../../data/` and `../../../models/`.
-
-### Model Integration
-
-Example apps use Rspack plugins to automatically copy models from `python/models/` during build. No manual copying required.
+- **Node**: >=22
+- **Python**: >=3.12
+- **Bun**: 1.3.1
 
 ## Development Workflow
 
-1. **Training new models**: Work in `python/notebooks/`, run marimo notebooks, models auto-export to TFJS
-2. **Building packages**: Run `bun run build` from root (handles all dependencies via Turborepo)
-3. **Testing changes**: Run any example app with `bun run dev` (models copied automatically)
-4. **Adding features**: Create feature branches, Turborepo caching ensures fast rebuilds
-5. **Working with models**: Predictor packages automatically resolve model paths - no config needed
+1. **New assets**: Add SVGs to `packages/assets/<name>-assets/src/svg/<category>/`, run `bun scripts/generate-assets.ts <name>-assets`
+2. **New theme**: Run `bun scripts/generate-theme.ts <name>-theme`, customize colors and positions
+3. **Building**: `bun run build` from root (Turborepo handles dependencies)
+4. **Testing**: Run storybook apps with `bun run dev` in respective app folder
+5. **Models**: Train in `python/notebooks/`, auto-exported to TFJS format

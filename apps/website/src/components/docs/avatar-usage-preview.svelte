@@ -5,6 +5,8 @@ import micahTheme from '@avatune/micah-theme/svelte'
 import miniavsTheme from '@avatune/miniavs-theme/svelte'
 import nevmstasTheme from '@avatune/nevmstas-theme/svelte'
 import pacovqzzTheme from '@avatune/pacovqzz-theme/svelte'
+import pawelOlekManTheme from '@avatune/pawel-olek-man-theme/svelte'
+import pawelOlekWomanTheme from '@avatune/pawel-olek-woman-theme/svelte'
 import { Avatar } from '@avatune/svelte'
 import yanliuTheme from '@avatune/yanliu-theme/svelte'
 
@@ -15,7 +17,9 @@ const themeMap = {
   micah: micahTheme,
   kyute: kyuteTheme,
   pacovqzz: pacovqzzTheme,
-  fatinVerse: fatinVerseTheme,
+  'fatin-verse': fatinVerseTheme,
+  'pawel-olek-man': pawelOlekManTheme,
+  'pawel-olek-woman': pawelOlekWomanTheme,
 } as const
 
 type AvatarUsageThemeId = keyof typeof themeMap

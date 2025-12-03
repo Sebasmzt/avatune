@@ -68,6 +68,13 @@ export default defineConfig({
             },
             { label: 'Kyute', slug: 'packages/kyute-theme' },
             { label: 'Pacovqzz', slug: 'packages/pacovqzz-theme' },
+            {
+              label: 'Pawel Olek',
+              items: [
+                { label: 'Man', slug: 'packages/pawel-olek-man-theme' },
+                { label: 'Woman', slug: 'packages/pawel-olek-woman-theme' },
+              ],
+            },
           ],
         },
         {
