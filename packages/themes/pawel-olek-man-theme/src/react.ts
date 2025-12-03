@@ -58,20 +58,20 @@ import shared from './shared'
 export default shared
   .toFramework<ReactAvatarItem>()
   .withComponents('ears', {
-    manBig: { Component: EarsManBig },
-    manBiten: { Component: EarsManBiten },
-    manRingEarring: { Component: EarsManRingEarring },
-    manSmall: { Component: EarsManSmall },
-    manStandard: { Component: EarsManStandard },
-    manStudEarrings: { Component: EarsManStudEarrings },
+    big: { Component: EarsManBig },
+    biten: { Component: EarsManBiten },
+    ringEarring: { Component: EarsManRingEarring },
+    small: { Component: EarsManSmall },
+    standard: { Component: EarsManStandard },
+    studEarrings: { Component: EarsManStudEarrings },
   })
   .withComponents('eyes', {
-    manBig: { Component: EyesManBig },
-    manHappy: { Component: EyesManHappy },
-    manSmall: { Component: EyesManSmall },
-    manStandard: { Component: EyesManStandard },
-    manEyelashes: { Component: EyesManEyelashes },
-    manEyelids: { Component: EyesManEyelids },
+    big: { Component: EyesManBig },
+    happy: { Component: EyesManHappy },
+    small: { Component: EyesManSmall },
+    standard: { Component: EyesManStandard },
+    eyelashes: { Component: EyesManEyelashes },
+    eyelids: { Component: EyesManEyelids },
   })
   .withComponents('faceDetails', {
     chinDimple1: { Component: FaceDetailsChinDimple1 },
@@ -80,32 +80,32 @@ export default shared
     chinDimple4: { Component: FaceDetailsChinDimple4 },
   })
   .withComponents('glasses', {
-    manBrow: { Component: GlassesManBrow },
-    manPatch: { Component: GlassesManPatch },
-    manRound: { Component: GlassesManRound },
-    manSquare: { Component: GlassesManSquare },
-    manStylish: { Component: GlassesManStylish },
+    brow: { Component: GlassesManBrow },
+    patch: { Component: GlassesManPatch },
+    round: { Component: GlassesManRound },
+    square: { Component: GlassesManSquare },
+    stylish: { Component: GlassesManStylish },
   })
   .withComponents('hair', {
-    manBald: { Component: HairManBald },
-    manCurly: { Component: HairManCurly },
-    manElvis: { Component: HairManElvis },
-    manMediumTopknot: { Component: HairManMediumTopknot },
-    manMessy: { Component: HairManMessy },
-    manShortTopknot: { Component: HairManShortTopknot },
-    manStylish: { Component: HairManStylish },
+    bald: { Component: HairManBald },
+    curly: { Component: HairManCurly },
+    elvis: { Component: HairManElvis },
+    mediumTopknot: { Component: HairManMediumTopknot },
+    messy: { Component: HairManMessy },
+    shortTopknot: { Component: HairManShortTopknot },
+    stylish: { Component: HairManStylish },
     beanie: { Component: HairBeanie },
   })
   .withComponents('head', {
-    manBeardMustache: { Component: HeadManBeardMustache },
-    manBeardSharp: { Component: HeadManBeardSharp },
-    manBeardSlim: { Component: HeadManBeardSlim },
-    manBeardStandard: { Component: HeadManBeardStandard },
-    manBristle: { Component: HeadManBristle },
-    manBristleMustache: { Component: HeadManBristleMustache },
-    manChin: { Component: HeadManChin },
-    manSharp: { Component: HeadManSharp },
-    manStandard: { Component: HeadManStandard },
+    beardMustache: { Component: HeadManBeardMustache },
+    beardSharp: { Component: HeadManBeardSharp },
+    beardSlim: { Component: HeadManBeardSlim },
+    beardStandard: { Component: HeadManBeardStandard },
+    bristle: { Component: HeadManBristle },
+    bristleMustache: { Component: HeadManBristleMustache },
+    chin: { Component: HeadManChin },
+    sharp: { Component: HeadManSharp },
+    standard: { Component: HeadManStandard },
   })
   .withComponents('mouth', {
     chin: { Component: MouthChin },
@@ -119,10 +119,10 @@ export default shared
     vampire: { Component: MouthVampire },
   })
   .withComponents('noses', {
-    manBig: { Component: NosesManBig },
-    manBigWide: { Component: NosesManBigWide },
-    manSmall: { Component: NosesManSmall },
-    manStandard: { Component: NosesManStandard },
-    manWide: { Component: NosesManWide },
+    big: { Component: NosesManBig },
+    bigWide: { Component: NosesManBigWide },
+    small: { Component: NosesManSmall },
+    standard: { Component: NosesManStandard },
+    wide: { Component: NosesManWide },
   })
   .build()

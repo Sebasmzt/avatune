@@ -41,15 +41,15 @@ import shared from './shared'
 export default shared
   .toFramework<VanillaAvatarItem>()
   .withComponents('ears', {
-    womanDropEarrings: { code: earsWomanDropEarrings },
-    womanSharp: { code: earsWomanSharp },
-    womanStandard: { code: earsWomanStandard },
+    dropEarrings: { code: earsWomanDropEarrings },
+    sharp: { code: earsWomanSharp },
+    standard: { code: earsWomanStandard },
   })
   .withComponents('eyes', {
-    womanBig: { code: eyesWomanBig },
-    womanHappy: { code: eyesWomanHappy },
-    womanSmall: { code: eyesWomanSmall },
-    womanStandard: { code: eyesWomanStandard },
+    big: { code: eyesWomanBig },
+    happy: { code: eyesWomanHappy },
+    small: { code: eyesWomanSmall },
+    standard: { code: eyesWomanStandard },
   })
   .withComponents('faceDetails', {
     chinDimple1: { code: faceDetailsChinDimple1 },
@@ -58,24 +58,22 @@ export default shared
     chinDimple4: { code: faceDetailsChinDimple4 },
   })
   .withComponents('glasses', {
-    womanPatch: { code: glassesWomanPatch },
-    womanRound: { code: glassesWomanRound },
-    womanSquare: { code: glassesWomanSquare },
-    womanStylish: { code: glassesWomanStylish },
+    patch: { code: glassesWomanPatch },
+    round: { code: glassesWomanRound },
+    square: { code: glassesWomanSquare },
+    stylish: { code: glassesWomanStylish },
   })
   .withComponents('hair', {
-    womanBob: { code: hairWomanBob },
-    womanlong: { code: hairWomanlong },
-    womanLowBun: { code: hairWomanLowBun },
-    womanMedium: { code: hairWomanMedium },
-    womanStickBun: { code: hairWomanStickBun },
-  })
-  .withComponents('hats', {
+    bob: { code: hairWomanBob },
+    long: { code: hairWomanlong },
+    lowBun: { code: hairWomanLowBun },
+    medium: { code: hairWomanMedium },
+    stickBun: { code: hairWomanStickBun },
     hijab: { code: hairHijab },
   })
   .withComponents('head', {
-    womanChin: { code: headWomanChin },
-    womanStandard: { code: headWomanStandard },
+    chin: { code: headWomanChin },
+    standard: { code: headWomanStandard },
   })
   .withComponents('mouth', {
     chin: { code: mouthChin },
@@ -89,8 +87,8 @@ export default shared
     vampire: { code: mouthVampire },
   })
   .withComponents('noses', {
-    womanBig: { code: nosesWomanBig },
-    womanSmall: { code: nosesWomanSmall },
-    womanStandard: { code: nosesWomanStandard },
+    big: { code: nosesWomanBig },
+    small: { code: nosesWomanSmall },
+    standard: { code: nosesWomanStandard },
   })
   .build()

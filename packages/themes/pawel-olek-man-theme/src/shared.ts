@@ -34,57 +34,56 @@ export default createTheme<BaseAvatarItem>()
   .addColors('faceDetails', [AccentColors.Primary])
   .addColors('glasses', [AccentColors.Primary])
   .addColors('hair', [HairColors.Black])
-  .addColors('hats', [AccentColors.Primary])
   .addColors('head', [SkinTones.Light, SkinTones.Dark])
   .addColors('mouth', [AccentColors.Primary])
   .addColors('noses', [AccentColors.Primary])
   // Ears
-  .addItem('ears', 'manBig', {
+  .addItem('ears', 'big', {
     position: fromHeadOffset(-percentage('8%'), percentage('30%')),
     layer: Layer.Head,
   })
-  .addItem('ears', 'manBiten', {
+  .addItem('ears', 'biten', {
     position: fromHeadOffset(-percentage('9%'), percentage('31%')),
     layer: Layer.Head,
   })
-  .addItem('ears', 'manRingEarring', {
+  .addItem('ears', 'ringEarring', {
     position: fromHeadOffset(-percentage('8%'), percentage('31%')),
     layer: Layer.Head,
   })
-  .addItem('ears', 'manSmall', {
+  .addItem('ears', 'small', {
     position: fromHeadOffset(-percentage('8%'), percentage('31%')),
     layer: Layer.Head,
   })
-  .addItem('ears', 'manStandard', {
+  .addItem('ears', 'standard', {
     position: fromHeadOffset(-percentage('8%'), percentage('31%')),
     layer: Layer.Head,
   })
-  .addItem('ears', 'manStudEarrings', {
+  .addItem('ears', 'studEarrings', {
     position: fromHeadOffset(-percentage('8%'), percentage('30%')),
     layer: Layer.Head,
   })
   // Eyes
-  .addItem('eyes', 'manBig', {
+  .addItem('eyes', 'big', {
     position: fromHeadOffset(percentage('10%'), percentage('30%')),
     layer: Layer.Eyes,
   })
-  .addItem('eyes', 'manHappy', {
+  .addItem('eyes', 'happy', {
     position: fromHeadOffset(percentage('10%'), percentage('30%')),
     layer: Layer.Eyes,
   })
-  .addItem('eyes', 'manSmall', {
+  .addItem('eyes', 'small', {
     position: fromHeadOffset(percentage('10%'), percentage('30%')),
     layer: Layer.Eyes,
   })
-  .addItem('eyes', 'manStandard', {
+  .addItem('eyes', 'standard', {
     position: fromHeadOffset(percentage('10%'), percentage('30%')),
     layer: Layer.Eyes,
   })
-  .addItem('eyes', 'manEyelashes', {
+  .addItem('eyes', 'eyelashes', {
     position: fromHeadOffset(percentage('8.5%'), percentage('29%')),
     layer: Layer.Eyes,
   })
-  .addItem('eyes', 'manEyelids', {
+  .addItem('eyes', 'eyelids', {
     position: fromHeadOffset(percentage('8.5%'), percentage('30%')),
     layer: Layer.Eyes,
   })
@@ -107,53 +106,53 @@ export default createTheme<BaseAvatarItem>()
   })
   .setOptional('faceDetails')
   // Glasses
-  .addItem('glasses', 'manBrow', {
+  .addItem('glasses', 'brow', {
     position: fromHeadOffset(-percentage('1%'), percentage('25%')),
     layer: Layer.Accessories,
   })
-  .addItem('glasses', 'manPatch', {
+  .addItem('glasses', 'patch', {
     position: fromHeadOffset(-percentage('1%'), percentage('26%')),
     layer: Layer.Accessories,
   })
-  .addItem('glasses', 'manRound', {
+  .addItem('glasses', 'round', {
     position: fromHeadOffset(-percentage('1%'), percentage('27%')),
     layer: Layer.Accessories,
   })
-  .addItem('glasses', 'manSquare', {
+  .addItem('glasses', 'square', {
     position: fromHeadOffset(-percentage('1%'), percentage('27%')),
     layer: Layer.Accessories,
   })
-  .addItem('glasses', 'manStylish', {
+  .addItem('glasses', 'stylish', {
     position: fromHeadOffset(-percentage('1%'), percentage('28%')),
     layer: Layer.Accessories,
   })
   .setOptional('glasses')
   // Hair
-  .addItem('hair', 'manBald', {
+  .addItem('hair', 'bald', {
     position: fromHeadOffset(-percentage('5%'), -percentage('10.5%')),
     layer: Layer.Hair,
   })
-  .addItem('hair', 'manCurly', {
+  .addItem('hair', 'curly', {
     position: fromHeadOffset(-percentage('5%'), -percentage('10%')),
     layer: Layer.Hair,
   })
-  .addItem('hair', 'manElvis', {
+  .addItem('hair', 'elvis', {
     position: fromHeadOffset(-percentage('5%'), -percentage('12%')),
     layer: Layer.Hair,
   })
-  .addItem('hair', 'manMediumTopknot', {
+  .addItem('hair', 'mediumTopknot', {
     position: fromHeadOffset(-percentage('5%'), -percentage('14%')),
     layer: Layer.Hair,
   })
-  .addItem('hair', 'manMessy', {
+  .addItem('hair', 'messy', {
     position: fromHeadOffset(-percentage('5%'), -percentage('14%')),
     layer: Layer.Hair,
   })
-  .addItem('hair', 'manShortTopknot', {
+  .addItem('hair', 'shortTopknot', {
     position: fromHeadOffset(-percentage('5%'), -percentage('11%')),
     layer: Layer.Hair,
   })
-  .addItem('hair', 'manStylish', {
+  .addItem('hair', 'stylish', {
     position: fromHeadOffset(-percentage('5%'), -percentage('14%')),
     layer: Layer.Hair,
   })
@@ -162,39 +161,39 @@ export default createTheme<BaseAvatarItem>()
     layer: Layer.Accessories,
   })
   // Head
-  .addItem('head', 'manBeardMustache', {
+  .addItem('head', 'beardMustache', {
     position: fromHeadOffset(-percentage('1%'), percentage('0%')),
     layer: Layer.Head,
   })
-  .addItem('head', 'manBeardSharp', {
+  .addItem('head', 'beardSharp', {
     position: fromHeadOffset(percentage('0%'), percentage('0%')),
     layer: Layer.Head,
   })
-  .addItem('head', 'manBeardSlim', {
+  .addItem('head', 'beardSlim', {
     position: fromHeadOffset(percentage('0%'), percentage('0%')),
     layer: Layer.Head,
   })
-  .addItem('head', 'manBeardStandard', {
+  .addItem('head', 'beardStandard', {
     position: fromHeadOffset(percentage('0%'), percentage('0%')),
     layer: Layer.Head,
   })
-  .addItem('head', 'manBristle', {
+  .addItem('head', 'bristle', {
     position: fromHeadOffset(percentage('0%'), percentage('0%')),
     layer: Layer.Head,
   })
-  .addItem('head', 'manBristleMustache', {
+  .addItem('head', 'bristleMustache', {
     position: fromHeadOffset(percentage('0%'), percentage('0%')),
     layer: Layer.Head,
   })
-  .addItem('head', 'manChin', {
+  .addItem('head', 'chin', {
     position: fromHeadOffset(percentage('0%'), percentage('0%')),
     layer: Layer.Head,
   })
-  .addItem('head', 'manSharp', {
+  .addItem('head', 'sharp', {
     position: fromHeadOffset(percentage('0%'), percentage('2%')),
     layer: Layer.Head,
   })
-  .addItem('head', 'manStandard', {
+  .addItem('head', 'standard', {
     position: fromHeadOffset(percentage('0%'), percentage('0%')),
     layer: Layer.Head,
   })
@@ -236,23 +235,23 @@ export default createTheme<BaseAvatarItem>()
     layer: Layer.Mouth,
   })
   // Noses
-  .addItem('noses', 'manBig', {
+  .addItem('noses', 'big', {
     position: fromHeadOffset(percentage('19%'), percentage('33%')),
     layer: Layer.Mouth,
   })
-  .addItem('noses', 'manBigWide', {
+  .addItem('noses', 'bigWide', {
     position: fromHeadOffset(percentage('19%'), percentage('33%')),
     layer: Layer.Mouth,
   })
-  .addItem('noses', 'manSmall', {
+  .addItem('noses', 'small', {
     position: fromHeadOffset(percentage('19%'), percentage('33%')),
     layer: Layer.Mouth,
   })
-  .addItem('noses', 'manStandard', {
+  .addItem('noses', 'standard', {
     position: fromHeadOffset(percentage('20%'), percentage('33%')),
     layer: Layer.Mouth,
   })
-  .addItem('noses', 'manWide', {
+  .addItem('noses', 'wide', {
     position: fromHeadOffset(percentage('18.5%'), percentage('33%')),
     layer: Layer.Mouth,
   })

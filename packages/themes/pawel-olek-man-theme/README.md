@@ -88,7 +88,7 @@ You can override specific avatar parts:
 <Avatar
   theme={theme}
   size={300}
-  hair="manBald"          // Choose specific hair style
+  hair="bald"          // Choose specific hair style
   hairColor="#FF5733"    // Custom hair color
   body="sweaterVest"     // Choose specific clothing
   bodyColor="#3498DB"    // Custom clothing color

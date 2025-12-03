@@ -58,20 +58,20 @@ import shared from './shared'
 export default shared
   .toFramework<VanillaAvatarItem>()
   .withComponents('ears', {
-    manBig: { code: earsManBig },
-    manBiten: { code: earsManBiten },
-    manRingEarring: { code: earsManRingEarring },
-    manSmall: { code: earsManSmall },
-    manStandard: { code: earsManStandard },
-    manStudEarrings: { code: earsManStudEarrings },
+    big: { code: earsManBig },
+    biten: { code: earsManBiten },
+    ringEarring: { code: earsManRingEarring },
+    small: { code: earsManSmall },
+    standard: { code: earsManStandard },
+    studEarrings: { code: earsManStudEarrings },
   })
   .withComponents('eyes', {
-    manBig: { code: eyesManBig },
-    manHappy: { code: eyesManHappy },
-    manSmall: { code: eyesManSmall },
-    manStandard: { code: eyesManStandard },
-    manEyelashes: { code: eyesManEyelashes },
-    manEyelids: { code: eyesManEyelids },
+    big: { code: eyesManBig },
+    happy: { code: eyesManHappy },
+    small: { code: eyesManSmall },
+    standard: { code: eyesManStandard },
+    eyelashes: { code: eyesManEyelashes },
+    eyelids: { code: eyesManEyelids },
   })
   .withComponents('faceDetails', {
     chinDimple1: { code: faceDetailsChinDimple1 },
@@ -80,32 +80,32 @@ export default shared
     chinDimple4: { code: faceDetailsChinDimple4 },
   })
   .withComponents('glasses', {
-    manBrow: { code: glassesManBrow },
-    manPatch: { code: glassesManPatch },
-    manRound: { code: glassesManRound },
-    manSquare: { code: glassesManSquare },
-    manStylish: { code: glassesManStylish },
+    brow: { code: glassesManBrow },
+    patch: { code: glassesManPatch },
+    round: { code: glassesManRound },
+    square: { code: glassesManSquare },
+    stylish: { code: glassesManStylish },
   })
   .withComponents('hair', {
-    manBald: { code: hairManBald },
-    manCurly: { code: hairManCurly },
-    manElvis: { code: hairManElvis },
-    manMediumTopknot: { code: hairManMediumTopknot },
-    manMessy: { code: hairManMessy },
-    manShortTopknot: { code: hairManShortTopknot },
-    manStylish: { code: hairManStylish },
+    bald: { code: hairManBald },
+    curly: { code: hairManCurly },
+    elvis: { code: hairManElvis },
+    mediumTopknot: { code: hairManMediumTopknot },
+    messy: { code: hairManMessy },
+    shortTopknot: { code: hairManShortTopknot },
+    stylish: { code: hairManStylish },
     beanie: { code: hairBeanie },
   })
   .withComponents('head', {
-    manBeardMustache: { code: headManBeardMustache },
-    manBeardSharp: { code: headManBeardSharp },
-    manBeardSlim: { code: headManBeardSlim },
-    manBeardStandard: { code: headManBeardStandard },
-    manBristle: { code: headManBristle },
-    manBristleMustache: { code: headManBristleMustache },
-    manChin: { code: headManChin },
-    manSharp: { code: headManSharp },
-    manStandard: { code: headManStandard },
+    beardMustache: { code: headManBeardMustache },
+    beardSharp: { code: headManBeardSharp },
+    beardSlim: { code: headManBeardSlim },
+    beardStandard: { code: headManBeardStandard },
+    bristle: { code: headManBristle },
+    bristleMustache: { code: headManBristleMustache },
+    chin: { code: headManChin },
+    sharp: { code: headManSharp },
+    standard: { code: headManStandard },
   })
   .withComponents('mouth', {
     chin: { code: mouthChin },
@@ -119,10 +119,10 @@ export default shared
     vampire: { code: mouthVampire },
   })
   .withComponents('noses', {
-    manBig: { code: nosesManBig },
-    manBigWide: { code: nosesManBigWide },
-    manSmall: { code: nosesManSmall },
-    manStandard: { code: nosesManStandard },
-    manWide: { code: nosesManWide },
+    big: { code: nosesManBig },
+    bigWide: { code: nosesManBigWide },
+    small: { code: nosesManSmall },
+    standard: { code: nosesManStandard },
+    wide: { code: nosesManWide },
   })
   .build()

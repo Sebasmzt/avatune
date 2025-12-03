@@ -41,15 +41,15 @@ import shared from './shared'
 export default shared
   .toFramework<ReactNativeAvatarItem>()
   .withComponents('ears', {
-    womanDropEarrings: { Component: EarsWomanDropEarrings },
-    womanSharp: { Component: EarsWomanSharp },
-    womanStandard: { Component: EarsWomanStandard },
+    dropEarrings: { Component: EarsWomanDropEarrings },
+    sharp: { Component: EarsWomanSharp },
+    standard: { Component: EarsWomanStandard },
   })
   .withComponents('eyes', {
-    womanBig: { Component: EyesWomanBig },
-    womanHappy: { Component: EyesWomanHappy },
-    womanSmall: { Component: EyesWomanSmall },
-    womanStandard: { Component: EyesWomanStandard },
+    big: { Component: EyesWomanBig },
+    happy: { Component: EyesWomanHappy },
+    small: { Component: EyesWomanSmall },
+    standard: { Component: EyesWomanStandard },
   })
   .withComponents('faceDetails', {
     chinDimple1: { Component: FaceDetailsChinDimple1 },
@@ -58,22 +58,22 @@ export default shared
     chinDimple4: { Component: FaceDetailsChinDimple4 },
   })
   .withComponents('glasses', {
-    womanPatch: { Component: GlassesWomanPatch },
-    womanRound: { Component: GlassesWomanRound },
-    womanSquare: { Component: GlassesWomanSquare },
-    womanStylish: { Component: GlassesWomanStylish },
+    patch: { Component: GlassesWomanPatch },
+    round: { Component: GlassesWomanRound },
+    square: { Component: GlassesWomanSquare },
+    stylish: { Component: GlassesWomanStylish },
   })
   .withComponents('hair', {
-    womanBob: { Component: HairWomanBob },
-    womanlong: { Component: HairWomanlong },
-    womanLowBun: { Component: HairWomanLowBun },
-    womanMedium: { Component: HairWomanMedium },
-    womanStickBun: { Component: HairWomanStickBun },
+    bob: { Component: HairWomanBob },
+    long: { Component: HairWomanlong },
+    lowBun: { Component: HairWomanLowBun },
+    medium: { Component: HairWomanMedium },
+    stickBun: { Component: HairWomanStickBun },
     hijab: { Component: HairHijab },
   })
   .withComponents('head', {
-    womanChin: { Component: HeadWomanChin },
-    womanStandard: { Component: HeadWomanStandard },
+    chin: { Component: HeadWomanChin },
+    standard: { Component: HeadWomanStandard },
   })
   .withComponents('mouth', {
     chin: { Component: MouthChin },
@@ -87,8 +87,8 @@ export default shared
     vampire: { Component: MouthVampire },
   })
   .withComponents('noses', {
-    womanBig: { Component: NosesWomanBig },
-    womanSmall: { Component: NosesWomanSmall },
-    womanStandard: { Component: NosesWomanStandard },
+    big: { Component: NosesWomanBig },
+    small: { Component: NosesWomanSmall },
+    standard: { Component: NosesWomanStandard },
   })
   .build()

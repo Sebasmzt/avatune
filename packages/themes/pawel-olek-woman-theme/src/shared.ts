@@ -38,32 +38,32 @@ export default createTheme<BaseAvatarItem>()
   .addColors('mouth', [AccentColors.Primary])
   .addColors('noses', [AccentColors.Primary])
   // Ears
-  .addItem('ears', 'womanDropEarrings', {
+  .addItem('ears', 'dropEarrings', {
     position: fromHeadOffset(-percentage('9%'), percentage('27%')),
     layer: Layer.Eyes,
   })
-  .addItem('ears', 'womanSharp', {
+  .addItem('ears', 'sharp', {
     position: fromHeadOffset(-percentage('9%'), percentage('27%')),
     layer: Layer.Eyes,
   })
-  .addItem('ears', 'womanStandard', {
+  .addItem('ears', 'standard', {
     position: fromHeadOffset(-percentage('9%'), percentage('27%')),
     layer: Layer.Eyes,
   })
   // Eyes
-  .addItem('eyes', 'womanBig', {
+  .addItem('eyes', 'big', {
     position: fromHeadOffset(percentage('9%'), percentage('27%')),
     layer: Layer.Eyes,
   })
-  .addItem('eyes', 'womanHappy', {
+  .addItem('eyes', 'happy', {
     position: fromHeadOffset(percentage('9%'), percentage('27%')),
     layer: Layer.Eyes,
   })
-  .addItem('eyes', 'womanSmall', {
+  .addItem('eyes', 'small', {
     position: fromHeadOffset(percentage('9%'), percentage('27%')),
     layer: Layer.Eyes,
   })
-  .addItem('eyes', 'womanStandard', {
+  .addItem('eyes', 'standard', {
     position: fromHeadOffset(percentage('9%'), percentage('27%')),
     layer: Layer.Eyes,
   })
@@ -85,40 +85,40 @@ export default createTheme<BaseAvatarItem>()
     layer: Layer.Eyes,
   })
   // Glasses
-  .addItem('glasses', 'womanPatch', {
+  .addItem('glasses', 'patch', {
     position: fromHeadOffset(percentage('0%'), percentage('25%')),
     layer: Layer.Accessories,
   })
-  .addItem('glasses', 'womanRound', {
+  .addItem('glasses', 'round', {
     position: fromHeadOffset(-percentage('1.25%'), percentage('25%')),
     layer: Layer.Accessories,
   })
-  .addItem('glasses', 'womanSquare', {
+  .addItem('glasses', 'square', {
     position: fromHeadOffset(-percentage('1.25%'), percentage('25%')),
     layer: Layer.Accessories,
   })
-  .addItem('glasses', 'womanStylish', {
+  .addItem('glasses', 'stylish', {
     position: fromHeadOffset(-percentage('1.25%'), percentage('25%')),
     layer: Layer.Accessories,
   })
   // Hair
-  .addItem('hair', 'womanBob', {
+  .addItem('hair', 'bob', {
     position: fromHeadOffset(-percentage('6%'), -percentage('14%')),
     layer: Layer.Hair,
   })
-  .addItem('hair', 'womanlong', {
+  .addItem('hair', 'long', {
     position: fromHeadOffset(-percentage('10%'), -percentage('14%')),
     layer: Layer.Eyes,
   })
-  .addItem('hair', 'womanLowBun', {
+  .addItem('hair', 'lowBun', {
     position: fromHeadOffset(-percentage('6%'), -percentage('14%')),
     layer: Layer.Hair,
   })
-  .addItem('hair', 'womanMedium', {
+  .addItem('hair', 'medium', {
     position: fromHeadOffset(-percentage('10%'), -percentage('14%')),
     layer: Layer.Hair,
   })
-  .addItem('hair', 'womanStickBun', {
+  .addItem('hair', 'stickBun', {
     position: fromHeadOffset(-percentage('6%'), -percentage('14%')),
     layer: Layer.Hair,
   })
@@ -127,11 +127,11 @@ export default createTheme<BaseAvatarItem>()
     layer: Layer.Accessories,
   })
   // Head
-  .addItem('head', 'womanChin', {
+  .addItem('head', 'chin', {
     position: fromHeadOffset(percentage('0%'), percentage('0%')),
     layer: Layer.Head,
   })
-  .addItem('head', 'womanStandard', {
+  .addItem('head', 'standard', {
     position: fromHeadOffset(percentage('0%'), percentage('0%')),
     layer: Layer.Head,
   })
@@ -173,15 +173,15 @@ export default createTheme<BaseAvatarItem>()
     layer: Layer.Mouth,
   })
   // Noses
-  .addItem('noses', 'womanBig', {
+  .addItem('noses', 'big', {
     position: fromHeadOffset(percentage('20%'), percentage('31%')),
     layer: Layer.Mouth,
   })
-  .addItem('noses', 'womanSmall', {
+  .addItem('noses', 'small', {
     position: fromHeadOffset(percentage('20%'), percentage('31%')),
     layer: Layer.Mouth,
   })
-  .addItem('noses', 'womanStandard', {
+  .addItem('noses', 'standard', {
     position: fromHeadOffset(percentage('20%'), percentage('31%')),
     layer: Layer.Mouth,
   })

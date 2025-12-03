@@ -83,7 +83,7 @@ onDestroy(() => {
 </script>
 
 <span
-  class="inline-block font-bold text-pink-400 w-30"
+  class="inline-block font-bold text-pink-400 w-32"
   bind:this={counterElement}
   aria-live="polite"
 >

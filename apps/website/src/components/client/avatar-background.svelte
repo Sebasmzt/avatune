@@ -5,6 +5,7 @@ import micahTheme from '@avatune/micah-theme/svelte'
 import miniavsTheme from '@avatune/miniavs-theme/svelte'
 import nevmstasTheme from '@avatune/nevmstas-theme/svelte'
 import pacovqzzTheme from '@avatune/pacovqzz-theme/svelte'
+import pawelOlekManTheme from '@avatune/pawel-olek-man-theme/svelte'
 import { Avatar } from '@avatune/svelte'
 import yanliuTheme from '@avatune/yanliu-theme/svelte'
 import { onMount } from 'svelte'
@@ -18,6 +19,7 @@ const themes = [
   kyuteTheme,
   pacovqzzTheme,
   fatinVerseTheme,
+  pawelOlekManTheme,
 ]
 
 const AVATAR_COUNT = 20
