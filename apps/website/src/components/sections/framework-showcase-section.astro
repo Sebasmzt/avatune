@@ -1,18 +1,15 @@
 ---
-import { getFrameworkShowcaseEntries } from '../../lib/framework-showcase'
-import FrameworkShowcaseTabs from '../client/framework-showcase-tabs.svelte'
-
-const frameworkEntries = await getFrameworkShowcaseEntries()
+import CreateAvatarTabs from '../client/create-avatar-tabs.svelte'
 ---
 
 <section class="mx-auto max-w-6xl rounded-3xl border border-white/10 bg-linear-to-br from-slate-900/80 to-slate-950/80 shadow-2xl shadow-pink-500/5">
-  <div class="p-4 sm:p-7 lg:p-10"
-    <p class="text-sm font-semibold uppercase tracking-[0.3em] text-pink-200">Start building</p>
-    <h2 class="mt-4 text-3xl font-semibold text-white">Choose your stack</h2>
+  <div class="p-4 sm:p-7 lg:p-10">
+    <p class="text-sm font-semibold uppercase tracking-[0.3em] text-pink-200">Create your own</p>
+    <h2 class="mt-4 text-3xl font-semibold text-white">Build your avatar</h2>
     <p class="mt-3 text-slate-300">
-        Each framework kit mirrors the same API surface so switching stacks never means relearning Avatune.
+        Pick a theme, customize each feature, and get the code for your favorite framework.
     </p>
 
-    <FrameworkShowcaseTabs client:only entries={frameworkEntries} />
+    <CreateAvatarTabs client:only="svelte" />
   </div>
 </section>
