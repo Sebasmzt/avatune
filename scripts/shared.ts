@@ -188,7 +188,10 @@ export function discoverThemes(
 
   return themePackages.map((pkg) => {
     const name = pkg.replace('-theme', '')
-    const assetsName = `${name}-assets`
+    // Special case for pawel-olek-man-theme and pawel-olek-woman-theme
+    const assetsName = name.includes('pawel-olek')
+      ? 'pawel-olek-assets'
+      : `${name}-assets`
     const themeDir = join(packagesDir, 'themes', pkg)
     const assetsDir = join(packagesDir, 'assets', assetsName)
 

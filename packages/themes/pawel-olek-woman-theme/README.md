@@ -97,17 +97,26 @@ You can override specific avatar parts:
 
 ## Design Assets
 
-This theme uses assets from the [`@avatune/pawel-olek-woman-assets`](https://github.com/avatune/avatune/tree/main/packages/assets/pawel-olek-woman-assets) package.
+This theme uses assets from the [`@avatune/pawel-olek-assets`](https://github.com/avatune/avatune/tree/main/packages/assets/pawel-olek-assets) package.
 
 ## License
 
 This theme package is licensed under MIT (see [LICENSE.md](https://github.com/avatune/avatune/blob/main/LICENSE.md)).
 
-The design assets used in this theme are separately licensed. See the asset package for details.
+The design assets used in this theme have their own license and attribution:
+
+This project uses avatar design assets licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
+
+Original designs by [Pawel Olek](https://www.figma.com/community/file/1363068598093339895).
+Modifications were made to adapt them for composable SVG avatars.
+
+For full details, see:
+- [CREDITS.md](https://github.com/avatune/avatune/blob/main/packages/assets/pawel-olek-assets/CREDITS.md) - Asset attribution
+- Asset package license in [`@avatune/pawel-olek-assets`](https://github.com/avatune/avatune/tree/main/packages/assets/pawel-olek-assets)
 
 ## Related Packages
 
-- [`@avatune/pawel-olek-woman-assets`](https://github.com/avatune/avatune/tree/main/packages/assets/pawel-olek-woman-assets) - SVG assets used by this theme
+- [`@avatune/pawel-olek-assets`](https://github.com/avatune/avatune/tree/main/packages/assets/pawel-olek-assets) - SVG assets used by this theme
 - [`@avatune/react`](https://github.com/avatune/avatune/tree/main/packages/renderers/react) - React avatar renderer
 - [`@avatune/vue`](https://github.com/avatune/avatune/tree/main/packages/renderers/vue) - Vue avatar renderer
 - [`@avatune/svelte`](https://github.com/avatune/avatune/tree/main/packages/renderers/svelte) - Svelte avatar renderer
