@@ -1,185 +1,181 @@
 <script lang="ts">
-import micahTheme from '@avatune/micah-theme/svelte'
-import miniavsTheme from '@avatune/miniavs-theme/svelte'
-import pacovqzzTheme from '@avatune/pacovqzz-theme/svelte'
+import kyuteTheme from '@avatune/kyute-theme/svelte'
 import { Avatar } from '@avatune/svelte'
 import type { Predictions } from '@avatune/types'
-import { onDestroy, onMount } from 'svelte'
-import photo1 from '../../assets/prediction-1.jpg'
-import photo2 from '../../assets/prediction-2.jpg'
-import photo3 from '../../assets/prediction-3.jpg'
+import photo1 from '../../assets/prediction-2.jpg'
 
-const examplePhotoNote =
-  'Upload a centered, front-facing portrait shot, shoulders visible, neutral background, soft daylight, and no dramatic shadows.'
+type ThemeType = typeof kyuteTheme
 
-const photos = [photo1, photo2, photo3]
+const predictions: Predictions = {
+  skinTone: 'medium',
+  hairLength: 'medium',
+  hairColor: 'brown',
+}
 
-const themes = [micahTheme, pacovqzzTheme, miniavsTheme]
-
-const mockPredictions: Predictions[] = [
-  { hairLength: 'long', hairColor: 'blond', skinTone: 'light' },
-  { hairLength: 'short', hairColor: 'black', skinTone: 'medium' },
-  { hairLength: 'short', hairColor: 'black', skinTone: 'dark' },
+const steps = [
+  {
+    id: 'skinTone',
+    label: 'Detect Skin Tone',
+    prediction: predictions.skinTone,
+  },
+  {
+    id: 'hairLength',
+    label: 'Detect Hair Length',
+    prediction: predictions.hairLength,
+  },
+  {
+    id: 'hairColor',
+    label: 'Detect Hair Color',
+    prediction: predictions.hairColor,
+  },
+  { id: 'combine', label: 'Mix it up', prediction: 'avatar' },
 ]
 
-const PHOTO_COUNT = 3
-const STAGE_COUNT = 3
-const STAGE_DURATION = 4000
-
-let photoIndex = $state(0)
-let stageIndex = $state(0)
-let animationKey = $state(0)
-let avatarSize = $state(200)
-let intervalId: ReturnType<typeof setInterval> | null = null
-
-const currentPhoto = $derived(photos[photoIndex])
-const predictions = $derived(mockPredictions[photoIndex])
-const currentTheme = $derived(themes[photoIndex % themes.length])
-
-const advanceStage = () => {
-  stageIndex = stageIndex + 1
-  animationKey += 1
-
-  if (stageIndex >= STAGE_COUNT) {
-    stageIndex = 0
-    photoIndex = (photoIndex + 1) % PHOTO_COUNT
-  }
+function getHeadComponent(
+  theme: ThemeType,
+): typeof kyuteTheme.head.standard.Component | null {
+  const headCategory = theme.head as Record<
+    string,
+    { Component: typeof kyuteTheme.head.standard.Component }
+  >
+  const firstKey = Object.keys(headCategory)[0]
+  return firstKey ? (headCategory[firstKey]?.Component ?? null) : null
 }
 
-const startCycle = () => {
-  stopCycle()
-  intervalId = setInterval(advanceStage, STAGE_DURATION)
+function getHairComponent(
+  theme: ThemeType,
+  item: string,
+): typeof kyuteTheme.hair.bob.Component | null {
+  const hairCategory = theme.hair as Record<
+    string,
+    { Component: typeof kyuteTheme.hair.bob.Component }
+  >
+  return hairCategory?.[item]?.Component ?? null
 }
 
-const stopCycle = () => {
-  if (!intervalId) return
-  clearInterval(intervalId)
-  intervalId = null
+function getSkinToneColors(theme: ThemeType): string[] {
+  const skinToneMap = theme.predictorMappings?.skinTone
+  if (!skinToneMap || !predictions.skinTone) return []
+  return skinToneMap[predictions.skinTone] ?? []
 }
 
-const getStageLabel = () => {
-  const labels = [
-    `HAIR LENGTH: ${predictions.hairLength}`,
-    `HAIR COLOR: ${predictions.hairColor}`,
-    `SKIN TONE: ${predictions.skinTone}`,
-  ]
-  return labels[stageIndex] ?? labels[0]
+function getHairItems(theme: ThemeType): string[] {
+  const hairMap = theme.predictorMappings?.hair
+  if (!hairMap || !predictions.hairLength) return []
+  return hairMap[predictions.hairLength] ?? []
 }
 
-const updateAvatarSize = () => {
-  if (typeof window === 'undefined') return
-  avatarSize = window.innerWidth <= 640 ? 160 : 200
+function getHairColors(theme: ThemeType): string[] {
+  const colorMap = theme.predictorMappings?.hairColor
+  if (!colorMap || !predictions.hairColor) return []
+  return colorMap[predictions.hairColor] ?? []
 }
 
-onMount(() => {
-  updateAvatarSize()
-  window.addEventListener('resize', updateAvatarSize)
-  startCycle()
-})
-
-onDestroy(() => {
-  stopCycle()
-  window.removeEventListener('resize', updateAvatarSize)
-})
+const HeadComponent = getHeadComponent(kyuteTheme)
+const skinToneColors = getSkinToneColors(kyuteTheme)
+const hairItems = getHairItems(kyuteTheme)
+const hairColors = getHairColors(kyuteTheme)
 </script>
 
-<section class="space-y-4 sm:space-y-8 rounded-3xl border border-white/10 bg-slate-950/80 text-center shadow-xl shadow-pink-500/5 sm:p-12">
-  <p class="text-xs font-semibold uppercase tracking-[0.35em] text-pink-200/80">Prediction Flow</p>
-  <h3 class="text-3xl font-semibold text-white sm:text-4xl">Photo in, avatar out.</h3>
-  <p class="mx-auto hidden max-w-3xl text-base text-slate-300 sm:block">
-    Drop a single portrait into <span class="font-semibold text-white">createHairLengthPredictor</span>, <span class="font-semibold text-white">createHairColorPredictor</span>, and
-    <span class="font-semibold text-white">createSkinTonePredictor</span>. Pipe those results into the Avatar component and render an instant preview.
-  </p>
+<section class="rounded-2xl border border-white/10 bg-slate-950/80 p-4 shadow-xl shadow-pink-500/5 sm:p-6">
+  <div class="mb-4 text-center">
+    <p class="text-xs font-semibold uppercase tracking-[0.3em] text-pink-200/80">Prediction Flow</p>
+    <h3 class="mt-1 text-xl font-semibold text-white sm:text-2xl">Or try out experimental</h3>
+  </div>
 
-  <div class="grid gap-6 lg:grid-cols-3">
-    <div class="rounded-3xl border border-dashed border-white/30 bg-slate-900/70 p-6 text-center">
-      <p class="text-xs font-semibold uppercase tracking-[0.35em] text-slate-400">Upload photo</p>
-      <div class="mt-4 h-64 overflow-hidden rounded-2xl border border-dashed border-white/20 bg-slate-950/70 sm:h-92">
-        {#key photoIndex}
+  <div class="grid items-center gap-3 lg:grid-cols-[180px_auto_1fr_auto_120px]">
+    <!-- Photo -->
+    <div class="flex flex-col items-center justify-center rounded-xl border border-dashed border-white/20 bg-slate-900/50 p-3">
+      <p class="mb-2 text-[10px] font-semibold uppercase tracking-[0.2em] text-slate-500">Input</p>
+      <div class="h-32 w-32 overflow-hidden rounded-lg">
         <img
-          class="fade-in block h-full w-full object-cover"
-          src={currentPhoto.src}
-          alt={examplePhotoNote}
+          class="h-full w-full object-cover"
+          src={photo1.src}
+          alt="Portrait for prediction"
           loading="lazy"
-          width={currentPhoto.width}
-          height={currentPhoto.height}
+          width={photo1.width}
+          height={photo1.height}
         />
-        {/key}
       </div>
     </div>
 
-    <div class="flex flex-col items-center justify-center rounded-3xl border border-white/10 bg-white/5 p-6 text-center">
-      <p class="text-xs font-semibold uppercase tracking-[0.35em] text-slate-400">Predictors</p>
-      <div class="relative mt-8 w-full max-w-xs">
-        <div class="relative h-2 w-full overflow-hidden rounded-full bg-white/10">
-          <div class="absolute inset-0 bg-[linear-gradient(90deg,rgba(236,72,153,0.4),rgba(14,165,233,0.2))] opacity-30"></div>
-        </div>
-        {#key animationKey}
-          <div
-            class="pipeline-payload absolute -top-[22px] left-1/2 inline-flex items-center gap-2 rounded-full border border-white/20 bg-slate-900/90 px-4 py-1 text-white shadow-[0_10px_25px_rgba(15,23,42,0.45)] whitespace-nowrap"
-            aria-live="polite"
-          >
-            <span class="inline-flex h-3 w-3 rounded-full bg-[linear-gradient(135deg,#f472b6,#c084fc)]" aria-hidden="true"></span>
-            <span class="text-[0.65rem] font-bold uppercase tracking-[0.2em]">{getStageLabel()}</span>
+    <!-- Connector line: Input -> Steps -->
+    <div class="hidden items-center lg:flex">
+      <div class="h-px w-10 bg-pink-500/50"></div>
+    </div>
+
+    <!-- Steps -->
+    <div class="space-y-2">
+      {#each steps as step, index}
+        <div class="flex items-center gap-3 rounded-lg border border-white/10 bg-slate-900/30 px-3 py-2">
+          <!-- Step number -->
+          <div class="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-pink-500/20 text-[10px] font-bold text-pink-200">
+            {index + 1}
           </div>
-        {/key}
-      </div>
-      <p class="mt-8 hidden text-sm text-slate-300 sm:block">
-        Structured data streams left to right, triggered by a single upload. No extra UI—just clean automation feeding the avatar layer.
-      </p>
+
+          <!-- Step label -->
+          <div class="min-w-[120px]">
+            <p class="text-xs font-medium text-slate-300">{step.label}</p>
+            <p class="text-[10px] text-slate-500">
+              {#if step.id === 'combine'}
+                Generate
+              {:else}
+                <span class="text-white">{step.prediction}</span>
+              {/if}
+            </p>
+          </div>
+
+          <!-- Asset previews -->
+          <div class="flex flex-1 items-center justify-end gap-1.5">
+            {#if step.id === 'skinTone'}
+              {#each skinToneColors.slice(0, 3) as color}
+                {#if HeadComponent}
+                  <div class="flex h-10 w-10 items-center justify-center overflow-hidden rounded-lg bg-slate-800/80">
+                      <HeadComponent color={color} />
+                  </div>
+                {/if}
+              {/each}
+            {:else if step.id === 'hairLength'}
+              {#each hairItems.slice(0, 3) as item}
+                {@const HairComponent = getHairComponent(kyuteTheme, item)}
+                {#if HairComponent}
+                  <div class="flex h-10 w-10 items-center justify-center overflow-hidden rounded-lg bg-slate-800/80">
+                      <HairComponent color="#8B7355" />
+                  </div>
+                {/if}
+              {/each}
+            {:else if step.id === 'hairColor'}
+              {#each hairColors.slice(0, 3) as color}
+                {@const firstHair = hairItems[0]}
+                {@const HairComponent = firstHair ? getHairComponent(kyuteTheme, firstHair) : null}
+                {#if HairComponent}
+                  <div class="flex h-10 w-10 items-center justify-center overflow-hidden rounded-lg bg-slate-800/80">
+                      <HairComponent color={color} />
+                  </div>
+                {/if}
+              {/each}
+            {:else if step.id === 'combine'}
+              <div class="flex h-10 w-10 items-center justify-center overflow-hidden rounded-full bg-slate-800/80">
+                <Avatar theme={kyuteTheme} size={40} predictions={predictions} />
+              </div>
+            {/if}
+          </div>
+        </div>
+      {/each}
     </div>
 
-    <div class="rounded-3xl border border-white/10 bg-white/5 p-6 text-center">
-      <p class="text-xs font-semibold uppercase tracking-[0.35em] text-slate-400">Avatar</p>
-      <div class="relative mx-auto mt-2 sm:mt-6 flex h-42 w-48 items-center justify-center rounded-full bg-linear-to-br from-pink-500/10 to-slate-900/80 sm:h-64 sm:w-64">
-        {#key photoIndex}
-        <div class="fade-in flex items-center justify-center">
-          <Avatar theme={currentTheme} size={avatarSize} predictions={predictions} />
-        </div>
-        {/key}
-      </div>
-      <p class="mt-6 hidden text-sm text-slate-300 sm:block">
-        Predictions applied: {predictions.hairLength} hair, {predictions.hairColor} color, {predictions.skinTone} skin tone.
+    <!-- Connector line: Steps -> Result -->
+    <div class="hidden items-center lg:flex">
+      <div class="h-px w-10 bg-pink-500/50"></div>
+    </div>
+
+    <!-- Result -->
+    <div class="flex flex-col items-center justify-center rounded-xl border border-white/10 bg-slate-900/30 p-3">
+      <p class="mb-2 text-[10px] font-semibold uppercase tracking-[0.2em] text-slate-500">Result</p>
+      <Avatar theme={kyuteTheme} size={80} predictions={predictions} />
+      <p class="mt-2 text-center text-[10px] text-slate-500">
+        {predictions.hairLength}, {predictions.hairColor}, {predictions.skinTone}
       </p>
     </div>
   </div>
 </section>
-<style>
-  @keyframes travelCycle {
-    0% {
-      transform: translateX(-150%) scale(0);
-      opacity: 0;
-    }
-    15% {
-      transform: translateX(-50%) scale(1);
-      opacity: 1;
-    }
-    85% {
-      transform: translateX(-50%) scale(1);
-      opacity: 1;
-    }
-    100% {
-      transform: translateX(50%) scale(0);
-      opacity: 0;
-    }
-  }
-
-  @keyframes fadeIn {
-    0% {
-      opacity: 0;
-      transform: scale(0.95);
-    }
-    100% {
-      opacity: 1;
-      transform: scale(1);
-    }
-  }
-
-  .pipeline-payload {
-    animation: travelCycle 4s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  .fade-in {
-    animation: fadeIn 0.6s ease-out;
-  }
-</style>
