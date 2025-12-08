@@ -16,6 +16,9 @@
     "@avatune/svelte-storybook",
     "@avatune/vanilla-storybook",
     "@avatune/vue-storybook",
-    "@avatune/website"
+    "@avatune/website",
+    "@avatune/nextjs-example",
+    "@avatune/nuxt-example",
+    "@avatune/sveltekit-example"
   ]
 }

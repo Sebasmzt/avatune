@@ -1,5 +1,5 @@
 {
-  "name": "nuxt-example",
+  "name": "@avatune/nuxt-example",
   "type": "module",
   "private": true,
   "scripts": {
