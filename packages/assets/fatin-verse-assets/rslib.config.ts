@@ -22,7 +22,14 @@ export default defineConfig({
     },
   ],
   output: {
-    minify: true,
+    minify: {
+      js: true,
+      jsOptions: {
+        minimizerOptions: {
+          mangle: false,
+        },
+      },
+    },
   },
   source: {
     entry: {
