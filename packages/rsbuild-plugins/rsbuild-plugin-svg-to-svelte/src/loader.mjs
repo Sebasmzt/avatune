@@ -22,9 +22,15 @@ const applyReplacements = (svg, replacements = {}) => {
   return result
 }
 
-const transformSvg = callbackify(async (contents, options = {}, state = {}) => {
+/**
+ * Transform SVG to Svelte component source (not compiled)
+ */
+export const transformSvgToSvelteSource = (
+  contents,
+  options = {},
+  resourcePath = '',
+) => {
   let svg = String(contents)
-  const resourcePath = state.filePath || state.filename || ''
 
   // Apply SVGO optimization FIRST
   if (options.svgo !== false) {
@@ -61,30 +67,63 @@ const transformSvg = callbackify(async (contents, options = {}, state = {}) => {
     .replace(/<!DOCTYPE[^>]*>/, '') // Remove DOCTYPE
     .trim()
 
-  // Generate Svelte component source
+  // Detect which props/imports are actually used in the processed SVG
+  const usesColord = cleanSvg.includes('colord(')
+  const usesUid = cleanSvg.includes('uid')
+  const usesColor = cleanSvg.includes('{color}') || cleanSvg.includes('(color)')
+  const hasClass = /class="[^"]*"/.test(cleanSvg)
+  const hasStyle = /style="[^"]*"/.test(cleanSvg)
+
+  // Build imports conditionally
   const imports = options.imports || ''
+  const conditionalImports = usesColord ? imports : ''
+
+  // Build props list conditionally - only include props that are used
+  const props = []
+  if (hasClass) props.push("export let className = '';")
+  if (hasStyle) props.push("export let style = '';")
+  if (usesColor) props.push("export let color = 'currentColor';")
+  if (usesUid) props.push("export let uid = '';")
+
+  // Apply class/style replacements only if needed
+  let finalSvg = cleanSvg
+  if (hasClass) {
+    finalSvg = finalSvg.replace(/class="([^"]*)"/, 'class="{className || \'$1\'}"')
+  }
+  if (hasStyle) {
+    finalSvg = finalSvg.replace(/style="([^"]*)"/, 'style="{style || \'$1\'}"')
+  }
+
+  // Generate Svelte component source
   const svelteSource = `<script>
-  ${imports}
-  export let className = '';
-  export let style = '';
-  export let color = 'currentColor';
-  export let uid = '';
+  ${conditionalImports}
+  ${props.join('\n  ')}
 </script>
 
-${cleanSvg.replace(/class="([^"]*)"/, 'class="{className || \'$1\'}"').replace(/style="([^"]*)"/, 'style="{style || \'$1\'}"')}
+${finalSvg}
 `
 
-  // Compile Svelte component to JavaScript
+  return { svelteSource, raw: svg }
+}
+
+const transformSvg = callbackify(async (contents, options = {}, state = {}) => {
+  const resourcePath = state.filePath || state.filename || ''
+  const { svelteSource, raw } = transformSvgToSvelteSource(
+    contents,
+    options,
+    resourcePath,
+  )
+
+  // Compile Svelte component to JavaScript for bundled output
   const compiled = compile(svelteSource, {
     filename: resourcePath,
-    generate: 'dom',
-    hydratable: false,
+    generate: 'client',
     css: 'injected',
   })
 
   // Export compiled component + raw SVG
   const out = `${compiled.js.code}
-export const raw = ${JSON.stringify(svg)};
+export const raw = ${JSON.stringify(raw)};
 `
 
   return out
