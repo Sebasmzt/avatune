@@ -20,9 +20,6 @@ $: selectedThemeInfo = getThemeInfo(selectedThemeId)
 <div class="flex flex-col items-center justify-center rounded-xl border border-white/10 bg-slate-900/30 p-3 w-full max-w-[240px] lg:w-60">
   <p class="mb-2 text-[10px] font-semibold uppercase tracking-[0.2em] text-slate-500">Result</p>
   <Avatar theme={svelteTheme} size={220} {predictions} />
-  <p class="mt-2 text-center text-[10px] text-slate-500">
-    {predictions.hairLength}, {predictions.hairColor}, {predictions.skinTone}, {predictions.facialHair}
-  </p>
   <div class="mt-4 w-full">
     <label for="theme-dropdown-button" class="mb-2 block text-xs font-medium text-slate-400">Theme</label>
     <div class="relative">

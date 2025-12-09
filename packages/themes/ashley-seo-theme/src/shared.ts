@@ -39,8 +39,8 @@ export default createTheme<BaseAvatarItem>()
   .mapPrediction('skinTone', 'dark', [SkinTones.Dark])
   .mapPrediction('skinTone', 'medium', [SkinTones.Yellow])
   .mapPrediction('skinTone', 'light', [SkinTones.White])
-  .mapPrediction('facialHair', 'none', ['none'])
-  .mapPrediction('facialHair', 'facial_hair', [
+  .mapPrediction('faceHair', 'none', ['none'])
+  .mapPrediction('faceHair', 'facial_hair', [
     'beard',
     'chinHair',
     'fuzz',

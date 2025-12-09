@@ -198,10 +198,10 @@ function getPredictorIdentifiers<I extends AvatarItem, T extends Theme<I>>(
   }
 
   // FaceHair category uses facialHair predictor
-  if (category === 'faceHair' && predictorMappings.facialHair) {
-    const { facialHair } = predictions
-    if (!facialHair) return undefined
-    return predictorMappings.facialHair[facialHair]
+  if (category === 'faceHair' && predictorMappings.faceHair) {
+    const { faceHair } = predictions
+    if (!faceHair) return undefined
+    return predictorMappings.faceHair[faceHair]
   }
 
   return undefined

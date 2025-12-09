@@ -27,8 +27,8 @@ export default createTheme<BaseAvatarItem>()
   .mapPrediction('skinTone', 'dark', [SkinTones.Dark])
   .mapPrediction('skinTone', 'medium', [SkinTones.Medium])
   .mapPrediction('skinTone', 'light', [SkinTones.Light])
-  .mapPrediction('facialHair', 'facial_hair', ['beard', 'scruff'])
-  .mapPrediction('facialHair', 'none', ['none'])
+  .mapPrediction('faceHair', 'facial_hair', ['beard', 'scruff'])
+  .mapPrediction('faceHair', 'none', ['none'])
   .addColors('background', [BackgroundColors.Seashell])
   .addColors('hair', [
     AccentColors.Black,

@@ -126,7 +126,7 @@ export interface Predictions {
   hairLength?: HairLengthPredictorClass
   hairColor?: HairColorPredictorClass
   skinTone?: SkinTonePredictorClass
-  facialHair?: FacialHairPredictorClass
+  faceHair?: FacialHairPredictorClass
 }
 
 /**
@@ -159,7 +159,7 @@ export interface ThemePredictorMappings {
   hair?: PredictorMapping
   hairColor?: ColorMapping
   skinTone?: ColorMapping
-  facialHair?: PredictorMapping
+  faceHair?: PredictorMapping
 }
 
 /**

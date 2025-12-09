@@ -36,9 +36,9 @@ export function getFacialHairItems(
   theme: SvelteTheme,
   predictions: Predictions,
 ): string[] {
-  const facialHairMap = theme.predictorMappings?.facialHair
-  if (!facialHairMap || !predictions.facialHair) return []
-  return facialHairMap[predictions.facialHair] ?? []
+  const faceHairMap = theme.predictorMappings?.faceHair
+  if (!faceHairMap || !predictions.faceHair) return []
+  return faceHairMap[predictions.faceHair] ?? []
 }
 
 export function getFacialHairComponent(

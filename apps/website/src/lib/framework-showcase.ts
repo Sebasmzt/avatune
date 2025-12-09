@@ -1,4 +1,4 @@
-import { codeToHtml } from 'shiki'
+import { getSingletonHighlighter } from 'shiki/bundle/full'
 import jsLogo from '../assets/javascript-logo.svg'
 import reactLogo from '../assets/react-logo.svg'
 import reactNativeLogo from '../assets/react-native.svg'
@@ -160,10 +160,15 @@ container?.appendChild(svg)`,
 ] as const
 
 export async function getFrameworkShowcaseEntries() {
+  const highlighter = await getSingletonHighlighter({
+    themes: ['github-dark'],
+    langs: ['tsx', 'html', 'ts', 'javascript', 'typescript'],
+  })
+
   const entries = await Promise.all(
     frameworkDefinitions.map(async (definition) => {
       const snippet = definition.getSnippet(definition.id)
-      const highlightedSnippet = await codeToHtml(snippet, {
+      const highlightedSnippet = highlighter.codeToHtml(snippet, {
         lang: definition.language,
         theme: 'github-dark',
       })

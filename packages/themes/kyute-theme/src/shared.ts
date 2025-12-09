@@ -73,8 +73,8 @@ export default createTheme<BaseAvatarItem>()
     SkinTones.Lightest,
     SkinTones.Fair,
   ])
-  .mapPrediction('facialHair', 'none', ['none'])
-  .mapPrediction('facialHair', 'facial_hair', [
+  .mapPrediction('faceHair', 'none', ['none'])
+  .mapPrediction('faceHair', 'facial_hair', [
     'bigBeard',
     'chevronMustache',
     'mustache',

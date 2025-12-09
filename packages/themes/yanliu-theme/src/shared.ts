@@ -38,12 +38,12 @@ export default createTheme<BaseAvatarItem>()
   .mapPrediction('skinTone', 'dark', [SkinTones.Black])
   .mapPrediction('skinTone', 'medium', [SkinTones.Black])
   .mapPrediction('skinTone', 'light', [SkinTones.Black])
-  .mapPrediction('facialHair', 'facial_hair', [
+  .mapPrediction('faceHair', 'facial_hair', [
     'bigBeard',
     'chevronMustache',
     'mustache',
   ])
-  .mapPrediction('facialHair', 'none', ['none'])
+  .mapPrediction('faceHair', 'none', ['none'])
   .addColors('background', [
     BackgroundColors.PastelPink,
     BackgroundColors.PastelBlue,

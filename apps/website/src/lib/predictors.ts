@@ -8,7 +8,7 @@ export type Predictors = {
   hairColor: ReturnType<typeof createHairColorPredictor>
   hairLength: ReturnType<typeof createHairLengthPredictor>
   skinTone: ReturnType<typeof createSkinTonePredictor>
-  facialHair: ReturnType<typeof createFacialHairPredictor>
+  faceHair: ReturnType<typeof createFacialHairPredictor>
 }
 
 export async function initializePredictors(): Promise<Predictors> {
@@ -28,7 +28,7 @@ export async function initializePredictors(): Promise<Predictors> {
     hairColor: hairColorPredictor,
     hairLength: hairLengthPredictor,
     skinTone: skinTonePredictor,
-    facialHair: facialHairPredictor,
+    faceHair: facialHairPredictor,
   }
 }
 
@@ -56,12 +56,12 @@ export async function predictFromImage(
   const skinToneResult = await predictors.skinTone.predictFromImage(image)
   await yieldToMain()
 
-  const facialHairResult = await predictors.facialHair.predictFromImage(image)
+  const facialHairResult = await predictors.faceHair.predictFromImage(image)
 
   return {
     hairColor: hairColorResult.color,
     hairLength: hairLengthResult.length,
     skinTone: skinToneResult.tone,
-    facialHair: facialHairResult.facialHair,
+    faceHair: facialHairResult.facialHair,
   }
 }
