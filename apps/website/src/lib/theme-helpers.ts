@@ -32,7 +32,7 @@ export function getHairColors(
   return colorMap[predictions.hairColor] ?? []
 }
 
-export function getFacialHairItems(
+export function getFaceHairItems(
   theme: SvelteTheme,
   predictions: Predictions,
 ): string[] {
@@ -41,7 +41,7 @@ export function getFacialHairItems(
   return faceHairMap[predictions.faceHair] ?? []
 }
 
-export function getFacialHairComponent(
+export function getFaceHairComponent(
   theme: SvelteTheme,
   item: string,
 ): unknown {

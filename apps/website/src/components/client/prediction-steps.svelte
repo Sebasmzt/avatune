@@ -1,8 +1,8 @@
 <script lang="ts">
 import type { Predictions, SvelteTheme } from '@avatune/types'
 import {
-  getFacialHairComponent,
-  getFacialHairItems,
+  getFaceHairComponent,
+  getFaceHairItems,
   getHairColors,
   getHairComponent,
   getHairItems,
@@ -14,7 +14,7 @@ export let theme: SvelteTheme
 export let themeName: string
 
 type Step = {
-  id: 'skinTone' | 'hairLength' | 'hairColor' | 'facialHair'
+  id: 'skinTone' | 'hairLength' | 'hairColor' | 'faceHair'
   label: string
   prediction: string
 }
@@ -33,19 +33,19 @@ $: steps = [
   {
     id: 'hairColor' as const,
     label: 'Hair Color',
-    prediction: predictions.hairColor || 'brown',
+    prediction: predictions.hairColor || 'dark',
   },
   {
-    id: 'facialHair' as const,
-    label: 'Facial Hair',
-    prediction: predictions.facialHair === 'none' ? 'None' : 'Exists',
+    id: 'faceHair' as const,
+    label: 'Face Hair',
+    prediction: predictions.faceHair === 'none' ? 'None' : 'Exists',
   },
 ] satisfies Step[]
 
 $: skinToneColors = getSkinToneColors(theme, predictions)
 $: hairItems = getHairItems(theme, predictions)
 $: hairColors = getHairColors(theme, predictions)
-$: facialHairItems = getFacialHairItems(theme, predictions)
+$: faceHairItems = getFaceHairItems(theme, predictions)
 </script>
 
 <div class="flex flex-col justify-around gap-2">
@@ -85,11 +85,11 @@ $: facialHairItems = getFacialHairItems(theme, predictions)
             <div class="w-10 h-10 rounded-full" style={`background-color: ${color}`}></div>
           {/each}
         {:else if step.id === 'facialHair'}
-          {#if facialHairItems.length > 0}
-            {#each facialHairItems.slice(0, 3) as item (item + '-facialHair-' + themeName)}
-              {@const FacialHairComponent = getFacialHairComponent(theme, item)}
-              {#if FacialHairComponent}
-                {@const Component = FacialHairComponent as any}
+          {#if faceHairItems.length > 0}
+            {#each faceHairItems.slice(0, 3) as item (item + '-facialHair-' + themeName)}
+              {@const FaceHairComponent = getFaceHairComponent(theme, item)}
+              {#if FaceHairComponent}
+                {@const Component = FaceHairComponent as any}
                 <div class="flex h-10 w-10 items-center justify-center overflow-hidden rounded-lg bg-slate-800/80">
                   <Component color="#8B7355" />
                 </div>
