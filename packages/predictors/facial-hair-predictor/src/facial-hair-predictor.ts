@@ -83,7 +83,7 @@ function canvasToTensor(canvas: HTMLCanvasElement): tf.Tensor3D {
 }
 
 export function createFacialHairPredictor(
-  modelDir: string = 'https://cdn.jsdelivr.net/npm/@avatune/facial-hair-predictor@1.0.0/dist/model',
+  modelDir: string = 'https://cdn.jsdelivr.net/npm/@avatune/facial-hair-predictor@1/dist/model',
 ) {
   let modelStatePromise: Promise<ModelState> | null = null
 

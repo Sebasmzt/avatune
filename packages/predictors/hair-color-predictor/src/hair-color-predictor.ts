@@ -111,7 +111,7 @@ function canvasToTensor(canvas: HTMLCanvasElement): tf.Tensor3D {
 }
 
 export function createHairColorPredictor(
-  modelDir: string = 'https://cdn.jsdelivr.net/npm/@avatune/hair-color-predictor@1.2.2/dist/model',
+  modelDir: string = 'https://cdn.jsdelivr.net/npm/@avatune/hair-color-predictor@1/dist/model',
 ) {
   let modelStatePromise: Promise<ModelState> | null = null
 

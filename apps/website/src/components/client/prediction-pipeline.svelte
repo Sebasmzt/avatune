@@ -28,7 +28,7 @@ const defaultPredictions: Predictions = {
   skinTone: 'medium',
   hairLength: 'medium',
   hairColor: 'brown',
-  facialHair: 'facial_hair',
+  faceHair: 'facial_hair',
 }
 
 $: currentPredictions = predictions || defaultPredictions
