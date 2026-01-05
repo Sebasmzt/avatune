@@ -6,12 +6,18 @@ import type {
   VanillaTheme,
 } from '@avatune/types'
 import {
+  hashString,
   parseBorderRadius,
   parseBorderWidth,
   selectItems,
 } from '@avatune/utils'
 
-const uid = () => Math.random().toString(36).slice(2, 9)
+const createUid = (seed?: string | number) => {
+  if (seed !== undefined) {
+    return hashString(String(seed)).toString(36).slice(0, 7)
+  }
+  return Math.random().toString(36).slice(2, 9)
+}
 
 export interface AvatarArgs<T extends VanillaTheme = VanillaTheme>
   extends AvatarConfig<VanillaAvatarItem, T> {
@@ -39,8 +45,8 @@ export function avatar<T extends VanillaTheme = VanillaTheme>({
   )
 
   const scaleFactor = size / theme.style.size
-  const clipId = uid()
-  const uidValue = uid()
+  const uidValue = createUid(config.seed)
+  const clipId = `clip-${uidValue}`
   const borderRadius = parseBorderRadius(theme.style.borderRadius, size)
   const backgroundColor =
     result.style?.backgroundColor || theme.style.backgroundColor

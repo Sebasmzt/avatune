@@ -1,0 +1,30 @@
+{
+  "name": "@avatune/vanilla-tests",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "bun test",
+    "test:update": "bun test --update-snapshots",
+    "clean": "rm -rf .tmp __snapshots__"
+  },
+  "dependencies": {
+    "@avatune/ashley-seo-theme": "workspace:*",
+    "@avatune/fatin-verse-theme": "workspace:*",
+    "@avatune/kyute-theme": "workspace:*",
+    "@avatune/micah-theme": "workspace:*",
+    "@avatune/miniavs-theme": "workspace:*",
+    "@avatune/nevmstas-theme": "workspace:*",
+    "@avatune/pacovqzz-theme": "workspace:*",
+    "@avatune/pawel-olek-man-theme": "workspace:*",
+    "@avatune/pawel-olek-woman-theme": "workspace:*",
+    "@avatune/yanliu-theme": "workspace:*",
+    "@avatune/vanilla": "workspace:*"
+  },
+  "devDependencies": {
+    "@avatune/typescript-config": "workspace:*",
+    "@types/bun": "^1.3.5",
+    "sharp": "^0.34.2",
+    "typescript": "^5.9.3"
+  }
+}

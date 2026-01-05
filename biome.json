@@ -37,6 +37,7 @@
     "includes": [
       "apps/**/*",
       "packages/**/*",
+      "tests/**/*",
       "!**/*/storybook.requires.ts",
       "scripts/**/*"
     ]
