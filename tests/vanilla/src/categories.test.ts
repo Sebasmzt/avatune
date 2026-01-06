@@ -1,0 +1,95 @@
+import { afterAll, beforeAll, describe, expect, test } from 'bun:test'
+import ashleyTheme from '@avatune/ashley-seo-theme/vanilla'
+import fatinVerseTheme from '@avatune/fatin-verse-theme/vanilla'
+import kyuteTheme from '@avatune/kyute-theme/vanilla'
+import micahTheme from '@avatune/micah-theme/vanilla'
+import miniavsTheme from '@avatune/miniavs-theme/vanilla'
+import nevmstasTheme from '@avatune/nevmstas-theme/vanilla'
+import pacovqzzTheme from '@avatune/pacovqzz-theme/vanilla'
+import pawelOlekManTheme from '@avatune/pawel-olek-man-theme/vanilla'
+import pawelOlekWomanTheme from '@avatune/pawel-olek-woman-theme/vanilla'
+import type { AvatarPartCategory, VanillaTheme } from '@avatune/types'
+import { avatar } from '@avatune/vanilla'
+import yanliuTheme from '@avatune/yanliu-theme/vanilla'
+
+import { cleanupTmpDir, saveTmpPng, setupTmpDir, svgToPng } from './utils.js'
+
+import '@blazediff/bun'
+
+const THEMES: Record<string, VanillaTheme> = {
+  'ashley-seo': ashleyTheme,
+  'fatin-verse': fatinVerseTheme,
+  kyute: kyuteTheme,
+  micah: micahTheme,
+  miniavs: miniavsTheme,
+  nevmstas: nevmstasTheme,
+  pacovqzz: pacovqzzTheme,
+  'pawel-olek-man': pawelOlekManTheme,
+  'pawel-olek-woman': pawelOlekWomanTheme,
+  yanliu: yanliuTheme,
+}
+
+const CATEGORIES: AvatarPartCategory[] = [
+  'accessories',
+  'body',
+  'ears',
+  'eyebrows',
+  'eyes',
+  'faceDetails',
+  'faceHair',
+  'forelock',
+  'glasses',
+  'hair',
+  'hats',
+  'head',
+  'mouth',
+  'neck',
+  'nose',
+]
+
+beforeAll(async () => {
+  await setupTmpDir()
+})
+
+afterAll(async () => {
+  if (!process.env.CI) {
+    await cleanupTmpDir()
+  }
+})
+
+describe('Category Snapshot Tests', () => {
+  for (const [themeName, theme] of Object.entries(THEMES)) {
+    describe(`Theme: ${themeName}`, () => {
+      for (const category of CATEGORIES) {
+        const collection = theme[category]
+        if (!collection) continue
+
+        describe(`Category: ${category}`, () => {
+          for (const [itemId, _item] of Object.entries(collection)) {
+            if (itemId === 'none') {
+              return
+            }
+
+            test(`${category}/${itemId}`, async () => {
+              const svg = theme[category]?.[itemId]
+              if (!svg?.code) {
+                throw new Error(`Item ${itemId} not found in ${category}`)
+              }
+
+              const pngBuffer = await svgToPng(svg.code({}), 400)
+
+              const id = `${themeName}-${category}-${itemId}`
+              const filePath = await saveTmpPng(pngBuffer, `${id}.png`)
+
+              expect(filePath).toMatchImageSnapshot({
+                method: 'bin',
+                snapshotIdentifier: id,
+                snapshotsDir: `./__snapshots__/categories/${themeName}/${category}`,
+              })
+            })
+          }
+        })
+      }
+    })
+  }
+})

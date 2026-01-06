@@ -39,7 +39,7 @@ afterAll(async () => {
   }
 })
 
-describe('Vanilla Avatar Snapshot Tests', () => {
+describe('Seed Avatar Snapshot Tests', () => {
   for (const [themeName, theme] of Object.entries(THEMES)) {
     describe(`Theme: ${themeName}`, () => {
       for (let i = 0; i < SEEDS.length; i++) {
@@ -60,6 +60,7 @@ describe('Vanilla Avatar Snapshot Tests', () => {
           expect(filePath).toMatchImageSnapshot({
             method: 'bin',
             snapshotIdentifier: id,
+            snapshotsDir: `./__snapshots__/seed/${themeName}`,
           })
         })
       }
