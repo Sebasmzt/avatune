@@ -1,6 +1,7 @@
+import { Info, Upload } from 'lucide-react'
 import { useRef, useState } from 'react'
-import type { Asset } from '../../types'
-import { Button, Card, StepHeader } from '../ui'
+import type { Asset } from '../../../types'
+import { Button, Card, StepHeader } from '../../ui'
 
 interface HeadUploadStepProps {
   onUpload: (asset: Asset) => void
@@ -11,9 +12,17 @@ const HeadUploadStep = ({ onUpload, headAsset }: HeadUploadStepProps) => {
   const fileInputRef = useRef<HTMLInputElement>(null)
   const [dragging, setDragging] = useState(false)
 
+  const isSvgFile = (file: File): boolean => {
+    const isSvgType = file.type === 'image/svg+xml' || file.type === 'image/svg'
+    const isSvgExtension = file.name.toLowerCase().endsWith('.svg')
+    return isSvgType || isSvgExtension
+  }
+
   const handleFileSelect = async (file: File) => {
-    if (!file.type.startsWith('image/')) {
-      alert('Please upload an image file')
+    if (!isSvgFile(file)) {
+      alert(
+        'Please upload an SVG file. Only SVG format is supported for head assets.',
+      )
       return
     }
 
@@ -55,6 +64,8 @@ const HeadUploadStep = ({ onUpload, headAsset }: HeadUploadStepProps) => {
     const file = e.target.files?.[0]
     if (file) {
       handleFileSelect(file)
+      // Reset so the same file can be re-selected after replacement
+      e.target.value = ''
     }
   }
 
@@ -82,6 +93,33 @@ const HeadUploadStep = ({ onUpload, headAsset }: HeadUploadStepProps) => {
         title="Step 1: Upload Head Asset"
         description="Upload the base head asset. This will be used as the reference point for positioning all other assets."
       />
+      <input
+        ref={fileInputRef}
+        type="file"
+        accept="image/svg+xml,.svg"
+        onChange={handleFileInputChange}
+        className="hidden"
+      />
+
+      {/* Notice about head asset importance */}
+      <div className="mb-8 p-4 bg-blue-500/10 border border-blue-400/30 rounded-lg">
+        <div className="flex items-start gap-3">
+          <Info
+            size={20}
+            className="text-blue-400 mt-0.5 shrink-0"
+            aria-hidden="true"
+          />
+          <div>
+            <p className="text-blue-300 font-medium mb-1">Foundation Asset</p>
+            <p className="text-slate-300 text-sm leading-relaxed">
+              The head asset serves as the foundation for your entire theme. All
+              other assets (eyes, mouth, hair, accessories) will be positioned
+              and layered relative to this base. Choose an asset that represents
+              the core style and proportions for your avatar theme.
+            </p>
+          </div>
+        </div>
+      </div>
 
       {headAsset ? (
         <div className="text-center">
@@ -110,32 +148,12 @@ const HeadUploadStep = ({ onUpload, headAsset }: HeadUploadStepProps) => {
           onDragLeave={handleDragLeave}
           onClick={() => fileInputRef.current?.click()}
         >
-          <input
-            ref={fileInputRef}
-            type="file"
-            accept="image/*"
-            onChange={handleFileInputChange}
-            className="hidden"
-          />
           <div className="flex flex-col items-center gap-4">
-            <svg
-              width="64"
-              height="64"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              className="text-slate-400"
-              aria-hidden="true"
-            >
-              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-              <polyline points="17 8 12 3 7 8" />
-              <line x1="12" y1="3" x2="12" y2="15" />
-            </svg>
+            <Upload size={64} className="text-slate-400" aria-hidden="true" />
             <p className="text-lg text-white">
               Click or drag to upload head asset
             </p>
-            <p className="text-sm text-slate-400">SVG, PNG, or JPG files</p>
+            <p className="text-sm text-slate-400">SVG files only</p>
           </div>
         </button>
       )}
