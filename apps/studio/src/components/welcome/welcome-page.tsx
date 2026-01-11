@@ -1,4 +1,8 @@
-import { ExternalLink } from 'lucide-react'
+import {
+  IconBook,
+  IconBrandGithub,
+  IconExternalLink,
+} from '@tabler/icons-react'
 import { useNavigate } from 'react-router-dom'
 import { Button } from '../ui'
 
@@ -45,27 +49,30 @@ const WelcomePage = () => {
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-2 text-slate-300 hover:text-white transition-colors text-sm sm:text-base"
+              title="Visit Avatune.dev"
             >
-              <span>Visit Avatune.dev</span>
-              <ExternalLink size={16} />
+              <img src="/favicon.png" alt="Avatune" className="w-5 h-5" />
+              <span className="hidden sm:inline">Avatune</span>
             </a>
             <a
-              href="https://www.avatune.dev"
+              href="https://www.avatune.dev/docs"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-1.5 text-slate-300 hover:text-white transition-colors text-sm sm:text-base"
+              className="flex items-center gap-2 text-slate-300 hover:text-white transition-colors text-sm sm:text-base"
+              title="Documentation"
             >
-              <span>Documentation</span>
-              <ExternalLink size={14} />
+              <IconBook size={20} />
+              <span className="hidden sm:inline">Docs</span>
             </a>
             <a
               href="https://github.com/avatune/avatune"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-1.5 text-slate-300 hover:text-white transition-colors text-sm sm:text-base"
+              className="flex items-center gap-2 text-slate-300 hover:text-white transition-colors text-sm sm:text-base"
+              title="GitHub Repository"
             >
-              <span>GitHub</span>
-              <ExternalLink size={14} />
+              <IconBrandGithub size={20} />
+              <span className="hidden sm:inline">GitHub</span>
             </a>
           </nav>
         </div>
@@ -102,7 +109,8 @@ const WelcomePage = () => {
                   </span>
                   , and{' '}
                   <span className="text-slate-300 font-semibold">brands</span>{' '}
-                  looking to create unique avatar experiences.
+                  looking to create unique avatar experience and contribute to
+                  the open source community.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
                   <Button
@@ -238,54 +246,21 @@ const WelcomePage = () => {
                 </div>
                 <div className="w-full lg:w-1/2 space-y-2">
                   <h4 className="text-lg lg:text-xl font-bold text-white">
-                    Export Theme
+                    Export & Share Your Theme
                   </h4>
                   <p className="text-sm text-slate-300 leading-relaxed">
                     Download your complete theme package ready for React, Vue,
-                    Svelte, or Vanilla JS.
-                  </p>
-                </div>
-              </div>
-
-              {/* Step 5 - Image Left, Text Right */}
-              <div className="flex flex-col lg:flex-row items-center gap-3 lg:gap-4">
-                <div className="w-full lg:w-1/2 relative">
-                  <div className="absolute -top-1 -left-1 z-10 w-8 h-8 rounded-full bg-slate-700 border-2 border-slate-600 flex items-center justify-center font-bold text-sm shadow-lg text-white">
-                    5
-                  </div>
-                  <div
-                    className="w-full bg-slate-800 rounded-lg overflow-hidden shadow-xl flex items-center justify-center"
-                    style={{ aspectRatio: '4/3', minHeight: '125px' }}
-                  >
-                    <div className="text-center p-2">
-                      <div className="w-10 h-10 mx-auto mb-2 rounded-full bg-slate-700/50 flex items-center justify-center">
-                        <svg
-                          className="w-5 h-5 text-slate-400"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                          aria-labelledby="upload-icon-title"
-                        >
-                          <title id="upload-icon-title">Upload to GitHub</title>
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"
-                          />
-                        </svg>
-                      </div>
-                      <p className="text-xs text-slate-400">Upload to GitHub</p>
-                    </div>
-                  </div>
-                </div>
-                <div className="w-full lg:w-1/2 space-y-2">
-                  <h4 className="text-lg lg:text-xl font-bold text-white">
-                    Upload to Us
-                  </h4>
-                  <p className="text-sm text-slate-300 leading-relaxed">
-                    Share your generated theme with the community by uploading
-                    it to us via GitHub.
+                    Svelte, or Vanilla JS. Want to share it with the community?
+                    Submit a pull request to the{' '}
+                    <a
+                      href="https://github.com/avatune/avatune"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-pink-400 hover:text-pink-300 underline transition-colors"
+                    >
+                      Avatune GitHub repository
+                    </a>
+                    .
                   </p>
                 </div>
               </div>
@@ -323,7 +298,7 @@ const WelcomePage = () => {
                   className="group inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-800/60 border border-white/10 hover:border-white/30 hover:bg-slate-700/60 transition-all text-slate-300 hover:text-white"
                 >
                   <span className="font-medium">{theme.name}</span>
-                  <ExternalLink
+                  <IconExternalLink
                     size={14}
                     className="text-slate-400 group-hover:text-white transition-colors"
                   />
