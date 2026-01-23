@@ -1,5 +1,9 @@
 import { avatar } from '@avatune/vanilla'
 import type { AvatarConfig, VanillaTheme } from '@avatune/types'
+import { requestCounter, themeCounter, countryCounter, responseTimeHistogram } from './otel'
+
+// Initialize OpenTelemetry
+import('./otel')
 
 // Import all themes
 import ashleySeoTheme from '@avatune/ashley-seo-theme/vanilla'
@@ -44,9 +48,23 @@ const corsHeaders = {
   'Access-Control-Expose-Headers': 'X-Avatar-Seed, X-Avatar-Theme',
 }
 
+async function getCountryFromIP(ip: string): Promise<string> {
+  try {
+    const response = await fetch(`http://ip-api.com/json/${ip}`)
+    const data = await response.json()
+    return data.country || 'unknown'
+  } catch {
+    return 'unknown'
+  }
+}
+
 const server = Bun.serve({
-  port: 3000,
+  port: parseInt(process.env.PORT || '3000'),
   async fetch(req) {
+    const startTime = Date.now()
+    const clientIP = req.headers.get('x-forwarded-for') || 
+                     req.headers.get('x-real-ip') || 
+                     '127.0.0.1'
     if (req.method === 'OPTIONS') {
       return new Response(null, { headers: corsHeaders })
     }
@@ -55,9 +73,16 @@ const server = Bun.serve({
 
     // GET /themes - list available themes
     if (req.method === 'GET' && url.pathname === '/themes') {
-      return new Response(JSON.stringify({ themes: themeNames }), {
+      requestCounter.add(1, { endpoint: '/themes', method: 'GET' })
+      const country = await getCountryFromIP(clientIP)
+      countryCounter.add(1, { country })
+      
+      const response = new Response(JSON.stringify({ themes: themeNames }), {
         headers: { 'Content-Type': 'application/json', ...corsHeaders },
       })
+      
+      responseTimeHistogram.record((Date.now() - startTime) / 1000)
+      return response
     }
 
     // GET /random - generate a fully random avatar
@@ -77,8 +102,14 @@ const server = Bun.serve({
       }
 
       const svg = avatar({ theme, seed })
-
-      return new Response(svg, {
+      
+      // Track metrics
+      requestCounter.add(1, { endpoint: '/random', method: 'GET' })
+      themeCounter.add(1, { theme: usedThemeName })
+      const country = await getCountryFromIP(clientIP)
+      countryCounter.add(1, { country })
+      
+      const response = new Response(svg, {
         headers: {
           'Content-Type': 'image/svg+xml',
           'X-Avatar-Seed': seed,
@@ -86,6 +117,9 @@ const server = Bun.serve({
           ...corsHeaders,
         },
       })
+      
+      responseTimeHistogram.record((Date.now() - startTime) / 1000)
+      return response
     }
 
     // POST / - generate avatar with config
@@ -95,10 +129,13 @@ const server = Bun.serve({
         const { theme: themeName, ...config } = body as { theme?: string } & AvatarConfig<VanillaTheme>
 
         let theme: VanillaTheme
+        let usedThemeName: string
         if (themeName === 'random' || !themeName) {
           theme = getRandomTheme()
+          usedThemeName = 'random'
         } else if (themes[themeName]) {
           theme = themes[themeName]
+          usedThemeName = themeName
         } else {
           return new Response(`Unknown theme: ${themeName}. Available: ${themeNames.join(', ')}`, {
             status: 400,
@@ -112,10 +149,19 @@ const server = Bun.serve({
           : config
 
         const svg = avatar({ theme, ...finalConfig })
-
-        return new Response(svg, {
+        
+        // Track metrics
+        requestCounter.add(1, { endpoint: '/', method: 'POST' })
+        themeCounter.add(1, { theme: usedThemeName })
+        const country = await getCountryFromIP(clientIP)
+        countryCounter.add(1, { country })
+        
+        const response = new Response(svg, {
           headers: { 'Content-Type': 'image/svg+xml', ...corsHeaders },
         })
+        
+        responseTimeHistogram.record((Date.now() - startTime) / 1000)
+        return response
       } catch (e) {
         if (e instanceof Error) {
           return new Response(e.message, { status: 400, headers: corsHeaders })
@@ -124,7 +170,10 @@ const server = Bun.serve({
       }
     }
 
-    return new Response('Not Found. Try GET /random, GET /themes, or POST /', {
+    // GET /metrics - OpenTelemetry metrics endpoint (handled by PrometheusExporter)
+    // The PrometheusExporter will automatically handle this route
+
+    return new Response('Not Found. Try GET /random, GET /themes, GET /metrics, or POST /', {
       status: 404,
       headers: corsHeaders,
     })
@@ -133,9 +182,11 @@ const server = Bun.serve({
 
 console.log(`Listening on http://localhost:${server.port} ...`)
 console.log(`Available themes: ${themeNames.join(', ')}`)
+console.log(`Metrics available on http://localhost:${server.port}/metrics`)
 console.log(`
 Endpoints:
   GET  /random         - Generate random avatar (optional: ?theme=name&seed=value)
   GET  /themes         - List available themes
+  GET  /metrics        - OpenTelemetry metrics (Prometheus format)
   POST /               - Generate avatar with config { theme?: string, seed?: string, ... }
 `)
