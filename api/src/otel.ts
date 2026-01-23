@@ -4,7 +4,7 @@ import { PrometheusExporter } from '@opentelemetry/exporter-prometheus'
 import { metrics } from '@opentelemetry/api'
 
 const prometheusExporter = new PrometheusExporter({
-  port: parseInt(process.env.PORT || '3000'),
+  port: parseInt(process.env.METRICS_PORT || '9464'),
   endpoint: '/metrics',
 })
 

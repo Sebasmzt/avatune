@@ -58,6 +58,99 @@ async function getCountryFromIP(ip: string): Promise<string> {
   }
 }
 
+// In-memory rate limiting
+class RateLimiter {
+  private requests: Map<string, number[]> = new Map()
+  private blocked: Map<string, number> = new Map()
+  
+  constructor(
+    private maxRequests: number = 100,
+    private windowMs: number = 60000, // 1 minute
+    private blockDurationMs: number = 600000 // 10 minutes
+  ) {}
+
+  isAllowed(ip: string): { allowed: boolean; remaining: number; resetTime?: number } {
+    const now = Date.now()
+    
+    // Check if IP is blocked
+    const blockedUntil = this.blocked.get(ip)
+    if (blockedUntil && blockedUntil > now) {
+      return { 
+        allowed: false, 
+        remaining: 0, 
+        resetTime: blockedUntil 
+      }
+    }
+    
+    // Remove expired block
+    if (blockedUntil && blockedUntil <= now) {
+      this.blocked.delete(ip)
+    }
+    
+    const windowStart = now - this.windowMs
+    
+    // Get existing requests for this IP
+    let timestamps = this.requests.get(ip) || []
+    
+    // Filter out old requests outside the window
+    timestamps = timestamps.filter(timestamp => timestamp > windowStart)
+    
+    // Check if limit exceeded
+    if (timestamps.length >= this.maxRequests) {
+      // Block the IP for 10 minutes
+      this.blocked.set(ip, now + this.blockDurationMs)
+      return { 
+        allowed: false, 
+        remaining: 0, 
+        resetTime: now + this.blockDurationMs 
+      }
+    }
+    
+    // Add current request
+    timestamps.push(now)
+    this.requests.set(ip, timestamps)
+    
+    // Clean up old entries periodically
+    if (Math.random() < 0.01) { // 1% chance to clean up
+      this.cleanup()
+    }
+    
+    return { 
+      allowed: true, 
+      remaining: this.maxRequests - timestamps.length,
+      resetTime: now + this.windowMs
+    }
+  }
+  
+  private cleanup(): void {
+    const now = Date.now()
+    const windowStart = now - this.windowMs
+    
+    // Clean up requests
+    for (const [ip, timestamps] of this.requests.entries()) {
+      const filtered = timestamps.filter(timestamp => timestamp > windowStart)
+      if (filtered.length === 0) {
+        this.requests.delete(ip)
+      } else {
+        this.requests.set(ip, filtered)
+      }
+    }
+    
+    // Clean up expired blocks
+    for (const [ip, blockedUntil] of this.blocked.entries()) {
+      if (blockedUntil <= now) {
+        this.blocked.delete(ip)
+      }
+    }
+  }
+}
+
+const rateLimiter = new RateLimiter(
+  parseInt(process.env.RATE_LIMIT_REQUESTS || '100'),
+  parseInt(process.env.RATE_LIMIT_WINDOW_MS || '60000'),
+  parseInt(process.env.RATE_LIMIT_BLOCK_DURATION_MS || '600000')
+)
+
 const server = Bun.serve({
   port: parseInt(process.env.PORT || '3000'),
   async fetch(req) {
@@ -65,6 +158,22 @@ const server = Bun.serve({
     const clientIP = req.headers.get('x-forwarded-for') || 
                      req.headers.get('x-real-ip') || 
                      '127.0.0.1'
+    
+    // Rate limiting check
+    const rateLimitResult = rateLimiter.isAllowed(clientIP)
+    if (!rateLimitResult.allowed) {
+      const retryAfter = Math.ceil((rateLimitResult.resetTime! - Date.now()) / 1000)
+      return new Response('Rate limit exceeded. Try again later.', {
+        status: 429,
+        headers: {
+          'Retry-After': retryAfter.toString(),
+          'X-RateLimit-Limit': process.env.RATE_LIMIT_REQUESTS || '100',
+          'X-RateLimit-Remaining': '0',
+          'X-RateLimit-Reset': Math.ceil(rateLimitResult.resetTime! / 1000).toString(),
+          ...corsHeaders,
+        },
+      })
+    }
     if (req.method === 'OPTIONS') {
       return new Response(null, { headers: corsHeaders })
     }
@@ -78,7 +187,13 @@ const server = Bun.serve({
       countryCounter.add(1, { country })
       
       const response = new Response(JSON.stringify({ themes: themeNames }), {
-        headers: { 'Content-Type': 'application/json', ...corsHeaders },
+        headers: { 
+          'Content-Type': 'application/json',
+          'X-RateLimit-Limit': process.env.RATE_LIMIT_REQUESTS || '100',
+          'X-RateLimit-Remaining': rateLimitResult.remaining.toString(),
+          'X-RateLimit-Reset': Math.ceil(rateLimitResult.resetTime! / 1000).toString(),
+          ...corsHeaders 
+        },
       })
       
       responseTimeHistogram.record((Date.now() - startTime) / 1000)
@@ -114,6 +229,9 @@ const server = Bun.serve({
           'Content-Type': 'image/svg+xml',
           'X-Avatar-Seed': seed,
           'X-Avatar-Theme': usedThemeName,
+          'X-RateLimit-Limit': process.env.RATE_LIMIT_REQUESTS || '100',
+          'X-RateLimit-Remaining': rateLimitResult.remaining.toString(),
+          'X-RateLimit-Reset': Math.ceil(rateLimitResult.resetTime! / 1000).toString(),
           ...corsHeaders,
         },
       })
@@ -157,7 +275,13 @@ const server = Bun.serve({
         countryCounter.add(1, { country })
         
         const response = new Response(svg, {
-          headers: { 'Content-Type': 'image/svg+xml', ...corsHeaders },
+          headers: { 
+            'Content-Type': 'image/svg+xml',
+            'X-RateLimit-Limit': process.env.RATE_LIMIT_REQUESTS || '100',
+            'X-RateLimit-Remaining': rateLimitResult.remaining.toString(),
+            'X-RateLimit-Reset': Math.ceil(rateLimitResult.resetTime! / 1000).toString(),
+            ...corsHeaders 
+          },
         })
         
         responseTimeHistogram.record((Date.now() - startTime) / 1000)
@@ -182,7 +306,7 @@ const server = Bun.serve({
 
 console.log(`Listening on http://localhost:${server.port} ...`)
 console.log(`Available themes: ${themeNames.join(', ')}`)
-console.log(`Metrics available on http://localhost:${server.port}/metrics`)
+console.log(`Metrics available on http://localhost:${process.env.METRICS_PORT || '9464'}/metrics`)
 console.log(`
 Endpoints:
   GET  /random         - Generate random avatar (optional: ?theme=name&seed=value)
