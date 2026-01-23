@@ -314,7 +314,7 @@ const server = Bun.serve({
 
 console.log(`Listening on http://localhost:${server.port} ...`)
 console.log(`Available themes: ${themeNames.join(', ')}`)
-console.log(`Metrics available on http://localhost:${process.env.METRICS_PORT || '9464'}/metrics`)
+console.log(`Metrics available at https://metrics.avatar.sebasgc.xyz/metrics`)
 console.log(`
 Endpoints:
   GET  /random         - Generate random avatar (optional: ?theme=name&seed=value)
