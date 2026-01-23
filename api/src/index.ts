@@ -1,6 +1,6 @@
 import { avatar } from '@avatune/vanilla'
 import type { AvatarConfig, VanillaTheme } from '@avatune/types'
-import { requestCounter, themeCounter, countryCounter, responseTimeHistogram } from './otel'
+import { requestCounter, themeCounter, countryCounter, responseTimeHistogram, getPrometheusMetrics } from './otel'
 
 // Initialize OpenTelemetry
 import('./otel')
@@ -294,8 +294,13 @@ const server = Bun.serve({
       }
     }
 
-    // GET /metrics - OpenTelemetry metrics endpoint (handled by PrometheusExporter)
-    // The PrometheusExporter will automatically handle this route
+    // GET /metrics - OpenTelemetry metrics endpoint
+    if (req.method === 'GET' && url.pathname === '/metrics') {
+      const metricsText = getPrometheusMetrics()
+      return new Response(metricsText, {
+        headers: { 'Content-Type': 'text/plain' },
+      })
+    }
 
     return new Response('Not Found. Try GET /random, GET /themes, GET /metrics, or POST /', {
       status: 404,
@@ -306,7 +311,7 @@ const server = Bun.serve({
 
 console.log(`Listening on http://localhost:${server.port} ...`)
 console.log(`Available themes: ${themeNames.join(', ')}`)
-console.log(`Metrics available on http://localhost:${process.env.METRICS_PORT || '9464'}/metrics`)
+console.log(`Metrics available on http://localhost:${server.port}/metrics`)
 console.log(`
 Endpoints:
   GET  /random         - Generate random avatar (optional: ?theme=name&seed=value)
