@@ -3,13 +3,13 @@ WORKDIR /app
 
 # Install dependencies stage
 FROM base AS install
-COPY package.json bun.lock turbo.json biome.json ./
+COPY package.json turbo.json biome.json ./
 COPY packages/ ./packages/
 COPY apps/ ./apps/
 COPY api/ ./api/
 COPY patches/ ./patches/
 
-RUN bun install --frozen-lockfile
+RUN bun install
 
 # Build stage
 FROM install AS build

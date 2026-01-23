@@ -61,7 +61,7 @@ export function selectItem<I extends AvatarItem>(
     return { key: identifier, item: collection[identifier] }
   }
 
-  const candidates = Object.entries(collection)
+  const candidates = Object.entries(collection) as [string, I][]
 
   if (candidates.length === 0) {
     return null
