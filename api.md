@@ -1,4 +1,4 @@
-test # Avatune API Documentation
+tests # Avatune API Documentation
 
 This document outlines the steps to set up and run the Avatune API server.
 
