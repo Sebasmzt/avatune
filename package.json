@@ -45,7 +45,8 @@
     "packages/predictors/*",
     "packages/rsbuild-plugins/*",
     "examples/*",
-    "tests/*"
+    "tests/*",
+    "api"
   ],
   "lint-staged": {
     "*.{js,ts,tsx,jsx,json,md,css,html,vue,svelte}": [

@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Avatune API Demo</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      padding: 2rem;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      color: white;
+      text-align: center;
+      margin-bottom: 0.5rem;
+      font-size: 2.5rem;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    }
+
+    .subtitle {
+      color: rgba(255,255,255,0.8);
+      text-align: center;
+      margin-bottom: 2rem;
+      font-size: 1.1rem;
+    }
+
+    .card {
+      background: white;
+      border-radius: 16px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+      padding: 2rem;
+    }
+
+    .controls {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .control-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    label {
+      font-weight: 600;
+      color: #495057;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    select, input {
+      padding: 0.6rem 1rem;
+      border: 2px solid #e9ecef;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      background: white;
+      cursor: pointer;
+      transition: border-color 0.2s;
+      min-width: 150px;
+    }
+
+    select:hover, input:hover {
+      border-color: #667eea;
+    }
+
+    select:focus, input:focus {
+      outline: none;
+      border-color: #667eea;
+      box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2);
+    }
+
+    .buttons {
+      display: flex;
+      gap: 0.75rem;
+      justify-content: center;
+      margin-bottom: 2rem;
+    }
+
+    button {
+      padding: 0.85rem 2rem;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.1s, box-shadow 0.2s;
+    }
+
+    button:active {
+      transform: scale(0.98);
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+    }
+
+    .btn-secondary {
+      background: #e9ecef;
+      color: #495057;
+    }
+
+    .btn-secondary:hover {
+      background: #dee2e6;
+    }
+
+    .avatar-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 1.5rem;
+      justify-items: center;
+    }
+
+    .avatar-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .avatar-display {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      background: #f8f9fa;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      transition: transform 0.2s;
+    }
+
+    .avatar-display:hover {
+      transform: scale(1.05);
+    }
+
+    .avatar-display svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    .avatar-label {
+      font-size: 0.8rem;
+      color: #6c757d;
+      text-align: center;
+    }
+
+    .status {
+      text-align: center;
+      margin-top: 1rem;
+      font-size: 0.85rem;
+      color: #6c757d;
+    }
+
+    .status.error {
+      color: #dc3545;
+    }
+
+    .seed-display {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: #f8f9fa;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      font-family: monospace;
+      font-size: 0.85rem;
+      margin-top: 0.5rem;
+    }
+
+    .seed-display .label {
+      color: #6c757d;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
+
+    .seed-display .value {
+      color: #495057;
+      font-weight: 600;
+    }
+
+    .seed-display .copy-btn {
+      padding: 0.25rem 0.5rem;
+      font-size: 0.75rem;
+      background: #667eea;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-left: auto;
+    }
+
+    .seed-display .copy-btn:hover {
+      background: #5a6fd6;
+    }
+
+    .seed-display .copy-btn.copied {
+      background: #28a745;
+    }
+
+    .single-avatar {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .single-avatar .avatar-display {
+      width: 250px;
+      height: 250px;
+    }
+
+    .mode-toggle {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+      justify-content: center;
+    }
+
+    .mode-btn {
+      padding: 0.5rem 1rem;
+      border: 2px solid #e9ecef;
+      background: white;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .mode-btn.active {
+      border-color: #667eea;
+      background: #667eea;
+      color: white;
+    }
+
+    .mode-btn:hover:not(.active) {
+      border-color: #667eea;
+    }
+
+    #single-mode, #grid-mode {
+      display: none;
+    }
+
+    #single-mode.active, #grid-mode.active {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Avatune API</h1>
+    <p class="subtitle">Random avatar generator with multiple themes</p>
+
+    <div class="card">
+      <div class="mode-toggle">
+        <button class="mode-btn active" onclick="setMode('single')">Single</button>
+        <button class="mode-btn" onclick="setMode('grid')">Grid</button>
+      </div>
+
+      <div class="controls">
+        <div class="control-group">
+          <label for="theme">Theme</label>
+          <select id="theme">
+            <option value="random">Random Theme</option>
+          </select>
+        </div>
+        <div class="control-group">
+          <label for="seed">Seed (optional)</label>
+          <input type="text" id="seed" placeholder="Leave empty for random">
+        </div>
+        <div class="control-group">
+          <label for="count">Count (grid mode)</label>
+          <select id="count">
+            <option value="4">4</option>
+            <option value="6">6</option>
+            <option value="9" selected>9</option>
+            <option value="12">12</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="buttons">
+        <button class="btn-primary" onclick="generate()">Generate</button>
+        <button class="btn-secondary" onclick="generateRandom()">Surprise Me!</button>
+      </div>
+
+      <div id="single-mode" class="active">
+        <div class="single-avatar">
+          <div class="avatar-display" id="single-avatar">Click Generate</div>
+          <span class="avatar-label" id="single-label"></span>
+          <div class="seed-display" id="seed-display" style="display: none;">
+            <span class="label">Seed:</span>
+            <span class="value" id="current-seed"></span>
+            <span class="label">Theme:</span>
+            <span class="value" id="current-theme"></span>
+            <button class="copy-btn" onclick="copySeed()">Copy</button>
+          </div>
+        </div>
+      </div>
+
+      <div id="grid-mode">
+        <div class="avatar-grid" id="avatar-grid"></div>
+      </div>
+
+      <p class="status" id="status"></p>
+    </div>
+  </div>
+
+  <script>
+    const API_URL = 'http://localhost:3000';
+    let currentMode = 'single';
+    let themes = [];
+
+    async function loadThemes() {
+      try {
+        const response = await fetch(`${API_URL}/themes`);
+        const data = await response.json();
+        themes = data.themes;
+
+        const select = document.getElementById('theme');
+        themes.forEach(theme => {
+          const option = document.createElement('option');
+          option.value = theme;
+          option.textContent = theme.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+          select.appendChild(option);
+        });
+      } catch (err) {
+        console.error('Failed to load themes:', err);
+      }
+    }
+
+    function setMode(mode) {
+      currentMode = mode;
+      document.querySelectorAll('.mode-btn').forEach(btn => btn.classList.remove('active'));
+      document.querySelector(`.mode-btn[onclick="setMode('${mode}')"]`).classList.add('active');
+      document.getElementById('single-mode').classList.toggle('active', mode === 'single');
+      document.getElementById('grid-mode').classList.toggle('active', mode === 'grid');
+    }
+
+    async function fetchAvatar(theme, seed) {
+      let url = `${API_URL}/random`;
+      const params = new URLSearchParams();
+      if (theme && theme !== 'random') params.set('theme', theme);
+      if (seed) params.set('seed', seed);
+      if (params.toString()) url += '?' + params.toString();
+
+      const response = await fetch(url);
+      if (!response.ok) throw new Error(await response.text());
+
+      const svg = await response.text();
+      const usedSeed = response.headers.get('X-Avatar-Seed');
+      const usedTheme = response.headers.get('X-Avatar-Theme');
+
+      return { svg, seed: usedSeed, theme: usedTheme };
+    }
+
+    let lastSeed = '';
+    let lastTheme = '';
+
+    function copySeed() {
+      const text = `theme=${lastTheme}&seed=${lastSeed}`;
+      navigator.clipboard.writeText(text).then(() => {
+        const btn = document.querySelector('.copy-btn');
+        btn.textContent = 'Copied!';
+        btn.classList.add('copied');
+        setTimeout(() => {
+          btn.textContent = 'Copy';
+          btn.classList.remove('copied');
+        }, 2000);
+      });
+    }
+
+    async function generate() {
+      const theme = document.getElementById('theme').value;
+      const seed = document.getElementById('seed').value.trim();
+      const status = document.getElementById('status');
+
+      status.textContent = 'Generating...';
+      status.className = 'status';
+
+      try {
+        if (currentMode === 'single') {
+          const result = await fetchAvatar(theme, seed);
+          document.getElementById('single-avatar').innerHTML = result.svg;
+          document.getElementById('single-label').textContent = result.theme;
+
+          // Show seed info
+          lastSeed = result.seed;
+          lastTheme = result.theme;
+          document.getElementById('current-seed').textContent = result.seed;
+          document.getElementById('current-theme').textContent = result.theme;
+          document.getElementById('seed-display').style.display = 'flex';
+
+          status.textContent = '';
+        } else {
+          const count = parseInt(document.getElementById('count').value);
+          const grid = document.getElementById('avatar-grid');
+          grid.innerHTML = '';
+
+          const promises = Array.from({ length: count }, async (_, i) => {
+            const usedTheme = theme === 'random' ? themes[Math.floor(Math.random() * themes.length)] : theme;
+            const usedSeed = seed ? `${seed}-${i}` : '';
+            const result = await fetchAvatar(usedTheme, usedSeed);
+            return result;
+          });
+
+          const results = await Promise.all(promises);
+          results.forEach((result) => {
+            const item = document.createElement('div');
+            item.className = 'avatar-item';
+            item.innerHTML = `
+              <div class="avatar-display">${result.svg}</div>
+              <span class="avatar-label">${result.theme}</span>
+              <span class="avatar-label" style="font-size:0.7rem;opacity:0.7">${result.seed}</span>
+            `;
+            item.style.cursor = 'pointer';
+            item.title = 'Click to copy seed';
+            item.onclick = () => {
+              navigator.clipboard.writeText(`theme=${result.theme}&seed=${result.seed}`);
+              item.querySelector('.avatar-label').textContent = 'Copied!';
+              setTimeout(() => {
+                item.querySelector('.avatar-label').textContent = result.theme;
+              }, 1500);
+            };
+            grid.appendChild(item);
+          });
+          status.textContent = '';
+        }
+      } catch (err) {
+        status.textContent = err.message;
+        status.className = 'status error';
+      }
+    }
+
+    function generateRandom() {
+      document.getElementById('theme').value = 'random';
+      document.getElementById('seed').value = '';
+      generate();
+    }
+
+    // Initialize
+    loadThemes().then(() => generate());
+  </script>
+</body>
+</html>
