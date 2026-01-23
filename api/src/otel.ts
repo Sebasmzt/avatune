@@ -2,15 +2,23 @@ import { NodeSDK } from '@opentelemetry/sdk-node'
 import { HttpInstrumentation } from '@opentelemetry/instrumentation-http'
 import { PrometheusExporter } from '@opentelemetry/exporter-prometheus'
 import { metrics } from '@opentelemetry/api'
+import { PeriodicExportingMetricReader } from '@opentelemetry/sdk-metrics'
 
+// Create Prometheus exporter that starts its own server
 const prometheusExporter = new PrometheusExporter({
   port: parseInt(process.env.METRICS_PORT || '9464'),
   endpoint: '/metrics',
 })
 
+// Create metric reader with the exporter
+const metricReader = new PeriodicExportingMetricReader({
+  exporter: prometheusExporter,
+  exportIntervalMillis: 5000, // Export every 5 seconds
+})
+
 const sdk = new NodeSDK({
   instrumentations: [new HttpInstrumentation()],
-  metricExporter: prometheusExporter,
+  metricReader: metricReader,
 })
 
 sdk.start()

@@ -294,15 +294,39 @@ const server = Bun.serve({
       }
     }
 
-    // GET /metrics - Redirect to metrics server
+// GET /metrics - Fetch from metrics server and proxy response
     if (req.method === 'GET' && url.pathname === '/metrics') {
-      return new Response('Metrics available at metrics.avatar.sebasgc.xyz/metrics', {
-        status: 302,
-        headers: {
-          'Location': 'https://metrics.avatar.sebasgc.xyz/metrics',
-          'Content-Type': 'text/plain',
-        },
-      })
+      console.log(`[${new Date().toISOString()}] /metrics endpoint accessed`)
+      const metricsPort = process.env.METRICS_PORT || '9464'
+      const metricsUrl = `http://localhost:${metricsPort}/metrics`
+      
+      try {
+        console.log(`[${new Date().toISOString()}] Fetching metrics from: ${metricsUrl}`)
+        const metricsResponse = await fetch(metricsUrl)
+        
+        if (!metricsResponse.ok) {
+          console.log(`[${new Date().toISOString()}] Metrics server returned status: ${metricsResponse.status}`)
+          const errorText = await metricsResponse.text()
+          console.log(`[${new Date().toISOString()}] Error response:`, errorText)
+          return new Response(`Metrics server error: ${errorText}`, {
+            status: 503,
+            headers: { 'Content-Type': 'text/plain' },
+          })
+        }
+        
+        const metricsText = await metricsResponse.text()
+        console.log(`[${new Date().toISOString()}] Successfully fetched metrics (${metricsText.length} chars)`)
+        
+        return new Response(metricsText, {
+          headers: { 'Content-Type': 'text/plain' },
+        })
+      } catch (error) {
+        console.log(`[${new Date().toISOString()}] Failed to fetch metrics:`, error)
+        return new Response(`Failed to fetch metrics: ${error}`, {
+          status: 503,
+          headers: { 'Content-Type': 'text/plain' },
+        })
+      }
     }
 
     return new Response('Not Found. Try GET /random, GET /themes, GET /metrics, or POST /', {
@@ -312,9 +336,12 @@ const server = Bun.serve({
   },
 })
 
-console.log(`Listening on http://localhost:${server.port} ...`)
+const apiUrl = process.env.API_URL || `http://localhost:${server.port}`
+const metricsUrl = process.env.METRICS_URL || 'https://metrics.avatar.sebasgc.xyz/metrics'
+
+console.log(`Listening on ${apiUrl} ...`)
 console.log(`Available themes: ${themeNames.join(', ')}`)
-console.log(`Metrics available at https://metrics.avatar.sebasgc.xyz/metrics`)
+console.log(`Metrics available at ${metricsUrl}`)
 console.log(`
 Endpoints:
   GET  /random         - Generate random avatar (optional: ?theme=name&seed=value)
