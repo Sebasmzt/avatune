@@ -32,6 +32,127 @@ const themeNames = Object.keys(themes)
 // Generate OpenAPI specification
 const openAPISpec = generateOpenAPISpec(themeNames)
 
+function generateLlmDocumentation(): string {
+  return `# Avatune API
+
+> Avatar generation API for creating customizable SVG avatars
+
+## Base URL
+
+\`https://api.avatar.sebasgc.xyz/\`
+
+## Quick Start
+
+Generate a random avatar:
+\`\`\`
+GET /random
+\`\`\`
+
+Generate with a specific theme:
+\`\`\`
+GET /?theme=yanliu
+\`\`\`
+
+Generate with a seed for consistency:
+\`\`\`
+GET /?theme=yanliu&seed=my-username
+\`\`\`
+
+## Endpoints
+
+### GET /
+Generate an avatar with query parameters.
+
+| Parameter | Type | Required | Description |
+|-----------|------|----------|-------------|
+| \`theme\` | string | Yes | Avatar theme. Options: ${themeNames.join(', ')} |
+| \`seed\` | string | No | Seed for deterministic generation (same seed = same avatar) |
+| \`size\` | number | No | Avatar size in pixels |
+| \`backgroundColor\` | string | No | Background color (hex) |
+
+**Response**: \`image/svg+xml\`
+
+**Response Headers**:
+- \`X-Avatar-Seed\`: The seed used (save this to regenerate)
+- \`X-Avatar-Theme\`: The theme used
+- \`X-Avatar-Config\`: JSON config used
+
+### GET /random
+Generate a fully random avatar.
+
+| Parameter | Type | Required | Description |
+|-----------|------|----------|-------------|
+| \`theme\` | string | No | Specific theme (random if not provided) |
+| \`seed\` | string | No | Seed for deterministic generation |
+
+### GET /themes
+List all available themes.
+
+**Response**: \`{ "themes": ["${themeNames.join('", "')}"] }\`
+
+### POST /
+Generate avatar with JSON body.
+
+\`\`\`json
+{
+  "theme": "yanliu",
+  "seed": "user123",
+  "size": 256
+}
+\`\`\`
+
+### GET /docs
+Interactive API documentation (Scalar UI).
+
+### GET /openapi.json
+OpenAPI 3.1.0 specification.
+
+### GET /llms.txt
+This documentation in markdown format for LLMs.
+
+## Available Themes
+
+${themeNames.map(name => `- \`${name}\``).join('\n')}
+
+## Examples
+
+### HTML embed
+\`\`\`html
+<img src="https://api.avatar.sebasgc.xyz/?theme=kyute&seed=john-doe" alt="Avatar" />
+\`\`\`
+
+### Fetch in JavaScript
+\`\`\`javascript
+const response = await fetch('https://api.avatar.sebasgc.xyz/?theme=micah&seed=user123');
+const svg = await response.text();
+const seed = response.headers.get('X-Avatar-Seed'); // Save this!
+\`\`\`
+
+### Generate random, save seed
+\`\`\`javascript
+const response = await fetch('https://api.avatar.sebasgc.xyz/random');
+const seed = response.headers.get('X-Avatar-Seed');
+const theme = response.headers.get('X-Avatar-Theme');
+// Store seed + theme to regenerate: /?theme={theme}&seed={seed}
+\`\`\`
+
+## Rate Limits
+
+- 100 requests per minute per IP
+- Exceeding limits results in 10-minute block
+- Headers: \`X-RateLimit-Limit\`, \`X-RateLimit-Remaining\`, \`X-RateLimit-Reset\`
+
+## Notes for LLMs
+
+When generating avatars for users:
+1. Use the \`seed\` parameter with a unique identifier (username, email hash, user ID) for consistent avatars
+2. Save the \`X-Avatar-Seed\` header from responses to regenerate the same avatar later
+3. All parameters except \`theme\` are optional on GET / - the API generates random values for unspecified parts
+4. The response is an SVG that can be embedded directly in HTML or saved as a file
+5. For random avatars, use GET /random and capture the seed from response headers
+`
+}
+
 function getRandomTheme(): VanillaTheme {
   const randomIndex = Math.floor(Math.random() * themeNames.length)
   return themes[themeNames[randomIndex]]
@@ -171,6 +292,27 @@ const server = Bun.serve({
     }
 
     const url = new URL(req.url)
+
+    // Check for LLM-friendly format
+    const format = url.searchParams.get('format')
+    const acceptHeader = req.headers.get('Accept') || ''
+
+    const wantsLlmFormat =
+      format === 'text' ||
+      format === 'markdown' ||
+      acceptHeader.includes('text/markdown') ||
+      acceptHeader.includes('text/plain')
+
+    if (wantsLlmFormat || url.pathname === '/llms.txt') {
+      const doc = generateLlmDocumentation()
+      return new Response(doc, {
+        headers: {
+          'Content-Type': 'text/markdown; charset=utf-8',
+          'Cache-Control': 'public, max-age=3600',
+          ...corsHeaders,
+        },
+      })
+    }
 
 // GET /themes - list available themes
     if (req.method === 'GET' && url.pathname === '/themes') {
@@ -336,7 +478,7 @@ const svg = avatar({ theme, seed })
       })
     }
 
-    return new Response('Not Found. Try GET /?theme=name&seed=value, GET /random, GET /themes, GET /docs, or POST /', {
+    return new Response('Not Found. Try GET /?theme=name&seed=value, GET /random, GET /themes, GET /docs, GET /llms.txt, or POST /', {
       status: 404,
       headers: corsHeaders,
     })
@@ -354,7 +496,10 @@ Endpoints:
   GET  /themes         - List available themes
   GET  /docs           - Interactive API documentation (Scalar UI)
   GET  /openapi.json   - OpenAPI specification
+  GET  /llms.txt       - LLM-friendly documentation (markdown)
   POST /               - Generate avatar with config { theme?: string, seed?: string, ... }
+
+LLM format: Add ?format=text or ?format=markdown to any endpoint, or use Accept: text/markdown header
 
 Response headers: X-Avatar-Seed, X-Avatar-Theme, X-Avatar-Config
 
