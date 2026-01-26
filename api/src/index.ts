@@ -1,9 +1,5 @@
 import { avatar } from '@avatune/vanilla'
 import type { AvatarConfig, VanillaTheme } from '@avatune/types'
-import { requestCounter, themeCounter, countryCounter, responseTimeHistogram } from './otel'
-
-// Initialize OpenTelemetry
-import('./otel')
 
 // Import all themes
 import ashleySeoTheme from '@avatune/ashley-seo-theme/vanilla'
@@ -180,12 +176,8 @@ const server = Bun.serve({
 
     const url = new URL(req.url)
 
-    // GET /themes - list available themes
+// GET /themes - list available themes
     if (req.method === 'GET' && url.pathname === '/themes') {
-      requestCounter.add(1, { endpoint: '/themes', method: 'GET' })
-      const country = await getCountryFromIP(clientIP)
-      countryCounter.add(1, { country })
-      
       const response = new Response(JSON.stringify({ themes: themeNames }), {
         headers: { 
           'Content-Type': 'application/json',
@@ -195,8 +187,7 @@ const server = Bun.serve({
           ...corsHeaders 
         },
       })
-      
-      responseTimeHistogram.record((Date.now() - startTime) / 1000)
+       
       return response
     }
 
@@ -216,14 +207,8 @@ const server = Bun.serve({
         theme = themes[usedThemeName]
       }
 
-      const svg = avatar({ theme, seed })
-      
-      // Track metrics
-      requestCounter.add(1, { endpoint: '/random', method: 'GET' })
-      themeCounter.add(1, { theme: usedThemeName })
-      const country = await getCountryFromIP(clientIP)
-      countryCounter.add(1, { country })
-      
+const svg = avatar({ theme, seed })
+       
       const response = new Response(svg, {
         headers: {
           'Content-Type': 'image/svg+xml',
@@ -235,8 +220,7 @@ const server = Bun.serve({
           ...corsHeaders,
         },
       })
-      
-      responseTimeHistogram.record((Date.now() - startTime) / 1000)
+       
       return response
     }
 
