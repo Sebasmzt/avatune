@@ -1,5 +1,6 @@
 import { avatar } from '@avatune/vanilla'
 import type { AvatarConfig, VanillaTheme } from '@avatune/types'
+import { createOpenAPISpec } from './openapi'
 
 // Import all themes
 import ashleySeoTheme from '@avatune/ashley-seo-theme/vanilla'
@@ -27,6 +28,9 @@ const themes: Record<string, VanillaTheme> = {
 }
 
 const themeNames = Object.keys(themes)
+
+// Generate OpenAPI specification
+const openAPISpec = createOpenAPISpec()
 
 function getRandomTheme(): VanillaTheme {
   const randomIndex = Math.floor(Math.random() * themeNames.length)
