@@ -269,7 +269,28 @@ const svg = avatar({ theme, ...finalConfig })
 
 
 
-    return new Response('Not Found. Try GET /random, GET /themes, or POST /', {
+    // GET /docs - Scalar UI documentation
+    if (req.method === 'GET' && url.pathname === '/docs') {
+      const html = await Bun.file('./src/docs.html').text()
+      return new Response(html, {
+        headers: {
+          'Content-Type': 'text/html',
+          ...corsHeaders,
+        },
+      })
+    }
+
+    // GET /openapi.json - OpenAPI specification
+    if (req.method === 'GET' && url.pathname === '/openapi.json') {
+      return new Response(JSON.stringify(openAPISpec, null, 2), {
+        headers: {
+          'Content-Type': 'application/json',
+          ...corsHeaders,
+        },
+      })
+    }
+
+    return new Response('Not Found. Try GET /random, GET /themes, GET /docs, or POST /', {
       status: 404,
       headers: corsHeaders,
     })
@@ -284,5 +305,7 @@ console.log(`
 Endpoints:
   GET  /random         - Generate random avatar (optional: ?theme=name&seed=value)
   GET  /themes         - List available themes
+  GET  /docs           - Interactive API documentation (Scalar UI)
+  GET  /openapi.json   - OpenAPI specification
   POST /               - Generate avatar with config { theme?: string, seed?: string, ... }
 `)
