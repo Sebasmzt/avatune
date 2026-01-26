@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(find:*)",
+      "Bash(bun run check-types:*)",
+      "Bash(bunx tsc:*)",
+      "Bash(timeout 5 bun run dev:*)"
+    ]
+  }
+}

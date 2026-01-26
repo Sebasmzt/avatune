@@ -103,6 +103,66 @@ export function generateOpenAPISpec(themeNames: string[]): OpenAPIDocument {
       }
     },
     {
+      path: '/avatar',
+      method: 'GET',
+      summary: 'Generate avatar with full configuration',
+      description: 'Generates an avatar with all configuration options passed as query parameters. Use this to regenerate a saved avatar by passing the same seed, theme, and config.',
+      tags: ['Avatars'],
+      parameters: [
+        {
+          name: 'theme',
+          in: 'query',
+          description: 'Theme to use (optional, defaults to random)',
+          schema: { type: 'string', enum: ['random', ...themeNames] },
+          example: themeNames[0]
+        },
+        {
+          name: 'seed',
+          in: 'query',
+          description: 'Seed for deterministic avatar generation. Save this to regenerate the same avatar later.',
+          required: true,
+          schema: {
+            type: 'string',
+            pattern: '^[a-zA-Z0-9]+$',
+            minLength: 1,
+            maxLength: 20
+          },
+          example: 'abc123'
+        },
+        {
+          name: 'hairColor',
+          in: 'query',
+          description: 'Hair color (theme-specific)',
+          schema: { type: 'string' },
+          example: 'brown'
+        },
+        {
+          name: 'backgroundColor',
+          in: 'query',
+          description: 'Background color',
+          schema: { type: 'string' },
+          example: '#f0f0f0'
+        }
+      ],
+      responses: {
+        '200': {
+          description: 'Generated avatar SVG',
+          content: {
+            'image/svg+xml': {
+              schema: { type: 'string', example: '<svg width="400" height="400">...</svg>' }
+            }
+          },
+          headers: {
+            'X-Avatar-Seed': { description: 'The seed used for avatar generation', schema: { type: 'string' } },
+            'X-Avatar-Theme': { description: 'The theme used for avatar generation', schema: { type: 'string' } },
+            'X-Avatar-Config': { description: 'JSON-encoded configuration used for avatar generation', schema: { type: 'string' } }
+          }
+        },
+        '400': { description: 'Bad request - invalid theme' },
+        '429': { description: 'Rate limit exceeded' }
+      }
+    },
+    {
       path: '/',
       method: 'POST',
       summary: 'Generate avatar with configuration',
@@ -147,6 +207,11 @@ export function generateOpenAPISpec(themeNames: string[]): OpenAPIDocument {
             'image/svg+xml': {
               schema: { type: 'string', example: '<svg width="400" height="400">...</svg>' }
             }
+          },
+          headers: {
+            'X-Avatar-Seed': { description: 'The seed used for avatar generation (save this to regenerate later)', schema: { type: 'string' } },
+            'X-Avatar-Theme': { description: 'The theme used for avatar generation', schema: { type: 'string' } },
+            'X-Avatar-Config': { description: 'JSON-encoded configuration used for avatar generation', schema: { type: 'string' } }
           }
         },
         '400': { description: 'Bad request - invalid theme or configuration' },
