@@ -18,7 +18,9 @@
     "@avatune/types": "workspace:*",
     "@avatune/utils": "workspace:*",
     "@avatune/vanilla": "workspace:*",
-    "@avatune/yanliu-theme": "workspace:*"
+    "@avatune/yanliu-theme": "workspace:*",
+    "@scalar/openapi-router": "^0.6.0",
+    "openapi3-ts": "^2.0.2"
   },
   "devDependencies": {
     "bun-types": "latest"
