@@ -220,12 +220,29 @@ const svg = avatar({ theme, seed })
       return response
     }
 
-    // GET /avatar - generate avatar with config from query params
-    if (req.method === 'GET' && url.pathname === '/avatar') {
+    // GET / - generate avatar with query params (like api.avatune.dev)
+    if (req.method === 'GET' && url.pathname === '/') {
       const themeName = url.searchParams.get('theme')
+
+      // Theme is required (like Cloudflare Worker)
+      if (!themeName) {
+        return new Response(
+          `Missing required parameter: theme. Available themes: ${themeNames.join(', ')}`,
+          { status: 400, headers: corsHeaders }
+        )
+      }
+
+      if (!themes[themeName]) {
+        return new Response(
+          `Unknown theme: ${themeName}. Available: ${themeNames.join(', ')}`,
+          { status: 400, headers: corsHeaders }
+        )
+      }
+
+      const theme = themes[themeName]
       const seed = url.searchParams.get('seed') || generateRandomSeed()
 
-      // Extract all other query params as config
+      // Extract all other query params as config (size, hair, body, etc.)
       const config: Record<string, string> = {}
       for (const [key, value] of url.searchParams.entries()) {
         if (key !== 'theme' && key !== 'seed') {
@@ -233,29 +250,14 @@ const svg = avatar({ theme, seed })
         }
       }
 
-      let theme: VanillaTheme
-      let usedThemeName: string
-      if (!themeName || themeName === 'random') {
-        const randomIndex = Math.floor(Math.random() * themeNames.length)
-        usedThemeName = themeNames[randomIndex]
-        theme = themes[usedThemeName]
-      } else if (themes[themeName]) {
-        theme = themes[themeName]
-        usedThemeName = themeName
-      } else {
-        return new Response(`Unknown theme: ${themeName}. Available: ${themeNames.join(', ')}`, {
-          status: 400,
-          headers: corsHeaders,
-        })
-      }
-
       const svg = avatar({ theme, seed, ...config })
 
       return new Response(svg, {
         headers: {
           'Content-Type': 'image/svg+xml',
+          'Cache-Control': 'public, max-age=31536000, immutable',
           'X-Avatar-Seed': seed,
-          'X-Avatar-Theme': usedThemeName,
+          'X-Avatar-Theme': themeName,
           'X-Avatar-Config': JSON.stringify(config),
           'X-RateLimit-Limit': process.env.RATE_LIMIT_REQUESTS || '100',
           'X-RateLimit-Remaining': rateLimitResult.remaining.toString(),
@@ -334,7 +336,7 @@ const svg = avatar({ theme, seed })
       })
     }
 
-    return new Response('Not Found. Try GET /random, GET /avatar, GET /themes, GET /docs, or POST /', {
+    return new Response('Not Found. Try GET /?theme=name&seed=value, GET /random, GET /themes, GET /docs, or POST /', {
       status: 404,
       headers: corsHeaders,
     })
@@ -347,12 +349,14 @@ console.log(`Listening on ${apiUrl} ...`)
 console.log(`Available themes: ${themeNames.join(', ')}`)
 console.log(`
 Endpoints:
+  GET  /               - Generate avatar (?theme=name&seed=value&hair=short&...) [like api.avatune.dev]
   GET  /random         - Generate random avatar (optional: ?theme=name&seed=value)
-  GET  /avatar         - Generate avatar with full config via query params (?theme=name&seed=value&hairColor=brown&...)
   GET  /themes         - List available themes
   GET  /docs           - Interactive API documentation (Scalar UI)
   GET  /openapi.json   - OpenAPI specification
   POST /               - Generate avatar with config { theme?: string, seed?: string, ... }
 
-Response headers include: X-Avatar-Seed, X-Avatar-Theme, X-Avatar-Config
+Response headers: X-Avatar-Seed, X-Avatar-Theme, X-Avatar-Config
+
+Example: ${apiUrl}/?theme=kyute&seed=user123
 `)

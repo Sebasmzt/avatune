@@ -4,7 +4,12 @@
       "Bash(find:*)",
       "Bash(bun run check-types:*)",
       "Bash(bunx tsc:*)",
-      "Bash(timeout 5 bun run dev:*)"
+      "Bash(timeout 5 bun run dev:*)",
+      "Bash(bun:*)",
+      "Bash(curl:*)",
+      "WebFetch(domain:www.avatune.dev)",
+      "Bash(lsof:*)",
+      "Bash(xargs kill:*)"
     ]
   }
 }
