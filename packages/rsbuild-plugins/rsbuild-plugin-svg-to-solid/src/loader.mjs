@@ -1,7 +1,11 @@
+import { createRequire } from 'node:module'
 import { normalize } from 'node:path'
 import { callbackify } from 'node:util'
 import * as babel from '@babel/core'
 import { optimize as optimizeSvg } from 'svgo'
+
+const require = createRequire(import.meta.url)
+const solidPresetPath = require.resolve('babel-preset-solid')
 
 const applyReplacements = (svg, replacements = {}) => {
   let result = svg
@@ -143,7 +147,7 @@ export default SvgComponent;
 const compileWithBabel = async (jsxSource, resourcePath) => {
   const result = await babel.transformAsync(jsxSource, {
     filename: resourcePath || 'component.jsx',
-    presets: ['babel-preset-solid'],
+    presets: [solidPresetPath],
     babelrc: false,
     configFile: false,
   })
