@@ -33,7 +33,7 @@ import eyesNeutral from './svg/eyes/neutral.svg?raw'
 import eyesSurprised from './svg/eyes/surprised.svg?raw'
 import eyesWide from './svg/eyes/wide.svg?raw'
 
-// Face Hair
+// FaceHair
 import faceHairBeard from './svg/faceHair/beard.svg?raw'
 import faceHairMustache from './svg/faceHair/mustache.svg?raw'
 
@@ -115,7 +115,7 @@ export {
   eyesNeutral,
   eyesSurprised,
   eyesWide,
-  // Face Hair
+  // FaceHair
   faceHairBeard,
   faceHairMustache,
   // Hair

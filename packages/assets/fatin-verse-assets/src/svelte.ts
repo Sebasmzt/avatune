@@ -19,12 +19,12 @@ import BodySuit from './svg/body/suit.svg?svelte'
 import BodyTurtleneck from './svg/body/turtleneck.svg?svelte'
 
 // Eyebrows
-import EyebrowsBrowAngled from './svg/eyebrows/angled.svg?svelte'
-import EyebrowsBrowFlat from './svg/eyebrows/flat.svg?svelte'
-import EyebrowsBrowRaised from './svg/eyebrows/raised.svg?svelte'
-import EyebrowsBrowSoft from './svg/eyebrows/soft.svg?svelte'
-import EyebrowsBrowThick from './svg/eyebrows/thick.svg?svelte'
-import EyebrowsBrowThin from './svg/eyebrows/thin.svg?svelte'
+import EyebrowsAngled from './svg/eyebrows/angled.svg?svelte'
+import EyebrowsFlat from './svg/eyebrows/flat.svg?svelte'
+import EyebrowsRaised from './svg/eyebrows/raised.svg?svelte'
+import EyebrowsSoft from './svg/eyebrows/soft.svg?svelte'
+import EyebrowsThick from './svg/eyebrows/thick.svg?svelte'
+import EyebrowsThin from './svg/eyebrows/thin.svg?svelte'
 
 // Eyes
 import EyesFocused from './svg/eyes/focused.svg?svelte'
@@ -33,7 +33,7 @@ import EyesNeutral from './svg/eyes/neutral.svg?svelte'
 import EyesSurprised from './svg/eyes/surprised.svg?svelte'
 import EyesWide from './svg/eyes/wide.svg?svelte'
 
-// Face Hair
+// FaceHair
 import FaceHairBeard from './svg/faceHair/beard.svg?svelte'
 import FaceHairMustache from './svg/faceHair/mustache.svg?svelte'
 
@@ -103,19 +103,19 @@ export {
   BodySuit,
   BodyTurtleneck,
   // Eyebrows
-  EyebrowsBrowAngled,
-  EyebrowsBrowFlat,
-  EyebrowsBrowRaised,
-  EyebrowsBrowSoft,
-  EyebrowsBrowThick,
-  EyebrowsBrowThin,
+  EyebrowsAngled,
+  EyebrowsFlat,
+  EyebrowsRaised,
+  EyebrowsSoft,
+  EyebrowsThick,
+  EyebrowsThin,
   // Eyes
   EyesFocused,
   EyesHappy,
   EyesNeutral,
   EyesSurprised,
   EyesWide,
-  // Face Hair
+  // FaceHair
   FaceHairBeard,
   FaceHairMustache,
   // Hair

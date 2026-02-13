@@ -43,6 +43,19 @@ export default defineConfig({
         externals: [/@avatune\/.*/],
       },
     },
+    {
+      format: 'esm',
+      syntax: ['node 18'],
+      dts: true,
+      source: {
+        entry: {
+          solidjs: './src/solidjs.ts',
+        },
+      },
+      output: {
+        externals: [/@avatune\/.*/],
+      },
+    },
   ],
   output: {
     minify: true,

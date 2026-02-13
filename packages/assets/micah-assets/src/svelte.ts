@@ -1,30 +1,36 @@
 // Accessories
-
 import AccessoriesHoopEarRing from './svg/accessories/hoop-ear-ring.svg?svelte'
 import AccessoriesStudEarRing from './svg/accessories/stud-ear-ring.svg?svelte'
+
 // Body
 import BodyCollaredShirt from './svg/body/collared-shirt.svg?svelte'
 import BodyCrewShirt from './svg/body/crew-shirt.svg?svelte'
 import BodyOpenShirt from './svg/body/open-shirt.svg?svelte'
+
 // Ears
 import EarsMedium from './svg/ears/medium.svg?svelte'
 import EarsSmall from './svg/ears/small.svg?svelte'
+
 // Eyebrows
 import EyebrowsDown from './svg/eyebrows/down.svg?svelte'
 import EyebrowsEyelashesDown from './svg/eyebrows/eyelashes-down.svg?svelte'
 import EyebrowsEyelashesUp from './svg/eyebrows/eyelashes-up.svg?svelte'
 import EyebrowsUp from './svg/eyebrows/up.svg?svelte'
+
 // Eyes
 import EyesEyeshadow from './svg/eyes/eyeshadow.svg?svelte'
 import EyesRound from './svg/eyes/round.svg?svelte'
 import EyesSmiling from './svg/eyes/smiling.svg?svelte'
 import EyesStandard from './svg/eyes/standard.svg?svelte'
-// Face Hair
+
+// FaceHair
 import FaceHairBeard from './svg/faceHair/beard.svg?svelte'
 import FaceHairScruff from './svg/faceHair/scruff.svg?svelte'
+
 // Glasses
 import GlassesRound from './svg/glasses/round.svg?svelte'
 import GlassesSquare from './svg/glasses/square.svg?svelte'
+
 // Hair
 import HairDannyPhantom from './svg/hair/danny-phantom.svg?svelte'
 import HairDougFunny from './svg/hair/doug-funny.svg?svelte'
@@ -33,8 +39,10 @@ import HairFull from './svg/hair/full.svg?svelte'
 import HairMrT from './svg/hair/mr-t.svg?svelte'
 import HairPixie from './svg/hair/pixie.svg?svelte'
 import HairTurban from './svg/hair/turban.svg?svelte'
+
 // Head
 import HeadStandard from './svg/head/standard.svg?svelte'
+
 // Mouth
 import MouthFrown from './svg/mouth/frown.svg?svelte'
 import MouthLaughing from './svg/mouth/laughing.svg?svelte'
@@ -44,6 +52,7 @@ import MouthSad from './svg/mouth/sad.svg?svelte'
 import MouthSmile from './svg/mouth/smile.svg?svelte'
 import MouthSmirk from './svg/mouth/smirk.svg?svelte'
 import MouthSurprised from './svg/mouth/surprised.svg?svelte'
+
 // Nose
 import NoseCurve from './svg/nose/curve.svg?svelte'
 import NosePointed from './svg/nose/pointed.svg?svelte'
@@ -51,8 +60,8 @@ import NoseRound from './svg/nose/round.svg?svelte'
 
 export {
   // Accessories
-  AccessoriesStudEarRing,
   AccessoriesHoopEarRing,
+  AccessoriesStudEarRing,
   // Body
   BodyCollaredShirt,
   BodyCrewShirt,
@@ -70,7 +79,7 @@ export {
   EyesRound,
   EyesSmiling,
   EyesStandard,
-  // Face Hair
+  // FaceHair
   FaceHairBeard,
   FaceHairScruff,
   // Glasses

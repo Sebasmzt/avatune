@@ -58,6 +58,10 @@
       "svelte": "./dist/svelte.js",
       "types": "./dist/svelte.d.ts",
       "import": "./dist/svelte.js"
+    },
+    "./solidjs": {
+      "types": "./dist/solidjs.d.ts",
+      "import": "./dist/solidjs.js"
     }
   },
   "types": "./dist/vanilla.d.ts",
@@ -80,6 +84,14 @@
     "@rslib/core": "^0.16.1",
     "@types/node": "^22.18.12",
     "typescript": "^5.9.3"
+  },
+  "peerDependencies": {
+    "solid-js": ">=1.8.0"
+  },
+  "peerDependenciesMeta": {
+    "solid-js": {
+      "optional": true
+    }
   },
   "license": "MIT"
 }

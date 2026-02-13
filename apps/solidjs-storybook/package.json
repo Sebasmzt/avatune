@@ -1,0 +1,39 @@
+{
+  "name": "@avatune/solidjs-storybook",
+  "version": "1.0.0",
+  "private": true,
+  "author": "Avatune Team (https://avatune.dev)",
+  "contributors": [
+    "Teimur Gasanov <me@teimurjan.dev> (https://github.com/teimurjan)",
+    "Stanislav Nevmyvaka <nevmyvakastas@gmail.com> (https://github.com/nevmstas)"
+  ],
+  "type": "module",
+  "scripts": {
+    "storybook": "storybook dev -p 6011 --no-open",
+    "build-storybook": "storybook build",
+    "check-types": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@avatune/ashley-seo-theme": "workspace:*",
+    "@avatune/fatin-verse-theme": "workspace:*",
+    "@avatune/kyute-theme": "workspace:*",
+    "@avatune/micah-theme": "workspace:*",
+    "@avatune/miniavs-theme": "workspace:*",
+    "@avatune/nevmstas-theme": "workspace:*",
+    "@avatune/pacovqzz-theme": "workspace:*",
+    "@avatune/pawel-olek-man-theme": "workspace:*",
+    "@avatune/pawel-olek-woman-theme": "workspace:*",
+    "@avatune/solidjs": "workspace:*",
+    "@avatune/types": "workspace:*",
+    "@avatune/yanliu-theme": "workspace:*",
+    "solid-js": "^1.9.0"
+  },
+  "devDependencies": {
+    "@storybook/addon-docs": "^10.0.4",
+    "storybook": "^10.0.4",
+    "storybook-solidjs-vite": "^10.0.9",
+    "typescript": "^5.9.3",
+    "vite": "^6.0.0",
+    "vite-plugin-solid": "^2.11.0"
+  }
+}

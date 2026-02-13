@@ -53,6 +53,11 @@
       "types": "./dist/vanilla.d.ts",
       "import": "./dist/vanilla.js",
       "require": "./dist/vanilla.cjs"
+    },
+    "./solidjs": {
+      "types": "./dist/solidjs.d.ts",
+      "import": "./dist/solidjs.js",
+      "require": "./dist/solidjs.cjs"
     }
   },
   "files": [
@@ -73,6 +78,34 @@
     "@avatune/typescript-config": "workspace:*",
     "@rslib/core": "^0.16.1",
     "typescript": "^5.9.3"
+  },
+  "peerDependencies": {
+    "react": ">=18.0.0",
+    "react-native": ">=0.74.0",
+    "react-native-svg": ">=15.0.0",
+    "solid-js": ">=1.8.0",
+    "svelte": ">=5.0.0",
+    "vue": "^3.5.22"
+  },
+  "peerDependenciesMeta": {
+    "react": {
+      "optional": true
+    },
+    "solid-js": {
+      "optional": true
+    },
+    "svelte": {
+      "optional": true
+    },
+    "vue": {
+      "optional": true
+    },
+    "react-native": {
+      "optional": true
+    },
+    "react-native-svg": {
+      "optional": true
+    }
   },
   "license": "MIT"
 }
