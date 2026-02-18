@@ -259,7 +259,7 @@ class RateLimiter {
 }
 
 const rateLimiter = new RateLimiter(
-  parseInt(process.env.RATE_LIMIT_REQUESTS || '100'),
+  parseInt(process.env.RATE_LIMIT_REQUESTS || '10000'),
   parseInt(process.env.RATE_LIMIT_WINDOW_MS || '60000'),
   parseInt(process.env.RATE_LIMIT_BLOCK_DURATION_MS || '600000')
 )
