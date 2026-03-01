@@ -1,6 +1,7 @@
 import jsLogo from '../assets/javascript-logo.svg'
 import reactLogo from '../assets/react-logo.svg'
 import reactNativeLogo from '../assets/react-native.svg'
+import solidjsLogo from '../assets/solidjs-logo.svg'
 import svelteLogo from '../assets/svelte-logo.svg'
 import vueLogo from '../assets/vue-logo.svg'
 
@@ -97,6 +98,13 @@ export const frameworks: FrameworkDefinition[] = [
     language: 'tsx',
     filePath: 'app/Avatar.tsx',
     logo: { src: reactNativeLogo.src, alt: 'React Native logo' },
+  },
+  {
+    id: 'solidjs',
+    label: 'SolidJS',
+    language: 'ts',
+    filePath: 'src/components/Avatar.tsx',
+    logo: { src: solidjsLogo.src, alt: 'SolidJS logo' },
   },
   {
     id: 'js',
@@ -250,6 +258,25 @@ ${scriptClose}
 import theme from '${themeImportPath}'
 
 export function AvatarPreview() {
+  return (
+    <Avatar
+      theme={theme}
+      size={300}
+      seed="${seed}"${propsStr}
+    />
+  )
+}`
+    }
+
+    case 'solidjs': {
+      const propsLines = filteredSelections
+        .map(([k, v]) => `      ${k}="${v}"`)
+        .join('\n')
+      const propsStr = hasSelections ? `\n${propsLines}` : ''
+      return `import { Avatar } from '@avatune/solidjs'
+import theme from '${themeImportPath}'
+
+function App() {
   return (
     <Avatar
       theme={theme}

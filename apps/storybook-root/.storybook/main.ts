@@ -43,6 +43,11 @@ const config: StorybookConfig = {
       url: 'http://localhost:6009',
       expanded: true,
     },
+    solidjs: {
+      title: 'SolidJS',
+      url: 'http://localhost:6011',
+      expanded: true,
+    },
   },
 }
 

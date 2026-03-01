@@ -1,6 +1,6 @@
 {
   "name": "@avatune/nevmstas-theme",
-  "version": "3.1.0",
+  "version": "3.1.1",
   "private": false,
   "publishConfig": {
     "access": "public"
@@ -54,6 +54,10 @@
       "types": "./dist/svelte.d.ts",
       "import": "./dist/svelte.js"
     },
+    "./solidjs": {
+      "types": "./dist/solidjs.d.ts",
+      "import": "./dist/solidjs.js"
+    },
     "./react-native": {
       "types": "./dist/react-native.d.ts",
       "import": "./dist/react-native.js",
@@ -85,11 +89,15 @@
     "react": ">=18.0.0",
     "react-native": ">=0.74.0",
     "react-native-svg": ">=15.0.0",
+    "solid-js": ">=1.8.0",
     "svelte": ">=5.0.0",
     "vue": "^3.5.22"
   },
   "peerDependenciesMeta": {
     "react": {
+      "optional": true
+    },
+    "solid-js": {
       "optional": true
     },
     "svelte": {

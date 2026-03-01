@@ -9,7 +9,7 @@ import { basename, join } from 'node:path'
  * Example: bun scripts/generate-assets.ts kyute-assets
  */
 
-type Framework = 'react' | 'vue' | 'svelte' | 'svg' | 'react-native'
+type Framework = 'react' | 'vue' | 'svelte' | 'solid' | 'svg' | 'react-native'
 
 interface AssetFile {
   category: string
@@ -170,6 +170,31 @@ function generateSvelteFile(assets: AssetFile[]): string {
   return `${imports.join('\n')}\n\nexport {\n${exports.join('\n')}\n}\n`
 }
 
+function generateSolidFile(assets: AssetFile[]): string {
+  const imports: string[] = []
+  const exports: string[] = []
+  let currentCategory = ''
+
+  for (const asset of assets) {
+    if (asset.category !== currentCategory) {
+      if (currentCategory !== '') {
+        imports.push('')
+        exports.push('')
+      }
+      const categoryComment = `// ${capitalizeFirst(asset.category)}`
+      imports.push(categoryComment)
+      exports.push(categoryComment)
+      currentCategory = asset.category
+    }
+
+    const componentName = `${capitalizeFirst(asset.category)}${toPascalCase(asset.name)}`
+    imports.push(`import ${componentName} from '${asset.path}?solid'`)
+    exports.push(`  ${componentName},`)
+  }
+
+  return `${imports.join('\n')}\n\nexport {\n${exports.join('\n')}\n}\n`
+}
+
 function generateSvgFile(assets: AssetFile[]): string {
   const imports: string[] = []
   const exports: string[] = []
@@ -233,6 +258,7 @@ function main() {
     'react',
     'vue',
     'svelte',
+    'solid',
     'svg',
     'react-native',
   ]
@@ -249,6 +275,9 @@ function main() {
         break
       case 'svelte':
         content = generateSvelteFile(assets)
+        break
+      case 'solid':
+        content = generateSolidFile(assets)
         break
       case 'svg':
         content = generateSvgFile(assets)

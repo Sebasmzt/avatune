@@ -9,7 +9,6 @@ import pacovqzzTheme from '@avatune/pacovqzz-theme/vanilla'
 import pawelOlekManTheme from '@avatune/pawel-olek-man-theme/vanilla'
 import pawelOlekWomanTheme from '@avatune/pawel-olek-woman-theme/vanilla'
 import type { AvatarPartCategory, VanillaTheme } from '@avatune/types'
-import { avatar } from '@avatune/vanilla'
 import yanliuTheme from '@avatune/yanliu-theme/vanilla'
 
 import { cleanupTmpDir, saveTmpPng, setupTmpDir, svgToPng } from './utils.js'

@@ -3,11 +3,9 @@ import type { ThemeData } from '../types'
 import { toKebabCase } from './caseUtils'
 import {
   generateAssetFrameworkFile,
-  generateThemeFile,
   generateThemeFrameworkFile,
 } from './generators'
 import {
-  generateAssetsChangelog,
   generateAssetsGlobalDts,
   generateAssetsPackageJson,
   generateAssetsReadme,
@@ -15,7 +13,6 @@ import {
   generateAssetsRslibNativeConfig,
   generateAssetsRslibShared,
   generateAssetsTsconfig,
-  generateThemeChangelog,
   generateThemeColors,
   generateThemePackageJson,
   generateThemeReadme,
@@ -65,7 +62,7 @@ export async function generateThemeFolder(
     if (!assetsByCategory.has(assetFile.category)) {
       assetsByCategory.set(assetFile.category, [])
     }
-    assetsByCategory.get(assetFile.category)!.push(assetFile)
+    assetsByCategory.get(assetFile.category)?.push(assetFile)
   }
 
   // ============================================================================

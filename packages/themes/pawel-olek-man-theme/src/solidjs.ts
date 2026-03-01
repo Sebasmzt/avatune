@@ -1,0 +1,128 @@
+import {
+  EarsManBig,
+  EarsManBiten,
+  EarsManRingEarring,
+  EarsManSmall,
+  EarsManStandard,
+  EarsManStudEarrings,
+  EyesManBig,
+  EyesManEyelashes,
+  EyesManEyelids,
+  EyesManHappy,
+  EyesManSmall,
+  EyesManStandard,
+  FaceDetailsChinDimple1,
+  FaceDetailsChinDimple2,
+  FaceDetailsChinDimple3,
+  FaceDetailsChinDimple4,
+  GlassesManBrow,
+  GlassesManPatch,
+  GlassesManRound,
+  GlassesManSquare,
+  GlassesManStylish,
+  HairBeanie,
+  HairManBald,
+  HairManCurly,
+  HairManElvis,
+  HairManMediumTopknot,
+  HairManMessy,
+  HairManShortTopknot,
+  HairManStylish,
+  HeadManBeardMustache,
+  HeadManBeardSharp,
+  HeadManBeardSlim,
+  HeadManBeardStandard,
+  HeadManBristle,
+  HeadManBristleMustache,
+  HeadManChin,
+  HeadManSharp,
+  HeadManStandard,
+  MouthChin,
+  MouthPhiltrum1,
+  MouthPhiltrum2,
+  MouthSad,
+  MouthSmall,
+  MouthSmile,
+  MouthTongue1,
+  MouthTongue2,
+  MouthVampire,
+  NoseManBig,
+  NoseManBigWide,
+  NoseManSmall,
+  NoseManStandard,
+  NoseManWide,
+} from '@avatune/pawel-olek-assets/solid'
+import type { SolidJsAvatarItem } from '@avatune/types'
+import shared from './shared'
+
+export default shared
+  .toFramework<SolidJsAvatarItem>()
+  .withComponents('ears', {
+    big: { Component: EarsManBig },
+    biten: { Component: EarsManBiten },
+    ringEarring: { Component: EarsManRingEarring },
+    small: { Component: EarsManSmall },
+    standard: { Component: EarsManStandard },
+    studEarrings: { Component: EarsManStudEarrings },
+  })
+  .withComponents('eyes', {
+    big: { Component: EyesManBig },
+    happy: { Component: EyesManHappy },
+    small: { Component: EyesManSmall },
+    standard: { Component: EyesManStandard },
+    eyelashes: { Component: EyesManEyelashes },
+    eyelids: { Component: EyesManEyelids },
+  })
+  .withComponents('faceDetails', {
+    chinDimple1: { Component: FaceDetailsChinDimple1 },
+    chinDimple2: { Component: FaceDetailsChinDimple2 },
+    chinDimple3: { Component: FaceDetailsChinDimple3 },
+    chinDimple4: { Component: FaceDetailsChinDimple4 },
+  })
+  .withComponents('glasses', {
+    brow: { Component: GlassesManBrow },
+    patch: { Component: GlassesManPatch },
+    round: { Component: GlassesManRound },
+    square: { Component: GlassesManSquare },
+    stylish: { Component: GlassesManStylish },
+  })
+  .withComponents('hair', {
+    bald: { Component: HairManBald },
+    curly: { Component: HairManCurly },
+    elvis: { Component: HairManElvis },
+    mediumTopknot: { Component: HairManMediumTopknot },
+    messy: { Component: HairManMessy },
+    shortTopknot: { Component: HairManShortTopknot },
+    stylish: { Component: HairManStylish },
+    beanie: { Component: HairBeanie },
+  })
+  .withComponents('head', {
+    beardMustache: { Component: HeadManBeardMustache },
+    beardSharp: { Component: HeadManBeardSharp },
+    beardSlim: { Component: HeadManBeardSlim },
+    beardStandard: { Component: HeadManBeardStandard },
+    bristle: { Component: HeadManBristle },
+    bristleMustache: { Component: HeadManBristleMustache },
+    chin: { Component: HeadManChin },
+    sharp: { Component: HeadManSharp },
+    standard: { Component: HeadManStandard },
+  })
+  .withComponents('mouth', {
+    chin: { Component: MouthChin },
+    philtrum1: { Component: MouthPhiltrum1 },
+    philtrum2: { Component: MouthPhiltrum2 },
+    sad: { Component: MouthSad },
+    small: { Component: MouthSmall },
+    smile: { Component: MouthSmile },
+    tongue1: { Component: MouthTongue1 },
+    tongue2: { Component: MouthTongue2 },
+    vampire: { Component: MouthVampire },
+  })
+  .withComponents('nose', {
+    big: { Component: NoseManBig },
+    bigWide: { Component: NoseManBigWide },
+    small: { Component: NoseManSmall },
+    standard: { Component: NoseManStandard },
+    wide: { Component: NoseManWide },
+  })
+  .build()

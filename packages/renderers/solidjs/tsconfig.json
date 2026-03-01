@@ -1,0 +1,10 @@
+{
+  "extends": "@avatune/typescript-config/base",
+  "compilerOptions": {
+    "rootDir": "./src",
+    "outDir": "./dist",
+    "jsx": "preserve",
+    "jsxImportSource": "solid-js"
+  },
+  "include": ["src/**/*"]
+}
