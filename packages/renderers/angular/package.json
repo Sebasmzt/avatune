@@ -26,14 +26,14 @@
     "angular"
   ],
   "type": "module",
-  "types": "./dist/index.d.ts",
+  "types": "./dist/types/avatune-angular.d.ts",
   "module": "./dist/fesm2022/avatune-angular.mjs",
   "exports": {
     "./package.json": {
       "default": "./package.json"
     },
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/types/avatune-angular.d.ts",
       "default": "./dist/fesm2022/avatune-angular.mjs"
     }
   },
@@ -51,12 +51,12 @@
     "tslib": "^2.3.0"
   },
   "devDependencies": {
-    "@angular/compiler": "^20.0.0",
-    "@angular/compiler-cli": "^20.0.0",
-    "@angular/core": "^20.0.0",
+    "@angular/compiler": "21.2.1",
+    "@angular/compiler-cli": "21.2.1",
+    "@angular/core": "21.2.1",
     "@avatune/typescript-config": "workspace:*",
     "@types/node": "^22.18.12",
-    "ng-packagr": "^20.0.0",
+    "ng-packagr": "21.2.0",
     "typescript": "^5.9.3"
   },
   "peerDependencies": {
