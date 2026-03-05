@@ -23,19 +23,22 @@ avatune/
 │   ├── vue-storybook/                       # Vue Storybook
 │   ├── vanilla-storybook/                   # Vanilla JS Storybook
 │   ├── predictor-storybook/                 # ML Predictor demos
+│   ├── studio/                              # Theme creation studio
 │   └── storybook-root/                      # Root Storybook aggregator
 ├── packages/
 │   ├── assets/                              # SVG assets per theme
+│   │   ├── ashley-seo-assets/
+│   │   ├── fatin-verse-assets/
 │   │   ├── kyute-assets/
 │   │   ├── micah-assets/
 │   │   ├── miniavs-assets/
 │   │   ├── nevmstas-assets/
 │   │   ├── pacovqzz-assets/
 │   │   ├── pawel-olek-assets/
-│   │   ├── fatin-verse-assets/
-│   │   ├── yanliu-assets/
 │   │   └── yanliu-assets/
 │   ├── themes/                              # Theme configurations
+│   │   ├── ashley-seo-theme/
+│   │   ├── fatin-verse-theme/
 │   │   ├── kyute-theme/
 │   │   ├── micah-theme/
 │   │   ├── miniavs-theme/
@@ -43,11 +46,11 @@ avatune/
 │   │   ├── pacovqzz-theme/
 │   │   ├── pawel-olek-man-theme/
 │   │   ├── pawel-olek-woman-theme/
-│   │   ├── fatin-verse-theme/
 │   │   └── yanliu-theme/
 │   ├── renderers/                           # Platform-specific renderers
 │   │   ├── react/
 │   │   ├── react-native/
+│   │   ├── solidjs/
 │   │   ├── svelte/
 │   │   ├── vue/
 │   │   └── vanilla/
@@ -65,6 +68,7 @@ avatune/
 │   └── rsbuild-plugins/                     # Build plugins
 │       ├── rsbuild-plugin-copy-tfjs-model/
 │       ├── rsbuild-plugin-raw-svg/
+│       ├── rsbuild-plugin-svg-to-solid/
 │       ├── rsbuild-plugin-svg-to-svelte/
 │       └── rsbuild-plugin-svg-to-vue/
 ├── scripts/                                 # Build/generation scripts
@@ -149,7 +153,7 @@ marimo run notebooks/hair_color/03_train.py      # Headless training
 Each theme has:
 - `colors.ts` - Color enums (SkinTones, HairColors, AccentColors, BackgroundColors)
 - `shared.ts` - Base theme config (positions, layers, colors, items)
-- `react.ts`, `vue.ts`, `svelte.ts`, `vanilla.ts`, `react-native.ts` - Framework bindings
+- `react.ts`, `vue.ts`, `svelte.ts`, `solidjs.ts`, `vanilla.ts`, `react-native.ts` - Framework bindings
 - `index.ts` - Barrel exports
 
 ### Theme Builder API
@@ -170,6 +174,12 @@ createTheme()
   })
   .build()
 ```
+
+### SSR Support
+
+**SolidJS**: Assets and renderer ship uncompiled `.jsx` files under the `"solid"` export condition. `vite-plugin-solid` + `vitefu` detect this and compile JSX with the correct `generate` mode (`dom` for client, `ssr` for server) — standard Solid ecosystem convention (Kobalte, Corvu). `pluginSvgToSolidJsx` generates `dist/solid.jsx` as a post-build step; the renderer uses esbuild (`jsx: 'preserve'`) to produce `dist/index.jsx`. Theme solidjs entries have no JSX, so `dist/solidjs.js` works directly.
+
+**Svelte**: Assets ship compiled `.svelte` component files under the `"svelte"` export condition (`dist/svelte/index.js`). SvelteKit resolves this condition and handles SSR natively since Svelte components compile to both DOM and SSR output. The `pluginSvgToSvelte` plugin with `emitSvelteFiles` generates these files during build.
 
 ## ML Models Pipeline
 

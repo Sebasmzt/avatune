@@ -55,6 +55,7 @@
       "require": "./dist/vanilla.cjs"
     },
     "./solidjs": {
+      "solid": "./dist/solidjs.js",
       "types": "./dist/solidjs.d.ts",
       "import": "./dist/solidjs.js",
       "require": "./dist/solidjs.cjs"

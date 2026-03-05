@@ -1,0 +1,21 @@
+{
+  "name": "@avatune/solidstart-example",
+  "private": true,
+  "version": "0.0.1",
+  "type": "module",
+  "scripts": {
+    "dev": "vinxi dev",
+    "build": "vinxi build",
+    "start": "vinxi start"
+  },
+  "dependencies": {
+    "@avatune/pacovqzz-theme": "workspace:*",
+    "@avatune/solidjs": "workspace:*",
+    "@solidjs/router": "^0.15.4",
+    "@solidjs/start": "^1.3.2",
+    "solid-js": "^1.9.11"
+  },
+  "devDependencies": {
+    "typescript": "^5"
+  }
+}

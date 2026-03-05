@@ -1,3 +1,4 @@
+import { readFileSync, writeFileSync } from 'node:fs'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 import type { RsbuildPlugin, Rspack } from '@rsbuild/core'
@@ -16,6 +17,13 @@ export type PluginOptions = {
   replaceAttrValues?: Record<string, string>
 }
 
+export type pluginSvgToSolidJsxOptions = {
+  svgoConfig?: SvgoConfig
+  svgo?: boolean
+  imports?: string
+  replaceAttrValues?: Record<string, string>
+}
+
 const SVG_REGEX = /\.svg$/
 
 const getDefaultSvgoConfig = (): SvgoConfig =>
@@ -27,6 +35,20 @@ const getDefaultSvgoConfig = (): SvgoConfig =>
       },
     ],
   }) as SvgoConfig
+
+const normalizeReplaceAttrValues = (
+  replaceAttrValues?: Record<string, string>,
+) => {
+  if (!replaceAttrValues) return undefined
+  return Object.entries(replaceAttrValues).reduce<Record<string, string>>(
+    (acc, [key, value]) => {
+      acc[key] = value
+      acc[key.toLowerCase()] = value
+      return acc
+    },
+    { ...replaceAttrValues },
+  )
+}
 
 export const PLUGIN_NAME = 'avatune:svg-to-solid'
 
@@ -108,16 +130,9 @@ export const pluginSvgToSolid = (
 
       const solidQuery = /(^|\?)solid($|&)/
 
-      const replaceAttrValues = options.replaceAttrValues
-        ? Object.entries(options.replaceAttrValues).reduce(
-            (acc, [key, value]) => {
-              acc[key] = value
-              acc[key.toLowerCase()] = value
-              return acc
-            },
-            options.replaceAttrValues,
-          )
-        : undefined
+      const replaceAttrValues = normalizeReplaceAttrValues(
+        options.replaceAttrValues,
+      )
 
       try {
         rule
@@ -223,6 +238,72 @@ export const pluginSvgToSolid = (
       }
 
       if (debug) console.log(`[${PLUGIN_NAME}] svg rules configured`)
+    })
+  },
+})
+
+export const pluginSvgToSolidJsx = (
+  options: pluginSvgToSolidJsxOptions = {},
+): RsbuildPlugin => ({
+  name: 'avatune:generate-solid-jsx',
+  setup(api) {
+    api.onAfterBuild(async () => {
+      const { transformSvgToSolidSource } = await import('./loader.mjs')
+
+      const cwd = process.cwd()
+      const solidTs = readFileSync(path.join(cwd, 'src/solid.ts'), 'utf-8')
+      const importRegex =
+        /import\s+(\w+)\s+from\s+'\.\/svg\/(.+?)\.svg\?solid'/g
+
+      const components: Array<{ name: string; svgPath: string }> = []
+      let match: RegExpExecArray | null = importRegex.exec(solidTs)
+      while (match !== null) {
+        components.push({
+          name: match[1] as string,
+          svgPath: path.join(cwd, 'src/svg', `${match[2]}.svg`),
+        })
+        match = importRegex.exec(solidTs)
+      }
+
+      const replaceAttrValues = normalizeReplaceAttrValues(
+        options.replaceAttrValues,
+      )
+      const transformOptions = {
+        svgo: options.svgo ?? true,
+        svgoConfig: options.svgoConfig,
+        imports: options.imports,
+        replaceAttrValues,
+      }
+
+      let needsColord = false
+      const componentSources: string[] = []
+      const importsStr = options.imports || ''
+
+      for (const { name, svgPath } of components) {
+        const svg = readFileSync(svgPath, 'utf-8')
+        const { jsxSource } = transformSvgToSolidSource(
+          svg,
+          transformOptions,
+          svgPath,
+        )
+
+        let source = jsxSource
+          .replaceAll('SvgComponent', name)
+          .replace(`export default ${name};`, '')
+
+        if (importsStr && source.includes(importsStr)) {
+          needsColord = true
+          source = source.replace(importsStr, '')
+        }
+
+        componentSources.push(source.trim())
+      }
+
+      const header = needsColord ? `${importsStr}\n` : ''
+      const exportList = components.map((c) => `  ${c.name}`).join(',\n')
+      const output = `${header}\n${componentSources.join('\n\n')}\n\nexport {\n${exportList},\n}\n`
+
+      writeFileSync(path.join(cwd, 'dist/solid.jsx'), output)
     })
   },
 })

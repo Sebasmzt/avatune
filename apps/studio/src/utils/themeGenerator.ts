@@ -87,6 +87,7 @@ export async function generateThemeFolder(
     'react',
     'vue',
     'svelte',
+    'solid',
     'svg',
     'react-native',
   ] as const

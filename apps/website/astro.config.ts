@@ -10,6 +10,9 @@ export default defineConfig({
   vite: {
     // @ts-expect-error - tailwindcss types are not compatible with astro
     plugins: [tailwindcss()],
+    ssr: {
+      noExternal: ['zod'],
+    },
   },
   integrations: [
     starlight({

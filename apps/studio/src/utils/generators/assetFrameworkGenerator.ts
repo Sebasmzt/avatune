@@ -1,7 +1,13 @@
 import { capitalizeFirst, toCamelCase, toPascalCase } from '../caseUtils'
 import type { AssetFile } from '../types'
 
-type AssetFramework = 'react' | 'vue' | 'svelte' | 'svg' | 'react-native'
+type AssetFramework =
+  | 'react'
+  | 'vue'
+  | 'svelte'
+  | 'solid'
+  | 'svg'
+  | 'react-native'
 
 /**
  * Generates framework-specific asset export files (e.g., react.ts, vue.ts)
@@ -18,6 +24,7 @@ export function generateAssetFrameworkFile(
     react: '?react',
     vue: '?vue',
     svelte: '?svelte',
+    solid: '?solid',
     svg: '?raw',
     'react-native': '?native',
   }[framework]

@@ -55,6 +55,7 @@
       "import": "./dist/svelte.js"
     },
     "./solidjs": {
+      "solid": "./dist/solidjs.js",
       "types": "./dist/solidjs.d.ts",
       "import": "./dist/solidjs.js"
     },

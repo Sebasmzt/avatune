@@ -21,6 +21,8 @@
     "@avatune/nextjs-example",
     "@avatune/nuxt-example",
     "@avatune/sveltekit-example",
-    "@avatune/vanilla-tests"
+    "@avatune/vanilla-tests",
+    "@avatune/studio",
+    "@avatune/solidstart-example"
   ]
 }
