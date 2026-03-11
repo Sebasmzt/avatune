@@ -31,8 +31,7 @@ jobs:
           bun-version-file: "package.json"
 
       - name: Install Dependencies
-        # --frozen-lockfile removed due to https://github.com/oven-sh/bun/issues/26973
-        run: bun install
+        run: bun install --frozen-lockfile
 
       - name: Build Packages
         run: bun run build

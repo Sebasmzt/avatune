@@ -19,7 +19,7 @@
     "generate": "bun scripts/generate-assets-theme-readme.ts && bun scripts/generate-themes-mdx.ts && bun scripts/generate-root-readme.ts && bun scripts/generate-stories.ts && bun check",
     "prepare": "husky",
     "release:version": "changeset version && bun update",
-    "release:publish": "bun scripts/publish.ts"
+    "release:publish": "changeset publish"
   },
   "devDependencies": {
     "@biomejs/biome": "^2.4.5",
@@ -59,6 +59,6 @@
     "ws": "^8.18.0"
   },
   "patchedDependencies": {
-    "@changesets/cli@2.29.8": "patches/@changesets%2Fcli@2.29.8.patch"
+    "@changesets/cli@2.30.0": "patches/@changesets%2Fcli@2.30.0.patch"
   }
 }
