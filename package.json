@@ -19,7 +19,7 @@
     "generate": "bun scripts/generate-assets-theme-readme.ts && bun scripts/generate-themes-mdx.ts && bun scripts/generate-root-readme.ts && bun scripts/generate-stories.ts && bun check",
     "prepare": "husky",
     "release:version": "changeset version && bun update",
-    "release:publish": "changeset publish"
+    "release:publish": "bun scripts/publish.ts"
   },
   "devDependencies": {
     "@biomejs/biome": "^2.4.5",

@@ -24,6 +24,7 @@
     "@avatune/sveltekit-example",
     "@avatune/vanilla-tests",
     "@avatune/studio",
-    "@avatune/solidstart-example"
+    "@avatune/solidstart-example",
+    "@avatune/angular-ssr-example"
   ]
 }
