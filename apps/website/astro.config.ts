@@ -12,6 +12,12 @@ export default defineConfig({
     plugins: [tailwindcss()],
     ssr: {
       noExternal: ['zod'],
+      external: [
+        '@tensorflow/tfjs',
+        '@tensorflow/tfjs-backend-wasm',
+        '@tensorflow/tfjs-backend-webgl',
+        '@mediapipe/tasks-vision',
+      ],
     },
   },
   integrations: [
