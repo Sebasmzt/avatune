@@ -69,6 +69,7 @@ All themes support React, Vue, Svelte, and Vanilla JavaScript.
 | Theme | Package |
 |-------|---------|
 | Ashley Seo | [`@avatune/ashley-seo-theme`](./packages/themes/ashley-seo-theme) |
+| Ashleyy | [`@avatune/ashleyy-theme`](./packages/themes/ashleyy-theme) |
 | Fatin Verse | [`@avatune/fatin-verse-theme`](./packages/themes/fatin-verse-theme) |
 | Kyute | [`@avatune/kyute-theme`](./packages/themes/kyute-theme) |
 | Micah | [`@avatune/micah-theme`](./packages/themes/micah-theme) |
@@ -83,6 +84,7 @@ All themes support React, Vue, Svelte, and Vanilla JavaScript.
 
 | Framework | Package |
 |-----------|---------|
+| Angular | [`@avatune/angular`](./packages/renderers/angular) |
 | Solidjs | [`@avatune/solidjs`](./packages/renderers/solidjs) |
 | React | [`@avatune/react`](./packages/renderers/react) |
 | React Native | [`@avatune/react-native`](./packages/renderers/react-native) |
@@ -97,7 +99,7 @@ Train custom TensorFlow.js models or use pre-trained predictors:
 | Predictor | Package | Description |
 |-----------|---------|-------------|
 | Face Detector | [`@avatune/face-detector`](./packages/predictors/face-detector) | Detect faces in images |
-| Facial Hair Predictor | [`@avatune/facial-hair-predictor`](./packages/predictors/facial-hair-predictor) | ML predictor |
+| Facial Hair Predictor | [`@avatune/facial-hair-predictor`](./packages/predictors/facial-hair-predictor) | Predict facial hair from images |
 | Hair Color Predictor | [`@avatune/hair-color-predictor`](./packages/predictors/hair-color-predictor) | Predict hair color from images |
 | Hair Length Predictor | [`@avatune/hair-length-predictor`](./packages/predictors/hair-length-predictor) | Predict hair length from images |
 | Skin Tone Predictor | [`@avatune/skin-tone-predictor`](./packages/predictors/skin-tone-predictor) | Predict skin tone from images |

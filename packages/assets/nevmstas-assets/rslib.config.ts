@@ -1,5 +1,9 @@
 import { pluginRawSvg } from '@avatune/rsbuild-plugin-raw-svg'
-import { pluginSvgToSolid } from '@avatune/rsbuild-plugin-svg-to-solid'
+import { pluginSvgToAngular } from '@avatune/rsbuild-plugin-svg-to-angular'
+import {
+  pluginSvgToSolid,
+  pluginSvgToSolidJsx,
+} from '@avatune/rsbuild-plugin-svg-to-solid'
 import { pluginSvgToSvelte } from '@avatune/rsbuild-plugin-svg-to-svelte'
 import { pluginSvgToVue } from '@avatune/rsbuild-plugin-svg-to-vue'
 import { pluginReact } from '@rsbuild/plugin-react'
@@ -35,6 +39,7 @@ export default defineConfig({
   },
   source: {
     entry: {
+      angular: './src/angular.ts',
       react: './src/react.ts',
       solid: './src/solid.ts',
       svg: './src/svg.ts',
@@ -61,6 +66,12 @@ ${variables.exports};
 `
         },
       },
+    }),
+    pluginSvgToAngular({
+      svgo: true,
+      svgoConfig,
+      imports: colordImport,
+      replaceAttrValues: getReplaceAttrValues('color'),
     }),
     pluginSvgToVue({
       svgo: true,
@@ -90,6 +101,11 @@ ${variables.exports};
     pluginReact(),
     pluginRawSvg({
       svgo: true,
+      svgoConfig,
+      imports: colordImport,
+      replaceAttrValues: getReplaceAttrValues('color'),
+    }),
+    pluginSvgToSolidJsx({
       svgoConfig,
       imports: colordImport,
       replaceAttrValues: getReplaceAttrValues('color'),

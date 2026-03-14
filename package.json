@@ -9,7 +9,7 @@
     "lint": "biome lint --write",
     "format": "biome format --write",
     "check-types": "turbo run check-types",
-    "storybook": "turbo run storybook --filter=@avatune/predictor-storybook --filter=@avatune/react-storybook --filter=@avatune/vue-storybook --filter=@avatune/svelte-storybook --filter=@avatune/vanilla-storybook --filter=@avatune/storybook-root",
+    "storybook": "turbo run storybook --filter=@avatune/predictor-storybook --filter=@avatune/react-storybook --filter=@avatune/vue-storybook --filter=@avatune/svelte-storybook --filter=@avatune/vanilla-storybook --filter=@avatune/solidjs-storybook --filter=@avatune/angular-storybook --filter=@avatune/storybook-root",
     "generate:stories": "bun scripts/generate-stories.ts",
     "generate:assets-readme": "bun scripts/generate-assets-readme.ts",
     "generate:theme-readme": "bun scripts/generate-assets-theme-readme.ts",
@@ -22,20 +22,20 @@
     "release:publish": "changeset publish"
   },
   "devDependencies": {
-    "@biomejs/biome": "^2.3.15",
+    "@biomejs/biome": "^2.4.6",
     "@changesets/changelog-github": "^0.5.2",
-    "@changesets/cli": "^2.29.8",
-    "@types/bun": "^1.3.9",
+    "@changesets/cli": "^2.30.0",
+    "@types/bun": "^1.3.10",
     "husky": "^9.1.7",
-    "lint-staged": "^16.2.7",
+    "lint-staged": "^16.3.3",
     "sharp": "^0.34.5",
-    "turbo": "^2.8.7",
+    "turbo": "^2.8.16",
     "typescript": "5.9.3"
   },
   "engines": {
     "node": ">=22"
   },
-  "packageManager": "bun@1.3.1",
+  "packageManager": "bun@1.3.10",
   "workspaces": [
     "apps/*",
     "packages/core/*",
@@ -60,6 +60,6 @@
     "ws": "^8.18.0"
   },
   "patchedDependencies": {
-    "@changesets/cli@2.29.8": "patches/@changesets%2Fcli@2.29.8.patch"
+    "@changesets/cli@2.30.0": "patches/@changesets%2Fcli@2.30.0.patch"
   }
 }

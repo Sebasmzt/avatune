@@ -47,6 +47,12 @@ export function generateAssetsPackageJson(assetsPackageName: string): string {
         import: './dist/react-native.js',
         require: './dist/react-native.cjs',
       },
+      './solid': {
+        solid: './dist/solid.jsx',
+        types: './dist/solid.d.ts',
+        import: './dist/solid.js',
+        require: './dist/solid.cjs',
+      },
       './svelte': {
         svelte: './dist/svelte/index.js',
         types: './dist/svelte.d.ts',
@@ -62,6 +68,11 @@ export function generateAssetsPackageJson(assetsPackageName: string): string {
         import: './dist/svg.js',
         require: './dist/svg.cjs',
       },
+      './angular': {
+        types: './dist/angular.d.ts',
+        import: './dist/angular.js',
+        require: './dist/angular.cjs',
+      },
     },
     types: './dist/svg.d.ts',
     files: ['dist'],
@@ -75,16 +86,20 @@ export function generateAssetsPackageJson(assetsPackageName: string): string {
     },
     devDependencies: {
       '@avatune/rsbuild-plugin-raw-svg': 'workspace:*',
+      '@avatune/rsbuild-plugin-svg-to-angular': 'workspace:*',
+      '@avatune/rsbuild-plugin-svg-to-solid': 'workspace:*',
       '@avatune/rsbuild-plugin-svg-to-svelte': 'workspace:*',
       '@avatune/rsbuild-plugin-svg-to-vue': 'workspace:*',
       '@rsbuild/core': '^1.5.17',
       '@rsbuild/plugin-react': '^1.4.1',
+      '@rsbuild/plugin-solid': '^1.0.5',
       '@rsbuild/plugin-svelte': '^1.0.10',
       '@rsbuild/plugin-svgr': '^1.2.2',
       '@rsbuild/plugin-vue': '^1.2.0',
       '@rslib/core': '^0.16.1',
       '@types/node': '^24.9.1',
       react: '19.1.0',
+      'solid-js': '^1.9.0',
       svelte: '^5.0.0',
       vue: '^3.5.22',
       svgo: '^4.0.0',
@@ -94,8 +109,10 @@ export function generateAssetsPackageJson(assetsPackageName: string): string {
       react: '>=18.0.0',
       'react-native': '>=0.74.0',
       'react-native-svg': '>=15.0.0',
+      'solid-js': '>=1.8.0',
       svelte: '>=5.0.0',
       vue: '^3.5.22',
+      '@angular/compiler': '>=19.0.0',
     },
     peerDependenciesMeta: {
       react: {
@@ -107,10 +124,16 @@ export function generateAssetsPackageJson(assetsPackageName: string): string {
       'react-native-svg': {
         optional: true,
       },
+      'solid-js': {
+        optional: true,
+      },
       svelte: {
         optional: true,
       },
       vue: {
+        optional: true,
+      },
+      '@angular/compiler': {
         optional: true,
       },
     },
@@ -149,9 +172,15 @@ export function generateAssetsTsconfig(): string {
  */
 export function generateAssetsRslibConfig(): string {
   return `import { pluginRawSvg } from '@avatune/rsbuild-plugin-raw-svg'
+import { pluginSvgToAngular } from '@avatune/rsbuild-plugin-svg-to-angular'
+import {
+  pluginSvgToSolid,
+  pluginSvgToSolidJsx,
+} from '@avatune/rsbuild-plugin-svg-to-solid'
 import { pluginSvgToSvelte } from '@avatune/rsbuild-plugin-svg-to-svelte'
 import { pluginSvgToVue } from '@avatune/rsbuild-plugin-svg-to-vue'
 import { pluginReact } from '@rsbuild/plugin-react'
+import { pluginSolid } from '@rsbuild/plugin-solid'
 import { pluginSvelte } from '@rsbuild/plugin-svelte'
 import { pluginSvgr } from '@rsbuild/plugin-svgr'
 import { pluginVue } from '@rsbuild/plugin-vue'
@@ -183,7 +212,9 @@ export default defineConfig({
   },
   source: {
     entry: {
+      angular: './src/angular.ts',
       react: './src/react.ts',
+      solid: './src/solid.ts',
       svg: './src/svg.ts',
       vue: './src/vue.ts',
     },
@@ -209,6 +240,12 @@ function \${variables.componentName}(\${variables.props}) {
         },
       },
     }),
+    pluginSvgToAngular({
+      svgo: true,
+      svgoConfig,
+      imports: colordImport,
+      replaceAttrValues: getReplaceAttrValues('color'),
+    }),
     pluginSvgToVue({
       svgo: true,
       svgoConfig,
@@ -225,11 +262,23 @@ function \${variables.componentName}(\${variables.props}) {
         outDir: './dist/svelte',
       },
     }),
+    pluginSvgToSolid({
+      svgo: true,
+      svgoConfig,
+      imports: colordImport,
+      replaceAttrValues: getReplaceAttrValues('color'),
+    }),
     pluginVue(),
     pluginSvelte(),
+    pluginSolid(),
     pluginReact(),
     pluginRawSvg({
       svgo: true,
+      svgoConfig,
+      imports: colordImport,
+      replaceAttrValues: getReplaceAttrValues('color'),
+    }),
+    pluginSvgToSolidJsx({
       svgoConfig,
       imports: colordImport,
       replaceAttrValues: getReplaceAttrValues('color'),
@@ -397,6 +446,13 @@ declare module '*.svg?vue' {
 
   const component: DefineComponent<SvgComponentProps>
   export default component
+}
+
+declare module '*.svg?angular' {
+  const asset: {
+    template: string | ((color: string, uid: string) => string)
+  }
+  export default asset
 }
 `
 }

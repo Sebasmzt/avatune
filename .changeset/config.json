@@ -8,6 +8,7 @@
   "baseBranch": "main",
   "updateInternalDependencies": "patch",
   "ignore": [
+    "@avatune/angular-storybook",
     "@avatune/rn-storybook",
     "@avatune/cloudflare-worker",
     "@avatune/predictor-storybook",
@@ -16,10 +17,14 @@
     "@avatune/svelte-storybook",
     "@avatune/vanilla-storybook",
     "@avatune/vue-storybook",
+    "@avatune/solidjs-storybook",
     "@avatune/website",
     "@avatune/nextjs-example",
     "@avatune/nuxt-example",
     "@avatune/sveltekit-example",
-    "@avatune/vanilla-tests"
+    "@avatune/vanilla-tests",
+    "@avatune/studio",
+    "@avatune/solidstart-example",
+    "@avatune/angular-ssr-example"
   ]
 }

@@ -1,6 +1,6 @@
 {
   "name": "@avatune/ashley-seo-theme",
-  "version": "2.0.3",
+  "version": "2.1.0",
   "private": false,
   "publishConfig": {
     "access": "public"
@@ -55,9 +55,15 @@
       "require": "./dist/vanilla.cjs"
     },
     "./solidjs": {
+      "solid": "./dist/solidjs.js",
       "types": "./dist/solidjs.d.ts",
       "import": "./dist/solidjs.js",
       "require": "./dist/solidjs.cjs"
+    },
+    "./angular": {
+      "types": "./dist/angular.d.ts",
+      "import": "./dist/angular.js",
+      "require": "./dist/angular.cjs"
     }
   },
   "files": [
@@ -85,7 +91,8 @@
     "react-native-svg": ">=15.0.0",
     "solid-js": ">=1.8.0",
     "svelte": ">=5.0.0",
-    "vue": "^3.5.22"
+    "vue": "^3.5.22",
+    "@angular/core": ">=19.0.0"
   },
   "peerDependenciesMeta": {
     "react": {
@@ -104,6 +111,9 @@
       "optional": true
     },
     "react-native-svg": {
+      "optional": true
+    },
+    "@angular/core": {
       "optional": true
     }
   },
