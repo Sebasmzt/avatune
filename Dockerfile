@@ -11,9 +11,10 @@ COPY patches/ ./patches/
 
 RUN bun install
 
-# Build stage
+# Build stage - only build api and its dependencies, limit concurrency
 FROM install AS build
-RUN bun run build
+ENV NODE_OPTIONS="--max-old-space-size=1536"
+RUN bunx turbo run build --filter=api... --concurrency=2
 
 # Production stage
 FROM base AS production
