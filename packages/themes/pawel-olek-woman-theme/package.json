@@ -1,6 +1,6 @@
 {
   "name": "@avatune/pawel-olek-woman-theme",
-  "version": "3.0.2",
+  "version": "3.1.0",
   "private": false,
   "publishConfig": {
     "access": "public"
@@ -53,6 +53,17 @@
       "svelte": "./dist/svelte.js",
       "types": "./dist/svelte.d.ts",
       "import": "./dist/svelte.js"
+    },
+    "./solidjs": {
+      "solid": "./dist/solidjs.js",
+      "types": "./dist/solidjs.d.ts",
+      "import": "./dist/solidjs.js",
+      "require": "./dist/solidjs.cjs"
+    },
+    "./angular": {
+      "types": "./dist/angular.d.ts",
+      "import": "./dist/angular.js",
+      "require": "./dist/angular.cjs"
     }
   },
   "types": "./dist/vanilla.d.ts",
@@ -80,11 +91,16 @@
     "react": ">=18.0.0",
     "react-native": ">=0.74.0",
     "react-native-svg": ">=15.0.0",
+    "solid-js": ">=1.8.0",
     "svelte": ">=5.0.0",
-    "vue": "^3.5.22"
+    "vue": "^3.5.22",
+    "@angular/core": ">=19.0.0"
   },
   "peerDependenciesMeta": {
     "react": {
+      "optional": true
+    },
+    "solid-js": {
       "optional": true
     },
     "svelte": {
@@ -97,6 +113,9 @@
       "optional": true
     },
     "react-native-svg": {
+      "optional": true
+    },
+    "@angular/core": {
       "optional": true
     }
   },

@@ -1,6 +1,6 @@
 {
   "name": "@avatune/pawel-olek-assets",
-  "version": "3.0.0",
+  "version": "3.1.0",
   "private": false,
   "publishConfig": {
     "access": "public"
@@ -45,6 +45,12 @@
       "import": "./dist/react-native.js",
       "require": "./dist/react-native.cjs"
     },
+    "./solid": {
+      "solid": "./dist/solid.jsx",
+      "types": "./dist/solid.d.ts",
+      "import": "./dist/solid.js",
+      "require": "./dist/solid.cjs"
+    },
     "./svelte": {
       "svelte": "./dist/svelte/index.js",
       "types": "./dist/svelte.d.ts",
@@ -59,6 +65,11 @@
       "types": "./dist/svg.d.ts",
       "import": "./dist/svg.js",
       "require": "./dist/svg.cjs"
+    },
+    "./angular": {
+      "types": "./dist/angular.d.ts",
+      "import": "./dist/angular.js",
+      "require": "./dist/angular.cjs"
     }
   },
   "types": "./dist/svg.d.ts",
@@ -76,27 +87,33 @@
   },
   "devDependencies": {
     "@avatune/rsbuild-plugin-raw-svg": "workspace:*",
+    "@avatune/rsbuild-plugin-svg-to-solid": "workspace:*",
     "@avatune/rsbuild-plugin-svg-to-svelte": "workspace:*",
     "@avatune/rsbuild-plugin-svg-to-vue": "workspace:*",
     "@rsbuild/core": "^1.5.17",
     "@rsbuild/plugin-react": "^1.4.1",
+    "@rsbuild/plugin-solid": "^1.0.5",
     "@rsbuild/plugin-svelte": "^1.0.10",
     "@rsbuild/plugin-svgr": "^1.2.2",
     "@rsbuild/plugin-vue": "^1.2.0",
     "@rslib/core": "^0.16.1",
     "@types/node": "^24.9.1",
     "react": "19.1.0",
+    "solid-js": "^1.9.0",
     "svelte": "^5.0.0",
     "vue": "^3.5.22",
     "svgo": "^4.0.0",
-    "typescript": "^5.9.3"
+    "typescript": "^5.9.3",
+    "@avatune/rsbuild-plugin-svg-to-angular": "workspace:*"
   },
   "peerDependencies": {
     "react": ">=18.0.0",
     "react-native": ">=0.74.0",
     "react-native-svg": ">=15.0.0",
+    "solid-js": ">=1.8.0",
     "svelte": ">=5.0.0",
-    "vue": "^3.5.22"
+    "vue": "^3.5.22",
+    "@angular/compiler": ">=19.0.0"
   },
   "peerDependenciesMeta": {
     "react": {
@@ -108,10 +125,16 @@
     "react-native-svg": {
       "optional": true
     },
+    "solid-js": {
+      "optional": true
+    },
     "svelte": {
       "optional": true
     },
     "vue": {
+      "optional": true
+    },
+    "@angular/compiler": {
       "optional": true
     }
   },

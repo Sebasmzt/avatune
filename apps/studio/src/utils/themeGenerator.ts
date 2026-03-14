@@ -1,13 +1,11 @@
 import JSZip from 'jszip'
 import type { ThemeData } from '../types'
-import { toKebabCase } from './caseUtils'
+import { toCamelCase } from './caseUtils'
 import {
   generateAssetFrameworkFile,
-  generateThemeFile,
   generateThemeFrameworkFile,
 } from './generators'
 import {
-  generateAssetsChangelog,
   generateAssetsGlobalDts,
   generateAssetsPackageJson,
   generateAssetsReadme,
@@ -15,7 +13,6 @@ import {
   generateAssetsRslibNativeConfig,
   generateAssetsRslibShared,
   generateAssetsTsconfig,
-  generateThemeChangelog,
   generateThemeColors,
   generateThemePackageJson,
   generateThemeReadme,
@@ -47,7 +44,7 @@ export async function generateThemeFolder(
   const assetFiles: AssetFile[] = allAssets.map((asset) => ({
     category: asset.category,
     name: asset.name,
-    fileName: `${toKebabCase(asset.name)}.svg`,
+    fileName: `${toCamelCase(asset.name)}.svg`,
     asset,
   }))
 
@@ -65,7 +62,7 @@ export async function generateThemeFolder(
     if (!assetsByCategory.has(assetFile.category)) {
       assetsByCategory.set(assetFile.category, [])
     }
-    assetsByCategory.get(assetFile.category)!.push(assetFile)
+    assetsByCategory.get(assetFile.category)?.push(assetFile)
   }
 
   // ============================================================================
@@ -90,8 +87,10 @@ export async function generateThemeFolder(
     'react',
     'vue',
     'svelte',
+    'solid',
     'svg',
     'react-native',
+    'angular',
   ] as const
   for (const framework of assetFrameworks) {
     const content = generateAssetFrameworkFile(assetFiles, framework)
@@ -133,6 +132,8 @@ export async function generateThemeFolder(
     'svelte',
     'vanilla',
     'react-native',
+    'solidjs',
+    'angular',
   ] as const
   for (const framework of themeFrameworks) {
     const content = generateThemeFrameworkFile(

@@ -1,5 +1,6 @@
 import type { ComponentType, SVGProps } from 'react'
 import type { SvgProps } from 'react-native-svg'
+import type { Component as SolidComponent, JSX as SolidJSX } from 'solid-js'
 import type { Component as SvelteComponent } from 'svelte'
 import type { SVGAttributes as SvelteSVGAttributes } from 'svelte/elements'
 import type { DefineComponent, SVGAttributes as VueSVGAttributes } from 'vue'
@@ -90,7 +91,30 @@ export interface SvelteAvatarItem extends BaseAvatarItem {
 }
 
 /**
- * Avatar item can be vanilla, React, React Native, Vue, or Svelte
+ * SolidJS avatar item with a SolidJS component
+ */
+export interface SolidJsAvatarItem extends BaseAvatarItem {
+  /** SolidJS component to render */
+  Component: SolidComponent<
+    SolidJSX.SvgSVGAttributes<SVGSVGElement> &
+      AvatarSvgProps & {
+        class?: string
+        style?: SolidJSX.CSSProperties | string
+      }
+  >
+}
+
+/**
+ * Angular avatar item with an Angular component
+ */
+export interface AngularAvatarItem extends BaseAvatarItem {
+  /** Angular component to render */
+  Component: unknown
+  template: string | ((color: string, uid: string) => string)
+}
+
+/**
+ * Avatar item can be vanilla, React, React Native, Vue, Svelte, SolidJS, or Angular
  */
 export type AvatarItem =
   | BaseAvatarItem
@@ -99,6 +123,8 @@ export type AvatarItem =
   | ReactNativeAvatarItem
   | VueAvatarItem
   | SvelteAvatarItem
+  | SolidJsAvatarItem
+  | AngularAvatarItem
 
 /**
  * Collection of avatar items by identifier
@@ -251,6 +277,16 @@ export type VueTheme = Theme<VueAvatarItem>
  * Svelte theme with Svelte components
  */
 export type SvelteTheme = Theme<SvelteAvatarItem>
+
+/**
+ * SolidJS theme with SolidJS components
+ */
+export type SolidJsTheme = Theme<SolidJsAvatarItem>
+
+/**
+ * Angular theme with Angular components
+ */
+export type AngularTheme = Theme<AngularAvatarItem>
 
 /**
  * Avatar part categories

@@ -8,7 +8,14 @@ import { readdirSync, readFileSync, writeFileSync } from 'node:fs'
 import { join } from 'node:path'
 import { parseArgs } from 'node:util'
 
-type Framework = 'react' | 'vue' | 'svelte' | 'vanilla' | 'react-native'
+type Framework =
+  | 'react'
+  | 'vue'
+  | 'svelte'
+  | 'solidjs'
+  | 'vanilla'
+  | 'react-native'
+  | 'angular'
 
 // Framework-specific configurations
 const FRAMEWORK_CONFIG = {
@@ -33,6 +40,13 @@ const FRAMEWORK_CONFIG = {
     avatarItemType: 'SvelteAvatarItem',
     storyRenderer: 'svelte-vite',
   },
+  solidjs: {
+    storyPath: 'apps/solidjs-storybook/src/stories',
+    packageJsonPath: 'apps/solidjs-storybook/package.json',
+    fileExt: 'tsx',
+    avatarItemType: 'SolidJsAvatarItem',
+    storyRenderer: 'solidjs',
+  },
   vanilla: {
     storyPath: 'apps/vanilla-storybook/src/stories',
     packageJsonPath: 'apps/vanilla-storybook/package.json',
@@ -46,6 +60,13 @@ const FRAMEWORK_CONFIG = {
     fileExt: 'tsx',
     avatarItemType: 'ReactNativeAvatarItem',
     storyRenderer: 'react-native',
+  },
+  angular: {
+    storyPath: 'apps/angular-storybook/src/stories',
+    packageJsonPath: 'apps/angular-storybook/package.json',
+    fileExt: 'ts',
+    avatarItemType: 'AngularAvatarItem',
+    storyRenderer: 'angular',
   },
 } as const
 
@@ -443,6 +464,81 @@ ${generateSeedStoryArgTypes()}
 `
 }
 
+// Generate SolidJS story file
+function generateSolidJsStory(themes: string[]): string {
+  const themeImports = generateThemeImports(themes, 'solidjs')
+
+  const themeTypes = generateThemeTypes(
+    themes,
+    (themeName) =>
+      `type ${themeName}Args = ExtractStoryArgs<typeof ${themeName.toLowerCase()}Theme>`,
+  )
+
+  const stories = generateStories(
+    themes,
+    (
+      themeName,
+      themeVar,
+    ) => `export const ${themeName}: StoryObj<${themeName}Args> = {
+  argTypes: getArgTypes(${themeVar}Theme),
+  render: (args) => <Avatar theme={${themeVar}Theme} {...args} />,
+  args: {
+    size: 300,
+  },
+}`,
+  )
+
+  const themesObject = generateThemesObject(themes)
+
+  return `${themeImports}
+import type { AvatarProps } from '@avatune/solidjs'
+import { Avatar } from '@avatune/solidjs'
+import type { SolidJsAvatarItem, Theme } from '@avatune/types'
+import type { Meta, StoryObj } from 'storybook-solidjs-vite'
+
+const meta = {
+  title: 'Avatar',
+  component: Avatar,
+  parameters: { layout: 'centered' },
+  tags: ['autodocs'],
+} satisfies Meta<typeof Avatar>
+
+export default meta
+
+type ExtractStoryArgs<T extends Theme<SolidJsAvatarItem>> = Omit<
+  AvatarProps<T>,
+  'theme'
+>
+
+${themeTypes}
+
+${generateGetArgTypesFunction('SolidJsAvatarItem')}
+
+${stories}
+
+const themes = {
+${themesObject}
+} as const
+
+export const Seed: StoryObj<{
+  theme: keyof typeof themes
+  seed?: string | number
+  size?: number
+}> = {
+${generateSeedStoryArgTypes()}
+  render: ({ theme: themeName, seed, size = 300 }) => {
+    const selectedTheme = themes[themeName]
+    return <Avatar theme={selectedTheme} seed={seed} size={size} />
+  },
+  args: {
+    theme: Object.keys(themes)[0] as keyof typeof themes,
+    seed: 'Type any seed phrase here',
+    size: 300,
+  },
+}
+`
+}
+
 // Generate React Native story file
 function generateReactNativeStory(themes: string[]): string {
   const themeImports = generateThemeImports(themes, 'react-native')
@@ -599,6 +695,69 @@ ${generateSeedStoryArgTypes()}
 `
 }
 
+// Generate Angular story file
+function generateAngularStory(themes: string[]): string {
+  const themeImports = generateThemeImports(themes, 'angular')
+
+  const stories = generateStories(
+    themes,
+    (themeName, themeVar) =>
+      `export const ${themeName} = createStory(${themeVar}Theme)`,
+  )
+
+  return `${themeImports}
+import { Avatar } from '@avatune/angular'
+import type { AngularAvatarItem, Theme } from '@avatune/types'
+import type { Meta, StoryObj } from '@storybook/angular'
+import type { Args } from 'storybook/internal/types'
+
+const meta: Meta = {
+  title: 'Avatar',
+  component: Avatar,
+  parameters: { layout: 'centered' },
+  tags: ['autodocs'],
+}
+
+export default meta
+
+const getArgTypes = <T extends Theme<AngularAvatarItem>>(theme: T) => {
+  const argTypes: Record<string, unknown> = {
+    inputSize: { control: { type: 'range', min: 100, max: 800, step: 50 } },
+  }
+
+  const colorPalettes = theme.colorPalettes
+  for (const [category, items] of Object.entries(theme)) {
+    const excludeCategories = ['style', 'predictorMappings', 'colorPalettes', 'connectedColors']
+    if (excludeCategories.includes(category)) continue
+
+    const presetColors = colorPalettes[category as keyof typeof colorPalettes]
+    argTypes[\`\${category}Color\`] = { control: { type: 'color', presetColors } }
+    argTypes[category] = {
+      control: { type: 'select' },
+      options: Object.keys(items),
+    }
+  }
+  argTypes.backgroundColor = {
+    control: { type: 'color', presetColors: colorPalettes.background },
+  } as const
+
+  return argTypes as StoryObj<Args>['argTypes']
+}
+
+const createStory = <T extends Theme<AngularAvatarItem>>(
+  theme: T,
+): StoryObj => ({
+  argTypes: getArgTypes(theme),
+  args: { inputSize: 300 },
+  render: (args) => ({
+    props: { theme, ...args },
+  }),
+})
+
+${stories}
+`
+}
+
 // Main execution
 function main() {
   const { values } = parseArgs({
@@ -612,7 +771,15 @@ function main() {
 
   const frameworks = values.framework
     ? [values.framework as Framework]
-    : (['react', 'vue', 'svelte', 'vanilla', 'react-native'] as Framework[])
+    : ([
+        'react',
+        'vue',
+        'svelte',
+        'solidjs',
+        'vanilla',
+        'react-native',
+        'angular',
+      ] as Framework[])
 
   const themes = discoverThemes()
   console.log(`Found ${themes.length} themes: ${themes.join(', ')}`)
@@ -635,11 +802,17 @@ function main() {
       case 'svelte':
         content = generateSvelteStory(themes)
         break
+      case 'solidjs':
+        content = generateSolidJsStory(themes)
+        break
       case 'vanilla':
         content = generateVanillaStory(themes)
         break
       case 'react-native':
         content = generateReactNativeStory(themes)
+        break
+      case 'angular':
+        content = generateAngularStory(themes)
         break
       default:
         console.warn(`No generator for framework: ${framework}`)

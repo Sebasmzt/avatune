@@ -12,6 +12,7 @@ export default defineConfig({
           react: './src/react.ts',
           vue: './src/vue.ts',
           'react-native': './src/react-native.ts',
+          angular: './src/angular.ts',
         },
       },
     },
@@ -25,6 +26,7 @@ export default defineConfig({
           react: './src/react.ts',
           vue: './src/vue.ts',
           'react-native': './src/react-native.ts',
+          angular: './src/angular.ts',
         },
       },
     },
@@ -35,6 +37,19 @@ export default defineConfig({
       source: {
         entry: {
           svelte: './src/svelte.ts',
+        },
+      },
+      output: {
+        externals: [/@avatune\/.*/],
+      },
+    },
+    {
+      format: 'esm',
+      syntax: ['node 18'],
+      dts: true,
+      source: {
+        entry: {
+          solidjs: './src/solidjs.ts',
         },
       },
       output: {

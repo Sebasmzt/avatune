@@ -1,0 +1,67 @@
+{
+  "name": "@avatune/angular",
+  "version": "1.2.0",
+  "private": false,
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/avatune/avatune.git"
+  },
+  "homepage": "https://avatune.dev",
+  "bugs": {
+    "url": "https://github.com/avatune/avatune/issues"
+  },
+  "author": "Avatune Team (https://avatune.dev)",
+  "contributors": [
+    "Teimur Gasanov <me@teimurjan.dev> (https://github.com/teimurjan)",
+    "Stanislav Nevmyvaka <nevmyvakastas@gmail.com> (https://github.com/nevmstas)"
+  ],
+  "keywords": [
+    "avatune",
+    "avatar",
+    "renderer",
+    "components",
+    "angular"
+  ],
+  "type": "module",
+  "types": "./dist/types/avatune-angular.d.ts",
+  "module": "./dist/fesm2022/avatune-angular.mjs",
+  "exports": {
+    "./package.json": {
+      "default": "./package.json"
+    },
+    ".": {
+      "types": "./dist/types/avatune-angular.d.ts",
+      "default": "./dist/fesm2022/avatune-angular.mjs"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "ng-packagr -p ng-package.json",
+    "dev": "ng-packagr -p ng-package.json --watch",
+    "check-types": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@avatune/types": "workspace:*",
+    "@avatune/utils": "workspace:*",
+    "tslib": "^2.3.0"
+  },
+  "devDependencies": {
+    "@angular/compiler": "21.2.1",
+    "@angular/compiler-cli": "21.2.1",
+    "@angular/core": "21.2.1",
+    "@avatune/typescript-config": "workspace:*",
+    "@types/node": "^22.18.12",
+    "ng-packagr": "21.2.0",
+    "typescript": "^5.9.3"
+  },
+  "peerDependencies": {
+    "@angular/core": ">=19.0.0",
+    "@angular/platform-browser": ">=19.0.0"
+  },
+  "license": "MIT"
+}

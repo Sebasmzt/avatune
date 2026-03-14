@@ -10,6 +10,15 @@ export default defineConfig({
   vite: {
     // @ts-expect-error - tailwindcss types are not compatible with astro
     plugins: [tailwindcss()],
+    ssr: {
+      noExternal: ['zod'],
+      external: [
+        '@tensorflow/tfjs',
+        '@tensorflow/tfjs-backend-wasm',
+        '@tensorflow/tfjs-backend-webgl',
+        '@mediapipe/tasks-vision',
+      ],
+    },
   },
   integrations: [
     starlight({
@@ -46,6 +55,8 @@ export default defineConfig({
           items: [
             { label: 'React', slug: 'packages/react' },
             { label: 'React Native', slug: 'packages/react-native' },
+            { label: 'Angular', slug: 'packages/angular' },
+            { label: 'SolidJS', slug: 'packages/solidjs' },
             { label: 'Vue', slug: 'packages/vue' },
             { label: 'Svelte', slug: 'packages/svelte' },
             { label: 'Vanilla', slug: 'packages/vanilla' },
@@ -72,6 +83,10 @@ export default defineConfig({
               slug: 'packages/ashley-seo-theme',
             },
             {
+              label: 'Ashleyy',
+              slug: 'packages/ashleyy-theme',
+            },
+            {
               label: 'Micah',
               slug: 'packages/micah-theme',
             },
@@ -89,6 +104,10 @@ export default defineConfig({
         {
           label: 'Predictors',
           items: [
+            {
+              label: 'Facial Hair Predictor',
+              slug: 'packages/facial-hair-predictor',
+            },
             {
               label: 'Hair Color Predictor',
               slug: 'packages/hair-color-predictor',
