@@ -4,6 +4,7 @@ import { generateOpenAPISpec } from './openapi-generator'
 
 // Import all themes
 import ashleySeoTheme from '@avatune/ashley-seo-theme/vanilla'
+import ashleyyTheme from '@avatune/ashleyy-theme/vanilla'
 import fatinVerseTheme from '@avatune/fatin-verse-theme/vanilla'
 import kyuteTheme from '@avatune/kyute-theme/vanilla'
 import micahTheme from '@avatune/micah-theme/vanilla'
@@ -16,6 +17,7 @@ import yanliuTheme from '@avatune/yanliu-theme/vanilla'
 
 const themes: Record<string, VanillaTheme> = {
   'ashley-seo': ashleySeoTheme,
+  'ashleyy': ashleyyTheme,
   'fatin-verse': fatinVerseTheme,
   'kyute': kyuteTheme,
   'micah': micahTheme,
