@@ -7,7 +7,7 @@ import { Aside } from "@astrojs/starlight/components";
 import InstallTabs from "../../../components/docs/install-tabs.astro";
 import ApiClientDemo from "../../../components/client/api-client-demo.svelte";
 
-The Avatune API provides a REST endpoint for generating avatar SVGs on-demand, deployed on Cloudflare Workers at [https://api.avatune.dev](https://api.avatune.dev).
+The Avatune API provides a REST endpoint for generating avatar SVGs on-demand at [https://avatune.sebasgc.xyz](https://avatune.sebasgc.xyz).
 
 ## Live Demo
 
@@ -30,7 +30,7 @@ const svg = await client.getAvatar({
 ## Live API Endpoint
 
 ```
-https://api.avatune.dev/
+https://avatune.sebasgc.xyz/
 ```
 
 <Aside type="tip">
@@ -43,7 +43,7 @@ https://api.avatune.dev/
 ### Basic Request
 
 ```bash
-GET https://api.avatune.dev/?theme=nevmstas&hair=short
+GET https://avatune.sebasgc.xyz/?theme=nevmstas&hair=short
 ```
 
 ### Example Response
@@ -51,48 +51,80 @@ GET https://api.avatune.dev/?theme=nevmstas&hair=short
 The API returns an SVG image that can be used directly in `<img>` tags or embedded in your HTML:
 
 ```html
-<img src="https://api.avatune.dev/?theme=yanliu&seed=user123" alt="Avatar" />
+<img src="https://avatune.sebasgc.xyz/?theme=yanliu&seed=user123" alt="Avatar" />
 ```
 
 ## Parameters
 
 ### Required Parameters
 
-| Parameter | Description | Example                                                                      |
-| --------- | ----------- | ---------------------------------------------------------------------------- |
-| `theme`   | Theme name  | `yanliu`, `nevmstas`, `miniavs`, `micah`, `kyute`, `fatin-verse`, `pacovqzz` |
+| Parameter | Description | Example |
+| --------- | ----------- | ------- |
+| `theme`   | Theme name from `GET /themes` | `yanliu`, `kyute`, `micah` |
 
 ### Optional Parameters
 
 | Parameter         | Description                | Default       |
 | ----------------- | -------------------------- | ------------- |
 | `size`            | Avatar size in pixels      | Theme default |
-| `seed`            | Random seed for generation | Random        |
+| `seed`            | Seed for deterministic generation. Use the same theme and seed to regenerate the same avatar. | Random seed returned in `X-Avatar-Seed` |
 | `backgroundColor` | Background color (hex)     | Theme default |
+| Theme options     | Part/color options supported by the selected theme, such as `hair`, `eyes`, `body`, `hairColor`, or `skinColor` | Random/theme default |
+
+## Themes
+
+Use `GET /themes` to get the current list of available themes:
+
+```bash
+curl https://avatune.sebasgc.xyz/themes
+```
+
+Example response:
+
+```json
+{
+  "themes": ["ashley-seo", "ashleyy", "fatin-verse", "kyute", "micah", "miniavs", "nevmstas", "pacovqzz", "pawel-olek-man", "pawel-olek-woman", "yanliu"]
+}
+```
+
+## Seeds
+
+Seeds make avatars repeatable. This URL always generates the same avatar because both `theme` and `seed` are fixed:
+
+```bash
+GET https://avatune.sebasgc.xyz/?theme=yanliu&seed=user-123
+```
+
+If you omit `seed`, the API generates one and returns it in the `X-Avatar-Seed` response header. Save that value with the `X-Avatar-Theme` header if you want to regenerate the avatar later.
+
+## Random Avatars
+
+Use `GET /random` when you want the API to choose random values:
+
+```bash
+GET https://avatune.sebasgc.xyz/random
+GET https://avatune.sebasgc.xyz/random?theme=kyute
+GET https://avatune.sebasgc.xyz/random?theme=kyute&seed=user-123
+```
+
+`/random` returns SVG and includes `X-Avatar-Theme` and `X-Avatar-Seed` headers.
 
 ## Rate Limiting
 
-The API enforces rate limits per IP address + User-Agent to ensure fair usage:
+The API enforces rate limits per IP address to ensure fair usage:
 
-- **100 requests per hour**
-- **1,000 requests per day**
+- **10,000 requests per minute by default**
+- Exceeding the limit blocks requests for **10 minutes by default**
 
-Limits reset automatically via KV TTL expiration.
+Limits can be configured by deployment environment variables.
 
 ### Rate Limit Response
 
 When rate limits are exceeded, the API returns:
 
 - **Status Code**: `429 Too Many Requests`
-- **Header**: `Retry-After: 3600` (seconds until reset)
-- **Response Body**:
-
-```json
-{
-  "error": "Rate limit exceeded",
-  "retryAfter": 3600
-}
-```
+- **Header**: `Retry-After` with seconds until retry
+- **Response Body**: `Rate limit exceeded. Try again later.`
 
 ## Caching
 
@@ -125,21 +157,16 @@ Access-Control-Allow-Origin: *
 
 ### Invalid Theme
 
-```json
-{
-  "error": "Invalid theme. Available themes: yanliu, nevmstas, miniavs, micah, kyute, fatin-verse, pacovqzz"
-}
+```text
+Unknown theme: unknown. Available: ashley-seo, ashleyy, fatin-verse, kyute, micah, miniavs, nevmstas, pacovqzz, pawel-olek-man, pawel-olek-woman, yanliu
 ```
 
 **Status Code**: `400 Bad Request`
 
 ### Rate Limit Exceeded
 
-```json
-{
-  "error": "Rate limit exceeded",
-  "retryAfter": 3600
-}
+```text
+Rate limit exceeded. Try again later.
 ```
 
 **Status Code**: `429 Too Many Requests`
@@ -240,7 +267,7 @@ const client = createClient({
 import { AvatuneClient } from "@avatune/api-client";
 
 console.log(AvatuneClient.themes);
-// ['yanliu', 'nevmstas', 'miniavs', 'micah', 'kyute', 'fatin-verse', 'pacovqzz']
+// ['ashley-seo', 'ashleyy', 'fatin-verse', 'kyute', 'micah', 'miniavs', 'nevmstas', 'pacovqzz', 'pawel-olek-man', 'pawel-olek-woman', 'yanliu']
 ```
 
 ## Integration Examples
@@ -249,7 +276,7 @@ console.log(AvatuneClient.themes);
 
 ```html
 <img
-  src="https://api.avatune.dev/?theme=yanliu&seed=user-123"
+  src="https://avatune.sebasgc.xyz/?theme=yanliu&seed=user-123"
   alt="User Avatar"
   width="200"
   height="200"
@@ -259,7 +286,7 @@ console.log(AvatuneClient.themes);
 ### JavaScript Fetch
 
 ```javascript
-const avatarUrl = `https://api.avatune.dev/?theme=nevmstas&seed=${userId}&size=300`;
+const avatarUrl = `https://avatune.sebasgc.xyz/?theme=nevmstas&seed=${userId}&size=300`;
 const response = await fetch(avatarUrl);
 const svgText = await response.text();
 ```
@@ -268,7 +295,7 @@ const svgText = await response.text();
 
 ```tsx
 function UserAvatar({ userId, theme = "yanliu", size = 200 }) {
-  const avatarUrl = `https://api.avatune.dev/?theme=${theme}&seed=${userId}&size=${size}`;
+  const avatarUrl = `https://avatune.sebasgc.xyz/?theme=${theme}&seed=${userId}&size=${size}`;
 
   return <img src={avatarUrl} alt="Avatar" width={size} height={size} />;
 }
@@ -292,7 +319,7 @@ const props = defineProps({
 
 const avatarUrl = computed(
   () =>
-    `https://api.avatune.dev/?theme=${props.theme}&seed=${props.userId}&size=${props.size}`
+    `https://avatune.sebasgc.xyz/?theme=${props.theme}&seed=${props.userId}&size=${props.size}`
 );
 </script>
 ```
@@ -303,7 +330,7 @@ const avatarUrl = computed(
 .avatar {
   width: 200px;
   height: 200px;
-  background-image: url("https://api.avatune.dev/?theme=miniavs&seed=user-456");
+  background-image: url("https://avatune.sebasgc.xyz/?theme=miniavs&seed=user-456");
   background-size: cover;
   border-radius: 50%;
 }
@@ -346,5 +373,5 @@ const params = new URLSearchParams({
   backgroundColor: "#3498DB",
 });
 
-const url = `https://api.avatune.dev/?${params}`;
+const url = `https://avatune.sebasgc.xyz/?${params}`;
 ```

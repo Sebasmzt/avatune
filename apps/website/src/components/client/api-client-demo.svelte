@@ -14,7 +14,7 @@ async function fetchAvatar() {
       seed: 'user-123',
       size: 200,
     })
-    const response = await fetch(`https://api.avatune.dev/?${params}`)
+    const response = await fetch(`https://avatune.sebasgc.xyz/?${params}`)
 
     if (!response.ok) {
       throw new Error(`API error: ${response.status}`)

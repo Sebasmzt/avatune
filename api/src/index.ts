@@ -30,6 +30,10 @@ const themes: Record<string, VanillaTheme> = {
 }
 
 const themeNames = Object.keys(themes)
+const publicBaseUrl = 'https://avatune.sebasgc.xyz'
+const defaultRateLimitRequests = '10000'
+const defaultRateLimitWindowMs = '60000'
+const defaultRateLimitBlockDurationMs = '600000'
 
 // Generate OpenAPI specification
 const openAPISpec = generateOpenAPISpec(themeNames)
@@ -41,9 +45,14 @@ function generateLlmDocumentation(): string {
 
 ## Base URL
 
-\`https://api.avatar.sebasgc.xyz/\`
+\`${publicBaseUrl}/\`
 
 ## Quick Start
+
+List all available themes:
+\`\`\`
+GET /themes
+\`\`\`
 
 Generate a random avatar:
 \`\`\`
@@ -68,9 +77,10 @@ Generate an avatar with query parameters.
 | Parameter | Type | Required | Description |
 |-----------|------|----------|-------------|
 | \`theme\` | string | Yes | Avatar theme. Options: ${themeNames.join(', ')} |
-| \`seed\` | string | No | Seed for deterministic generation (same seed = same avatar) |
+| \`seed\` | string | No | Seed for deterministic generation. Use the same theme and seed to regenerate the same avatar. If omitted, the API creates one and returns it in \`X-Avatar-Seed\`. |
 | \`size\` | number | No | Avatar size in pixels |
 | \`backgroundColor\` | string | No | Background color (hex) |
+| Any theme option | string | No | Avatar part/color option supported by the selected theme, such as \`hair\`, \`eyes\`, \`body\`, \`hairColor\`, or \`skinColor\`. Unsupported options are ignored by the renderer. |
 
 **Response**: \`image/svg+xml\`
 
@@ -80,7 +90,7 @@ Generate an avatar with query parameters.
 - \`X-Avatar-Config\`: JSON config used
 
 ### GET /random
-Generate a fully random avatar.
+Generate a random avatar. If no \`theme\` is provided, the API chooses a random theme. If no \`seed\` is provided, the API creates a random seed. Save the \`X-Avatar-Theme\` and \`X-Avatar-Seed\` headers to regenerate the same avatar with GET /?theme={theme}&seed={seed}.
 
 | Parameter | Type | Required | Description |
 |-----------|------|----------|-------------|
@@ -91,6 +101,11 @@ Generate a fully random avatar.
 List all available themes.
 
 **Response**: \`{ "themes": ["${themeNames.join('", "')}"] }\`
+
+Example:
+\`\`\`bash
+curl ${publicBaseUrl}/themes
+\`\`\`
 
 ### POST /
 Generate avatar with JSON body.
@@ -120,27 +135,40 @@ ${themeNames.map(name => `- \`${name}\``).join('\n')}
 
 ### HTML embed
 \`\`\`html
-<img src="https://api.avatar.sebasgc.xyz/?theme=kyute&seed=john-doe" alt="Avatar" />
+<img src="${publicBaseUrl}/?theme=kyute&seed=john-doe" alt="Avatar" />
 \`\`\`
 
 ### Fetch in JavaScript
 \`\`\`javascript
-const response = await fetch('https://api.avatar.sebasgc.xyz/?theme=micah&seed=user123');
+const response = await fetch('${publicBaseUrl}/?theme=micah&seed=user123');
 const svg = await response.text();
 const seed = response.headers.get('X-Avatar-Seed'); // Save this!
 \`\`\`
 
 ### Generate random, save seed
 \`\`\`javascript
-const response = await fetch('https://api.avatar.sebasgc.xyz/random');
+const response = await fetch('${publicBaseUrl}/random');
 const seed = response.headers.get('X-Avatar-Seed');
 const theme = response.headers.get('X-Avatar-Theme');
 // Store seed + theme to regenerate: /?theme={theme}&seed={seed}
 \`\`\`
 
+### Customize theme parts
+\`\`\`javascript
+const params = new URLSearchParams({
+  theme: 'yanliu',
+  seed: 'user123',
+  hair: 'braids',
+  body: 'sweaterVest',
+  backgroundColor: '#3498DB',
+});
+
+const response = await fetch('${publicBaseUrl}/?' + params);
+\`\`\`
+
 ## Rate Limits
 
-- 100 requests per minute per IP
+- ${process.env.RATE_LIMIT_REQUESTS || defaultRateLimitRequests} requests per minute per IP by default
 - Exceeding limits results in 10-minute block
 - Headers: \`X-RateLimit-Limit\`, \`X-RateLimit-Remaining\`, \`X-RateLimit-Reset\`
 
@@ -168,7 +196,7 @@ const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
   'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
   'Access-Control-Allow-Headers': 'Content-Type',
-  'Access-Control-Expose-Headers': 'X-Avatar-Seed, X-Avatar-Theme, X-Avatar-Config',
+  'Access-Control-Expose-Headers': 'X-Avatar-Seed, X-Avatar-Theme, X-Avatar-Config, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset',
 }
 
 
@@ -261,9 +289,9 @@ class RateLimiter {
 }
 
 const rateLimiter = new RateLimiter(
-  parseInt(process.env.RATE_LIMIT_REQUESTS || '10000'),
-  parseInt(process.env.RATE_LIMIT_WINDOW_MS || '60000'),
-  parseInt(process.env.RATE_LIMIT_BLOCK_DURATION_MS || '600000')
+  parseInt(process.env.RATE_LIMIT_REQUESTS || defaultRateLimitRequests),
+  parseInt(process.env.RATE_LIMIT_WINDOW_MS || defaultRateLimitWindowMs),
+  parseInt(process.env.RATE_LIMIT_BLOCK_DURATION_MS || defaultRateLimitBlockDurationMs)
 )
 
 const server = Bun.serve({
@@ -282,7 +310,7 @@ const server = Bun.serve({
         status: 429,
         headers: {
           'Retry-After': retryAfter.toString(),
-          'X-RateLimit-Limit': process.env.RATE_LIMIT_REQUESTS || '100',
+          'X-RateLimit-Limit': process.env.RATE_LIMIT_REQUESTS || defaultRateLimitRequests,
           'X-RateLimit-Remaining': '0',
           'X-RateLimit-Reset': Math.ceil(rateLimitResult.resetTime! / 1000).toString(),
           ...corsHeaders,
@@ -321,7 +349,7 @@ const server = Bun.serve({
       const response = new Response(JSON.stringify({ themes: themeNames }), {
         headers: { 
           'Content-Type': 'application/json',
-          'X-RateLimit-Limit': process.env.RATE_LIMIT_REQUESTS || '100',
+          'X-RateLimit-Limit': process.env.RATE_LIMIT_REQUESTS || defaultRateLimitRequests,
           'X-RateLimit-Remaining': rateLimitResult.remaining.toString(),
           'X-RateLimit-Reset': Math.ceil(rateLimitResult.resetTime! / 1000).toString(),
           ...corsHeaders 
@@ -331,7 +359,7 @@ const server = Bun.serve({
       return response
     }
 
-    // GET /random - generate a fully random avatar
+    // GET /random - generate a random avatar
     if (req.method === 'GET' && url.pathname === '/random') {
       const themeName = url.searchParams.get('theme')
       const seed = url.searchParams.get('seed') || generateRandomSeed()
@@ -354,7 +382,7 @@ const svg = avatar({ theme, seed })
           'Content-Type': 'image/svg+xml',
           'X-Avatar-Seed': seed,
           'X-Avatar-Theme': usedThemeName,
-          'X-RateLimit-Limit': process.env.RATE_LIMIT_REQUESTS || '100',
+          'X-RateLimit-Limit': process.env.RATE_LIMIT_REQUESTS || defaultRateLimitRequests,
           'X-RateLimit-Remaining': rateLimitResult.remaining.toString(),
           'X-RateLimit-Reset': Math.ceil(rateLimitResult.resetTime! / 1000).toString(),
           ...corsHeaders,
@@ -364,7 +392,7 @@ const svg = avatar({ theme, seed })
       return response
     }
 
-    // GET / - generate avatar with query params (like api.avatune.dev)
+    // GET / - generate avatar with query params
     if (req.method === 'GET' && url.pathname === '/') {
       const themeName = url.searchParams.get('theme')
 
@@ -403,7 +431,7 @@ const svg = avatar({ theme, seed })
           'X-Avatar-Seed': seed,
           'X-Avatar-Theme': themeName,
           'X-Avatar-Config': JSON.stringify(config),
-          'X-RateLimit-Limit': process.env.RATE_LIMIT_REQUESTS || '100',
+          'X-RateLimit-Limit': process.env.RATE_LIMIT_REQUESTS || defaultRateLimitRequests,
           'X-RateLimit-Remaining': rateLimitResult.remaining.toString(),
           'X-RateLimit-Reset': Math.ceil(rateLimitResult.resetTime! / 1000).toString(),
           ...corsHeaders,
@@ -443,7 +471,7 @@ const svg = avatar({ theme, seed })
             'X-Avatar-Seed': seed,
             'X-Avatar-Theme': usedThemeName,
             'X-Avatar-Config': JSON.stringify(config),
-            'X-RateLimit-Limit': process.env.RATE_LIMIT_REQUESTS || '100',
+            'X-RateLimit-Limit': process.env.RATE_LIMIT_REQUESTS || defaultRateLimitRequests,
             'X-RateLimit-Remaining': rateLimitResult.remaining.toString(),
             'X-RateLimit-Reset': Math.ceil(rateLimitResult.resetTime! / 1000).toString(),
             ...corsHeaders
@@ -493,7 +521,7 @@ console.log(`Listening on ${apiUrl} ...`)
 console.log(`Available themes: ${themeNames.join(', ')}`)
 console.log(`
 Endpoints:
-  GET  /               - Generate avatar (?theme=name&seed=value&hair=short&...) [like api.avatune.dev]
+  GET  /               - Generate avatar (?theme=name&seed=value&hair=short&...)
   GET  /random         - Generate random avatar (optional: ?theme=name&seed=value)
   GET  /themes         - List available themes
   GET  /docs           - Interactive API documentation (Scalar UI)

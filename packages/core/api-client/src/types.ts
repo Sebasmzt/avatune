@@ -15,6 +15,8 @@ import type yanliuTheme from '@avatune/yanliu-theme/vanilla'
  * Available themes in the Avatune API
  */
 export type ThemeName =
+  | 'ashley-seo'
+  | 'ashleyy'
   | 'yanliu'
   | 'nevmstas'
   | 'miniavs'
@@ -22,6 +24,8 @@ export type ThemeName =
   | 'kyute'
   | 'fatin-verse'
   | 'pacovqzz'
+  | 'pawel-olek-man'
+  | 'pawel-olek-woman'
 
 /**
  * Base parameters available for all themes
@@ -107,7 +111,7 @@ export interface GenericAvatarParams extends BaseAvatarParams {
  * API client configuration
  */
 export interface AvatuneClientConfig {
-  /** Base URL for the API (default: https://api.avatune.dev) */
+  /** Base URL for the API (default: https://avatune.sebasgc.xyz) */
   baseUrl?: string
   /** Request timeout in milliseconds (default: 10000) */
   timeout?: number

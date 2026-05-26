@@ -32,12 +32,13 @@ interface Route {
 }
 
 export function generateOpenAPISpec(themeNames: string[]): OpenAPIDocument {
+  const publicBaseUrl = 'https://avatune.sebasgc.xyz'
   const routes: Route[] = [
     {
       path: '/themes',
       method: 'GET',
       summary: 'List available themes',
-      description: 'Returns a list of all available avatar themes',
+      description: 'Returns all available avatar themes. Use one of these names in the `theme` query parameter when calling GET /, GET /random, or POST /.',
       tags: ['Themes'],
       responses: {
         '200': {
@@ -63,20 +64,20 @@ export function generateOpenAPISpec(themeNames: string[]): OpenAPIDocument {
       path: '/random',
       method: 'GET',
       summary: 'Generate random avatar',
-      description: 'Generates a random avatar with optional theme and seed parameters',
+      description: 'Generates a random avatar. If `theme` is omitted, the API chooses a random theme. If `seed` is omitted, the API creates a random seed. Save the `X-Avatar-Theme` and `X-Avatar-Seed` response headers to regenerate the same avatar later with GET /?theme={theme}&seed={seed}.',
       tags: ['Avatars'],
       parameters: [
         {
           name: 'theme',
           in: 'query',
-          description: 'Specific theme to use (optional)',
+          description: 'Specific theme to use. Omit this to choose a random theme.',
           schema: { type: 'string', enum: themeNames },
           example: themeNames[0]
         },
         {
           name: 'seed',
           in: 'query',
-          description: 'Seed for deterministic avatar generation (optional)',
+          description: 'Seed for deterministic avatar generation. Omit this to generate a random seed returned in `X-Avatar-Seed`.',
           schema: {
             type: 'string',
             pattern: '^[a-zA-Z0-9]+$',
@@ -106,7 +107,7 @@ export function generateOpenAPISpec(themeNames: string[]): OpenAPIDocument {
       path: '/',
       method: 'GET',
       summary: 'Generate avatar',
-      description: 'Generates an avatar with query parameters. Works like api.avatune.dev - use the same seed to regenerate the same avatar.',
+      description: 'Generates an avatar with query parameters. `theme` is required. Use the same `theme` and `seed` to regenerate the same avatar. Any other query parameter is passed to the selected theme as avatar configuration, such as `hair`, `eyes`, `body`, `hairColor`, or `skinColor`.',
       tags: ['Avatars'],
       parameters: [
         {
@@ -120,7 +121,7 @@ export function generateOpenAPISpec(themeNames: string[]): OpenAPIDocument {
         {
           name: 'seed',
           in: 'query',
-          description: 'Seed for deterministic avatar generation. Save this to regenerate the same avatar later.',
+          description: 'Seed for deterministic avatar generation. If omitted, a random seed is generated and returned in `X-Avatar-Seed`.',
           schema: {
             type: 'string',
             pattern: '^[a-zA-Z0-9]+$',
@@ -142,6 +143,20 @@ export function generateOpenAPISpec(themeNames: string[]): OpenAPIDocument {
           description: 'Background color (hex)',
           schema: { type: 'string' },
           example: '#f0f0f0'
+        },
+        {
+          name: 'hair',
+          in: 'query',
+          description: 'Example theme option. Available part names and values depend on the selected theme.',
+          schema: { type: 'string' },
+          example: 'braids'
+        },
+        {
+          name: 'body',
+          in: 'query',
+          description: 'Example theme option. Available part names and values depend on the selected theme.',
+          schema: { type: 'string' },
+          example: 'sweaterVest'
         }
       ],
       responses: {
@@ -166,7 +181,7 @@ export function generateOpenAPISpec(themeNames: string[]): OpenAPIDocument {
       path: '/',
       method: 'POST',
       summary: 'Generate avatar with configuration',
-      description: 'Generates an avatar with specific configuration parameters',
+      description: 'Generates an avatar from a JSON body. `theme` can be a theme name or `random`. If `seed` is omitted, the API generates one. Extra JSON properties are passed to the theme as avatar part/color configuration.',
       tags: ['Avatars'],
       requestBody: {
         description: 'Avatar configuration',
@@ -184,10 +199,18 @@ export function generateOpenAPISpec(themeNames: string[]): OpenAPIDocument {
                 },
                 seed: {
                   type: 'string',
-                  description: 'Seed for deterministic avatar generation',
+                  description: 'Seed for deterministic avatar generation. Omit this to generate a random seed.',
                   pattern: '^[a-zA-Z0-9]+$',
                   minLength: 1,
                   maxLength: 20
+                },
+                size: {
+                  type: 'integer',
+                  description: 'Avatar size in pixels'
+                },
+                backgroundColor: {
+                  type: 'string',
+                  description: 'Background color as a hex value'
                 }
               },
               additionalProperties: true
@@ -195,7 +218,8 @@ export function generateOpenAPISpec(themeNames: string[]): OpenAPIDocument {
             examples: {
               simple: { summary: 'Simple random avatar', value: {} },
               withTheme: { summary: 'Avatar with specific theme', value: { theme: themeNames[0], seed: 'user123' } },
-              randomTheme: { summary: 'Random theme with seed', value: { theme: 'random', seed: 'deterministic456' } }
+              randomTheme: { summary: 'Random theme with seed', value: { theme: 'random', seed: 'deterministic456' } },
+              customized: { summary: 'Customized avatar parts', value: { theme: 'yanliu', seed: 'user123', hair: 'braids', body: 'sweaterVest', backgroundColor: '#3498DB' } }
             }
           }
         }
@@ -251,6 +275,23 @@ export function generateOpenAPISpec(themeNames: string[]): OpenAPIDocument {
           }
         }
       }
+    },
+    {
+      path: '/llms.txt',
+      method: 'GET',
+      summary: 'LLM-friendly documentation',
+      description: 'Markdown documentation for LLMs and agents. Includes base URL, endpoints, themes, seed behavior, random avatar behavior, examples, and rate limit notes.',
+      tags: ['Documentation'],
+      responses: {
+        '200': {
+          description: 'Markdown documentation',
+          content: {
+            'text/markdown': {
+              schema: { type: 'string' }
+            }
+          }
+        }
+      }
     }
   ]
 
@@ -280,17 +321,17 @@ export function generateOpenAPISpec(themeNames: string[]): OpenAPIDocument {
       version: '1.0.0',
       contact: {
         name: 'Avatune API',
-        url: 'https://avatune.com'
+        url: publicBaseUrl
       }
     },
     servers: [
       {
-        url: 'http://localhost:3000',
-        description: 'Development server'
+        url: publicBaseUrl,
+        description: 'Production server'
       },
       {
-        url: 'https://api.avatar.sebasgc.xyz',
-        description: 'Production server'
+        url: 'http://localhost:3000',
+        description: 'Development server'
       }
     ],
     paths,

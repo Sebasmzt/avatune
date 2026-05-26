@@ -14,7 +14,7 @@ import type {
   YanliuParams,
 } from './types.js'
 
-const DEFAULT_BASE_URL = 'https://api.avatune.dev'
+const DEFAULT_BASE_URL = 'https://avatune.sebasgc.xyz'
 const DEFAULT_TIMEOUT = 10000
 
 /**
@@ -154,13 +154,17 @@ export class AvatuneClient {
    */
   static get themes(): readonly ThemeName[] {
     return [
-      'yanliu',
-      'nevmstas',
-      'miniavs',
-      'micah',
-      'kyute',
+      'ashley-seo',
+      'ashleyy',
       'fatin-verse',
+      'kyute',
+      'micah',
+      'miniavs',
+      'nevmstas',
       'pacovqzz',
+      'pawel-olek-man',
+      'pawel-olek-woman',
+      'yanliu',
     ] as const
   }
 }
