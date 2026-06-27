@@ -2800,7 +2800,7 @@ DEPENDENCIES:
   - "RNDateTimePicker (from `../../../node_modules/@react-native-community/datetimepicker`)"
   - RNGestureHandler (from `../../../node_modules/react-native-gesture-handler`)
   - RNReanimated (from `../../../node_modules/react-native-reanimated`)
-  - RNSVG (from `../../../node_modules/react-native-svg`)
+  - RNSVG (from `../node_modules/react-native-svg`)
   - RNWorklets (from `../../../node_modules/react-native-worklets`)
   - SocketRocket (~> 0.7.1)
   - Yoga (from `../../../node_modules/react-native/ReactCommon/yoga`)
@@ -2964,7 +2964,7 @@ EXTERNAL SOURCES:
   RNReanimated:
     :path: "../../../node_modules/react-native-reanimated"
   RNSVG:
-    :path: "../../../node_modules/react-native-svg"
+    :path: "../node_modules/react-native-svg"
   RNWorklets:
     :path: "../../../node_modules/react-native-worklets"
   Yoga:
@@ -3050,7 +3050,7 @@ SPEC CHECKSUMS:
   RNSVG: 1b1c4232bb99e7de77beb37bbb5720ede9ed8c67
   RNWorklets: 3e00e1b099f55b496dde402602bd020b60ffd9eb
   SocketRocket: d4aabe649be1e368d1318fdf28a022d714d65748
-  Yoga: d7064c22f7ba5890471d32dd95e72c77ec911f26
+  Yoga: 728df40394d49f3f471688747cf558158b3a3bd1
 
 PODFILE CHECKSUM: 0197cdd7499ce0a45718272853b33abf32a8ba4b
 
