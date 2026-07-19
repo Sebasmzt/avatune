@@ -1,3 +1,4 @@
+# syntax=docker/dockerfile:1
 FROM oven/bun:1.3.1-slim AS base
 WORKDIR /app
 
@@ -10,7 +11,8 @@ COPY apps/ ./apps/
 COPY api/ ./api/
 COPY patches/ ./patches/
 
-RUN bun install
+RUN --mount=type=cache,target=/root/.bun/install/cache \
+    bun install --verbose || (sleep 5 && bun install --verbose) || (sleep 15 && bun install --verbose)
 
 # Build stage - only build api and its dependencies, limit concurrency
 FROM install AS build
