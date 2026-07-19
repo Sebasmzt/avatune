@@ -12,7 +12,7 @@ COPY api/ ./api/
 COPY patches/ ./patches/
 
 RUN --mount=type=cache,target=/root/.bun/install/cache \
-    bun install --verbose || (sleep 5 && bun install --verbose) || (sleep 15 && bun install --verbose)
+    bun install --verbose || (sleep 5 && bun install ) || (sleep 15 && bun install)
 
 # Build stage - only build api and its dependencies, limit concurrency
 FROM install AS build
