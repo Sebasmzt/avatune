@@ -4,7 +4,7 @@ WORKDIR /app
 
 # Install dependencies stage
 FROM base AS install
-# ENV HUSKY=0
+ENV HUSKY=0
 COPY package.json turbo.json biome.json ./
 COPY packages/ ./packages/
 COPY apps/ ./apps/
