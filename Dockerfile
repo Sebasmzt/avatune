@@ -9,6 +9,7 @@ COPY package.json turbo.json biome.json ./
 COPY packages/ ./packages/
 COPY apps/ ./apps/
 COPY api/ ./api/
+COPY examples/ ./examples/
 
 RUN --mount=type=cache,target=/root/.bun/install/cache \
     bun install || (sleep 5 && bun install) || (sleep 15 && bun install)
