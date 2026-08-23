@@ -1,32 +1,23 @@
+import { readdirSync } from 'node:fs'
+import { join } from 'node:path'
 import { avatar } from '@avatune/vanilla'
 import type { VanillaTheme } from '@avatune/types'
 import { generateOpenAPISpec } from './openapi-generator'
 
-// Import all themes
-import ashleySeoTheme from '@avatune/ashley-seo-theme/vanilla'
-import ashleyyTheme from '@avatune/ashleyy-theme/vanilla'
-import fatinVerseTheme from '@avatune/fatin-verse-theme/vanilla'
-import kyuteTheme from '@avatune/kyute-theme/vanilla'
-import micahTheme from '@avatune/micah-theme/vanilla'
-import miniavsTheme from '@avatune/miniavs-theme/vanilla'
-import nevmstasTheme from '@avatune/nevmstas-theme/vanilla'
-import pacovqzzTheme from '@avatune/pacovqzz-theme/vanilla'
-import pawelOlekManTheme from '@avatune/pawel-olek-man-theme/vanilla'
-import pawelOlekWomanTheme from '@avatune/pawel-olek-woman-theme/vanilla'
-import yanliuTheme from '@avatune/yanliu-theme/vanilla'
+// Discover every theme package under packages/themes/* at boot, so new themes
+// show up in /themes, /random and the info docs without any manual wiring.
+const themesDir = join(import.meta.dir, '../../packages/themes')
 
-const themes: Record<string, VanillaTheme> = {
-  'ashley-seo': ashleySeoTheme,
-  'ashleyy': ashleyyTheme,
-  'fatin-verse': fatinVerseTheme,
-  'kyute': kyuteTheme,
-  'micah': micahTheme,
-  'miniavs': miniavsTheme,
-  'nevmstas': nevmstasTheme,
-  'pacovqzz': pacovqzzTheme,
-  'pawel-olek-man': pawelOlekManTheme,
-  'pawel-olek-woman': pawelOlekWomanTheme,
-  'yanliu': yanliuTheme,
+const themeDirs = readdirSync(themesDir, { withFileTypes: true })
+  .filter((entry) => entry.isDirectory() && entry.name.endsWith('-theme'))
+  .map((entry) => entry.name)
+
+const themes: Record<string, VanillaTheme> = {}
+for (const dir of themeDirs) {
+  const pkgJson = await Bun.file(join(themesDir, dir, 'package.json')).json()
+  const vanillaEntry = pkgJson.exports['./vanilla'].import
+  const mod = await import(join(themesDir, dir, vanillaEntry))
+  themes[dir.replace(/-theme$/, '')] = mod.default
 }
 
 const themeNames = Object.keys(themes)
@@ -181,11 +172,6 @@ When generating avatars for users:
 4. The response is an SVG that can be embedded directly in HTML or saved as a file
 5. For random avatars, use GET /random and capture the seed from response headers
 `
-}
-
-function getRandomTheme(): VanillaTheme {
-  const randomIndex = Math.floor(Math.random() * themeNames.length)
-  return themes[themeNames[randomIndex]]
 }
 
 function generateRandomSeed(): string {
