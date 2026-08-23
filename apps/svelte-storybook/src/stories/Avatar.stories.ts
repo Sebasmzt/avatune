@@ -1,15 +1,19 @@
 import ashleyseoTheme from '@avatune/ashley-seo-theme/svelte'
 import ashleyyTheme from '@avatune/ashleyy-theme/svelte'
+import cyberpunkTheme from '@avatune/cyberpunk-theme/svelte'
 import fatinverseTheme from '@avatune/fatin-verse-theme/svelte'
 import kyuteTheme from '@avatune/kyute-theme/svelte'
 import micahTheme from '@avatune/micah-theme/svelte'
 import miniavsTheme from '@avatune/miniavs-theme/svelte'
 import nevmstasTheme from '@avatune/nevmstas-theme/svelte'
+import orksTheme from '@avatune/orks-theme/svelte'
 import pacovqzzTheme from '@avatune/pacovqzz-theme/svelte'
 import pawelolekmanTheme from '@avatune/pawel-olek-man-theme/svelte'
 import pawelolekwomanTheme from '@avatune/pawel-olek-woman-theme/svelte'
+import retrocartoonTheme from '@avatune/retro-cartoon-theme/svelte'
 import type { AvatarProps } from '@avatune/svelte'
 import { Avatar } from '@avatune/svelte'
+import toonflatTheme from '@avatune/toon-flat-theme/svelte'
 import type { SvelteAvatarItem, Theme } from '@avatune/types'
 import yanliuTheme from '@avatune/yanliu-theme/svelte'
 import type { Meta, StoryObj } from '@storybook/svelte-vite'
@@ -30,14 +34,18 @@ type ExtractStoryArgs<T extends Theme<SvelteAvatarItem>> = Omit<
 
 type AshleySeoArgs = ExtractStoryArgs<typeof ashleyseoTheme>
 type AshleyyArgs = ExtractStoryArgs<typeof ashleyyTheme>
+type CyberpunkArgs = ExtractStoryArgs<typeof cyberpunkTheme>
 type FatinVerseArgs = ExtractStoryArgs<typeof fatinverseTheme>
 type KyuteArgs = ExtractStoryArgs<typeof kyuteTheme>
 type MicahArgs = ExtractStoryArgs<typeof micahTheme>
 type MiniavsArgs = ExtractStoryArgs<typeof miniavsTheme>
 type NevmstasArgs = ExtractStoryArgs<typeof nevmstasTheme>
+type OrksArgs = ExtractStoryArgs<typeof orksTheme>
 type PacovqzzArgs = ExtractStoryArgs<typeof pacovqzzTheme>
 type PawelOlekManArgs = ExtractStoryArgs<typeof pawelolekmanTheme>
 type PawelOlekWomanArgs = ExtractStoryArgs<typeof pawelolekwomanTheme>
+type RetroCartoonArgs = ExtractStoryArgs<typeof retrocartoonTheme>
+type ToonFlatArgs = ExtractStoryArgs<typeof toonflatTheme>
 type YanliuArgs = ExtractStoryArgs<typeof yanliuTheme>
 
 const toBorderRadius = (v: number | string | undefined) =>
@@ -96,6 +104,22 @@ export const Ashleyy: StoryObj<AshleyyArgs> = {
     Component: Avatar,
     props: {
       theme: ashleyyTheme,
+      ...args,
+      borderRadius: toBorderRadius(args.borderRadius),
+    },
+  }),
+  args: {
+    size: 300,
+    borderRadius: 50,
+  },
+}
+
+export const Cyberpunk: StoryObj<CyberpunkArgs> = {
+  argTypes: getArgTypes(cyberpunkTheme),
+  render: (args) => ({
+    Component: Avatar,
+    props: {
+      theme: cyberpunkTheme,
       ...args,
       borderRadius: toBorderRadius(args.borderRadius),
     },
@@ -186,6 +210,22 @@ export const Nevmstas: StoryObj<NevmstasArgs> = {
   },
 }
 
+export const Orks: StoryObj<OrksArgs> = {
+  argTypes: getArgTypes(orksTheme),
+  render: (args) => ({
+    Component: Avatar,
+    props: {
+      theme: orksTheme,
+      ...args,
+      borderRadius: toBorderRadius(args.borderRadius),
+    },
+  }),
+  args: {
+    size: 300,
+    borderRadius: 50,
+  },
+}
+
 export const Pacovqzz: StoryObj<PacovqzzArgs> = {
   argTypes: getArgTypes(pacovqzzTheme),
   render: (args) => ({
@@ -234,6 +274,38 @@ export const PawelOlekWoman: StoryObj<PawelOlekWomanArgs> = {
   },
 }
 
+export const RetroCartoon: StoryObj<RetroCartoonArgs> = {
+  argTypes: getArgTypes(retrocartoonTheme),
+  render: (args) => ({
+    Component: Avatar,
+    props: {
+      theme: retrocartoonTheme,
+      ...args,
+      borderRadius: toBorderRadius(args.borderRadius),
+    },
+  }),
+  args: {
+    size: 300,
+    borderRadius: 50,
+  },
+}
+
+export const ToonFlat: StoryObj<ToonFlatArgs> = {
+  argTypes: getArgTypes(toonflatTheme),
+  render: (args) => ({
+    Component: Avatar,
+    props: {
+      theme: toonflatTheme,
+      ...args,
+      borderRadius: toBorderRadius(args.borderRadius),
+    },
+  }),
+  args: {
+    size: 300,
+    borderRadius: 50,
+  },
+}
+
 export const Yanliu: StoryObj<YanliuArgs> = {
   argTypes: getArgTypes(yanliuTheme),
   render: (args) => ({
@@ -253,14 +325,18 @@ export const Yanliu: StoryObj<YanliuArgs> = {
 const themes = {
   'Ashley Seo': ashleyseoTheme,
   Ashleyy: ashleyyTheme,
+  Cyberpunk: cyberpunkTheme,
   'Fatin Verse': fatinverseTheme,
   Kyute: kyuteTheme,
   Micah: micahTheme,
   Miniavs: miniavsTheme,
   Nevmstas: nevmstasTheme,
+  Orks: orksTheme,
   Pacovqzz: pacovqzzTheme,
   'Pawel Olek Man': pawelolekmanTheme,
   'Pawel Olek Woman': pawelolekwomanTheme,
+  'Retro Cartoon': retrocartoonTheme,
+  'Toon Flat': toonflatTheme,
   Yanliu: yanliuTheme,
 } as const
 

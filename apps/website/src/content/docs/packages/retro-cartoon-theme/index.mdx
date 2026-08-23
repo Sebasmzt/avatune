@@ -1,0 +1,298 @@
+---
+title: "@avatune/retro-cartoon-theme"
+description: "Avatar theme for Avatune using Retro Cartoon assets."
+source: "packages/themes/retro-cartoon-theme/README.md"
+---
+
+import {
+  eyebrowsAngled,
+  eyebrowsFlat,
+  eyebrowsRaised,
+  eyebrowsSoft,
+  eyebrowsThick,
+  bodyBlazer,
+  bodyCollaredShirt,
+  bodyCrewneckSweater,
+  bodyHoodie,
+  bodyTurtleneckSweater,
+  bodyVNeckSweater,
+  noseCurve,
+  mouthLips,
+  mouthNeutral,
+  mouthOpenedSmile,
+  mouthSad,
+  mouthSmirk,
+  mouthTeethSmile,
+  headStandard,
+  eyesHappy,
+  eyesNeutral,
+  eyesSleepy,
+  eyesSurprised,
+  eyesWinking,
+  hairAfro,
+  hairBob,
+  hairBuzzCut,
+  hairCurlyBob,
+  hairLongCurly,
+  hairLongStraight,
+  hairLongWavy,
+  hairSideSwept,
+} from '@avatune/retro-cartoon-assets/svg';
+
+> Source: `packages/assets/retro-cartoon-assets/README.md`
+
+Avatar theme for Avatune using retro cartoon design assets.
+
+
+<div className="my-8 flex flex-wrap justify-center gap-4">
+  <AvatarUsagePreview themeId="retro-cartoon" seed="example-12345" size={200} />
+  <AvatarUsagePreview themeId="retro-cartoon" seed="example-678910" size={200} />
+  <AvatarUsagePreview themeId="retro-cartoon" seed="example-101112131415" size={200} />
+</div>
+
+## Installation
+
+```package-install
+@avatune/retro-cartoon-theme
+```
+
+## Usage
+
+This theme is available for multiple frameworks: React, Vue, Svelte, Angular, and Vanilla JavaScript.
+
+### React
+
+```tsx
+import { Avatar } from '@avatune/react'
+import theme from '@avatune/retro-cartoon-theme/react'
+
+function App() {
+  return (
+    <Avatar
+      theme={theme}
+      size={300}
+      seed="optional-seed-for-random-generation"
+    />
+  )
+}
+```
+
+### Vue
+
+```vue
+<script setup lang="ts">
+import { Avatar } from '@avatune/vue'
+import theme from '@avatune/retro-cartoon-theme/vue'
+</script>
+
+<template>
+  <Avatar
+    :theme="theme"
+    :size="300"
+    seed="optional-seed-for-random-generation"
+  />
+</template>
+```
+
+### Svelte
+
+```svelte
+<script lang="ts">
+  import { Avatar } from '@avatune/svelte'
+  import theme from '@avatune/retro-cartoon-theme/svelte'
+</script>
+
+<Avatar
+  theme={theme}
+  size={300}
+  seed="optional-seed-for-random-generation"
+/>
+```
+
+### Angular
+
+```ts
+import { Component } from '@angular/core'
+import { Avatar } from '@avatune/angular'
+import theme from '@avatune/retro-cartoon-theme/angular'
+
+@Component({
+  selector: 'app-root',
+  standalone: true,
+  imports: [Avatar],
+  template: `
+    <avatune-avatar
+      [theme]="theme"
+      [inputSize]="300"
+      seed="optional-seed-for-random-generation"
+    />
+  `,
+})
+export class AppComponent {
+  theme = theme
+}
+```
+
+### Vanilla JavaScript
+
+```typescript
+import { avatar } from '@avatune/vanilla'
+import theme from '@avatune/retro-cartoon-theme/vanilla'
+
+const container = document.getElementById('avatar-container')
+const svg = avatar({
+  theme,
+  size: 300,
+  seed: 'optional-seed-for-random-generation',
+})
+
+container?.appendChild(svg)
+```
+
+## Customization
+
+You can override specific avatar parts:
+
+```tsx
+<Avatar
+  theme={theme}
+  size={300}
+  hair="curlyBob"          // Choose specific hair style
+  hairColor="#FF5733"    // Custom hair color
+  body="crewneckSweater"     // Choose specific clothing
+  bodyColor="#3498DB"    // Custom clothing color
+/>
+```
+
+## Design Assets
+
+This theme uses Retro Cartoon style SVG assets for creating customizable avatars. Assets include various options for hair, eyes, eyebrows, mouth, nose, ears, head shape, and body/clothing.
+
+The assets are available in the [`@avatune/retro-cartoon-assets`](https://www.npmjs.com/package/@avatune/retro-cartoon-assets) package.
+
+### Using Assets Directly
+
+#### SVG Paths
+
+```typescript
+import { hair, eyes, mouth } from '@avatune/retro-cartoon-assets';
+```
+
+#### React Components
+
+```typescript
+import { HairShort, EyesBoring, MouthSmile } from '@avatune/retro-cartoon-assets/react';
+```
+
+#### Svelte Components
+
+```typescript
+import { HairShort, EyesBoring, MouthSmile } from '@avatune/retro-cartoon-assets/svelte';
+```
+
+#### Vue Components
+
+```typescript
+import { HairShort, EyesBoring, MouthSmile } from '@avatune/retro-cartoon-assets/vue';
+```
+
+### Available Assets
+
+#### Body
+
+| Preview | Filename |
+|---------|----------|
+| <AssetPreview svg={bodyBlazer} title="blazer" hideCaption /> | `blazer` |
+| <AssetPreview svg={bodyCollaredShirt} title="collaredShirt" hideCaption /> | `collaredShirt` |
+| <AssetPreview svg={bodyCrewneckSweater} title="crewneckSweater" hideCaption /> | `crewneckSweater` |
+| <AssetPreview svg={bodyHoodie} title="hoodie" hideCaption /> | `hoodie` |
+| <AssetPreview svg={bodyTurtleneckSweater} title="turtleneckSweater" hideCaption /> | `turtleneckSweater` |
+| <AssetPreview svg={bodyVNeckSweater} title="vNeckSweater" hideCaption /> | `vNeckSweater` |
+
+#### Eyebrows
+
+| Preview | Filename |
+|---------|----------|
+| <AssetPreview svg={eyebrowsAngled} title="angled" hideCaption /> | `angled` |
+| <AssetPreview svg={eyebrowsFlat} title="flat" hideCaption /> | `flat` |
+| <AssetPreview svg={eyebrowsRaised} title="raised" hideCaption /> | `raised` |
+| <AssetPreview svg={eyebrowsSoft} title="soft" hideCaption /> | `soft` |
+| <AssetPreview svg={eyebrowsThick} title="thick" hideCaption /> | `thick` |
+
+#### Eyes
+
+| Preview | Filename |
+|---------|----------|
+| <AssetPreview svg={eyesHappy} title="happy" hideCaption /> | `happy` |
+| <AssetPreview svg={eyesNeutral} title="neutral" hideCaption /> | `neutral` |
+| <AssetPreview svg={eyesSleepy} title="sleepy" hideCaption /> | `sleepy` |
+| <AssetPreview svg={eyesSurprised} title="surprised" hideCaption /> | `surprised` |
+| <AssetPreview svg={eyesWinking} title="winking" hideCaption /> | `winking` |
+
+#### Hair
+
+| Preview | Filename |
+|---------|----------|
+| <AssetPreview svg={hairAfro} title="afro" hideCaption /> | `afro` |
+| <AssetPreview svg={hairBob} title="bob" hideCaption /> | `bob` |
+| <AssetPreview svg={hairBuzzCut} title="buzzCut" hideCaption /> | `buzzCut` |
+| <AssetPreview svg={hairCurlyBob} title="curlyBob" hideCaption /> | `curlyBob` |
+| <AssetPreview svg={hairLongCurly} title="longCurly" hideCaption /> | `longCurly` |
+| <AssetPreview svg={hairLongStraight} title="longStraight" hideCaption /> | `longStraight` |
+| <AssetPreview svg={hairLongWavy} title="longWavy" hideCaption /> | `longWavy` |
+| <AssetPreview svg={hairSideSwept} title="sideSwept" hideCaption /> | `sideSwept` |
+
+#### Head
+
+| Preview | Filename |
+|---------|----------|
+| <AssetPreview svg={headStandard} title="standard" hideCaption /> | `standard` |
+
+#### Mouth
+
+| Preview | Filename |
+|---------|----------|
+| <AssetPreview svg={mouthLips} title="lips" hideCaption /> | `lips` |
+| <AssetPreview svg={mouthNeutral} title="neutral" hideCaption /> | `neutral` |
+| <AssetPreview svg={mouthOpenedSmile} title="openedSmile" hideCaption /> | `openedSmile` |
+| <AssetPreview svg={mouthSad} title="sad" hideCaption /> | `sad` |
+| <AssetPreview svg={mouthSmirk} title="smirk" hideCaption /> | `smirk` |
+| <AssetPreview svg={mouthTeethSmile} title="teethSmile" hideCaption /> | `teethSmile` |
+
+#### Nose
+
+| Preview | Filename |
+|---------|----------|
+| <AssetPreview svg={noseCurve} title="curve" hideCaption /> | `curve` |
+
+## License & Credits
+
+### Theme License
+
+This theme package is licensed under a modified MIT license that permits any use except repackaging its avatar assets into other avatar libraries such as DiceBear (see [LICENSE.md](license)).
+
+### Design Assets License
+
+The design assets used in this theme are separately licensed. See the asset package for details.
+
+## Related Packages
+
+- [`@avatune/retro-cartoon-assets`](https://github.com/avatune/avatune/tree/main/packages/assets/retro-cartoon-assets) - SVG assets used by this theme
+- [`@avatune/react`](https://github.com/avatune/avatune/tree/main/packages/renderers/react) - React avatar renderer
+- [`@avatune/vue`](https://github.com/avatune/avatune/tree/main/packages/renderers/vue) - Vue avatar renderer
+- [`@avatune/svelte`](https://github.com/avatune/avatune/tree/main/packages/renderers/svelte) - Svelte avatar renderer
+- [`@avatune/angular`](https://github.com/avatune/avatune/tree/main/packages/renderers/angular) - Angular avatar renderer
+- [`@avatune/vanilla`](https://github.com/avatune/avatune/tree/main/packages/renderers/vanilla) - Vanilla JavaScript avatar renderer
+
+## Development
+
+```bash
+# Build the theme
+bun run build
+
+# Build in watch mode
+bun run dev
+
+# Type checking
+bun run check-types
+```

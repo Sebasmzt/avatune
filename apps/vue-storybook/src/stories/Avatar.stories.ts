@@ -1,13 +1,17 @@
 import ashleyseoTheme from '@avatune/ashley-seo-theme/vue'
 import ashleyyTheme from '@avatune/ashleyy-theme/vue'
+import cyberpunkTheme from '@avatune/cyberpunk-theme/vue'
 import fatinverseTheme from '@avatune/fatin-verse-theme/vue'
 import kyuteTheme from '@avatune/kyute-theme/vue'
 import micahTheme from '@avatune/micah-theme/vue'
 import miniavsTheme from '@avatune/miniavs-theme/vue'
 import nevmstasTheme from '@avatune/nevmstas-theme/vue'
+import orksTheme from '@avatune/orks-theme/vue'
 import pacovqzzTheme from '@avatune/pacovqzz-theme/vue'
 import pawelolekmanTheme from '@avatune/pawel-olek-man-theme/vue'
 import pawelolekwomanTheme from '@avatune/pawel-olek-woman-theme/vue'
+import retrocartoonTheme from '@avatune/retro-cartoon-theme/vue'
+import toonflatTheme from '@avatune/toon-flat-theme/vue'
 import type { Theme, VueAvatarItem } from '@avatune/types'
 import type { AvatarProps } from '@avatune/vue'
 import { Avatar } from '@avatune/vue'
@@ -25,14 +29,18 @@ export default meta
 
 type AshleySeoArgs = Omit<AvatarProps<typeof ashleyseoTheme>, 'theme'>
 type AshleyyArgs = Omit<AvatarProps<typeof ashleyyTheme>, 'theme'>
+type CyberpunkArgs = Omit<AvatarProps<typeof cyberpunkTheme>, 'theme'>
 type FatinVerseArgs = Omit<AvatarProps<typeof fatinverseTheme>, 'theme'>
 type KyuteArgs = Omit<AvatarProps<typeof kyuteTheme>, 'theme'>
 type MicahArgs = Omit<AvatarProps<typeof micahTheme>, 'theme'>
 type MiniavsArgs = Omit<AvatarProps<typeof miniavsTheme>, 'theme'>
 type NevmstasArgs = Omit<AvatarProps<typeof nevmstasTheme>, 'theme'>
+type OrksArgs = Omit<AvatarProps<typeof orksTheme>, 'theme'>
 type PacovqzzArgs = Omit<AvatarProps<typeof pacovqzzTheme>, 'theme'>
 type PawelOlekManArgs = Omit<AvatarProps<typeof pawelolekmanTheme>, 'theme'>
 type PawelOlekWomanArgs = Omit<AvatarProps<typeof pawelolekwomanTheme>, 'theme'>
+type RetroCartoonArgs = Omit<AvatarProps<typeof retrocartoonTheme>, 'theme'>
+type ToonFlatArgs = Omit<AvatarProps<typeof toonflatTheme>, 'theme'>
 type YanliuArgs = Omit<AvatarProps<typeof yanliuTheme>, 'theme'>
 
 const toBorderRadius = (v: number | string | undefined) =>
@@ -87,6 +95,20 @@ export const Ashleyy: StoryObj<AshleyyArgs> = {
   render: (args: AshleyyArgs) => ({
     components: { Avatar },
     setup: () => ({ args, theme: ashleyyTheme, toBorderRadius }),
+    template:
+      '<Avatar :theme="theme" v-bind="args" :border-radius="toBorderRadius(args.borderRadius)" />',
+  }),
+  args: {
+    size: 300,
+    borderRadius: 50,
+  },
+}
+
+export const Cyberpunk: StoryObj<CyberpunkArgs> = {
+  argTypes: getArgTypes(cyberpunkTheme),
+  render: (args: CyberpunkArgs) => ({
+    components: { Avatar },
+    setup: () => ({ args, theme: cyberpunkTheme, toBorderRadius }),
     template:
       '<Avatar :theme="theme" v-bind="args" :border-radius="toBorderRadius(args.borderRadius)" />',
   }),
@@ -166,6 +188,20 @@ export const Nevmstas: StoryObj<NevmstasArgs> = {
   },
 }
 
+export const Orks: StoryObj<OrksArgs> = {
+  argTypes: getArgTypes(orksTheme),
+  render: (args: OrksArgs) => ({
+    components: { Avatar },
+    setup: () => ({ args, theme: orksTheme, toBorderRadius }),
+    template:
+      '<Avatar :theme="theme" v-bind="args" :border-radius="toBorderRadius(args.borderRadius)" />',
+  }),
+  args: {
+    size: 300,
+    borderRadius: 50,
+  },
+}
+
 export const Pacovqzz: StoryObj<PacovqzzArgs> = {
   argTypes: getArgTypes(pacovqzzTheme),
   render: (args: PacovqzzArgs) => ({
@@ -208,6 +244,34 @@ export const PawelOlekWoman: StoryObj<PawelOlekWomanArgs> = {
   },
 }
 
+export const RetroCartoon: StoryObj<RetroCartoonArgs> = {
+  argTypes: getArgTypes(retrocartoonTheme),
+  render: (args: RetroCartoonArgs) => ({
+    components: { Avatar },
+    setup: () => ({ args, theme: retrocartoonTheme, toBorderRadius }),
+    template:
+      '<Avatar :theme="theme" v-bind="args" :border-radius="toBorderRadius(args.borderRadius)" />',
+  }),
+  args: {
+    size: 300,
+    borderRadius: 50,
+  },
+}
+
+export const ToonFlat: StoryObj<ToonFlatArgs> = {
+  argTypes: getArgTypes(toonflatTheme),
+  render: (args: ToonFlatArgs) => ({
+    components: { Avatar },
+    setup: () => ({ args, theme: toonflatTheme, toBorderRadius }),
+    template:
+      '<Avatar :theme="theme" v-bind="args" :border-radius="toBorderRadius(args.borderRadius)" />',
+  }),
+  args: {
+    size: 300,
+    borderRadius: 50,
+  },
+}
+
 export const Yanliu: StoryObj<YanliuArgs> = {
   argTypes: getArgTypes(yanliuTheme),
   render: (args: YanliuArgs) => ({
@@ -225,14 +289,18 @@ export const Yanliu: StoryObj<YanliuArgs> = {
 const themes = {
   'Ashley Seo': ashleyseoTheme,
   Ashleyy: ashleyyTheme,
+  Cyberpunk: cyberpunkTheme,
   'Fatin Verse': fatinverseTheme,
   Kyute: kyuteTheme,
   Micah: micahTheme,
   Miniavs: miniavsTheme,
   Nevmstas: nevmstasTheme,
+  Orks: orksTheme,
   Pacovqzz: pacovqzzTheme,
   'Pawel Olek Man': pawelolekmanTheme,
   'Pawel Olek Woman': pawelolekwomanTheme,
+  'Retro Cartoon': retrocartoonTheme,
+  'Toon Flat': toonflatTheme,
   Yanliu: yanliuTheme,
 } as const
 

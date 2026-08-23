@@ -30,12 +30,13 @@
   "linter": {
     "enabled": true,
     "rules": {
-      "recommended": true
+      "preset": "recommended"
     }
   },
   "files": {
     "includes": [
       "apps/**/*",
+      "!apps/website/next-env.d.ts",
       "packages/**/*",
       "tests/**/*",
       "!**/*/storybook.requires.ts",
@@ -54,6 +55,16 @@
           "correctness": {
             "noUnusedVariables": "off",
             "noUnusedImports": "off"
+          }
+        }
+      }
+    },
+    {
+      "includes": ["**/*.svg"],
+      "linter": {
+        "rules": {
+          "a11y": {
+            "noSvgWithoutTitle": "off"
           }
         }
       }

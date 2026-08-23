@@ -1,15 +1,19 @@
 import ashleyseoTheme from '@avatune/ashley-seo-theme/react-native'
 import ashleyyTheme from '@avatune/ashleyy-theme/react-native'
+import cyberpunkTheme from '@avatune/cyberpunk-theme/react-native'
 import fatinverseTheme from '@avatune/fatin-verse-theme/react-native'
 import kyuteTheme from '@avatune/kyute-theme/react-native'
 import micahTheme from '@avatune/micah-theme/react-native'
 import miniavsTheme from '@avatune/miniavs-theme/react-native'
 import nevmstasTheme from '@avatune/nevmstas-theme/react-native'
+import orksTheme from '@avatune/orks-theme/react-native'
 import pacovqzzTheme from '@avatune/pacovqzz-theme/react-native'
 import pawelolekmanTheme from '@avatune/pawel-olek-man-theme/react-native'
 import pawelolekwomanTheme from '@avatune/pawel-olek-woman-theme/react-native'
 import type { AvatarProps } from '@avatune/react-native'
 import { Avatar } from '@avatune/react-native'
+import retrocartoonTheme from '@avatune/retro-cartoon-theme/react-native'
+import toonflatTheme from '@avatune/toon-flat-theme/react-native'
 import type {
   ReactNativeAvatarItem,
   ReactNativeTheme,
@@ -34,14 +38,18 @@ type ExtractStoryArgs<T extends ReactNativeTheme> = Omit<
 
 type AshleySeoArgs = ExtractStoryArgs<typeof ashleyseoTheme>
 type AshleyyArgs = ExtractStoryArgs<typeof ashleyyTheme>
+type CyberpunkArgs = ExtractStoryArgs<typeof cyberpunkTheme>
 type FatinVerseArgs = ExtractStoryArgs<typeof fatinverseTheme>
 type KyuteArgs = ExtractStoryArgs<typeof kyuteTheme>
 type MicahArgs = ExtractStoryArgs<typeof micahTheme>
 type MiniavsArgs = ExtractStoryArgs<typeof miniavsTheme>
 type NevmstasArgs = ExtractStoryArgs<typeof nevmstasTheme>
+type OrksArgs = ExtractStoryArgs<typeof orksTheme>
 type PacovqzzArgs = ExtractStoryArgs<typeof pacovqzzTheme>
 type PawelOlekManArgs = ExtractStoryArgs<typeof pawelolekmanTheme>
 type PawelOlekWomanArgs = ExtractStoryArgs<typeof pawelolekwomanTheme>
+type RetroCartoonArgs = ExtractStoryArgs<typeof retrocartoonTheme>
+type ToonFlatArgs = ExtractStoryArgs<typeof toonflatTheme>
 type YanliuArgs = ExtractStoryArgs<typeof yanliuTheme>
 
 const toBorderRadius = (v: number | string | undefined) =>
@@ -98,6 +106,21 @@ export const Ashleyy: StoryObj<AshleyyArgs> = {
   render: (args) => (
     <Avatar
       theme={ashleyyTheme}
+      {...args}
+      borderRadius={toBorderRadius(args.borderRadius)}
+    />
+  ),
+  args: {
+    size: 300,
+    borderRadius: 50,
+  },
+}
+
+export const Cyberpunk: StoryObj<CyberpunkArgs> = {
+  argTypes: getArgTypes(cyberpunkTheme),
+  render: (args) => (
+    <Avatar
+      theme={cyberpunkTheme}
       {...args}
       borderRadius={toBorderRadius(args.borderRadius)}
     />
@@ -183,6 +206,21 @@ export const Nevmstas: StoryObj<NevmstasArgs> = {
   },
 }
 
+export const Orks: StoryObj<OrksArgs> = {
+  argTypes: getArgTypes(orksTheme),
+  render: (args) => (
+    <Avatar
+      theme={orksTheme}
+      {...args}
+      borderRadius={toBorderRadius(args.borderRadius)}
+    />
+  ),
+  args: {
+    size: 300,
+    borderRadius: 50,
+  },
+}
+
 export const Pacovqzz: StoryObj<PacovqzzArgs> = {
   argTypes: getArgTypes(pacovqzzTheme),
   render: (args) => (
@@ -228,6 +266,36 @@ export const PawelOlekWoman: StoryObj<PawelOlekWomanArgs> = {
   },
 }
 
+export const RetroCartoon: StoryObj<RetroCartoonArgs> = {
+  argTypes: getArgTypes(retrocartoonTheme),
+  render: (args) => (
+    <Avatar
+      theme={retrocartoonTheme}
+      {...args}
+      borderRadius={toBorderRadius(args.borderRadius)}
+    />
+  ),
+  args: {
+    size: 300,
+    borderRadius: 50,
+  },
+}
+
+export const ToonFlat: StoryObj<ToonFlatArgs> = {
+  argTypes: getArgTypes(toonflatTheme),
+  render: (args) => (
+    <Avatar
+      theme={toonflatTheme}
+      {...args}
+      borderRadius={toBorderRadius(args.borderRadius)}
+    />
+  ),
+  args: {
+    size: 300,
+    borderRadius: 50,
+  },
+}
+
 export const Yanliu: StoryObj<YanliuArgs> = {
   argTypes: getArgTypes(yanliuTheme),
   render: (args) => (
@@ -246,14 +314,18 @@ export const Yanliu: StoryObj<YanliuArgs> = {
 const themes = {
   'Ashley Seo': ashleyseoTheme,
   Ashleyy: ashleyyTheme,
+  Cyberpunk: cyberpunkTheme,
   'Fatin Verse': fatinverseTheme,
   Kyute: kyuteTheme,
   Micah: micahTheme,
   Miniavs: miniavsTheme,
   Nevmstas: nevmstasTheme,
+  Orks: orksTheme,
   Pacovqzz: pacovqzzTheme,
   'Pawel Olek Man': pawelolekmanTheme,
   'Pawel Olek Woman': pawelolekwomanTheme,
+  'Retro Cartoon': retrocartoonTheme,
+  'Toon Flat': toonflatTheme,
   Yanliu: yanliuTheme,
 } as const
 

@@ -1,14 +1,18 @@
 import { Avatar } from '@avatune/angular'
 import ashleyseoTheme from '@avatune/ashley-seo-theme/angular'
 import ashleyyTheme from '@avatune/ashleyy-theme/angular'
+import cyberpunkTheme from '@avatune/cyberpunk-theme/angular'
 import fatinverseTheme from '@avatune/fatin-verse-theme/angular'
 import kyuteTheme from '@avatune/kyute-theme/angular'
 import micahTheme from '@avatune/micah-theme/angular'
 import miniavsTheme from '@avatune/miniavs-theme/angular'
 import nevmstasTheme from '@avatune/nevmstas-theme/angular'
+import orksTheme from '@avatune/orks-theme/angular'
 import pacovqzzTheme from '@avatune/pacovqzz-theme/angular'
 import pawelolekmanTheme from '@avatune/pawel-olek-man-theme/angular'
 import pawelolekwomanTheme from '@avatune/pawel-olek-woman-theme/angular'
+import retrocartoonTheme from '@avatune/retro-cartoon-theme/angular'
+import toonflatTheme from '@avatune/toon-flat-theme/angular'
 import type { AngularAvatarItem, Theme } from '@avatune/types'
 import yanliuTheme from '@avatune/yanliu-theme/angular'
 import type { Meta, StoryObj } from '@storybook/angular'
@@ -76,6 +80,8 @@ export const AshleySeo = createStory(ashleyseoTheme)
 
 export const Ashleyy = createStory(ashleyyTheme)
 
+export const Cyberpunk = createStory(cyberpunkTheme)
+
 export const FatinVerse = createStory(fatinverseTheme)
 
 export const Kyute = createStory(kyuteTheme)
@@ -86,10 +92,16 @@ export const Miniavs = createStory(miniavsTheme)
 
 export const Nevmstas = createStory(nevmstasTheme)
 
+export const Orks = createStory(orksTheme)
+
 export const Pacovqzz = createStory(pacovqzzTheme)
 
 export const PawelOlekMan = createStory(pawelolekmanTheme)
 
 export const PawelOlekWoman = createStory(pawelolekwomanTheme)
+
+export const RetroCartoon = createStory(retrocartoonTheme)
+
+export const ToonFlat = createStory(toonflatTheme)
 
 export const Yanliu = createStory(yanliuTheme)

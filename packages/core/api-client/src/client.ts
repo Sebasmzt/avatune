@@ -1,4 +1,5 @@
 import axios, { type AxiosError, type AxiosInstance } from 'axios'
+import { themeNames } from './theme-names.generated.js'
 import type {
   ApiError,
   AvatarParams,
@@ -15,6 +16,7 @@ import type {
 } from './types.js'
 
 const DEFAULT_BASE_URL = 'https://avatune.sebasgc.xyz'
+
 const DEFAULT_TIMEOUT = 10000
 
 /**
@@ -61,15 +63,15 @@ export class AvatuneClient {
    * Build URL with query parameters
    */
   private buildUrl(params: AvatarParams | GenericAvatarParams): string {
-    const searchParams = new URLSearchParams()
+    const url = new URL(this.baseUrl)
 
     for (const [key, value] of Object.entries(params)) {
       if (value !== undefined && value !== null) {
-        searchParams.set(key, String(value))
+        url.searchParams.set(key, String(value))
       }
     }
 
-    return `${this.baseUrl}/?${searchParams.toString()}`
+    return url.toString()
   }
 
   /**
@@ -101,15 +103,7 @@ export class AvatuneClient {
   async getAvatar(params: GenericAvatarParams): Promise<string>
   async getAvatar(params: AvatarParams | GenericAvatarParams): Promise<string> {
     try {
-      const searchParams = new URLSearchParams()
-
-      for (const [key, value] of Object.entries(params)) {
-        if (value !== undefined && value !== null) {
-          searchParams.set(key, String(value))
-        }
-      }
-
-      const response = await this.axios.get(`/?${searchParams.toString()}`)
+      const response = await this.axios.get(this.buildUrl(params))
       return response.data
     } catch (error) {
       if (axios.isAxiosError(error)) {
@@ -153,19 +147,7 @@ export class AvatuneClient {
    * Get list of available themes
    */
   static get themes(): readonly ThemeName[] {
-    return [
-      'ashley-seo',
-      'ashleyy',
-      'fatin-verse',
-      'kyute',
-      'micah',
-      'miniavs',
-      'nevmstas',
-      'pacovqzz',
-      'pawel-olek-man',
-      'pawel-olek-woman',
-      'yanliu',
-    ] as const
+    return themeNames
   }
 }
 

@@ -5,7 +5,6 @@
 [![DeepWiki](https://img.shields.io/badge/DeepWiki-avatune%2Favatune-blue.svg?logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACwAAAAyCAYAAAAnWDnqAAAAAXNSR0IArs4c6QAAA05JREFUaEPtmUtyEzEQhtWTQyQLHNak2AB7ZnyXZMEjXMGeK/AIi+QuHrMnbChYY7MIh8g01fJoopFb0uhhEqqcbWTp06/uv1saEDv4O3n3dV60RfP947Mm9/SQc0ICFQgzfc4CYZoTPAswgSJCCUJUnAAoRHOAUOcATwbmVLWdGoH//PB8mnKqScAhsD0kYP3j/Yt5LPQe2KvcXmGvRHcDnpxfL2zOYJ1mFwrryWTz0advv1Ut4CJgf5uhDuDj5eUcAUoahrdY/56ebRWeraTjMt/00Sh3UDtjgHtQNHwcRGOC98BJEAEymycmYcWwOprTgcB6VZ5JK5TAJ+fXGLBm3FDAmn6oPPjR4rKCAoJCal2eAiQp2x0vxTPB3ALO2CRkwmDy5WohzBDwSEFKRwPbknEggCPB/imwrycgxX2NzoMCHhPkDwqYMr9tRcP5qNrMZHkVnOjRMWwLCcr8ohBVb1OMjxLwGCvjTikrsBOiA6fNyCrm8V1rP93iVPpwaE+gO0SsWmPiXB+jikdf6SizrT5qKasx5j8ABbHpFTx+vFXp9EnYQmLx02h1QTTrl6eDqxLnGjporxl3NL3agEvXdT0WmEost648sQOYAeJS9Q7bfUVoMGnjo4AZdUMQku50McDcMWcBPvr0SzbTAFDfvJqwLzgxwATnCgnp4wDl6Aa+Ax283gghmj+vj7feE2KBBRMW3FzOpLOADl0Isb5587h/U4gGvkt5v60Z1VLG8BhYjbzRwyQZemwAd6cCR5/XFWLYZRIMpX39AR0tjaGGiGzLVyhse5C9RKC6ai42ppWPKiBagOvaYk8lO7DajerabOZP46Lby5wKjw1HCRx7p9sVMOWGzb/vA1hwiWc6jm3MvQDTogQkiqIhJV0nBQBTU+3okKCFDy9WwferkHjtxib7t3xIUQtHxnIwtx4mpg26/HfwVNVDb4oI9RHmx5WGelRVlrtiw43zboCLaxv46AZeB3IlTkwouebTr1y2NjSpHz68WNFjHvupy3q8TFn3Hos2IAk4Ju5dCo8B3wP7VPr/FGaKiG+T+v+TQqIrOqMTL1VdWV1DdmcbO8KXBz6esmYWYKPwDL5b5FA1a0hwapHiom0r/cKaoqr+27/XcrS5UwSMbQAAAABJRU5ErkJggg==)](https://deepwiki.com/avatune/avatune)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Release Packages](https://github.com/avatune/avatune/actions/workflows/release-packages.yml/badge.svg)](https://github.com/avatune/avatune/actions/workflows/release-packages.yml)
-[![Deploy Worker](https://github.com/avatune/avatune/actions/workflows/deploy-worker.yml/badge.svg)](https://github.com/avatune/avatune/actions/workflows/deploy-worker.yml)
 
 </div>
 
@@ -70,14 +69,18 @@ All themes support React, Vue, Svelte, and Vanilla JavaScript.
 |-------|---------|
 | Ashley Seo | [`@avatune/ashley-seo-theme`](./packages/themes/ashley-seo-theme) |
 | Ashleyy | [`@avatune/ashleyy-theme`](./packages/themes/ashleyy-theme) |
+| Cyberpunk | [`@avatune/cyberpunk-theme`](./packages/themes/cyberpunk-theme) |
 | Fatin Verse | [`@avatune/fatin-verse-theme`](./packages/themes/fatin-verse-theme) |
 | Kyute | [`@avatune/kyute-theme`](./packages/themes/kyute-theme) |
 | Micah | [`@avatune/micah-theme`](./packages/themes/micah-theme) |
 | Miniavs | [`@avatune/miniavs-theme`](./packages/themes/miniavs-theme) |
 | Nevmstas | [`@avatune/nevmstas-theme`](./packages/themes/nevmstas-theme) |
+| Orks | [`@avatune/orks-theme`](./packages/themes/orks-theme) |
 | Pacovqzz | [`@avatune/pacovqzz-theme`](./packages/themes/pacovqzz-theme) |
 | Pawel Olek Man | [`@avatune/pawel-olek-man-theme`](./packages/themes/pawel-olek-man-theme) |
 | Pawel Olek Woman | [`@avatune/pawel-olek-woman-theme`](./packages/themes/pawel-olek-woman-theme) |
+| Retro Cartoon | [`@avatune/retro-cartoon-theme`](./packages/themes/retro-cartoon-theme) |
+| Toon Flat | [`@avatune/toon-flat-theme`](./packages/themes/toon-flat-theme) |
 | Yanliu | [`@avatune/yanliu-theme`](./packages/themes/yanliu-theme) |
 
 ## Framework Renderers

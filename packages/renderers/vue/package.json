@@ -1,6 +1,6 @@
 {
   "name": "@avatune/vue",
-  "version": "2.2.0",
+  "version": "2.2.1",
   "private": false,
   "publishConfig": {
     "access": "public"
@@ -50,9 +50,9 @@
     "@avatune/typescript-config": "workspace:*",
     "@rsbuild/plugin-vue": "^1.2.0",
     "@rslib/core": "^0.16.1",
-    "@types/node": "^22.18.12",
+    "@types/node": "^24.9.1",
     "typescript": "^5.9.3",
-    "vue": "^3.5.22"
+    "vue": "^3.5.25"
   },
   "peerDependencies": {
     "vue": "^3.5.22"

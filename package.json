@@ -5,35 +5,46 @@
     "build": "turbo run build",
     "dev": "turbo run dev",
     "test": "turbo run test",
-    "check": "biome check --write",
+    "check": "bun run check:versions && biome check --write",
+    "check:versions": "syncpack lint",
     "lint": "biome lint --write",
     "format": "biome format --write",
+    "fix:versions": "syncpack fix",
     "check-types": "turbo run check-types",
     "storybook": "turbo run storybook --filter=@avatune/predictor-storybook --filter=@avatune/react-storybook --filter=@avatune/vue-storybook --filter=@avatune/svelte-storybook --filter=@avatune/vanilla-storybook --filter=@avatune/solidjs-storybook --filter=@avatune/angular-storybook --filter=@avatune/storybook-root",
     "generate:stories": "bun scripts/generate-stories.ts",
+    "generate:studio": "bun scripts/generate-studio-project.ts",
+    "generate:studio-json": "bun scripts/theme-to-studio.ts",
+    "merge:studio": "bun scripts/merge-studio-project.ts",
     "generate:assets-readme": "bun scripts/generate-assets-readme.ts",
     "generate:theme-readme": "bun scripts/generate-assets-theme-readme.ts",
     "generate:theme-website-docs": "bun scripts/generate-themes-mdx.ts",
+    "generate:website-themes": "bun scripts/generate-website-themes.ts",
     "generate:readme-and-website-docs": "bun scripts/generate-assets-theme-readme.ts && bun scripts/generate-themes-mdx.ts",
     "generate:root-readme": "bun scripts/generate-root-readme.ts",
-    "generate": "bun scripts/generate-assets-theme-readme.ts && bun scripts/generate-themes-mdx.ts && bun scripts/generate-root-readme.ts && bun scripts/generate-stories.ts && bun check",
+    "generate": "bun scripts/generate-assets-theme-readme.ts && bun scripts/generate-themes-mdx.ts && bun scripts/generate-website-themes.ts && bun scripts/generate-root-readme.ts && bun scripts/generate-stories.ts && bun run fix:versions && bun check",
     "prepare": "husky",
+    "postinstall": "bun run --cwd examples/nuxt-example setup && bun run --cwd examples/sveltekit-example sync && bun run --cwd apps/website generate:mdx",
     "release:version": "changeset version && bun update",
-    "release:publish": "changeset publish"
+    "release:publish": "changeset publish",
+    "release:bootstrap": "bun scripts/bootstrap-npm-package.ts"
   },
   "devDependencies": {
-    "@biomejs/biome": "^2.4.15",
+    "@biomejs/biome": "^2.5.6",
     "@changesets/changelog-github": "^0.5.2",
-    "@changesets/cli": "^2.31.0",
+    "@changesets/cli": "2.31.0",
     "@types/bun": "^1.3.14",
     "husky": "^9.1.7",
     "lint-staged": "^16.4.0",
+    "react": "19.2.8",
+    "react-dom": "19.2.8",
     "sharp": "^0.34.5",
-    "turbo": "^2.9.14",
-    "typescript": "5.9.3"
+    "syncpack": "^15.3.2",
+    "turbo": "^2.10.7",
+    "typescript": "^5.9.3"
   },
   "engines": {
-    "node": ">=22"
+    "node": ">=24"
   },
   "packageManager": "bun@1.3.10",
   "workspaces": [
@@ -54,12 +65,7 @@
     ]
   },
   "resolutions": {
-    "react": "19.1.0",
-    "react-dom": "19.1.0",
     "react-native": "0.81.5",
     "ws": "^8.18.0"
-  },
-  "patchedDependencies": {
-    "@changesets/cli@2.31.0": "patches/@changesets%2Fcli@2.31.0.patch"
   }
 }

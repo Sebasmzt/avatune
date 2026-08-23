@@ -25,13 +25,13 @@ import type { AssetFile } from './types'
 export { generateThemeFile } from './generators'
 
 /**
- * Generates a ZIP file containing the complete theme and assets packages
+ * Builds the complete theme and assets packages as a portable archive.
  */
-export async function generateThemeFolder(
+export function createThemeArchive(
   themeName: string,
   themeCode: string,
   themeData: ThemeData,
-): Promise<void> {
+): JSZip {
   const zip = new JSZip()
   const assetsPackageName = `${themeName}-assets`
   const themePackageName = `${themeName}-theme`
@@ -76,9 +76,7 @@ export async function generateThemeFolder(
   for (const [category, categoryAssets] of assetsByCategory.entries()) {
     const categoryFolder = assetsSvgFolder?.folder(category)
     for (const assetFile of categoryAssets) {
-      const response = await fetch(assetFile.asset.dataUrl)
-      const blob = await response.blob()
-      categoryFolder?.file(assetFile.fileName, blob)
+      categoryFolder?.file(assetFile.fileName, assetFile.asset.file)
     }
   }
 
@@ -104,7 +102,10 @@ export async function generateThemeFolder(
   )
   assetsFolder?.file('tsconfig.json', generateAssetsTsconfig())
   assetsFolder?.file('rslib.config.ts', generateAssetsRslibConfig())
-  assetsFolder?.file('rslib.shared.ts', generateAssetsRslibShared())
+  assetsFolder?.file(
+    'rslib.shared.ts',
+    generateAssetsRslibShared(themeData.secondaryColorChains),
+  )
   assetsFolder?.file(
     'rslib.native.config.ts',
     generateAssetsRslibNativeConfig(),
@@ -123,7 +124,7 @@ export async function generateThemeFolder(
 
   // Add shared.ts and colors.ts
   themeSrcFolder?.file('shared.ts', themeCode)
-  themeSrcFolder?.file('colors.ts', generateThemeColors())
+  themeSrcFolder?.file('colors.ts', generateThemeColors(themeData))
 
   // Generate framework-specific theme files
   const themeFrameworks = [
@@ -156,16 +157,22 @@ export async function generateThemeFolder(
     generateThemeReadme(themeName, themePackageName, assetsPackageName),
   )
 
-  // ============================================================================
-  // GENERATE AND DOWNLOAD ZIP
-  // ============================================================================
+  return zip
+}
+
+export async function generateThemeFolder(
+  themeName: string,
+  themeCode: string,
+  themeData: ThemeData,
+): Promise<void> {
+  const zip = createThemeArchive(themeName, themeCode, themeData)
   const blob = await zip.generateAsync({ type: 'blob' })
   const url = URL.createObjectURL(blob)
-  const a = document.createElement('a')
-  a.href = url
-  a.download = `${themeName}.zip`
-  document.body.appendChild(a)
-  a.click()
-  document.body.removeChild(a)
+  const anchor = document.createElement('a')
+  anchor.href = url
+  anchor.download = `${themeName}.zip`
+  document.body.appendChild(anchor)
+  anchor.click()
+  anchor.remove()
   URL.revokeObjectURL(url)
 }

@@ -1,4 +1,7 @@
+import type { ThemeFillChain } from '../../types'
 import { capitalizeFirst } from '../caseUtils'
+import { getThemeFillMarker, normalizeThemeFillChain } from '../svgColors'
+import { dependencyVersions } from './dependencyVersions'
 
 /**
  * Generates the assets package.json
@@ -90,20 +93,20 @@ export function generateAssetsPackageJson(assetsPackageName: string): string {
       '@avatune/rsbuild-plugin-svg-to-solid': 'workspace:*',
       '@avatune/rsbuild-plugin-svg-to-svelte': 'workspace:*',
       '@avatune/rsbuild-plugin-svg-to-vue': 'workspace:*',
-      '@rsbuild/core': '^1.5.17',
-      '@rsbuild/plugin-react': '^1.4.1',
-      '@rsbuild/plugin-solid': '^1.0.5',
-      '@rsbuild/plugin-svelte': '^1.0.10',
-      '@rsbuild/plugin-svgr': '^1.2.2',
-      '@rsbuild/plugin-vue': '^1.2.0',
-      '@rslib/core': '^0.16.1',
-      '@types/node': '^24.9.1',
-      react: '19.1.0',
-      'solid-js': '^1.9.0',
-      svelte: '^5.0.0',
-      vue: '^3.5.22',
-      svgo: '^4.0.0',
-      typescript: '^5.9.3',
+      '@rsbuild/core': dependencyVersions['@rsbuild/core'],
+      '@rsbuild/plugin-react': dependencyVersions['@rsbuild/plugin-react'],
+      '@rsbuild/plugin-solid': dependencyVersions['@rsbuild/plugin-solid'],
+      '@rsbuild/plugin-svelte': dependencyVersions['@rsbuild/plugin-svelte'],
+      '@rsbuild/plugin-svgr': dependencyVersions['@rsbuild/plugin-svgr'],
+      '@rsbuild/plugin-vue': dependencyVersions['@rsbuild/plugin-vue'],
+      '@rslib/core': dependencyVersions['@rslib/core'],
+      '@types/node': dependencyVersions['@types/node'],
+      react: dependencyVersions.react,
+      'solid-js': dependencyVersions['solid-js'],
+      svelte: dependencyVersions.svelte,
+      vue: dependencyVersions.vue,
+      svgo: dependencyVersions.svgo,
+      typescript: dependencyVersions.typescript,
     },
     peerDependencies: {
       react: '>=18.0.0',
@@ -138,7 +141,7 @@ export function generateAssetsPackageJson(assetsPackageName: string): string {
       },
     },
     dependencies: {
-      colord: '^2.9.3',
+      colord: dependencyVersions.colord,
     },
     license: 'MIT',
   }
@@ -291,12 +294,31 @@ function \${variables.componentName}(\${variables.props}) {
 /**
  * Generates the assets rslib.shared.ts
  */
-export function generateAssetsRslibShared(): string {
+export function generateAssetsRslibShared(chains: ThemeFillChain[]): string {
+  const transformMappings = chains
+    .map((chain) => {
+      const normalized = normalizeThemeFillChain(chain)
+      const expression = normalized.transforms
+        .map((transform) => {
+          const invocation =
+            'amount' in transform
+              ? `${transform.type}(${transform.amount})`
+              : `${transform.type}()`
+          return `.${invocation}`
+        })
+        .join('')
+      const source = normalized.sourceColor
+        ? JSON.stringify(normalized.sourceColor)
+        : '$' + '{colorPropName}'
+      return `  '${getThemeFillMarker(normalized)}': \`{colord(${source})${expression}.toHex()}\`,`
+    })
+    .join('\n')
+
   return `import type { Config as SvgoConfig } from 'svgo'
 
 const uid = () => Math.random().toString(36).slice(2, 9)
-
 export const colordImport = "import { colord } from 'colord';"
+
 
 export const svgoConfig: SvgoConfig = {
   plugins: [
@@ -305,6 +327,7 @@ export const svgoConfig: SvgoConfig = {
       params: {
         overrides: {
           cleanupIds: false,
+          convertColors: false,
         },
       },
     },
@@ -320,14 +343,7 @@ export const getReplaceAttrValues = (
   uidPropName = 'uid',
 ) => ({
   currentColor: \`{\${colorPropName}}\`,
-  '#FCBE93': \`{\${colorPropName}}\`,
-  '#FF7A93': \`{\${colorPropName}}\`,
-  '#FFA882': \`{colord(\${colorPropName}).darken(0.05).toHex()}\`,
-  '#272424': \`{colord(\${colorPropName}).darken(0.2).toHex()}\`,
-  '#A4C856': \`{\${colorPropName}}\`,
-  '#8DA853': \`{colord(\${colorPropName}).darken(0.05).toHex()}\`,
-  '#4F8558': \`{colord(\${colorPropName}).darken(0.1).toHex()}\`,
-  '#F06E82': \`{\${colorPropName}}\`,
+${transformMappings}
   filter0_d_144_233: \`{\${uidPropName} + '-' + '\${uid()}'}\`,
   filter0_d_144_264: \`{\${uidPropName} + '-' + '\${uid()}'}\`,
   mask0_134_151: \`{\${uidPropName} + '-' + '\${uid()}'}\`,
@@ -446,6 +462,19 @@ declare module '*.svg?vue' {
 
   const component: DefineComponent<SvgComponentProps>
   export default component
+}
+
+declare module '*.svg?solid' {
+  import type { Component, JSX } from 'solid-js'
+
+  interface SvgComponentProps extends JSX.SvgSVGAttributes<SVGSVGElement> {
+    class?: string
+    style?: JSX.CSSProperties | string
+  }
+
+  const component: Component<SvgComponentProps>
+  export default component
+  export const raw: string
 }
 
 declare module '*.svg?angular' {
