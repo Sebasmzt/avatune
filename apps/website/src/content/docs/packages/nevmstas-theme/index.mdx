@@ -6,19 +6,27 @@ source: "packages/themes/nevmstas-theme/README.md"
 
 import {
   accessoriesHorns,
-  eyebrowsAngry,
-  eyebrowsSmall,
-  eyebrowsStandard,
-  hatsSanta,
   bodySanta,
   bodyShirt,
   bodySweater,
   bodyTshirt,
   bodyTurtleneck,
-  noseBig,
-  noseCurve,
-  noseDots,
-  noseHalfOval,
+  earsStandard,
+  eyebrowsAngry,
+  eyebrowsSmall,
+  eyebrowsStandard,
+  eyesBoring,
+  eyesDots,
+  eyesOpenCircle,
+  eyesOpenRounded,
+  faceHairBeard,
+  hairBobRounded,
+  hairBobStraight,
+  hairLong,
+  hairMedium,
+  hairShort,
+  hatsSanta,
+  headOval,
   mouthBigSmile,
   mouthFlat,
   mouthFrown,
@@ -26,18 +34,10 @@ import {
   mouthLaugh,
   mouthNervous,
   mouthSmile,
-  earsStandard,
-  headOval,
-  faceHairBeard,
-  eyesBoring,
-  eyesDots,
-  eyesOpenCircle,
-  eyesOpenRounded,
-  hairBobRounded,
-  hairBobStraight,
-  hairLong,
-  hairMedium,
-  hairShort,
+  noseBig,
+  noseCurve,
+  noseDots,
+  noseHalfOval,
 } from '@avatune/nevmstas-assets/svg';
 
 > Source: `packages/assets/nevmstas-assets/README.md`
@@ -59,7 +59,7 @@ Avatar theme for Avatune using nevmstas design assets.
 
 ## Usage
 
-This theme is available for multiple frameworks: React, Vue, Svelte, Angular, and Vanilla JavaScript.
+This theme is available for multiple frameworks: React, Vue, Svelte, Angular, Vanilla JavaScript, and Swift.
 
 ### React
 
@@ -148,6 +148,25 @@ const svg = avatar({
 })
 
 container?.appendChild(svg)
+```
+
+### Swift
+
+Add [avatune-swift](/packages/swift) and depend on its `AvatuneNevmstas` product:
+
+```swift
+import AvatuneNevmstas
+import AvatuneRender
+import SwiftUI
+
+struct AvatarPreview: View {
+    var body: some View {
+        AvatarView(
+            NevmstasAvatar(seed: .string("optional-seed-for-random-generation"))
+        )
+        .frame(width: 300, height: 300)
+    }
+}
 ```
 
 ## Customization

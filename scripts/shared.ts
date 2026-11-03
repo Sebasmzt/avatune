@@ -13,7 +13,13 @@ import { basename, join } from 'node:path'
 // Types
 // ============================================================================
 
-export type Framework = 'react' | 'vue' | 'svelte' | 'angular' | 'vanilla'
+export type Framework =
+  | 'react'
+  | 'vue'
+  | 'svelte'
+  | 'angular'
+  | 'vanilla'
+  | 'swift'
 
 export interface AssetFile {
   category: string
@@ -176,10 +182,9 @@ export function findSvgFiles(svgDir: string): CategoryAssets {
     process.exit(1)
   }
 
-  const categories = readdirSync(svgDir).filter((item) => {
-    const itemPath = join(svgDir, item)
-    return statSync(itemPath).isDirectory()
-  })
+  const categories = readdirSync(svgDir)
+    .filter((item) => statSync(join(svgDir, item)).isDirectory())
+    .sort()
 
   for (const category of categories) {
     const categoryPath = join(svgDir, category)
@@ -248,9 +253,13 @@ export function readFileIfExists(filePath: string): string | undefined {
 export function discoverThemes(
   packagesDir: string = join(process.cwd(), 'packages'),
 ): ThemeInfo[] {
-  const themePackages = readdirSync(join(packagesDir, 'themes')).filter((pkg) =>
-    pkg.endsWith('-theme'),
-  )
+  // Sorted, not left in directory order: `readdirSync` returns whatever the
+  // filesystem does — ext4 hashes, APFS does not sort either — and this order
+  // reaches the generated Swift fixtures, so an unsorted list makes their
+  // content depend on which machine last ran the generator.
+  const themePackages = readdirSync(join(packagesDir, 'themes'))
+    .filter((pkg) => pkg.endsWith('-theme'))
+    .sort()
 
   return themePackages.map((pkg) => {
     const name = pkg.replace('-theme', '')
@@ -305,8 +314,9 @@ export function discoverThemes(
 export function discoverAssetPackages(
   packagesDir: string = join(process.cwd(), 'packages'),
 ): AssetPackageInfo[] {
-  const packages = readdirSync(join(packagesDir, 'assets'))
-  const assetPackages = packages.filter((pkg) => pkg.endsWith('-assets'))
+  const assetPackages = readdirSync(join(packagesDir, 'assets'))
+    .filter((pkg) => pkg.endsWith('-assets'))
+    .sort()
 
   return assetPackages.map((pkg) => {
     const packageDir = join(packagesDir, pkg)
@@ -401,6 +411,15 @@ export function generateAssetImports(
  */
 export function generateCodeBlock(code: string, language: string = ''): string {
   return `\`\`\`${language}\n${code}\n\`\`\``
+}
+
+/**
+ * The Swift package names a theme's module and builder after the theme, so
+ * `kyute-theme` ships `AvatuneKyute` and `KyuteAvatar`.
+ * @example swiftThemeModule('kyute-theme') => 'Kyute'
+ */
+export function swiftThemeModule(packageName: string): string {
+  return toPascalCase(packageName.replace(/-theme$/, ''))
 }
 
 /**
@@ -502,6 +521,25 @@ const svg = avatar({
 container?.appendChild(svg)`,
         'typescript',
       )
+
+    case 'swift': {
+      const module = swiftThemeModule(packageName)
+      return generateCodeBlock(
+        `import Avatune${module}
+import AvatuneRender
+import SwiftUI
+
+struct AvatarPreview: View {
+    var body: some View {
+        AvatarView(
+            ${module}Avatar(seed: .string("optional-seed-for-random-generation"))
+        )
+        .frame(width: 300, height: 300)
+    }
+}`,
+        'swift',
+      )
+    }
   }
 }
 

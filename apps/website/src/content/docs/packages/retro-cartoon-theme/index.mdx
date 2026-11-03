@@ -5,25 +5,17 @@ source: "packages/themes/retro-cartoon-theme/README.md"
 ---
 
 import {
-  eyebrowsAngled,
-  eyebrowsFlat,
-  eyebrowsRaised,
-  eyebrowsSoft,
-  eyebrowsThick,
   bodyBlazer,
   bodyCollaredShirt,
   bodyCrewneckSweater,
   bodyHoodie,
   bodyTurtleneckSweater,
   bodyVNeckSweater,
-  noseCurve,
-  mouthLips,
-  mouthNeutral,
-  mouthOpenedSmile,
-  mouthSad,
-  mouthSmirk,
-  mouthTeethSmile,
-  headStandard,
+  eyebrowsAngled,
+  eyebrowsFlat,
+  eyebrowsRaised,
+  eyebrowsSoft,
+  eyebrowsThick,
   eyesHappy,
   eyesNeutral,
   eyesSleepy,
@@ -37,6 +29,14 @@ import {
   hairLongStraight,
   hairLongWavy,
   hairSideSwept,
+  headStandard,
+  mouthLips,
+  mouthNeutral,
+  mouthOpenedSmile,
+  mouthSad,
+  mouthSmirk,
+  mouthTeethSmile,
+  noseCurve,
 } from '@avatune/retro-cartoon-assets/svg';
 
 > Source: `packages/assets/retro-cartoon-assets/README.md`
@@ -58,7 +58,7 @@ Avatar theme for Avatune using retro cartoon design assets.
 
 ## Usage
 
-This theme is available for multiple frameworks: React, Vue, Svelte, Angular, and Vanilla JavaScript.
+This theme is available for multiple frameworks: React, Vue, Svelte, Angular, Vanilla JavaScript, and Swift.
 
 ### React
 
@@ -147,6 +147,25 @@ const svg = avatar({
 })
 
 container?.appendChild(svg)
+```
+
+### Swift
+
+Add [avatune-swift](/packages/swift) and depend on its `AvatuneRetroCartoon` product:
+
+```swift
+import AvatuneRetroCartoon
+import AvatuneRender
+import SwiftUI
+
+struct AvatarPreview: View {
+    var body: some View {
+        AvatarView(
+            RetroCartoonAvatar(seed: .string("optional-seed-for-random-generation"))
+        )
+        .frame(width: 300, height: 300)
+    }
+}
 ```
 
 ## Customization

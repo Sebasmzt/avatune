@@ -5,22 +5,17 @@ source: "packages/themes/miniavs-theme/README.md"
 ---
 
 import {
-  faceDetailsBlushes,
   bodyGolf,
   bodyStandard,
-  mouthStandard,
-  mouthToothless,
-  glassesGlasses,
-  headStandard,
-  headThin,
-  headWide,
+  eyesConfident,
+  eyesHappy,
+  eyesStandard,
+  faceDetailsBlushes,
   faceHairFreddy,
   faceHairHorshoe,
   faceHairPencilThin,
   faceHairPencilThinBeard,
-  eyesConfident,
-  eyesHappy,
-  eyesStandard,
+  glassesGlasses,
   hairBaldness,
   hairClassic1,
   hairClassic2,
@@ -30,6 +25,11 @@ import {
   hairPonyTail,
   hairSlaughter,
   hairStylish,
+  headStandard,
+  headThin,
+  headWide,
+  mouthStandard,
+  mouthToothless,
 } from '@avatune/miniavs-assets/svg';
 
 > Source: `packages/assets/miniavs-assets/README.md`
@@ -51,7 +51,7 @@ Avatar theme for Avatune using miniavs design assets.
 
 ## Usage
 
-This theme is available for multiple frameworks: React, Vue, Svelte, Angular, and Vanilla JavaScript.
+This theme is available for multiple frameworks: React, Vue, Svelte, Angular, Vanilla JavaScript, and Swift.
 
 ### React
 
@@ -140,6 +140,25 @@ const svg = avatar({
 })
 
 container?.appendChild(svg)
+```
+
+### Swift
+
+Add [avatune-swift](/packages/swift) and depend on its `AvatuneMiniavs` product:
+
+```swift
+import AvatuneMiniavs
+import AvatuneRender
+import SwiftUI
+
+struct AvatarPreview: View {
+    var body: some View {
+        AvatarView(
+            MiniavsAvatar(seed: .string("optional-seed-for-random-generation"))
+        )
+        .frame(width: 300, height: 300)
+    }
+}
 ```
 
 ## Customization

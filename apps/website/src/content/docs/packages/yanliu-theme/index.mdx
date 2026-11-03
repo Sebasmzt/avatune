@@ -5,15 +5,6 @@ source: "packages/themes/yanliu-theme/README.md"
 ---
 
 import {
-  forelockBubble,
-  forelockCurve,
-  forelockShort,
-  forelockSplit,
-  forelockStraight,
-  forelockUnderCut,
-  faceDetailsBlushes,
-  hatsBeanie,
-  hatsHat,
   bodyBlouse,
   bodyFlowerCardigan,
   bodySimpleCardigan,
@@ -25,22 +16,31 @@ import {
   bodyTeeButtoned,
   bodyTeePocket,
   bodyTeeRound,
-  noseStandard,
-  mouthSmile,
   earsStandard,
-  glassesGlass,
-  headStandard,
-  neckStandard,
+  eyesStandard,
+  faceDetailsBlushes,
   faceHairBigBeard,
   faceHairChevronMustache,
   faceHairMustache,
-  eyesStandard,
+  forelockBubble,
+  forelockCurve,
+  forelockShort,
+  forelockSplit,
+  forelockStraight,
+  forelockUnderCut,
+  glassesGlass,
   hairBraids,
   hairHijab,
   hairMedium,
   hairPuff,
   hairStraightLong,
   hairStraightMedium,
+  hatsBeanie,
+  hatsHat,
+  headStandard,
+  mouthSmile,
+  neckStandard,
+  noseStandard,
 } from '@avatune/yanliu-assets/svg';
 
 > Source: `packages/assets/yanliu-assets/README.md`
@@ -62,7 +62,7 @@ Avatar theme for Avatune using yanliu design assets.
 
 ## Usage
 
-This theme is available for multiple frameworks: React, Vue, Svelte, Angular, and Vanilla JavaScript.
+This theme is available for multiple frameworks: React, Vue, Svelte, Angular, Vanilla JavaScript, and Swift.
 
 ### React
 
@@ -151,6 +151,25 @@ const svg = avatar({
 })
 
 container?.appendChild(svg)
+```
+
+### Swift
+
+Add [avatune-swift](/packages/swift) and depend on its `AvatuneYanliu` product:
+
+```swift
+import AvatuneYanliu
+import AvatuneRender
+import SwiftUI
+
+struct AvatarPreview: View {
+    var body: some View {
+        AvatarView(
+            YanliuAvatar(seed: .string("optional-seed-for-random-generation"))
+        )
+        .frame(width: 300, height: 300)
+    }
+}
 ```
 
 ## Customization

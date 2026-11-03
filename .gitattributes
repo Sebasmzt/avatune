@@ -1,0 +1,11 @@
+# The Swift package is developed here but released from avatune/avatune-swift,
+# where its language statistics belong. Almost all of it is generated theme
+# data, which would otherwise make this monorepo read as a Swift project.
+swift/** linguist-detectable=false
+
+# React Native's `react-native init` scaffolding, carried unmodified so the
+# storybook app can build. Not project code, and the only reason this repo
+# reports Swift, Kotlin and Ruby at all.
+apps/RNStorybook/ios/** linguist-vendored=true
+apps/RNStorybook/android/** linguist-vendored=true
+apps/RNStorybook/Gemfile linguist-vendored=true

@@ -12,21 +12,6 @@ import {
   bodyJacket4,
   bodyPoncho,
   bodyPoncho1,
-  noseClothespin,
-  noseMetal,
-  noseNarrow,
-  noseStandard,
-  noseWide1,
-  noseWide2,
-  mouthHooky,
-  mouthLips,
-  mouthNervous,
-  mouthOpen,
-  mouthSmiling,
-  headOval,
-  headRhombus,
-  headRobot,
-  headSquaredOval,
   eyesAnxious,
   eyesBrave,
   eyesCurious,
@@ -40,6 +25,21 @@ import {
   hairMedium,
   hairShort,
   hairStylish,
+  headOval,
+  headRhombus,
+  headRobot,
+  headSquaredOval,
+  mouthHooky,
+  mouthLips,
+  mouthNervous,
+  mouthOpen,
+  mouthSmiling,
+  noseClothespin,
+  noseMetal,
+  noseNarrow,
+  noseStandard,
+  noseWide1,
+  noseWide2,
 } from '@avatune/cyberpunk-assets/svg';
 
 > Source: `packages/assets/cyberpunk-assets/README.md`
@@ -61,7 +61,7 @@ Avatar theme for Avatune using cyberpunk design assets.
 
 ## Usage
 
-This theme is available for multiple frameworks: React, Vue, Svelte, Angular, and Vanilla JavaScript.
+This theme is available for multiple frameworks: React, Vue, Svelte, Angular, Vanilla JavaScript, and Swift.
 
 ### React
 
@@ -150,6 +150,25 @@ const svg = avatar({
 })
 
 container?.appendChild(svg)
+```
+
+### Swift
+
+Add [avatune-swift](/packages/swift) and depend on its `AvatuneCyberpunk` product:
+
+```swift
+import AvatuneCyberpunk
+import AvatuneRender
+import SwiftUI
+
+struct AvatarPreview: View {
+    var body: some View {
+        AvatarView(
+            CyberpunkAvatar(seed: .string("optional-seed-for-random-generation"))
+        )
+        .frame(width: 300, height: 300)
+    }
+}
 ```
 
 ## Customization
